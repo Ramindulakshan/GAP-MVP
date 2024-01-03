@@ -1,0 +1,58 @@
+
+
+.custom-text1 {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.custom-text2 {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 500;
+  padding-left: 5vh;
+  padding-right: 5vh;
+}
+
+.custom-text-FP {
+  color: #2a2a72;
+  text-align: right;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.custom-button2 {
+  font-size: 24px;
+  font-weight: 700;
+  padding-left: 5vh;
+  padding-right: 5vh;
+  background-color: #ffffff;
+  color: #2a2a72;
+  border: 2px solid #2a2a72;
+  border-width: 4px;
+  border-radius: 10px;
+}
+
+.custom-button2:hover {
+  background-color: #2a2a72;
+  border-color: #2a2a72;
+  color: #ffffff;
+}
+
+.custom-text-AR {
+  text-align: left;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.custom-text-AR span {
+  color: #2a2a72;
+  font-weight: 600;
+}
+
+.Icon img {
+  width: 40px;
+  height: 40px;
+  margin-right: 3vh;
+  margin-left: 3vh;
+}
