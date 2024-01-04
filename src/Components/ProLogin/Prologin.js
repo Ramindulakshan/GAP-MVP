@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Register_image from "./img/register.png";
 import Apple_image from "./img/apple.png";
 import Google_image from "./img/google.png";
-import Linkedin_image from "./img/linkedin.png";
+import tick from "./img/tick.png";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -16,6 +16,11 @@ function Prologin() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [show2, setShow2] = useState(false);
+  const handleClose2 = () => setShow2(false);
+  const handleShow2 = () => setShow2(true);
+
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -220,9 +225,51 @@ function Prologin() {
                     <button
                       className="custom-button2 custom-button-reset my-1 my-sm-3"
                       type="submit"
+                      onChange={handleShow2}
+                      onClick={handleShow2}
                     >
                       Register
                     </button>
+                    <Modal
+                      size="sm"
+                      show={show2}
+                      onHide={handleClose2}
+                      aria-labelledby="example-custom-modal-styling-title"
+                     centered
+                      
+                      
+                    >
+                      <Modal.Header closeButton></Modal.Header>
+
+                      <Modal.Body className="text-center" >
+                        {/* Image */}
+                        <img
+                          src={tick}
+                          alt="Tickimg"
+                          className="img-fluid mb-4"
+                          style={{ width: "100px", height: "100px" }}
+                        />
+
+                        {/* Successful Registration Message */}
+                        <h4 className="mb-2">Successful Registration!</h4>
+
+                        {/* Sub Message */}
+                        <p className="mb-4 p-10">
+                          Please verify your mobile number to continue
+                        </p>
+
+                        {/* Submit Button */}
+                        <div className="text-center">
+                          <button
+                            className="custom-button2 custom-button-reset my-1 my-sm-3"
+                            type="submit"
+                            
+                          >
+                            Continue
+                          </button>
+                        </div>
+                      </Modal.Body>
+                    </Modal>
                   </div>
                   <div class="text-center mb-4">
                     <h4 className="mb-4">Or, Register with</h4>
