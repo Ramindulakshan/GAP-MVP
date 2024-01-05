@@ -104,6 +104,7 @@
 .pbtn{
     border-radius: 5px;
     padding: 2px 8px;
+    margin: 8px 0;
 }
 .custom-box {
   width: 411px;

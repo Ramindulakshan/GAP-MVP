@@ -235,13 +235,11 @@ function Prologin() {
                       show={show2}
                       onHide={handleClose2}
                       aria-labelledby="example-custom-modal-styling-title"
-                     centered
-                      
-                      
+                      centered
                     >
                       <Modal.Header closeButton></Modal.Header>
 
-                      <Modal.Body className="text-center" >
+                      <Modal.Body className="text-center">
                         {/* Image */}
                         <img
                           src={tick}
@@ -263,7 +261,6 @@ function Prologin() {
                           <button
                             className="custom-button2 custom-button-reset my-1 my-sm-3"
                             type="submit"
-                            
                           >
                             Continue
                           </button>

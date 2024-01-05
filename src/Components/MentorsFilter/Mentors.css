@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&family=Jomhuria&family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Jomhuria&family=Poppins&display=swap");
 * {
   padding: 0;
   border: 0;
@@ -97,14 +97,16 @@
   padding-right: 3vh;
 }
 
-.card{
-    margin: 20px 20px;
-    border: 1px solid gainsboro;
-    padding: 10px 20px;
+.card {
+  margin: 20px 20px;
+  border: 1px solid gainsboro;
+  padding: 10px 20px;
 }
-.pbtn{
-    border-radius: 5px;
-    padding: 2px 8px;
+.pbtn {
+  border-radius: 5px;
+  padding: 2px 8px;
+  margin: 8px 0;
+  
 }
 .custom-box {
   width: 411px;
@@ -152,7 +154,6 @@
   cursor: pointer;
 }
 
-
 .imgr {
   width: 200px;
   height: 200px;
@@ -173,51 +174,51 @@
   flex: 1; /* Allow the text section to expand and fill the available space */
 }
 
-
 .custom-button21 {
-    font-size: 20px;
-    font-weight: 700;
-    padding: 4px 23px;
-    background-color: #ffffff;
-    color: #2a2a72;
-    border: 1px solid #2a2a72;
-    border-width: 3px;
-    border-radius: 10px;
-  }
-  
-  .custom-button21:hover {
-    background-color: #2a2a72;
-    border-color: #2a2a72;
-    color: #ffffff;
-  }
-  
-.pbtn2ww{
+  font-size: 20px;
+  font-weight: 700;
+  padding: 4px 23px;
+  background-color: #ffffff;
+  color: #2a2a72;
+  border: 1px solid #2a2a72;
+  border-width: 3px;
+  border-radius: 10px;
+}
+
+.custom-button21:hover {
+  background-color: #2a2a72;
+  border-color: #2a2a72;
+  color: #ffffff;
+}
+
+.pbtn2ww {
   background-color: gainsboro;
   padding: 4px;
   border-radius: 3px;
-  
 }
 .pbtn289 {
-  
-padding: 12px 23px;
-justify-content: center;
-align-items: center;
-gap: 10px;
-border-radius: 50px;
-border: 1px solid rgba(0, 0, 0, 0.50);
-color: rgba(0, 0, 0, 0.50);
-text-align: center;
-font-family: Poppins;
-font-size: 12px;
-font-weight: 600;
-letter-spacing: 1px;
-text-transform: capitalize;
+  padding: 12px 23px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+ 
+  text-align: center;
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  background-color: #2a2a72;
+  border-color: #2a2a72;
+  color: #ffffff;
 }
 .custom-button2136 {
   font-size: 20px;
   font-weight: 700;
   padding: 4px 23px;
- 
+
   border-width: 3px;
   border-radius: 10px;
   background-color: #2a2a72;
@@ -235,16 +236,38 @@ text-transform: capitalize;
   font-size: 20px;
   font-weight: 700;
   padding: 4px 23px;
- 
+
   border-width: 3px;
   border-radius: 10px;
-background-color: white;
-  border:1px solid #7e7e84;
+  background-color: white;
+  border: 1px solid #7e7e84;
   color: #7e7e84;
 }
+.ser{
 
+  width: "100%" ;
+}
 .custom-button218:hover {
   background-color: #ffffff;
   color: #2a2a72;
   border: 1px solid #2a2a72;
+}
+@media screen and (max-width: 768px) {
+  .ser {
+    width: 100%;
+  }
+  .pbtn289 {
+    padding: 10px;
+    gap: 10px;
+    border-radius: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+   
+    text-align: center;
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    margin: 20px;
+  }
 }
