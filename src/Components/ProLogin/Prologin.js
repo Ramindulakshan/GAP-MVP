@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Register_image from "./img/register.png";
-import Apple_image from "./img/apple.png";
 import Google_image from "./img/google.png";
 import tick from "./img/tick.png";
 import Form from "react-bootstrap/Form";
