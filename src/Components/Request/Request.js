@@ -266,7 +266,7 @@ function Mentors() {
               </div>
             </div>
           </div>
-          <div className="col-lg-9 vh-100 overflow-auto">
+          <div className="col-lg-9 vh-100 ">
             <Navbar className="mt-3 justify-content-between">
               <Form className="mx-auto">
                 <div className="position-relative">

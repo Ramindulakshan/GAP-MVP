@@ -3,6 +3,15 @@
   padding: 0;
   border: 0;
 }
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
 .custom-image-Gap {
   max-height: 15vh;
   max-width: 100%;
@@ -10,7 +19,49 @@
   margin-top: 2vh;
   margin-bottom: 2vh;
 }
+#nav {
+  padding: 10px 0 0 50px;
+  font-size: 30px;
+}
 
+.fullcon {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.shdw {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+
+}
+::-webkit-scrollbar {
+  width: 0px;
+
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+
+.shdw::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 99%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0); /* Adjust the opacity as needed */
+  z-index: 1;
+}
+
+.Cardsection {
+  height: 100%;
+  width: 67vw;
+  padding: 0 0px 30px 0px;
+  position: relative;
+  background-attachment: fixed;
+}
 .list-group-item-custom {
   background-color: rgb(255, 255, 255);
   color: #00000080;
@@ -98,7 +149,7 @@
 }
 
 .card {
-  margin: 20px 20px;
+  margin: 20px 30px;
   border: 1px solid gainsboro;
   padding: 10px 20px;
 }
@@ -161,15 +212,15 @@
 }
 
 .text-section {
-  margin-left: 10px; /* Add some margin to separate text from the image */
+  margin-left: 50px;
 }
 
 .card-title {
-  margin-bottom: 0.5rem; /* Adjust as needed */
+  margin-bottom: 0.5rem;
 }
 
 .card-body {
-  flex: 1; /* Allow the text section to expand and fill the available space */
+  flex: 1;
 }
 
 .custom-button21 {
@@ -281,21 +332,72 @@
   margin: 10px 0;
   background: #008705;
 }
-.cancel{
-  color: #CF1010;
-text-align: center;
-font-family: Poppins;
-font-size: 18px;
-background-color: white;
-font-weight: bold;
-padding: 5px 8px;
-position: relative;
-top: 180px;
-left: 30px;
-letter-spacing: 1px;
-text-transform: capitalize;
-border-radius: 5px;
-border: 2px solid #CF1010;
+
+.cancel2 {
+  color: #2a2a72;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 12px;
+  background-color: white;
+  font-weight: bold;
+  padding: 5px 8px;
+  position: relative;
+  top: 200px;
+  left: 0px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  border-radius: 5px;
+  border: 2px solid #2a2a72;
+  cursor: pointer;
+}
+.cancel2ac {
+  color: white;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 12px;
+  background-color: #2a2a72;
+  font-weight: bold;
+  padding: 5px 8px;
+  position: relative;
+  top: 200px;
+  left: 0px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid #2a2a72;
+}
+.cancel {
+  color: #cf1010;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 18px;
+  background-color: white;
+  font-weight: bold;
+  padding: 5px 8px;
+  position: relative;
+  top: 180px;
+  left: 30px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  border-radius: 5px;
+  border: 2px solid #cf1010;
+}
+.pricepnew {
+  border-radius: 5px;
+  background: rgba(42, 42, 114, 0.15);
+  color: rgba(42, 42, 114, 0.75);
+  text-align: center;
+  font-family: Poppins;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  right: 8px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  position: absolute;
+  padding: 6px 17px;
+  cursor: pointer;
 }
 .pbtnreqwet {
   border-radius: 5px;
@@ -318,6 +420,10 @@ border: 2px solid #CF1010;
   font-weight: bold;
   padding: 5px 0 0 0;
 }
+.card-paranew {
+  padding: 8px 0 0 0;
+  font-size: 16px;
+}
 .para4 {
   color: rgba(207, 16, 16, 0.8);
   margin: 0;
@@ -325,8 +431,17 @@ border: 2px solid #CF1010;
   font-weight: 600;
   font-size: 15px;
 }
-.navtpic{
-  padding: 10px 20px 0 22px;
+.navtpic {
+  padding: 40px 20px 0 2px;
   cursor: pointer;
   font-weight: bold;
+  color: #000;
+  text-decoration: none;
+  align-items: center; /* Add this line to vertically center the content */
+}
+
+.sedule {
+  padding: 20px 0 0 30px;
+  font-weight: bold;
+  font-size: 25px;
 }
