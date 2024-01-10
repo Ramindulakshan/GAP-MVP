@@ -4,6 +4,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 // import HomePage from './components/HomePage/HomePage';
 // import Footer from './components/Footer/Footer';
 import LoginPage from './components/LoginPage/LoginPage';
+import LandingPage from './components//LandingPage/Landing';
 import ResetPassword from './components/FogotPassword/ResetPassword';
 import EmailVerify from './components/EmailVerify/EmailVerify';
 import MobileAuthentication from './components/MobileAuthentication/MobileAuthentication';
@@ -26,7 +27,8 @@ return (
 {/* <ResetPassword/> */}
 {/* <MobileAuthentication/> */}
 {/* <VerificationPage/> */}
-<HomePage/>
+{/* <HomePage/> */}
+<LandingPage/>
 
 
     </>
