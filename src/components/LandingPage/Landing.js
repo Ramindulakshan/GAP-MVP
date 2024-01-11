@@ -5,17 +5,39 @@ import '../LandingPage/Landing.css';
 import CountUp from 'react-countup';
 import { Card, Row, Col } from 'react-bootstrap';
 import CardGroup from 'react-bootstrap/CardGroup';
+import GAP_Image from '../HomePage/Img/GAP_BG.png';
 
 const LoginPage = () => {
     return (
         <>
             <section className=''>
-                <div className='container-fluid'>
-
-
-                    <div className='col-lg-12 vh-100 '>
-                        <h1 className='custom-text-LA text-center mb-5 mt-5 '>Explore The World And Discover Your Potential</h1>
-                        <h1 className='custom-text-LA2 text-center mb-5 mt-5 '>Connect with industry pros, discover opportunities, showcase your skills.Join a thriving community, and empower your future. Your journey starts here!</h1>
+                <div className='container-fluid vh-100  '>
+                    <div className='container'>
+                        <nav className="navbar navbar-light">
+                            <a className="navbar-brand" href="#">
+                                <img src={GAP_Image} height="90" alt="" />{' '}
+                                GAP
+                            </a>
+                            <div className="d-flex justify-content-end">
+                                <a className="nav-link custom-nav-link " href="#">Home</a>
+                                <a className="nav-link custom-nav-link " href="#">About</a>
+                                <a className="nav-link custom-nav-link" href="#">Contact</a>
+                                <a className="nav-link custom-nav-link" href="#">Login</a>
+                                <form className="form-inline my-2 my-lg-0">
+                                    <button className="btn custom-button1 my-2 my-sm-3" type="submit">Register</button>
+                                </form>
+                            </div>
+                        </nav>
+                    </div>
+                    <div>
+                        <div>
+                            <h1 className='custom-text-LA text-center mb-4 mt-3' style={{ marginLeft: '150px', marginRight: '150px' }}>
+                                Explore The World And Discover<br/> Your Potential
+                            </h1>
+                            <h1 className='custom-text-LA2 text-center mb-1 mt-1' style={{ marginLeft: '100px', marginRight: '100px' }}>
+                                Connect with industry pros, discover opportunities, showcase your skills. Join a thriving community, and empower<br/> your future. Your journey starts here!
+                            </h1>
+                        </div>
                         <CardGroup className="d-flex justify-content-center flex-wrap">
                             <Card className="m-5" style={{ backgroundColor: '#DCDDF9', width: '5rem' }}>
                                 <Card.Body className="text-center">
@@ -49,11 +71,8 @@ const LoginPage = () => {
                                 </Card.Body>
                             </Card>
                         </CardGroup>
-
-
-
-                        <div className="text-center mt-5">
-                            <button className="btn custom-button-reset my-1 my-sm-3" type="submit" >Register For Free</button>
+                        <div className="text-center mt-1">
+                            <button className="btn custom-button-reset2 my-1 my-sm-3" type="submit" >Register For Free</button>
                         </div>
                     </div>
 

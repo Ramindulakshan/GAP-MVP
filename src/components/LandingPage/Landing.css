@@ -1,11 +1,11 @@
 .custom-text-LA {
     color: #000000;
-    font-size: 54px;
+    font-size: 50px;
     font-weight: 600;
   }
   .custom-text-LA2 {
     color: #000000;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
   }
 
@@ -14,3 +14,62 @@
     font-size: 50px;
     font-weight: 500;
   }
+
+  .custom-button-reset2{
+    background-color: #ffffff;
+    color: #2a2a72; 
+    border-color: #2A2A72;
+    border-width: 4px;
+    font-weight: 700; 
+    font-size: 24px;
+    padding-left: 5vh;
+    padding-right: 5vh;
+  
+  }
+  .custom-button-reset2:hover {
+    background-color: #2a2a72;
+    border-color: #2a2a72;
+    color: #ffffff;
+  }
+
+  .custom-nav-link {
+    color: #2A2A72;
+    font-size: 22px;
+    font-weight: 600; 
+    margin-left: 4vh;
+    margin-right: 5vh;
+    margin-top: 3vh;
+    text-decoration: none; 
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .custom-nav-link:hover {
+    color: #2a2a7262; 
+  }
+  
+  .custom-button{
+    color: #000;
+  }
+  .custom-button1 {
+    font-size:20px;
+    font-weight: 700;
+    padding-left: 3vh;
+    padding-right: 3vh;
+    border-radius: 15px;
+    background-color: #ffffff;
+    color: #2a2a72; 
+    border-color: #2a2a72;
+    border-width: 4px; 
+  }
+  .custom-button1:hover {
+    background-color: #2a2a72;
+    border-color: #2a2a72;
+    color: #ffffff;
+  }
+
+.navbar-brand {
+    font-size: 40px;
+    color: #336699;
+    font-weight: 600; 
+    letter-spacing: 5px;
+}
