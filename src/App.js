@@ -13,6 +13,25 @@ import VerifyMN from "./components/FogotPassword/VerifyMN";
 import VerifyE from "./components/FogotPassword/VerifyE";
 import VerificationPage from "./components/Verification/VerificationPage";
 // import LoginPageS from './components/Student/LoginPageS';
+
+import HomePage from './components/HomePage/HomePage';
+import UserProfile from './components/UserProfile/UserProfileOtherUsers';
+
+const App=()=> {
+return (
+
+<>
+{/* <LoginPage/> */}
+{/* <FogotPassword/> */}
+{/* <VerifyMN/> */}
+{/* <VerifyE/> */}
+{/* <ResetPassword/> */}
+{/* <MobileAuthentication/> */}
+{/* <VerificationPage/> */}
+{/* <HomePage/> */}
+{/*<LandingPage/>*/}
+<UserProfile/>
+
 import HomePage from "./components/HomePage/HomePage";
 import MentoringSession from"./components/MentoringSession/MentoringSession";
 import WeeklySchedulePageNotMenter from "./components/WeeklySchedulePageNotMenter/WeeklySchedulePageNotMenter";
@@ -37,6 +56,7 @@ const App = () => {
       {/**/}
      
       <WeeklySchedulePage/>
+
     </>
   );
 };

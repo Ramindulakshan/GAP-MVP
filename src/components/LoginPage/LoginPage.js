@@ -5,6 +5,8 @@ import Google_image from '../LoginPage/Img/google.png';
 import Form from 'react-bootstrap/Form';
 
 const LoginPage = () => {
+
+    
     return (
         <>
             <section className=''>
