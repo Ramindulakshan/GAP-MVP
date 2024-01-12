@@ -14,7 +14,7 @@ import VerifyE from './components/FogotPassword/VerifyE';
 import VerificationPage from './components/Verification/VerificationPage';
 // import LoginPageS from './components/Student/LoginPageS';
 import HomePage from './components/HomePage/HomePage';
-
+import UserProfile from './components/UserProfile/UserProfileOtherUsers';
 
 const App=()=> {
 return (
@@ -28,7 +28,8 @@ return (
 {/* <MobileAuthentication/> */}
 {/* <VerificationPage/> */}
 {/* <HomePage/> */}
-<LandingPage/>
+{/*<LandingPage/>*/}
+<UserProfile/>
 
 
     </>
