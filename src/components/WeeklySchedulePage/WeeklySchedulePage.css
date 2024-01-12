@@ -1,0 +1,84 @@
+.calen {
+  padding: 30px 0 30px 200px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2a2a72;
+}
+
+.pbtn2wwnew {
+  padding: 4px;
+  border-radius: 3px;
+}
+.yerm {
+  background-color: #2a2a72;
+  width: 730px;
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+  color: white;
+  padding: 10px 0;
+  font-weight: bold;
+  font-size: 25px;
+}
+.addslot {
+  border-top: 2px solid gray;
+  width: 730px;
+  margin: 20px 0;
+  padding: 20px 0;
+}
+.slottopic {
+  font-size: 20px;
+  font-weight: bold;
+}
+.aelectbtnset {
+  background: rgba(42, 42, 114, 0.1);
+  color: #2a2a72;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 20px;
+}
+
+.custom-buttoncansl {
+  font-size: 20px;
+  font-weight: 700;
+  padding: 4px 10px;
+  background-color: #ffffff;
+  color: #2a2a72;
+  border: 3px solid #2a2a72;
+  border-radius: 10px;
+  margin: 0 50px 0 0;
+}
+
+.custom-button2:hover {
+  background-color: #2a2a72;
+  border-color: #2a2a72;
+  color: #ffffff;
+}
+
+.custom-buttonadd {
+    font-size: 20px;
+    font-weight: 700;
+    padding: 4px 25px;
+    background-color: #2a2a72;
+    color: #ffffff;
+    border: 3px solid #2a2a72;
+    border-radius: 10px;
+    margin: 0 0px 0 0;
+  }
+  
+  .custom-buttonadd:hover {
+    background-color: #ffffff;
+    border-color: #2a2a72;
+    color: #2a2a72;
+  }
+  .timinpt{
+    border: 2px solid #2a2a72;
+    padding: 4px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 10px 0;
+  }
+  .btnsettim{
+    margin: 30px 0 0 200px;
+  }
