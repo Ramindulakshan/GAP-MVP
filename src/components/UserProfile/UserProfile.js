@@ -1011,8 +1011,8 @@ function UserProfile() {
                 </div>
                 <div></div>
               </div>
-               <div class="cardfu">
-              <div className="d-flex justify-content-between mt-4">
+              <div class="cardfu">
+                <div className="d-flex justify-content-between mt-4">
                   <h4>Fields of interest</h4>
 
                   <h6 className="View-more">
@@ -1032,186 +1032,97 @@ function UserProfile() {
                       />
                     </svg>
                   </h6>
-                  {/*Academic qualification Model Start*/}
-                  <Modal
-                    show={show4}
-                    onHide={handleClose4}
-                    aria-labelledby="example-custom-modal-styling-title"
-                  >
-                    <Modal.Header closeButton></Modal.Header>
-
-                    <Modal.Body>
-                      <Modal.Title
-                        id="example-custom-modal-styling-title"
-                        className="text-center"
-                      >
-                        <h1>Academic Qualification</h1>
-                        <p>Add New Academic Qualification</p>
-                      </Modal.Title>
-                      <div className="p-7">
-                        <Container className="mt-2">
-                          <Form.Label>Institute* </Form.Label>
-                          <Form.Control
-                            placeholder="add institute name"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-                          <br></br>
-                          <Form.Label>Degree / Course* </Form.Label>
-                          <Form.Control
-                            placeholder="add degree / course name"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-
-                          <br></br>
-
-                          <Form.Group as={Col} controlId="formGridZip">
-                            <Form.Label>Start date*</Form.Label>
-                            <Form.Control
-                              type="date"
-                              style={{
-                                border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                boxShadow: "none", // Optional: Remove box-shadow
-                              }}
-                            />
-                          </Form.Group>
-                          <br></br>
-                          <Form.Group as={Col} controlId="formGridZip">
-                            <Form.Label>End date (or expected)*</Form.Label>
-                            <Form.Control
-                              type="date"
-                              style={{
-                                border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                boxShadow: "none", // Optional: Remove box-shadow
-                              }}
-                            />
-                          </Form.Group>
-                          <br></br>
-                          <Form.Label>Grade*</Form.Label>
-                          <Form.Control
-                            placeholder="add grade"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-                          <br></br>
-                        </Container>
-                      </div>
-                      <div className="text-center">
-                        <button
-                          className="btn  custom-button-reset my-1 my-sm-3 t"
-                          type="submit"
-                          onClick={handleShow}
+                </div>
+                <div class="cardm">
+                  <br></br>
+                  <div className="container mt-3">
+                    <div className="d-inline-block">
+                      <button className="pbtn289">
+                        Time Management&nbsp;&nbsp;{" "}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="11"
+                          height="11"
+                          viewBox="0 0 11 11"
+                          fill="none"
                         >
-                          Save
+                          <path
+                            d="M0.77955 0.601815C0.958599 0.42282 1.20141 0.322266 1.45459 0.322266C1.70776 0.322266 1.95057 0.42282 2.12962 0.601815L5.50576 3.97796L8.8819 0.601815C9.06198 0.427893 9.30316 0.331655 9.55351 0.33383C9.80385 0.336006 10.0433 0.43642 10.2203 0.613446C10.3974 0.790472 10.4978 1.02995 10.5 1.28029C10.5021 1.53063 10.4059 1.77181 10.232 1.95189L6.85584 5.32803L10.232 8.70417C10.4059 8.88425 10.5021 9.12543 10.5 9.37577C10.4978 9.62611 10.3974 9.86559 10.2203 10.0426C10.0433 10.2196 9.80385 10.3201 9.55351 10.3222C9.30316 10.3244 9.06198 10.2282 8.8819 10.0542L5.50576 6.6781L2.12962 10.0542C1.94955 10.2282 1.70837 10.3244 1.45802 10.3222C1.20768 10.3201 0.968206 10.2196 0.791181 10.0426C0.614155 9.86559 0.51374 9.62611 0.511565 9.37577C0.509389 9.12543 0.605627 8.88425 0.77955 8.70417L4.15569 5.32803L0.77955 1.95189C0.600554 1.77284 0.5 1.53003 0.5 1.27685C0.5 1.02368 0.600554 0.780865 0.77955 0.601815Z"
+                            fill="white"
+                          />
+                        </svg>
+                      </button>
+                      &nbsp;&nbsp;
+                      <button className="pbtn289">
+                        Team Work &nbsp;&nbsp;
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="11"
+                          height="11"
+                          viewBox="0 0 11 11"
+                          fill="none"
+                        >
+                          <path
+                            d="M0.77955 0.601815C0.958599 0.42282 1.20141 0.322266 1.45459 0.322266C1.70776 0.322266 1.95057 0.42282 2.12962 0.601815L5.50576 3.97796L8.8819 0.601815C9.06198 0.427893 9.30316 0.331655 9.55351 0.33383C9.80385 0.336006 10.0433 0.43642 10.2203 0.613446C10.3974 0.790472 10.4978 1.02995 10.5 1.28029C10.5021 1.53063 10.4059 1.77181 10.232 1.95189L6.85584 5.32803L10.232 8.70417C10.4059 8.88425 10.5021 9.12543 10.5 9.37577C10.4978 9.62611 10.3974 9.86559 10.2203 10.0426C10.0433 10.2196 9.80385 10.3201 9.55351 10.3222C9.30316 10.3244 9.06198 10.2282 8.8819 10.0542L5.50576 6.6781L2.12962 10.0542C1.94955 10.2282 1.70837 10.3244 1.45802 10.3222C1.20768 10.3201 0.968206 10.2196 0.791181 10.0426C0.614155 9.86559 0.51374 9.62611 0.511565 9.37577C0.509389 9.12543 0.605627 8.88425 0.77955 8.70417L4.15569 5.32803L0.77955 1.95189C0.600554 1.77284 0.5 1.53003 0.5 1.27685C0.5 1.02368 0.600554 0.780865 0.77955 0.601815Z"
+                            fill="white"
+                          />
+                        </svg>
+                      </button>
+                      &nbsp;&nbsp;
+                      <button className="pbtn289">
+                        Work Balance &nbsp;&nbsp;{" "}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="11"
+                          height="11"
+                          viewBox="0 0 11 11"
+                          fill="none"
+                        >
+                          <path
+                            d="M0.77955 0.601815C0.958599 0.42282 1.20141 0.322266 1.45459 0.322266C1.70776 0.322266 1.95057 0.42282 2.12962 0.601815L5.50576 3.97796L8.8819 0.601815C9.06198 0.427893 9.30316 0.331655 9.55351 0.33383C9.80385 0.336006 10.0433 0.43642 10.2203 0.613446C10.3974 0.790472 10.4978 1.02995 10.5 1.28029C10.5021 1.53063 10.4059 1.77181 10.232 1.95189L6.85584 5.32803L10.232 8.70417C10.4059 8.88425 10.5021 9.12543 10.5 9.37577C10.4978 9.62611 10.3974 9.86559 10.2203 10.0426C10.0433 10.2196 9.80385 10.3201 9.55351 10.3222C9.30316 10.3244 9.06198 10.2282 8.8819 10.0542L5.50576 6.6781L2.12962 10.0542C1.94955 10.2282 1.70837 10.3244 1.45802 10.3222C1.20768 10.3201 0.968206 10.2196 0.791181 10.0426C0.614155 9.86559 0.51374 9.62611 0.511565 9.37577C0.509389 9.12543 0.605627 8.88425 0.77955 8.70417L4.15569 5.32803L0.77955 1.95189C0.600554 1.77284 0.5 1.53003 0.5 1.27685C0.5 1.02368 0.600554 0.780865 0.77955 0.601815Z"
+                            fill="white"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <br></br>
+                  <Form className="mx-auto">
+                    <div className="position-relative ser">
+                      <FormControl
+                        type="text"
+                        placeholder="Find A Mentor"
+                        className="w-100"
+                      />
+                      <FaSearch
+                        className="position-absolute top-50 translate-middle-y text-muted"
+                        style={{ right: "15px" }}
+                      />
+                    </div>
+                  </Form>
+                  <br></br>
+                  <div className="ms-md-auto d-md-flex align-items-end">
+                    <div className="box d-flex align-items-end">
+                      <p className="ptnparak ms-2 mb-0 align-items-end">
+                        <button
+                          className="custom-button218 custom-button-reset my-1 my-sm-3 t"
+                          type="submit"
+                        >
+                          Cancel
                         </button>
-                      </div>
-                    </Modal.Body>
-                  </Modal>
-                  {/*Academic qualification Model End*/}
-                </div>
-              <div class="cardm">
-                
-                <br></br>
-                <div className="container mt-3">
-                  <div className="d-inline-block">
-                    <button className="pbtn289">
-                      Time Management&nbsp;&nbsp;{" "}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="11"
-                        height="11"
-                        viewBox="0 0 11 11"
-                        fill="none"
-                      >
-                        <path
-                          d="M0.77955 0.601815C0.958599 0.42282 1.20141 0.322266 1.45459 0.322266C1.70776 0.322266 1.95057 0.42282 2.12962 0.601815L5.50576 3.97796L8.8819 0.601815C9.06198 0.427893 9.30316 0.331655 9.55351 0.33383C9.80385 0.336006 10.0433 0.43642 10.2203 0.613446C10.3974 0.790472 10.4978 1.02995 10.5 1.28029C10.5021 1.53063 10.4059 1.77181 10.232 1.95189L6.85584 5.32803L10.232 8.70417C10.4059 8.88425 10.5021 9.12543 10.5 9.37577C10.4978 9.62611 10.3974 9.86559 10.2203 10.0426C10.0433 10.2196 9.80385 10.3201 9.55351 10.3222C9.30316 10.3244 9.06198 10.2282 8.8819 10.0542L5.50576 6.6781L2.12962 10.0542C1.94955 10.2282 1.70837 10.3244 1.45802 10.3222C1.20768 10.3201 0.968206 10.2196 0.791181 10.0426C0.614155 9.86559 0.51374 9.62611 0.511565 9.37577C0.509389 9.12543 0.605627 8.88425 0.77955 8.70417L4.15569 5.32803L0.77955 1.95189C0.600554 1.77284 0.5 1.53003 0.5 1.27685C0.5 1.02368 0.600554 0.780865 0.77955 0.601815Z"
-                          fill="white"
-                        />
-                      </svg>
-                    </button>
-                    &nbsp;&nbsp;
-                    <button className="pbtn289">
-                      Team Work &nbsp;&nbsp;
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="11"
-                        height="11"
-                        viewBox="0 0 11 11"
-                        fill="none"
-                      >
-                        <path
-                          d="M0.77955 0.601815C0.958599 0.42282 1.20141 0.322266 1.45459 0.322266C1.70776 0.322266 1.95057 0.42282 2.12962 0.601815L5.50576 3.97796L8.8819 0.601815C9.06198 0.427893 9.30316 0.331655 9.55351 0.33383C9.80385 0.336006 10.0433 0.43642 10.2203 0.613446C10.3974 0.790472 10.4978 1.02995 10.5 1.28029C10.5021 1.53063 10.4059 1.77181 10.232 1.95189L6.85584 5.32803L10.232 8.70417C10.4059 8.88425 10.5021 9.12543 10.5 9.37577C10.4978 9.62611 10.3974 9.86559 10.2203 10.0426C10.0433 10.2196 9.80385 10.3201 9.55351 10.3222C9.30316 10.3244 9.06198 10.2282 8.8819 10.0542L5.50576 6.6781L2.12962 10.0542C1.94955 10.2282 1.70837 10.3244 1.45802 10.3222C1.20768 10.3201 0.968206 10.2196 0.791181 10.0426C0.614155 9.86559 0.51374 9.62611 0.511565 9.37577C0.509389 9.12543 0.605627 8.88425 0.77955 8.70417L4.15569 5.32803L0.77955 1.95189C0.600554 1.77284 0.5 1.53003 0.5 1.27685C0.5 1.02368 0.600554 0.780865 0.77955 0.601815Z"
-                          fill="white"
-                        />
-                      </svg>
-                    </button>
-                    &nbsp;&nbsp;
-                    <button className="pbtn289">
-                      Work Balance &nbsp;&nbsp;{" "}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="11"
-                        height="11"
-                        viewBox="0 0 11 11"
-                        fill="none"
-                      >
-                        <path
-                          d="M0.77955 0.601815C0.958599 0.42282 1.20141 0.322266 1.45459 0.322266C1.70776 0.322266 1.95057 0.42282 2.12962 0.601815L5.50576 3.97796L8.8819 0.601815C9.06198 0.427893 9.30316 0.331655 9.55351 0.33383C9.80385 0.336006 10.0433 0.43642 10.2203 0.613446C10.3974 0.790472 10.4978 1.02995 10.5 1.28029C10.5021 1.53063 10.4059 1.77181 10.232 1.95189L6.85584 5.32803L10.232 8.70417C10.4059 8.88425 10.5021 9.12543 10.5 9.37577C10.4978 9.62611 10.3974 9.86559 10.2203 10.0426C10.0433 10.2196 9.80385 10.3201 9.55351 10.3222C9.30316 10.3244 9.06198 10.2282 8.8819 10.0542L5.50576 6.6781L2.12962 10.0542C1.94955 10.2282 1.70837 10.3244 1.45802 10.3222C1.20768 10.3201 0.968206 10.2196 0.791181 10.0426C0.614155 9.86559 0.51374 9.62611 0.511565 9.37577C0.509389 9.12543 0.605627 8.88425 0.77955 8.70417L4.15569 5.32803L0.77955 1.95189C0.600554 1.77284 0.5 1.53003 0.5 1.27685C0.5 1.02368 0.600554 0.780865 0.77955 0.601815Z"
-                          fill="white"
-                        />
-                      </svg>
-                    </button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button
+                          className="custom-button2136o custom-button-reset my-1 my-sm-3 t"
+                          type="submit"
+                        >
+                          Add
+                        </button>
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                <br></br>
-                <Form className="mx-auto">
-                  <div className="position-relative ser">
-                    <FormControl
-                      type="text"
-                      placeholder="Find A Mentor"
-                      className="w-100"
-                    />
-                    <FaSearch
-                      className="position-absolute top-50 translate-middle-y text-muted"
-                      style={{ right: "15px" }}
-                    />
-                  </div>
-                </Form>
-                <br></br>
-                <div className="ms-md-auto d-md-flex align-items-end">
-                  <div className="box d-flex align-items-end">
-                    <p className="ptnparak ms-2 mb-0 align-items-end">
-                      <button
-                        className="custom-button218 custom-button-reset my-1 my-sm-3 t"
-                        type="submit"
-                      >
-                        Cancel
-                      </button>
-                      &nbsp;&nbsp;&nbsp;&nbsp;
-                      <button
-                        className="custom-button2136o custom-button-reset my-1 my-sm-3 t"
-                        type="submit"
-                      >
-                        Add
-                      </button>
-                    </p>
-                  </div>
-                </div>
-              </div>
-             
                 <div className="d-flex justify-content-between mt-4">
                   <h4>Academic Qualification</h4>
 

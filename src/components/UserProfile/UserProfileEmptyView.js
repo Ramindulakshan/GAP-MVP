@@ -1011,9 +1011,9 @@ function UserProfileEmptyView() {
                 </div>
                 <div></div>
               </div>
-              
+
               <div class="cardfu">
-              <div className="d-flex justify-content-between mt-4">
+                <div className="d-flex justify-content-between mt-4">
                   <h4>Fields of interest</h4>
 
                   <h6 className="View-more">
@@ -1033,94 +1033,6 @@ function UserProfileEmptyView() {
                       />
                     </svg>
                   </h6>
-                  {/*Academic qualification Model Start*/}
-                  <Modal
-                    show={show4}
-                    onHide={handleClose4}
-                    aria-labelledby="example-custom-modal-styling-title"
-                  >
-                    <Modal.Header closeButton></Modal.Header>
-
-                    <Modal.Body>
-                      <Modal.Title
-                        id="example-custom-modal-styling-title"
-                        className="text-center"
-                      >
-                        <h1>Academic Qualification</h1>
-                        <p>Add New Academic Qualification</p>
-                      </Modal.Title>
-                      <div className="p-7">
-                        <Container className="mt-2">
-                          <Form.Label>Institute* </Form.Label>
-                          <Form.Control
-                            placeholder="add institute name"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-                          <br></br>
-                          <Form.Label>Degree / Course* </Form.Label>
-                          <Form.Control
-                            placeholder="add degree / course name"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-
-                          <br></br>
-
-                          <Form.Group as={Col} controlId="formGridZip">
-                            <Form.Label>Start date*</Form.Label>
-                            <Form.Control
-                              type="date"
-                              style={{
-                                border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                boxShadow: "none", // Optional: Remove box-shadow
-                              }}
-                            />
-                          </Form.Group>
-                          <br></br>
-                          <Form.Group as={Col} controlId="formGridZip">
-                            <Form.Label>End date (or expected)*</Form.Label>
-                            <Form.Control
-                              type="date"
-                              style={{
-                                border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                boxShadow: "none", // Optional: Remove box-shadow
-                              }}
-                            />
-                          </Form.Group>
-                          <br></br>
-                          <Form.Label>Grade*</Form.Label>
-                          <Form.Control
-                            placeholder="add grade"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-                          <br></br>
-                        </Container>
-                      </div>
-                      <div className="text-center">
-                        <button
-                          className="btn  custom-button-reset my-1 my-sm-3 t"
-                          type="submit"
-                          onClick={handleShow}
-                        >
-                          Save
-                        </button>
-                      </div>
-                    </Modal.Body>
-                  </Modal>
-                  {/*Academic qualification Model End*/}
                 </div>
                 <br></br>
                 <hr></hr>
@@ -1234,7 +1146,7 @@ function UserProfileEmptyView() {
                   {/*Academic qualification Model End*/}
                 </div>
                 <br></br>
-              <hr></hr>
+                <hr></hr>
                 <div className="d-flex justify-content-between mt-4">
                   <h4>Professional experience</h4>
 
@@ -1380,9 +1292,7 @@ function UserProfileEmptyView() {
                 </div>
                 <hr></hr>
                 <br></br>
-                
               </div>
-         
             </div>
           </div>
         </div>
