@@ -6,7 +6,7 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import LandingPage from "./components/LandingPage/Landing";
 import ProLogin from "./components/ProLogin/Prologin";
 import HomePage from "./components/HomePage/HomePage";
-import Notification from "./components/Notification/Notification";
+import Notification from "./components/LandingPageAbout/LandingPageAbout";
 
 const App = () => {
   return (
