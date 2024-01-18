@@ -6,7 +6,7 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import LandingPage from "./components/LandingPage/Landing";
 import ProLogin from "./components/ProLogin/Prologin";
 import HomePage from "./components/HomePage/HomePage";
-import Settings from "./components/Settings/Settings";
+import Notification from "./components/Notification/Notification";
 
 const App = () => {
   return (
@@ -29,7 +29,7 @@ const App = () => {
     // </BrowserRouter>
 
     <div>
-<Settings />
+<Notification />
     </div>
   );
 };
