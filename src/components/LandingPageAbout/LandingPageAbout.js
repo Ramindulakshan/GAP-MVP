@@ -29,7 +29,14 @@ function LandingPageAbout() {
                 <a className="nav-link custom-nav-link" href="#c">
                   Login
                 </a>
-                <form className="form-inline my-2 my-lg-0"></form>
+                <form className="form-inline my-2 my-lg-0">
+                  <button
+                    className="btn custom-button1 my-2 my-sm-3"
+                    type="submit"
+                  >
+                    Register
+                  </button>
+                </form>
               </div>
             </nav>
           </div>
