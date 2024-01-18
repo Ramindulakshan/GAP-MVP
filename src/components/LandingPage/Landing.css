@@ -1,75 +1,114 @@
+*{
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
 .custom-text-LA {
-    color: #000000;
-    font-size: 50px;
-    font-weight: 600;
-  }
-  .custom-text-LA2 {
-    color: #000000;
-    font-size: 18px;
-    font-weight: 400;
-  }
+  color: #000000;
+  font-size: 50px;
+  font-weight: 600;
+}
+.custom-text-LA2 {
+  color: #000000;
+  font-size: 18px;
+  font-weight: 400;
+}
 
-  .custom-text-LA3 {
-    color: #2A2A72;
-    font-size: 50px;
-    font-weight: 500;
-  }
+.custom-text-LA3 {
+  color: #2a2a72;
+  font-size: 50px;
+  font-weight: 500;
+}
 
-  .custom-button-reset2{
-    background-color: #ffffff;
-    color: #2a2a72; 
-    border-color: #2A2A72;
-    border-width: 4px;
-    font-weight: 700; 
-    font-size: 24px;
-    padding-left: 5vh;
-    padding-right: 5vh;
-  
-  }
-  .custom-button-reset2:hover {
-    background-color: #2a2a72;
-    border-color: #2a2a72;
-    color: #ffffff;
-  }
+.custom-button-reset2 {
+  background-color: #ffffff;
+  color: #2a2a72;
+  border-color: #2a2a72;
+  border-width: 4px;
+  font-weight: 700;
+  font-size: 24px;
+  padding-left: 5vh;
+  padding-right: 5vh;
+}
+.custom-button-reset2:hover {
+  background-color: #2a2a72;
+  border-color: #2a2a72;
+  color: #ffffff;
+}
 
-  .custom-nav-link {
-    color: #2A2A72;
-    font-size: 22px;
-    font-weight: 600; 
-    margin-left: 4vh;
-    margin-right: 5vh;
-    margin-top: 3vh;
-    text-decoration: none; 
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .custom-nav-link:hover {
-    color: #2a2a7262; 
-  }
-  
-  .custom-button{
-    color: #000;
-  }
-  .custom-button1 {
-    font-size:20px;
-    font-weight: 700;
-    padding-left: 3vh;
-    padding-right: 3vh;
-    border-radius: 15px;
-    background-color: #ffffff;
-    color: #2a2a72; 
-    border-color: #2a2a72;
-    border-width: 4px; 
-  }
-  .custom-button1:hover {
-    background-color: #2a2a72;
-    border-color: #2a2a72;
-    color: #ffffff;
-  }
+.custom-nav-link {
+  color: #2a2a72;
+  font-size: 22px;
+  font-weight: 600;
+  margin-left: 4vh;
+  margin-right: 5vh;
+  margin-top: 3vh;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.custom-nav-link:hover {
+  color: #2a2a7262;
+}
+
+.custom-button {
+  color: #000;
+}
+.custom-button1 {
+  font-size: 20px;
+  font-weight: 700;
+  padding-left: 3vh;
+  padding-right: 3vh;
+  border-radius: 15px;
+  background-color: #ffffff;
+  color: #2a2a72;
+  border-color: #2a2a72;
+  border-width: 4px;
+}
+.custom-button1:hover {
+  background-color: #2a2a72;
+  border-color: #2a2a72;
+  color: #ffffff;
+}
 
 .navbar-brand {
-    font-size: 40px;
-    color: #336699;
-    font-weight: 600; 
-    letter-spacing: 5px;
+  font-size: 40px;
+  color: #336699;
+  font-weight: 600;
+  letter-spacing: 5px;
+}
+
+.cenclz {
+  padding: 0 80px;
+}
+.titlabt {
+  font-size: 40px;
+  margin: 0 0 10px 0;
+}
+.titlabt2 {
+  font-size: 30px;
+  margin: 0 0 40px 0;
+  text-align: center;
+}
+.paraabty {
+  margin: 0 0 50px 0;
+  font-size: 23px;
+
+}
+.dtabx {
+  background: #dfecf9;
+  width: 100%;
+  margin: 0;
+  padding: 50px 0 45px 0;
+}
+
+.pintflnme{
+  font-weight: 600;
+  font-size: 20px;
+}
+.cardsdn{
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  padding: 0 0 0 210px;
 }
