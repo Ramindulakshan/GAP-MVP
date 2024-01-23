@@ -628,11 +628,110 @@
   font-size: 20px;
   font-weight: 700;
   cursor: pointer;
-  margin:  0 0 0 280px;
+  margin: 0 0 0 280px;
   text-transform: capitalize;
   background-color: white;
   padding: 5px 10px;
 }
-.newrtty{
-margin: 0 0 80px 380px;
+.newrtty {
+  margin: 0 0 80px 380px;
+}
+.dltactntpic {
+  text-align: center;
+  margin: 25px 0;
+  font-size: 30px;
+  font-weight: bold;
+}
+.dltactntpicpara {
+  font-weight: bold;
+  font-size: 20px;
+  padding: 0 30px;
+}
+.tipparat {
+  padding: 0 30px;
+  font-size: 15px;
+}
+.tdlnoty1lewen {
+  padding: 10px 30px;
+}
+.pwtinpt {
+  border-width: 2px;
+}
+.pwtbtncong {
+  border-radius: 5px;
+  background: #2a2a72;
+  border: 2px solid #2a2a72;
+}
+.pwtbtncong:hover {
+  background: #2a2a72;
+  border: 2px solid #2a2a72;
+}
+.errbtnclztpi {
+  font-size: 20px;
+}
+.errbtnclzpara {
+  color: rgba(0, 0, 0, 0.75);
+  text-align: center;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 129.688%; /* 25.938px */
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  padding: 0 20px;
+}
+
+.custom-button-resetmew {
+  border-radius: 5px;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  padding: 0 30px 0 25px;
+  text-transform: uppercase;
+}
+
+
+.custom-button-resetmew:hover {
+  border-radius: 5px;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  padding: 0 30px 0 25px;
+  text-transform: uppercase;
+}
+
+.custom-button-resetmewdlete {
+  border-radius: 5px;
+  border: 2px solid #CF1010;
+  color: #CF1010;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  padding: 0 30px 0 25px;
+  text-transform: capitalize;
+}
+
+
+.custom-button-resetmewdlete:hover {
+  border-radius: 5px;
+  border: 2px solid #CF1010;
+  color: #CF1010;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  padding: 0 30px 0 25px;
+  text-transform: capitalize;
 }
