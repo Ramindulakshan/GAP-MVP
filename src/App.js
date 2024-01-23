@@ -14,6 +14,7 @@ import VerifyE from './components/FogotPassword/VerifyE';
 import VerificationPage from './components/Verification/VerificationPage';
 // import LoginPageS from './components/Student/LoginPageS';
 import HomePage from './components/HomePage/HomePage';
+import BeAMentor from './components/BeAMentor/BeAMentor';
 
 
 const App=()=> {
@@ -28,8 +29,8 @@ return (
 {/* <MobileAuthentication/> */}
 {/* <VerificationPage/> */}
 {/* <HomePage/> */}
-<LandingPage/>
-
+{/* <LandingPage/> */}
+<BeAMentor/>
 
     </>
   );
