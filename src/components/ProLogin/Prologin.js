@@ -10,8 +10,16 @@ import { InputGroup } from "react-bootstrap";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import "./pro.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 
 function Prologin() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -21,8 +29,6 @@ function Prologin() {
   const handleShow2 = () => setShow2(true);
 
   const [showPassword, setShowPassword] = useState(false);
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -38,6 +44,25 @@ function Prologin() {
   const confirmPasswordMatch = () => {
     return password === confirmPassword;
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3001/api/register", {
+        firstName: firstName,
+        lastName: lastName,
+        username: username,
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       <section className="">
@@ -64,6 +89,7 @@ function Prologin() {
                           type="Text"
                           size="lg"
                           placeholder="First Name"
+                          onChange={(e) => setFirstName(e.target.value)}
                         />
                       </Form.Group>
 
@@ -72,11 +98,24 @@ function Prologin() {
                           type="text"
                           size="lg"
                           placeholder="Last Name"
+                          onChange={(e) => setLastName(e.target.value)}
                         />
                       </Form.Group>
                     </Row>
                     <br />
-                    <Form.Control size="lg" type="email" placeholder="Email" />
+                    <Form.Control
+                      size="lg"
+                      type="text"
+                      placeholder="Username"
+                      onChange={(e) => setUserName(e.target.value)}
+                    />
+                    <br />
+                    <Form.Control
+                      size="lg"
+                      type="email"
+                      placeholder="Email"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
                     <br />
 
                     <InputGroup className="mb-3">
@@ -225,7 +264,7 @@ function Prologin() {
                       className="custom-button2 custom-button-reset my-1 my-sm-3"
                       type="submit"
                       onChange={handleShow2}
-                      onClick={handleShow2}
+                      onClick={handleSubmit}
                     >
                       Register
                     </button>
@@ -274,7 +313,15 @@ function Prologin() {
                     </div>
                   </div>
                   <h6 className="custom-text-AR">
-                    Already have an account? <span>Login</span>
+                    Already have an account?{" "}
+                    <span
+                      style={{ cursor: "pointer", color: "blue" }}
+                      onClick={() => {
+                        window.location.href = "/login";
+                      }}
+                    >
+                      Login
+                    </span>
                   </h6>
                   <br></br>
                 </div>
