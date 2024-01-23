@@ -40,7 +40,7 @@ const ResetPassword = () => {
                                     <Modal size="lg" show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" centered >
                                         <Modal.Body>
                                             <div className='text-center'>
-                                                <img src={Password_image} alt='Your Image' className='img-fluid img-fluid custom-image-ULock mx-auto d-block mb-4' />
+                                                <img src={Password_image} alt='YourImage' className='img-fluid img-fluid custom-image-ULock mx-auto d-block mb-4' />
                                                 <h1 className='mb-4'>Password Changed!</h1>
                                                 <h3 className='mb-5'>Your password has been changed successfully.</h3>
                                                 <button className="btn  custom-button-reset my-1 my-sm-3" type="submit" >Login</button>
