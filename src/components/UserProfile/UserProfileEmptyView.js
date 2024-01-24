@@ -368,13 +368,8 @@ function UserProfileEmptyView() {
                   <Image
                     src={pen}
                     rounded
-                    className="position-absolute m-2 cursor-pointer"
-                    style={{
-                      width: "30px",
-                      cursor: "pointer",
-                      top: "39%",
-                      left: "58%",
-                    }}
+                    className="position-absolute m-2 cursor-pointer penclzee"
+                   
                     onClick={handleShow}
                   />
                 </Col>

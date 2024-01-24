@@ -368,13 +368,8 @@ function UserProfile() {
                   <Image
                     src={pen}
                     rounded
-                    className="position-absolute m-2 cursor-pointer"
-                    style={{
-                      width: "30px",
-                      cursor: "pointer",
-                      top: "39%",
-                      left: "58%",
-                    }}
+                    className="position-absolute m-2 cursor-pointer penclzee"
+                   
                     onClick={handleShow}
                   />
                 </Col>
@@ -1122,8 +1117,7 @@ function UserProfile() {
                   {/*Academic qualification Model End*/}
                 </div>
               <div class="cardm">
-                
-                <br></br>
+              
                 <div className="container mt-3">
                   <div className="d-inline-block">
                     <button className="pbtn289">
@@ -1830,8 +1824,8 @@ function UserProfile() {
                   </div>
 
                   <div
-                    class="card cardnew"
-                    style={{ border: "0", padding: "0 0 0 60px" }}
+                    class="card cardnew newcrddetyl"
+                    style={{ border: "0" }}
                   >
                     <div
                       className="position-absolute  p-3"
@@ -1843,6 +1837,7 @@ function UserProfile() {
                         height="60"
                         viewBox="0 0 10 60"
                         fill="none"
+                        className="disnon"
                       >
                         <circle
                           cx="5"
@@ -2035,8 +2030,8 @@ function UserProfile() {
                     </div>
                   </div>
                   <div
-                    class="card cardnew"
-                    style={{ border: "0", padding: "0 0 0 60px" }}
+                    class="card cardnew newcrddetyl"
+                    style={{ border: "0"}}
                   >
                     <div
                       className="position-absolute  p-3"
@@ -2048,6 +2043,7 @@ function UserProfile() {
                         height="90"
                         viewBox="0 0 10 90"
                         fill="none"
+                        className="disnon"
                       >
                         <circle
                           cx="5"

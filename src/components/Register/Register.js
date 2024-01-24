@@ -8,7 +8,7 @@ import Row from "react-bootstrap/Row";
 import Modal from "react-bootstrap/Modal";
 import { InputGroup } from "react-bootstrap";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
-import "./pro.css";
+import "./register.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 
@@ -68,12 +68,12 @@ function Prologin() {
       <section className="">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-lg-5 vh-100 custom-bg d-flex align-items-center justify-content-center">
+            <div className="col-lg-5 vh-100 custom-bgregit align-items-center justify-content-center">
               <div className="vh-100 text-center">
                 <img
                   src={Register_image}
                   className="img-fluid custom-image-LI" // Keep img-fluid for responsiveness
-                  style={{ maxHeight: "100%", width: "100vh" }} // Set maxHeight to 100% or adjust as needed
+                  style={{ maxHeight: "80vh", width: "80vh" }} // Set maxHeight to 100% or adjust as needed
                   alt="Regi Img"
                 />
               </div>
@@ -251,6 +251,7 @@ function Prologin() {
                           <button
                             className="custom-button2 custom-button-reset my-1 my-sm-3 t"
                             type="submit"
+                            onClick={handleClose}
                           >
                             Agree
                           </button>
@@ -264,12 +265,12 @@ function Prologin() {
                       className="custom-button2 custom-button-reset my-1 my-sm-3"
                       type="submit"
                       onChange={handleShow2}
-                      onClick={handleSubmit}
+                      onClick={handleShow2}
                     >
                       Register
                     </button>
                     <Modal
-                      size="sm"
+                      size="medium"
                       show={show2}
                       onHide={handleClose2}
                       aria-labelledby="example-custom-modal-styling-title"
@@ -299,6 +300,7 @@ function Prologin() {
                           <button
                             className="custom-button2 custom-button-reset my-1 my-sm-3"
                             type="submit"
+                            onClick={handleClose2}
                           >
                             Continue
                           </button>

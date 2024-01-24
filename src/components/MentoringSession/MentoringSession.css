@@ -445,3 +445,26 @@
   font-weight: bold;
   font-size: 25px;
 }
+
+/* Styles for screens smaller than 600 pixels */
+@media (max-width: 760px) {
+  #nav {
+    padding: 10px 0 0 10px;
+    font-size: 30px;
+}
+.Cardsection {
+  height: 100%;
+  width: 90vw;
+  padding: 0 0px 10px 0px;
+
+}
+.card {
+  margin: 20px 30px;
+  
+  padding: 10px;
+}
+.text-section {
+  margin-left: 0px;
+}
+}
+

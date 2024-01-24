@@ -56,29 +56,30 @@
 }
 
 .custom-buttonadd {
-    font-size: 20px;
-    font-weight: 700;
-    padding: 4px 25px;
-    background-color: #2a2a72;
-    color: #ffffff;
-    border: 3px solid #2a2a72;
-    border-radius: 10px;
-    margin: 0 0px 0 0;
-  }
-  
-  .custom-buttonadd:hover {
-    background-color: #ffffff;
-    border-color: #2a2a72;
-    color: #2a2a72;
-  }
-  .timinpt{
-    border: 2px solid #2a2a72;
-    padding: 4px 20px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 20px;
-    margin: 10px 0;
-  }
-  .btnsettim{
-    margin: 30px 0 0 200px;
-  }
+  font-size: 20px;
+  font-weight: 700;
+  padding: 4px 25px;
+  background-color: #2a2a72;
+  color: #ffffff;
+  border: 3px solid #2a2a72;
+  border-radius: 10px;
+  margin: 0 0px 0 0;
+}
+
+.custom-buttonadd:hover {
+  background-color: #ffffff;
+  border-color: #2a2a72;
+  color: #2a2a72;
+}
+.timinpt {
+  border: 2px solid #2a2a72;
+  padding: 4px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 10px 0;
+}
+.btnsettim {
+  margin: 30px 0 0 200px;
+}
+
