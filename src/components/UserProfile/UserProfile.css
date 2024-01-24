@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 .custom-image-Gap {
   max-height: 15vh;
   max-width: 100%;
@@ -6,7 +6,7 @@
   margin-top: 2vh;
   margin-bottom: 2vh;
 }
-*{
+* {
   font-family: Poppins;
 }
 .list-group-item-custom {
@@ -322,7 +322,6 @@
   border-radius: 5px;
   padding: 2px 8px;
   margin: 8px 0;
-  
 }
 .custom-box {
   width: 411px;
@@ -474,14 +473,26 @@
   border: 1px solid #7e7e84;
   color: #7e7e84;
 }
-.ser{
-
-  width: "100%" ;
+.ser {
+  width: "100%";
 }
 .custom-button218:hover {
   background-color: #ffffff;
   color: #2a2a72;
   border: 1px solid #2a2a72;
+}
+.penclzee {
+  width: 30px;
+  cursor: pointer;
+  top: 35%;
+  left: 81%;
+}
+.aluthcard {
+  padding: 0 0 0 60px;
+  border: 0;
+}
+.newcrddetyl {
+  padding: 0 0 0 60px;
 }
 @media screen and (max-width: 768px) {
   .ser {
@@ -492,13 +503,39 @@
     gap: 10px;
     border-radius: 50px;
     border: 1px solid rgba(0, 0, 0, 0.5);
-   
     text-align: center;
     font-family: Poppins;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: capitalize;
-    margin: 20px;
+    margin: 8px;
+  }
+  .card {
+    flex-direction: column;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px 10px 10px 10px;
+    background: #fff;
+    box-sizing: border-box;
+  }
+  .imgr {
+    width: 150px;
+    height: 150px;
+    padding: 0px;
+  }
+  .cardfu {
+    padding: 20px 0px 20px 0;
+  }
+  .text-section {
+    margin-left: 0px;
+  }
+  .newcrddetyl {
+    padding: 0 0 0 20px;
+  }
+  .disnon {
+    display: none;
   }
 }

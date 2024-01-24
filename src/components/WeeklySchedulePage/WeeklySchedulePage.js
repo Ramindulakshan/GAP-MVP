@@ -342,7 +342,7 @@ function WeeklySchedulePage() {
                   <div
                     className="container mt-0 "
                     style={{
-                      width: "100vw",
+                      width: "80vw",
                     }}
                   >
                     <div className="calbox ">

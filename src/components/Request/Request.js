@@ -567,7 +567,7 @@ function Mentors() {
                     </p>
                   </div>
                   <Modal
-                    size="sm"
+                    size="medium"
                     show={show2}
                     onHide={handleClose2}
                     aria-labelledby="example-custom-modal-styling-title"
