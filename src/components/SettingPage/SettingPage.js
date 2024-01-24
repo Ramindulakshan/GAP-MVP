@@ -18,7 +18,9 @@ import Col from "react-bootstrap/Col";
 import * as formik from "formik";
 import * as yup from "yup";
 import err from "./img/err.png";
-function Settings() {
+import axios from "axios";
+
+function SettingPage() {
   const { Formik } = formik;
 
   const schema = yup.object().shape({
@@ -72,6 +74,33 @@ function Settings() {
       setText(inputText);
     }
   };
+
+  const changePassword = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3001/api/changePassword", {
+        currentPassword: password,
+        newPassword: password,
+      }, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+        }
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          const token = response.data.token;
+          localStorage.setItem("jwtToken", token);
+          window.location.href = "/home";
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+
+
   return (
     <div>
       <div className="container-fluid">
@@ -379,9 +408,11 @@ function Settings() {
                     <a href="#About" className="mb-0 navtpic">
                       About Us
                     </a>
-                    <a href="#ChangePassword" className="mb-0 navtpic">
+                    <button onClick={()=>{
+                      changePassword()
+                    }} className="mb-0 navtpic">
                       Change Password
-                    </a>
+                    </button>
                     <a href="#DeleteAccount" className="mb-0 navtpic">
                       Delete Account
                     </a>
@@ -1222,4 +1253,4 @@ function Settings() {
   );
 }
 
-export default Settings;
+export default SettingPage;

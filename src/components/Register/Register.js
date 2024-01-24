@@ -57,6 +57,9 @@ function Prologin() {
       })
       .then((response) => {
         console.log(response);
+        if (response.status == 200) {
+          handleShow2();
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -265,7 +268,7 @@ function Prologin() {
                       className="custom-button2 custom-button-reset my-1 my-sm-3"
                       type="submit"
                       onChange={handleShow2}
-                      onClick={handleShow2}
+                      onClick={handleSubmit}
                     >
                       Register
                     </button>
@@ -300,7 +303,9 @@ function Prologin() {
                           <button
                             className="custom-button2 custom-button-reset my-1 my-sm-3"
                             type="submit"
-                            onClick={handleClose2}
+                            onClick={() => {
+                              window.location.href = "/login";
+                            }}
                           >
                             Continue
                           </button>
