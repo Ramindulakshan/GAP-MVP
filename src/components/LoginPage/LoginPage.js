@@ -9,7 +9,7 @@ import { useState } from "react";
 const LoginPage = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -20,6 +20,8 @@ const LoginPage = () => {
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
+          const token = response.data.token;
+          localStorage.setItem("jwtToken", token);
           window.location.href = "/home";
         }
       })
