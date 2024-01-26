@@ -467,4 +467,35 @@
   margin-left: 0px;
 }
 }
+.custom-button-NotNow {
+  font-size:15px;
+  font-weight: 600;
+  padding-left: 7vh;
+  padding-right: 7vh;
+  border-color: #2A2A72;
+  background-color: #ffffff;
+  color: #2A2A72; 
+  border-width: 2px; 
+}
+.custom-button-Rate {
+  font-size:15px;
+  font-weight: 600;
+  margin-left: 7vh;
+  padding-left: 5vh;
+  padding-right: 5vh;
+  border-color: #2A2A72;
+  background-color: #2A2A72;
+  color: #ffffff; 
+  border-width: 2px; 
+}
+.custom-button-NotNow:hover {
+  background-color: #ffffff;
+  color: #2a2a72;
+  border-color: #2A2A72;
+}
 
+.custom-button-Rate:hover {
+  background-color: #2A2A72;
+  color: #ffffff;
+  border-color: #2A2A72;
+}

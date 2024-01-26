@@ -19,9 +19,42 @@ import pro6 from "../MentoringSession/img/2pro.png";
 import pro7 from "../MentoringSession/img/3pro.png";
 import { Route, Routes } from "react-router-dom";
 import { BsStarFill, BsStar } from "react-icons/bs";
+import { Modal, Button } from 'react-bootstrap';
+import  { useState } from 'react';
+import {FaStar} from "react-icons/fa"
+
 
 
 function HistoryPage() {
+  const handleClose = () => {
+    setShow(false);
+}
+  const handleShow = () => setShow(true);
+
+  const [show, setShow] = useState(false);
+
+  const stars = Array(5).fill(0);
+  const [currentValue, setCurrentValue] = React.useState(0);
+  const [hoverValue, setHoverValue] = React.useState(undefined);
+
+  const handleClick = value => {
+    setCurrentValue(value)
+  };
+  const handleMouseOver = value => {
+    setHoverValue(value)
+  };
+  const handleMouseLeave = () => {
+    setHoverValue(undefined)
+  };
+
+  const colors = {
+    orange:"#FFBA5A",
+    grey: "#a9a9a9",
+  };
+
+
+
+
   return (
     <div>
       <div className="container-fluid">
@@ -490,10 +523,56 @@ function HistoryPage() {
                                                     <p className="ptnpara ms-2 mb-0">
                                                         <button
                                                             className="custom-button21 custom-button-reset my-1 my-sm-3 t"
-                                                            type="submit"
+                                                            type="submit" onClick={handleShow}
                                                         >
                                                             Rate Now
                                                         </button>
+                                                        <Modal
+                            size="m"
+                            show={show}
+                            onHide={handleClose}
+                            aria-labelledby="example-custom-modal-styling-title"
+                            centered
+                        >
+                            
+
+                            <Modal.Body  className="text-center">
+                              <h3 className="mb-2 p-2">Rate Mentor</h3>
+                                <img
+                                  src={pro4}
+                                    alt="Tickimg"
+                                    className="img-fluid mb-4"
+                                    style={{ width: "100px", height: "100px" }}
+                                /> 
+                                <h3 className="">Julius Aguirre</h3>
+                                <p className="mt-1 mb-4">
+                                Senior Software Engineer at Innovation Lanka
+                                </p>
+                                <div >
+                                  {stars.map((_, index) =>{
+                                    return(
+                                      <FaStar 
+                                      key={index}
+                                      size ={30}
+                                      style = {{
+                                        marginRight: 10,
+                                        cursor:"pointer",
+                                      }}
+                                      color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
+                                      onClick={() => handleClick(index + 1)}
+                                      />
+
+                                    )
+                                  })}
+                                </div>
+                                <br></br>
+                                <div className="mb-4">
+                                <button className="btn  custom-button-NotNow my-1 my-sm-3 " type="submit" >Not Now</button>
+                                <button className="btn  custom-button-Rate my-1 my-sm-3" type="submit" >Publish Rate</button>
+                                </div>
+                              
+                            </Modal.Body>
+                        </Modal>
                                                     </p>
                                                 </div>
                                             </div>
