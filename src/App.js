@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import ProLogin from "./components/Register/Register";
 import SettingPage from "./components/SettingPage/SettingPage";
+import WeeklySchedulePage from "./components/WeeklySchedulePageNotMenter/WeeklySchedulePageNotMenter"
 
 const App = () => {
   return (
@@ -26,7 +27,9 @@ const App = () => {
         <Route path="/register" element={<ProLogin />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/settings" element={<SettingPage />} />
+        <Route path="/WeeklySchedulePage" element={<WeeklySchedulePage />} />
       </Routes>
+
     </BrowserRouter>
 
   );
