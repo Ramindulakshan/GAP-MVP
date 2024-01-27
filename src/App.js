@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import ProLogin from "./components/Register/Register";
 import SettingPage from "./components/SettingPage/SettingPage";
-import WeeklySchedulePage from "./components/WeeklySchedulePageNotMenter/WeeklySchedulePageNotMenter"
+import WeeklySchedulePage from "./components/WeeklySchedulePage/WeeklySchedulePage"
 
 const App = () => {
   return (
