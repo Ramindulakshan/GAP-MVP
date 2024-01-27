@@ -1,10 +1,10 @@
-import '../FogotPassword/FogotPassword.css';
-import Forgotpassword_image from '../FogotPassword/Img/forgotpassword.png';
+import '../ForgotPassword/ForgotPassword.css';
+import Forgotpassword_image from '../ForgotPassword/Img/forgotpassword.png';
 import Login_image from '../LoginPage/Img/login.png';
-import Lock_image from '../FogotPassword/Img/lock.png';
+import Lock_image from '../ForgotPassword/Img/lock.png';
 import Card from 'react-bootstrap/Card';
 
-function FogotPassword() {
+function ForgotPassword() {
   return (
     <>
       <section className=''>
@@ -29,7 +29,9 @@ function FogotPassword() {
                   Send to your email address<br />fgh*********@gmail.com
                 </Card.Text>
               </Card>
-              <button className="btn custom-button-reset my-1 my-sm-3" type="submit">Send the code</button>
+              <button className="btn custom-button-reset my-1 my-sm-3" type="submit" onClick={()=>{
+                window.location.href="/verifyE";
+              }}>Send the code</button>
             </div>
           </div>
         </div>
@@ -38,4 +40,4 @@ function FogotPassword() {
   );
 }
 
-export default FogotPassword;
+export default ForgotPassword;

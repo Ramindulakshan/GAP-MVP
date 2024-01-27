@@ -1,10 +1,12 @@
-import '../FogotPassword/Verify.css';
-import VerifyMobile_image from '../FogotPassword/Img/VerifyMobile.png';
-import Moblie_image from '../FogotPassword/Img/mobile.png';
+
+
+import '../ForgotPassword/Verify.css';
+import VerifyEmail_image from '../ForgotPassword/Img/VerifyEmail.png';
+import Email_image from '../ForgotPassword/Img/email.png';
 import Login_image from '../LoginPage/Img/login.png';
 import React, { Component, ReactDOM } from 'react';
 
-class VerifyMN extends React.Component {
+class VerifyE extends React.Component {
     constructor(props) {
         super(props);
         this.state = { value: '', otp1: "", otp2: "", otp3: "", otp4: "", otp5: "", otp6: "", disable: true };
@@ -12,6 +14,7 @@ class VerifyMN extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
 
     }
+
 
     handleChange(value1, event) {
 
@@ -53,12 +56,12 @@ class VerifyMN extends React.Component {
                                 </div>
                             </div>
                             <div className='col-lg-7 vh-100 '>
-                                <img src={Moblie_image} alt='Your Image' className='img-fluid img-fluid custom-image-ULock mx-auto d-block' />
-                                <h1 className='text-center mb-5'>Verify Mobile Number</h1>
+                                <img src={Email_image} alt='Your Image' className='img-fluid img-fluid custom-image-ULock mx-auto d-block' />
+                                <h1 className='text-center mb-5'>Verify Email Address</h1>
                                 <div className="row justify-content-center">
                                     <div className="col-lg-9">
                                         <div className="form-outline">
-                                            <h5 className='mb-4 custom-text-sendcode'>Enter the OTP that send to your mobile</h5>
+                                            <h5 className='mb-4 custom-text-sendcode'>Enter the OTP that send to your email</h5>
                                             <form onSubmit={this.handleSubmit}>
                                                 <div className="otpContainer">
                                                     <input
@@ -138,4 +141,4 @@ class VerifyMN extends React.Component {
     }
 }
 
-export default VerifyMN;
+export default VerifyE;
