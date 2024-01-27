@@ -67,7 +67,15 @@ const LoginPage = () => {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
-                  <h5 className="mb-4 mt-2 custom-text-FP">Forgot password?</h5>
+                  <h5
+                    className="mb-4 mt-2 custom-text-FP "
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      window.location.href = "/forgotPassword";
+                    }}
+                  >
+                    Forgot password?
+                  </h5>
                   <div className="text-center">
                     <button
                       className="custom-button2 custom-button-reset my-1 my-sm-3"
