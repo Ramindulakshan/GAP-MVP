@@ -4,7 +4,29 @@ import Login_image from '../LoginPage/Img/login.png';
 import Lock_image from '../ForgotPassword/Img/lock.png';
 import Card from 'react-bootstrap/Card';
 import Form from "react-bootstrap/Form";
+import axios from 'axios';
+import { useState } from 'react';
+
 function ForgotPassword() {
+
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      email: email,
+    };
+    axios.post('http://localhost:3001/api/forgotpassword', data)
+    .then((response) => {
+      console.log(response);
+      window.location.href = "/verifyE";
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+
+
+
   return (
     <>
       <section className=''>
@@ -23,13 +45,11 @@ function ForgotPassword() {
                 <div className="col-lg-9">
                   <div className="form-outline">
                     <br />
-                    <Form.Control className='mt-3 mb-2' size="lg" type="text" placeholder="Enter Your Email" />
+                    <Form.Control className='mt-3 mb-2' size="lg" type="email" style={{ textTransform: 'none' }} placeholder="Enter Your Email" onChange={(e) => setEmail(e.target.value)} />
                     <br />                 
                   </div>
                   <div className="text-center">
-                    <button className="btn custom-button-reset my-1 my-sm-3" type="submit" onClick={() => {
-                      window.location.href = "/verifyE";
-                    }}>Send the code</button>
+                    <button className="btn custom-button-reset my-1 my-sm-3" type="submit" onClick={handleSubmit}>Send the code</button>
                   </div>
 
                 </div>

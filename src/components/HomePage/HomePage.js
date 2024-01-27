@@ -240,6 +240,10 @@ function HomePage() {
                   height="45"
                   className="d-inline-block "
                   alt="React Bootstrap logo"
+                  onClick={() => {
+                    window.location.href = "/userProfile";
+                  
+                  }}
                 />
               </Navbar.Brand>
             </Navbar>
