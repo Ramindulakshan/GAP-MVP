@@ -6,7 +6,7 @@ import HomePage from "./components/HomePage/HomePage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import ProLogin from "./components/Register/Register";
-import Settings from "./components/Settings/Settings";
+import SettingPage from "./components/SettingPage/SettingPage";
 
 const App = () => {
   return (
@@ -25,7 +25,7 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<ProLogin />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/settings" element={<Settings />} />
+        <Route path="/settings" element={<SettingPage />} />
       </Routes>
     </BrowserRouter>
 
@@ -33,4 +33,3 @@ const App = () => {
 };
 
 export default App;
-
