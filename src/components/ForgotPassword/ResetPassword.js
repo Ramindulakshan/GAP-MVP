@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import '../FogotPassword/ResetPassword.css';
-import Createpassword_image from '../FogotPassword/Img/createpassword.png';
+import '../ForgotPassword/ResetPassword.css';
+import Createpassword_image from '../ForgotPassword/Img/createpassword.png';
 import Login_image from '../LoginPage/Img/login.png';
-import Password_image from '../FogotPassword/Img/password.png';
-import Unlock_image from '../FogotPassword/Img/unlock.png';
+import Password_image from '../ForgotPassword/Img/password.png';
+import Unlock_image from '../ForgotPassword/Img/unlock.png';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
