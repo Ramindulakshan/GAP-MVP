@@ -10,6 +10,8 @@ import Tab from "react-bootstrap/Tab";
 import Form from "react-bootstrap/Form";
 import "../HomePage/Home.css";
 import Col from "react-bootstrap/Col";
+import { FormControl } from "react-bootstrap";
+import { FaSearch } from "react-icons/fa";
 import Level from "./img/level.png";
 function WeeklySchedulePage() {
   return (
@@ -22,7 +24,7 @@ function WeeklySchedulePage() {
                 <div className="text-center">
                   <img
                     src={GAP_Image}
-                    alt="Your Image"
+                    alt="YourImage"
                     className="img-fluid custom-image-Gap"
                   />
                 </div>
@@ -204,15 +206,19 @@ function WeeklySchedulePage() {
             </div>
             <div className="col-lg-9 vh-100 ">
               <Navbar className="mt-3 justify-content-between">
-                <Form inline>
-                  <Col xs="auto">
-                    <Form.Control
-                      type="text"
-                      placeholder="Find a Mentor"
-                      className="mr-sm-3 custom-form-control"
-                    />
-                  </Col>
-                </Form>
+              <Form className="mx-auto">
+                <div className="position-relative">
+                  <FormControl
+                    type="text"
+                    placeholder="Find A Mentor"
+                    className="w-100"
+                  />
+                  <FaSearch
+                    className="position-absolute top-50 translate-middle-y text-muted"
+                    style={{ right: "15px" }}
+                  />
+                </div>
+              </Form>
                 <Navbar.Brand href="#home">
                   <img
                     src={Level}

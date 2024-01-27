@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Settings.css";
+import "./SettingPage.css";
 import Navbar from "react-bootstrap/Navbar";
 import GAP_Image from "./img/GAP_BG.png";
 import Student_Image from "./img/Student.png";
@@ -75,31 +75,29 @@ function SettingPage() {
     }
   };
 
-  const changePassword = (e) => {
-    e.preventDefault();
-    axios
-      .post("http://localhost:3001/api/changePassword", {
-        currentPassword: password,
-        newPassword: password,
-      }, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
-        }
-      })
-      .then((response) => {
-        console.log(response);
-        if (response.status === 200) {
-          const token = response.data.token;
-          localStorage.setItem("jwtToken", token);
-          window.location.href = "/home";
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-
+  // const changePassword = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post("http://localhost:3001/api/changePassword", {
+  //       currentPassword: password,
+  //       newPassword: password,
+  //     }, {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+  //       }
+  //     })
+  //     .then((response) => {
+  //       console.log(response);
+  //       if (response.status === 200) {
+  //         const token = response.data.token;
+  //         localStorage.setItem("jwtToken", token);
+  //         window.location.href = "/home";
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <div>
@@ -408,11 +406,9 @@ function SettingPage() {
                     <a href="#About" className="mb-0 navtpic">
                       About Us
                     </a>
-                    <button onClick={()=>{
-                      changePassword()
-                    }} className="mb-0 navtpic">
+                    <a href="#ChangePassword" className="mb-0 navtpic">
                       Change Password
-                    </button>
+                    </a>
                     <a href="#DeleteAccount" className="mb-0 navtpic">
                       Delete Account
                     </a>
@@ -765,10 +761,29 @@ function SettingPage() {
                               <InputGroup className="mb-3">
                                 <Form.Control
                                   size="lg"
+                                  type={showPassword3 ? "text" : "password"}
+                                  id="inputPassword"
+                                  aria-describedby="passwordHelpBlock"
+                                  placeholder="Current password"
+                                />
+                                <InputGroup.Text
+                                  id="passwordHelpBlock"
+                                  onClick={togglePasswordVisibility3}
+                                >
+                                  {showPassword3 ? (
+                                    <HiOutlineEyeOff />
+                                  ) : (
+                                    <HiOutlineEye />
+                                  )}
+                                </InputGroup.Text>
+                              </InputGroup>
+                              <InputGroup className="mb-3">
+                                <Form.Control
+                                  size="lg"
                                   type={showPassword ? "text" : "password"}
                                   id="inputPassword"
                                   aria-describedby="passwordHelpBlock"
-                                  placeholder="Password"
+                                  placeholder="New Password"
                                   value={password}
                                   onChange={handlePasswordChange}
                                 />
@@ -790,7 +805,7 @@ function SettingPage() {
                                   type={showPassword2 ? "text" : "password"}
                                   id="inputConfirmPassword"
                                   aria-describedby="passwordHelpBlock"
-                                  placeholder="Confirm Password"
+                                  placeholder="Confirm New Password"
                                   value={confirmPassword}
                                   onChange={handleConfirmPasswordChange}
                                 />
@@ -811,25 +826,6 @@ function SettingPage() {
                                 <p>Passwords do not match.</p>
                               )}
 
-                              <InputGroup className="mb-3">
-                                <Form.Control
-                                  size="lg"
-                                  type={showPassword3 ? "text" : "password"}
-                                  id="inputPassword"
-                                  aria-describedby="passwordHelpBlock"
-                                  placeholder="Password"
-                                />
-                                <InputGroup.Text
-                                  id="passwordHelpBlock"
-                                  onClick={togglePasswordVisibility3}
-                                >
-                                  {showPassword3 ? (
-                                    <HiOutlineEyeOff />
-                                  ) : (
-                                    <HiOutlineEye />
-                                  )}
-                                </InputGroup.Text>
-                              </InputGroup>
                               <a href="acb" className="fogotpss">
                                 Forgot password?
                               </a>
