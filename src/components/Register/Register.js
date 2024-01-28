@@ -13,6 +13,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 
 function Prologin() {
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit2 = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUserName] = useState("");
@@ -68,29 +80,29 @@ function Prologin() {
 
   return (
     <div>
-      <section className="">
+      <section className="newwitchg">
         <div className="container-fluid">
-          <div className="row">
-            <div className="col-lg-5 vh-100 custom-bgregit align-items-center justify-content-center">
-              <div className="vh-100 text-center">
+          <div className="row bxbxset">
+            <div className="col-lg-5 custom-bgregit align-items-center justify-content-center">
+              <div className="text-center">
                 <img
                   src={Register_image}
                   className="img-fluid custom-image-LI" // Keep img-fluid for responsiveness
-                  style={{ maxHeight: "80vh", width: "80vh" }} // Set maxHeight to 100% or adjust as needed
+                  style={{ maxHeight: "100%", width: "100%" }} // Set maxHeight to 100% or adjust as needed
                   alt="Regi Img"
                 />
               </div>
             </div>
-            <div className="col-lg-7 vh-100 overflow-auto">
-              <h1 className="text-center mb-4 mt-5">Register</h1>
+            <div className="col-lg-6 overflow-auto">
+              <h2 className="text-center mb-4 mt-2 tpnk">Register</h2>
               <div className="row justify-content-center">
-                <div className="col-lg-9">
-                  <div className="form-outline">
+                <div className="col-lg-9 sitewyey ">
+                  <div className="form-outline ">
                     <Row className="">
                       <Form.Group as={Col} controlId="formGridEmail">
                         <Form.Control
                           type="Text"
-                          size="lg"
+                          size="medium"
                           placeholder="First Name"
                           onChange={(e) => setFirstName(e.target.value)}
                         />
@@ -99,7 +111,7 @@ function Prologin() {
                       <Form.Group as={Col} controlId="formGridEmail">
                         <Form.Control
                           type="text"
-                          size="lg"
+                          size="medium"
                           placeholder="Last Name"
                           onChange={(e) => setLastName(e.target.value)}
                         />
@@ -107,23 +119,26 @@ function Prologin() {
                     </Row>
                     <br />
                     <Form.Control
-                      size="lg"
+                      size="medium"
                       type="text"
                       placeholder="Username"
                       onChange={(e) => setUserName(e.target.value)}
                     />
                     <br />
+
                     <Form.Control
-                      size="lg"
+                      size="medium"
                       type="email"
                       placeholder="Email"
                       onChange={(e) => setEmail(e.target.value)}
+                      required // Add the required attribute
                     />
+
                     <br />
 
-                    <InputGroup className="mb-3">
+                    <InputGroup className="mb-4">
                       <Form.Control
-                        size="lg"
+                        size="medium"
                         type={showPassword ? "text" : "password"}
                         id="inputPassword"
                         aria-describedby="passwordHelpBlock"
@@ -138,16 +153,17 @@ function Prologin() {
                         {showPassword ? <HiOutlineEyeOff /> : <HiOutlineEye />}
                       </InputGroup.Text>
                     </InputGroup>
-                    <br />
+                   
 
-                    <InputGroup className="mb-3">
+                    <InputGroup className="mb-2">
                       <Form.Control
-                        size="lg"
+                        size="medium"
                         type={showPassword ? "text" : "password"}
                         id="inputConfirmPassword"
                         aria-describedby="passwordHelpBlock"
                         placeholder="Confirm Password"
                         value={confirmPassword}
+                        required
                         onChange={handleConfirmPasswordChange}
                       />
                       <InputGroup.Text
@@ -161,12 +177,13 @@ function Prologin() {
                     {confirmPasswordMatch() ? (
                       <p></p>
                     ) : (
-                      <p>Passwords do not match.</p>
+                      <p className="pnmt">Passwords do not match.</p>
                     )}
 
-                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                    <Form.Group className="mb-0" controlId="formBasicCheckbox">
                       <Form.Check
                         type="checkbox"
+                        required
                         label={
                           <span>
                             By registering to GAP you agree to the{" "}
@@ -265,7 +282,7 @@ function Prologin() {
 
                   <div className="text-center">
                     <button
-                      className="custom-button2 custom-button-reset my-1 my-sm-3"
+                      className="custom-button2rtyu  my-1 my-sm-3"
                       type="submit"
                       onChange={handleShow2}
                       onClick={handleSubmit}
@@ -313,13 +330,14 @@ function Prologin() {
                       </Modal.Body>
                     </Modal>
                   </div>
-                  <div class="text-center mb-4">
-                    <h4 className="mb-4">Or, Register with</h4>
+
+                  <div class="text-center mb-2">
+                    <h4 className="mb-2 ore">Or, Register with</h4>
                     <div className="Icon">
                       <img src={Google_image} alt="Imag1" />
                     </div>
                   </div>
-                  <h6 className="custom-text-AR">
+                  <h6 className="custom-text-AR ore">
                     Already have an account?{" "}
                     <span
                       style={{ cursor: "pointer", color: "blue" }}
