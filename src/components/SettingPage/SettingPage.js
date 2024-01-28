@@ -1069,6 +1069,27 @@ function SettingPage() {
                                   </Modal.Body>
                                 </Modal>
                                 {/*Delete Model End */}
+                                <InputGroup className="mb-3" style={{ width: "50%" }} >
+                                <Form.Control
+                                  size="medium"
+                                  type={showPassword3 ? "text" : "password"}
+                                  id="inputPassword"
+                                  aria-describedby="passwordHelpBlock"
+                                  placeholder="Enter your password"
+                                  
+                                />
+                                <InputGroup.Text
+                                  id="passwordHelpBlock"
+                                  onClick={togglePasswordVisibility3}
+                                >
+                                  {showPassword3 ? (
+                                    <HiOutlineEyeOff />
+                                  ) : (
+                                    <HiOutlineEye />
+                                  )}
+                                </InputGroup.Text>
+                              </InputGroup>
+                              <br></br>
                                 <button
                                   className="btndlt"
                                   onChange={handleShow4}

@@ -362,7 +362,7 @@ function UserProfileEmptyView() {
             <br></br>
             <br></br>
             <div>
-              <div class="card">
+              <div class="carduprofl">
                 <Col xs={5} md={3} className="mx-auto position-relative">
                   <img src={prolog} rounded alt="propick" className="imgr" />
                   <Image
