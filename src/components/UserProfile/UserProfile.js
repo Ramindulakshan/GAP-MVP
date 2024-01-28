@@ -362,7 +362,7 @@ function UserProfile() {
             <br></br>
             <br></br>
             <div>
-              <div class="card">
+              <div class="carduprofl card">
                 <Col xs={5} md={3} className="mx-auto position-relative">
                   <img src={prolog} rounded alt="propick" className="imgr" />
                   <Image
@@ -1316,7 +1316,7 @@ function UserProfile() {
                   {/*Academic qualification Model End*/}
                 </div>
                 <br></br>
-                <div class="card cardnew">
+                <div class="card  cardnew">
                   <div class="card-body">
                     <div class="text-section">
                       <h5 class="card-title2 fw-bold">
@@ -1642,7 +1642,7 @@ function UserProfile() {
                     border: "1px solid rgba(0, 0, 0, 0.50)",
                   }}
                 >
-                  <div class="card cardnew" style={{ border: "0" }}>
+                  <div class="carduprofl card cardnew" style={{ border: "0" }}>
                     <div class="card-body">
                       <div class="text-section">
                         <h5 class="card-title2 fw-bold">
@@ -1824,7 +1824,7 @@ function UserProfile() {
                   </div>
 
                   <div
-                    class="card cardnew newcrddetyl"
+                    class="carduprofl card cardnew newcrddetyl"
                     style={{ border: "0" }}
                   >
                     <div
@@ -2030,7 +2030,7 @@ function UserProfile() {
                     </div>
                   </div>
                   <div
-                    class="card cardnew newcrddetyl"
+                    class="carduprofl card cardnew newcrddetyl"
                     style={{ border: "0"}}
                   >
                     <div
