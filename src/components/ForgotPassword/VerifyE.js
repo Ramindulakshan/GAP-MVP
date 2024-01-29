@@ -1,7 +1,7 @@
 import "../ForgotPassword/Verify.css";
 import VerifyEmail_image from "../ForgotPassword/Img/VerifyEmail.png";
 import Email_image from "../ForgotPassword/Img/email.png";
-import Login_image from "../LoginPage/Img/login.png";
+import Register_image from "../Register/img/register.png";
 import React, { Component, ReactDOM } from "react";
 import axios from "axios";
 
@@ -75,19 +75,19 @@ class VerifyE extends React.Component {
   render() {
     return (
       <>
-        <section className="">
+        <section className="newwitchg">
           <div className="container-fluid ">
-            <div className="row">
-              <div className="col-lg-5 vh-100 custom-bg d-flex align-items-center justify-content-center">
-                <div className="vh-100 text-center">
+            <div className="row bxbxset">
+              <div className="col-lg-5  custom-bgregit  align-items-center justify-content-center">
+                <div className="text-center">
                   <img
-                    src={Login_image}
+                    src={Register_image}
                     alt="Your Image"
                     className="img-fluid custom-image-LI"
                   />
                 </div>
               </div>
-              <div className="col-lg-7 vh-100 ">
+              <div className="col-lg-6 vh-100 ">
                 <img
                   src={Email_image}
                   alt="Your Image"
@@ -97,7 +97,7 @@ class VerifyE extends React.Component {
                 <div className="row justify-content-center">
                   <div className="col-lg-9">
                     <div className="form-outline">
-                      <h5 className="mb-4 custom-text-sendcode">
+                      <h5 className="mb-4 custom-text-sendcode ">
                         Enter the OTP that send to your email
                       </h5>
                       <form onSubmit={this.handleSubmit}>
@@ -172,12 +172,12 @@ class VerifyE extends React.Component {
                         </div>
                       </form>
                     </div>
-                    <h6 className="custom-text-AR mt-4 mb-5">
+                    <h6 className="custom-text-AR ore mt-4 mb-5">
                       Don’t receive OTP? <span>Resend</span>
                     </h6>
                     <div className="text-center">
                       <button
-                        className="btn custom-button-reset my-1 my-sm-3"
+                        className="btn custom-button2rtyu  my-1 my-sm-3"
                         type="submit"
                         onClick={this.VerifyOTP}
                       >

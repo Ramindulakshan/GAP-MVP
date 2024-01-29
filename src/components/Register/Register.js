@@ -58,6 +58,13 @@ function Prologin() {
   };
 
   const handleSubmit = (e) => {
+
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setValidated(true);
     e.preventDefault();
     axios
       .post("http://localhost:3001/api/register", {
@@ -87,93 +94,140 @@ function Prologin() {
               <div className="text-center">
                 <img
                   src={Register_image}
-                  className="img-fluid custom-image-LI" // Keep img-fluid for responsiveness
-                  style={{ maxHeight: "100%", width: "100%" }} // Set maxHeight to 100% or adjust as needed
+                  className="img-fluid custom-image-LI" 
+                  style={{ maxHeight: "100%", width: "100%" }} 
                   alt="Regi Img"
                 />
               </div>
             </div>
             <div className="col-lg-6 overflow-auto">
-              <h2 className="text-center mb-4 mt-2 tpnk">Register</h2>
+              <h2 className="text-center mb-4 mt-2 ">Register</h2>
               <div className="row justify-content-center">
                 <div className="col-lg-9 sitewyey ">
                   <div className="form-outline ">
-                    <Row className="">
-                      <Form.Group as={Col} controlId="formGridEmail">
-                        <Form.Control
-                          type="Text"
-                          size="medium"
-                          placeholder="First Name"
-                          onChange={(e) => setFirstName(e.target.value)}
-                        />
+
+
+                    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                      <Row className="">
+                        <Form.Group as={Col} controlId="validationCustomUsername">
+                          <InputGroup hasValidation>
+                            <Form.Control
+                              type="Text"
+                              placeholder="First Name"
+                              aria-describedby="inputGroupPrepend"
+                              required
+                              onChange={(e) => setFirstName(e.target.value)}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                              
+                            </Form.Control.Feedback>
+                          </InputGroup>
+                        </Form.Group>
+
+
+                        <Form.Group as={Col} controlId="validationCustomUsername">
+                          <InputGroup hasValidation>
+                            <Form.Control
+                              type="text"
+                              placeholder="Last Name"
+                              aria-describedby="inputGroupPrepend"
+                              required
+                              onChange={(e) => setLastName(e.target.value)}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                            
+                            </Form.Control.Feedback>
+                          </InputGroup>
+                        </Form.Group>
+                      </Row>
+
+                      <br></br>
+
+                      <Form.Group controlId="validationCustomUsername">
+                        <InputGroup hasValidation>
+                          <Form.Control
+                            type="text"
+                            placeholder="Username"
+                            aria-describedby="inputGroupPrepend"
+                            required
+                            onChange={(e) => setUserName(e.target.value)}
+                          />
+                          <Form.Control.Feedback type="invalid">
+                          
+                          </Form.Control.Feedback>
+                        </InputGroup>
                       </Form.Group>
 
-                      <Form.Group as={Col} controlId="formGridEmail">
-                        <Form.Control
-                          type="text"
-                          size="medium"
-                          placeholder="Last Name"
-                          onChange={(e) => setLastName(e.target.value)}
-                        />
+                      <br></br>
+
+                      <Form.Group controlId="validationCustomUsername">
+                        <InputGroup hasValidation>
+                          <Form.Control
+                            type="email"
+                            placeholder="Email"
+                            aria-describedby="inputGroupPrepend"
+                            required
+                            onChange={(e) => setEmail(e.target.value)}
+                          />
+                          <Form.Control.Feedback type="invalid">
+                           
+                          </Form.Control.Feedback>
+                        </InputGroup>
                       </Form.Group>
-                    </Row>
-                    <br />
-                    <Form.Control
-                      size="medium"
-                      type="text"
-                      placeholder="Username"
-                      onChange={(e) => setUserName(e.target.value)}
-                    />
-                    <br />
 
-                    <Form.Control
-                      size="medium"
-                      type="email"
-                      placeholder="Email"
-                      onChange={(e) => setEmail(e.target.value)}
-                      required // Add the required attribute
-                    />
+                      <br></br>
 
-                    <br />
+                      <Form.Group controlId="validationCustomUsername">
+                        <InputGroup hasValidation>
+                          <Form.Control
+                            size="medium"
+                            type={showPassword ? "text" : "password"}
+                            id="inputPassword"
+                            aria-describedby="passwordHelpBlock"
+                            placeholder="Password"
+                            value={password}
+                            required
+                            onChange={handlePasswordChange}
+                          />
+                          {/* <InputGroup.Text
+                            id="passwordHelpBlock"
+                            onClick={togglePasswordVisibility}
+                          >
+                            {showPassword ? <HiOutlineEyeOff /> : <HiOutlineEye />}
+                          </InputGroup.Text> */}
+                          <Form.Control.Feedback type="invalid">
+                            
+                          </Form.Control.Feedback>
+                        </InputGroup>
+                      </Form.Group>
 
-                    <InputGroup className="mb-4">
-                      <Form.Control
-                        size="medium"
-                        type={showPassword ? "text" : "password"}
-                        id="inputPassword"
-                        aria-describedby="passwordHelpBlock"
-                        placeholder="Password"
-                        value={password}
-                        onChange={handlePasswordChange}
-                      />
-                      <InputGroup.Text
-                        id="passwordHelpBlock"
-                        onClick={togglePasswordVisibility}
-                      >
-                        {showPassword ? <HiOutlineEyeOff /> : <HiOutlineEye />}
-                      </InputGroup.Text>
-                    </InputGroup>
-                   
+                      <br></br>
 
-                    <InputGroup className="mb-2">
-                      <Form.Control
-                        size="medium"
-                        type={showPassword ? "text" : "password"}
-                        id="inputConfirmPassword"
-                        aria-describedby="passwordHelpBlock"
-                        placeholder="Confirm Password"
-                        value={confirmPassword}
-                        required
-                        onChange={handleConfirmPasswordChange}
-                      />
-                      <InputGroup.Text
-                        id="passwordHelpBlock"
-                        onClick={togglePasswordVisibility}
-                      >
-                        {showPassword ? <HiOutlineEyeOff /> : <HiOutlineEye />}
-                      </InputGroup.Text>
-                    </InputGroup>
+                      <Form.Group controlId="validationCustomUsername">
+                        <InputGroup hasValidation>
+                          <Form.Control
+                            size="medium"
+                            type={showPassword ? "text" : "password"}
+                            id="inputConfirmPassword"
+                            aria-describedby="passwordHelpBlock"
+                            placeholder="Confirm Password"
+                            value={confirmPassword}
+                            required
+                            onChange={handleConfirmPasswordChange}
+                          />
+                          {/* <InputGroup.Text
+                            id="passwordHelpBlock"
+                            onClick={togglePasswordVisibility}
+                          >
+                            {showPassword ? <HiOutlineEyeOff /> : <HiOutlineEye />}
+                          </InputGroup.Text> */}
+                          <Form.Control.Feedback type="invalid">
+                            
+                          </Form.Control.Feedback>
+                        </InputGroup>
+                      </Form.Group>
 
+                      
                     {confirmPasswordMatch() ? (
                       <p></p>
                     ) : (
@@ -184,6 +238,8 @@ function Prologin() {
                       <Form.Check
                         type="checkbox"
                         required
+                        feedback="You must agree before submitting."
+                        feedbackType="invalid"
                         label={
                           <span>
                             By registering to GAP you agree to the{" "}
@@ -196,9 +252,10 @@ function Prologin() {
                           </span>
                         }
                         onChange={handleShow}
-                        // checked={true}
+                      // checked={true}
                       />
                     </Form.Group>
+                    </Form>            
                     <Modal
                       size="lg"
                       show={show}
@@ -269,7 +326,7 @@ function Prologin() {
                         </div>
                         <div className="text-center">
                           <button
-                            className="custom-button2 custom-button-reset my-1 my-sm-3 t"
+                            className="custom-button2rtyu my-1 my-sm-3 t"
                             type="submit"
                             onClick={handleClose}
                           >
