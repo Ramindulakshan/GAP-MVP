@@ -1,55 +1,76 @@
 import '../ForgotPassword/ForgotPassword.css';
 import Forgotpassword_image from '../ForgotPassword/Img/forgotpassword.png';
-import Login_image from '../LoginPage/Img/login.png';
+import Register_image from "../Register/img/register.png";
 import Lock_image from '../ForgotPassword/Img/lock.png';
 import Card from 'react-bootstrap/Card';
 import Form from "react-bootstrap/Form";
 import axios from 'axios';
 import { useState } from 'react';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 function ForgotPassword() {
 
   const [email, setEmail] = useState('');
+  const [validated, setValidated] = useState(false);
 
   const handleSubmit = (e) => {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setValidated(true);
+
     e.preventDefault();
     const data = {
       email: email,
     };
     axios.post('http://localhost:3001/api/forgotpassword', data)
-    .then((response) => {
-      console.log(response);
-      window.location.href = "/verifyE";
-    }).catch((err) => {
-      console.log(err);
-    });
+      .then((response) => {
+        console.log(response);
+        window.location.href = "/verifyE";
+      }).catch((err) => {
+        console.log(err);
+      });
   }
 
 
 
   return (
     <>
-      <section className=''>
+      <section className='newwitchg'>
         <div className='container-fluid '>
-          <div className='row'>
-            <div className='col-lg-5 vh-100 custom-bg d-flex align-items-center justify-content-center'>
-              <div className="vh-100 text-center">
-                <img src={Login_image} alt='Your Image' className='img-fluid custom-image-LI' />
+          <div className='row bxbxset'>
+            <div className='col-lg-5 custom-bgregit  align-items-center justify-content-center'>
+              <div className=" text-center">
+                <img src={Register_image} alt='Your Image' className='img-fluid custom-image-LI' style={{ maxHeight: "100%", width: "100%" }} />
               </div>
             </div>
-            <div className='col-lg-7 vh-100 '>
+            <div className='col-lg-6 overflow-auto '>
               <img src={Lock_image} alt='Your Image' className='img-fluid img-fluid custom-image-ULock mx-auto d-block' />
-              <h1 className='text-center'>Forgot password?</h1>
-              <h5 className=' text-center mb-4 custom-text-sendcode'>Please Select an option to send security code</h5>
+              <h1 className='text-center mb-2 mt-2 '>Forgot password?</h1>
+              <h5 className=' text-center mb-4 custom-text-sendcode'>Please Enter Your Registered Email To Send The Security Code</h5>
               <div className="row justify-content-center">
-                <div className="col-lg-9">
+                <div className="col-lg-9 sitewyey">
                   <div className="form-outline">
                     <br />
-                    <Form.Control className='mt-3 mb-2' size="lg" type="email" style={{ textTransform: 'none' }} placeholder="Enter Your Email" onChange={(e) => setEmail(e.target.value)} />
-                    <br />                 
+
+                    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+
+                      <Form.Group controlId="validationCustomUsername">
+                        <InputGroup hasValidation>
+
+                        <Form.Control  size="medium" type="email" style={{ textTransform: 'none' }} required placeholder="Enter Your Email" onChange={(e) => setEmail(e.target.value)} />
+                          <Form.Control.Feedback type="invalid">
+                           
+                          </Form.Control.Feedback>
+                        </InputGroup>
+                      </Form.Group>
+                    </Form>    
+                    <br />
                   </div>
                   <div className="text-center">
-                    <button className="btn custom-button-reset my-1 my-sm-3" type="submit" onClick={handleSubmit}>Send the code</button>
+                    <button className="btn custom-button2rtyu my-1 my-sm-3" type="submit" onClick={handleSubmit}>Send the code</button>
                   </div>
 
                 </div>

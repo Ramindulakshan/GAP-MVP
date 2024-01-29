@@ -1,16 +1,27 @@
 import React from "react";
-import Login_image from "../LoginPage/Img/login.png";
 import "../LoginPage/LoginPage.css";
 import Google_image from "../LoginPage/Img/google.png";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { useState } from "react";
+import Register_image from "../Register/img/register.png";
+import InputGroup from 'react-bootstrap/InputGroup';
+
 
 const LoginPage = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
+  const [validated, setValidated] = useState(false);
+
   const handleSubmit = (e) => {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setValidated(true);
+
     e.preventDefault();
     axios
       .post("http://localhost:3001/api/login", {
@@ -32,43 +43,61 @@ const LoginPage = () => {
 
   return (
     <>
-      <section className="">
+      <section className="newwitchg">
         <div className="container-fluid">
-          <div className="row">
-            <div className="col-lg-5 vh-100 custom-bg d-flex align-items-center justify-content-center">
-              <div className="vh-100 text-center">
+          <div className="row bxbxset">
+            <div className="col-lg-5  custom-bgregit  align-items-center justify-content-center">
+              <div className=" text-center">
                 <img
-                  src={Login_image}
-                  alt="Your Image"
+                  src={Register_image}
+                  alt="Log Img"
                   className="img-fluid custom-image-LI"
+                  style={{ maxHeight: "100%", width: "100%" }}
                 />
               </div>
             </div>
-            <div className="col-lg-7 vh-100 ">
-              <h1 className="text-center mb-5 mt-5">Login to Account</h1>
+            <div className="col-lg-6 overflow-auto ">
+              <h1 className="text-center mb-5 mt-5 ">Login to Account</h1>
               <div className="row justify-content-center">
-                <div className="col-lg-9">
+                <div className="col-lg-9 sitewyey">
                   <div className="form-outline">
                     <br />
-                    <Form.Control
-                      size="lg"
-                      type="text"
-                      placeholder="Username"
-                      onChange={(e) => setUserName(e.target.value)}
-                    />
-                    <br />
-                    <br />
-                    <Form.Control
-                      size="lg"
-                      type="password"
-                      id="inputPassword5"
-                      aria-describedby="passwordHelpBlock"
-                      placeholder="Password"
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
+
+                    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                      <Form.Group controlId="validationCustomUsername">
+                        <InputGroup hasValidation>
+                          <Form.Control
+                            type="text"
+                            placeholder="Username"
+                            aria-describedby="inputGroupPrepend"
+                            required
+                            onChange={(e) => setUserName(e.target.value)}
+                          />
+                          <Form.Control.Feedback type="invalid">
+                            
+                          </Form.Control.Feedback>
+                        </InputGroup>
+                      </Form.Group>
+                      <br></br>
+                  
+                      <Form.Group controlId="validationCustomUsername">
+                        <InputGroup hasValidation>
+                          <Form.Control
+                            type="password"
+                            placeholder="Password"
+                            aria-describedby="inputGroupPrepend"
+                            required
+                            onChange={(e) => setPassword(e.target.value)}
+                          />
+                          <Form.Control.Feedback type="invalid">
+                            
+                          </Form.Control.Feedback>
+                        </InputGroup>
+                      </Form.Group>
+                    </Form>                   
                   </div>
                   <h5
-                    className="mb-4 mt-2 custom-text-FP "
+                    className="mb-4 mt-2 custom-text-FP ore "
                     style={{ cursor: "pointer" }}
                     onClick={() => {
                       window.location.href = "/forgotPassword";
@@ -78,7 +107,7 @@ const LoginPage = () => {
                   </h5>
                   <div className="text-center">
                     <button
-                      className="custom-button2 custom-button-reset my-1 my-sm-3"
+                      className="custom-button2rtyu  my-1 my-sm-3"
                       type="submit"
                       onClick={handleSubmit}
                     >
@@ -86,12 +115,12 @@ const LoginPage = () => {
                     </button>
                   </div>
                   <div class="text-center mb-4">
-                    <h4 className="mb-4">Or, login with</h4>
+                    <h4 className="mb-4 ore">Or, login with</h4>
                     <div className="Icon">
                       <img src={Google_image} alt="Image 1" />
                     </div>
                   </div>
-                  <h6 className="custom-text-AR">
+                  <h6 className="custom-text-AR ore">
                     Don't have an account?{" "}
                     <span
                       style={{ cursor: "pointer", color: "blue" }}
