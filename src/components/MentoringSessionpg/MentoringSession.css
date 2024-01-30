@@ -62,6 +62,15 @@
   position: relative;
   background-attachment: fixed;
 }
+
+.Cardsectionnwt {
+  height: 100%;
+  width: 67vw;
+  padding: 0 0px 30px 0px;
+  position: relative;
+  background-attachment: fixed;
+}
+
 .list-group-item-custom {
   background-color: rgb(255, 255, 255);
   color: #00000080;

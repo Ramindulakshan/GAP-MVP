@@ -19,7 +19,7 @@ import pro6 from "./img/2pro.png";
 import pro7 from "./img/3pro.png";
 import { Route, Routes } from "react-router-dom";
 
-function Mentors() {
+function MentoringSession() {
   return (
     <div>
       <div className="container-fluid">
@@ -1146,4 +1146,4 @@ function Mentors() {
   );
 }
 
-export default Mentors;
+export default MentoringSession;
