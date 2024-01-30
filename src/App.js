@@ -13,7 +13,7 @@ import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import VerifyE from "./components/ForgotPassword/VerifyE";
 import ResetPassword from "./components/ForgotPassword/ResetPassword";
 import MentoringSessionPage from "./components/MentoringSessionpg/MentoringSessionEmpty";
-
+import History from './components/HistoryPage/HistoryPageEmpty';
 const App = () => {
   return (
     //  <LoginPage />
@@ -41,7 +41,7 @@ const App = () => {
     //   </Routes>
     // </BrowserRouter>
     <div>
-      <MentoringSessionPage />
+      <History />
     </div>
   );
 };
