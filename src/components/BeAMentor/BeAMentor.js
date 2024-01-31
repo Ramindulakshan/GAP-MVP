@@ -9,12 +9,10 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Select from 'react-dropdown-select';
-import ReqSuccess from "./Img/Group1.png";
-import Error from "./Img/Polygon2.png";
-import TakeABreak from "./Img/Group319.png";
+
 
 
 

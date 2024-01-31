@@ -88,7 +88,7 @@ function Prologin() {
   return (
     <div>
       <section className="newwitchg">
-        <div className="container-fluid">
+        <div className="container-fluid container-fluidreg">
           <div className="row bxbxset">
             <div className="col-lg-5 custom-bgregit align-items-center justify-content-center">
               <div className="text-center">
