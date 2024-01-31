@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../LandingPage/Landing.css";
 import GAP_Image from "../HomePage/Img/GAP_BG.png";
-import "../Settings/Settings.css";
+import "../SettingPage/SettingPage.css";
 import { Form, FormControl } from "react-bootstrap";
 import { InputGroup } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
