@@ -26,7 +26,9 @@ function SettingPage() {
   const schema = yup.object().shape({
     password: yup.string().required(),
   });
-  const [password, setPassword] = useState("");
+
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [showPassword, setShowPassword] = useState(false);
@@ -55,15 +57,18 @@ function SettingPage() {
   const togglePasswordVisibility3 = () => {
     setShowPassword3(!showPassword3);
   };
+  const handleCurrentPasswordChange = (e) => {
+    setCurrentPassword(e.target.value);
+  };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+  const handleNewPasswordChange = (e) => {
+    setNewPassword(e.target.value);
   };
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
   };
   const confirmPasswordMatch = () => {
-    return password === confirmPassword;
+    return newPassword === confirmPassword;
   };
   const [text, setText] = useState("");
 
@@ -75,29 +80,29 @@ function SettingPage() {
     }
   };
 
-  // const changePassword = (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .post("http://localhost:3001/api/changePassword", {
-  //       currentPassword: password,
-  //       newPassword: password,
-  //     }, {
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
-  //       }
-  //     })
-  //     .then((response) => {
-  //       console.log(response);
-  //       if (response.status === 200) {
-  //         const token = response.data.token;
-  //         localStorage.setItem("jwtToken", token);
-  //         window.location.href = "/home";
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+  const handleChangePassword = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3001/api/changePassword", {
+        currentPassword: currentPassword,
+        newPassword: newPassword,
+      }, {
+        headers: {
+          Authorization: `${localStorage.getItem("jwtToken")}`,
+        }
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          window.location.href = "/home";
+          console.log("Password changed successfully");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
 
   return (
     <div>
@@ -765,6 +770,8 @@ function SettingPage() {
                                   id="inputPassword"
                                   aria-describedby="passwordHelpBlock"
                                   placeholder="Current password"
+                                  value={currentPassword}
+                                  onChange={handleCurrentPasswordChange}
                                 />
                                 <InputGroup.Text
                                   id="passwordHelpBlock"
@@ -784,8 +791,8 @@ function SettingPage() {
                                   id="inputPassword"
                                   aria-describedby="passwordHelpBlock"
                                   placeholder="New Password"
-                                  value={password}
-                                  onChange={handlePasswordChange}
+                                  value={newPassword}
+                                  onChange={handleNewPasswordChange}
                                 />
                                 <InputGroup.Text
                                   id="passwordHelpBlock"
@@ -829,7 +836,7 @@ function SettingPage() {
                               <a href="acb" className="fogotpss">
                                 Forgot password?
                               </a>
-                              <button className="changpasss">
+                              <button className="changpasss" onClick={handleChangePassword}>
                                 Change Password
                               </button>
                             </div>

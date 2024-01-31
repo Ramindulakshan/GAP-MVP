@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react"; 
+
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 import Navbar from "react-bootstrap/Navbar";
@@ -12,8 +14,15 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
 
-function HomePage() {
-  return (
+const HomePage = () =>{
+  const [firstName, setFirstName] = useState("");
+
+  useEffect(() => {
+    const storedFirstName = localStorage.getItem("firstName");
+    setFirstName(storedFirstName);
+  }, [-1]);
+
+  return ( 
     <section>
       <div className="container-fluid">
         <div className="row">
@@ -248,8 +257,8 @@ function HomePage() {
               </Navbar.Brand>
             </Navbar>
             <div className="col-lg-12 custom-Point d-flex mt-4 ">
-              <dic className="col-lg-9">
-                <h4 className="custom-S-text1 mt-4">Hi Tiara!!</h4>
+              <div className="col-lg-9">
+                <h4 className="custom-S-text1 mt-4">Hi {firstName}!!</h4>
                 <h4 className="custom-S-text2">
                   Congratulations on earning points, <br />
                   Let's keep stepping forward!
@@ -260,7 +269,7 @@ function HomePage() {
                 >
                   Total 10📀
                 </button>
-              </dic>
+              </div>
               <div className="col-lg-3">
                 <img
                   src={Homepage_image}
@@ -273,7 +282,9 @@ function HomePage() {
             <div className="d-flex justify-content-between mt-4">
               <h4>Recommended Mentors</h4>
               <div>
-                <h6 className="View-more">
+                <h6 className="View-more" style={{cursor: "pointer", color:"blue"}} onClick={() => {
+                  Window.location.href = "/mentors";
+                }}>
                   <u>View More</u>
                 </h6>
               </div>

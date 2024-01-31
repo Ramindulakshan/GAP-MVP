@@ -107,11 +107,11 @@ const LoginPage = () => {
               </Card>
             </CardGroup>
             <div className="text-center mt-1">
-              <button
+            <button
                 className="btn custom-button-reset2 my-1 my-sm-3"
                 type="submit"
                 onClick={() => {
-                  window.location.href = "/login";
+                  window.location.href = "/register";
                 }}
               >
                 Register For Free
