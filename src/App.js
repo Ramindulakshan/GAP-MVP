@@ -12,8 +12,8 @@ import UserProfile from "./components/UserProfile/UserProfile";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import VerifyE from "./components/ForgotPassword/VerifyE";
 import ResetPassword from "./components/ForgotPassword/ResetPassword";
-import MentoringSessionPage from "./components/MentoringSessionpg/MentoringSessionEmpty";
-import History from './components/HistoryPage/HistoryPageEmpty';
+import MentoringSessionPage from "./components/MentoringSession/MentoringSessionEmpty";
+import History from './components/HistoryPage/UnderConstructionHistoryPage';
 const App = () => {
   return (
     //  <LoginPage />
