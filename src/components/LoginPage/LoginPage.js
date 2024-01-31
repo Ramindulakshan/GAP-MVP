@@ -4,6 +4,7 @@ import Google_image from "../LoginPage/Img/google.png";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Register_image from "../Register/img/register.png";
 import InputGroup from 'react-bootstrap/InputGroup';
 
@@ -11,16 +12,18 @@ import InputGroup from 'react-bootstrap/InputGroup';
 const LoginPage = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-
   const [validated, setValidated] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
+    }else{
+      setValidated(true);
     }
-    setValidated(true);
+
 
     e.preventDefault();
     axios
@@ -33,13 +36,31 @@ const LoginPage = () => {
         if (response.status === 200) {
           const token = response.data.token;
           localStorage.setItem("jwtToken", token);
-          window.location.href = "/home";
+          getUserName();
+          navigate("/home");
         }
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  const getUserName = () => {
+    axios
+      .get("http://localhost:3001/api/getUser", {
+        headers: {
+          authorization: `${localStorage.getItem("jwtToken")}`
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          const firstName = response.data.firstName;
+          localStorage.setItem("firstName", firstName);
+        }
+        
+      });
+  }
 
   return (
     <>
