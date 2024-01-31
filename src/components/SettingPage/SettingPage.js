@@ -88,7 +88,7 @@ function SettingPage() {
         newPassword: newPassword,
       }, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+          Authorization: `${localStorage.getItem("jwtToken")}`,
         }
       })
       .then((response) => {
