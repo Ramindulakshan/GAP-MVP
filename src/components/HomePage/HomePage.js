@@ -273,7 +273,9 @@ function HomePage() {
             <div className="d-flex justify-content-between mt-4">
               <h4>Recommended Mentors</h4>
               <div>
-                <h6 className="View-more">
+                <h6 className="View-more" style={{cursor: "pointer", color:"blue"}} onClick={() => {
+                  Window.location.href = "/mentors";
+                }}>
                   <u>View More</u>
                 </h6>
               </div>
