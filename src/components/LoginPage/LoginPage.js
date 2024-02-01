@@ -6,8 +6,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Register_image from "../Register/img/register.png";
-import InputGroup from 'react-bootstrap/InputGroup';
-
+import InputGroup from "react-bootstrap/InputGroup";
 
 const LoginPage = () => {
   const [username, setUserName] = useState("");
@@ -20,12 +19,10 @@ const LoginPage = () => {
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
-    }else{
+    } else {
       setValidated(true);
     }
 
-
-    e.preventDefault();
     axios
       .post("http://localhost:3001/api/login", {
         username: username,
@@ -33,11 +30,13 @@ const LoginPage = () => {
       })
       .then((response) => {
         console.log(response);
-        if (response.status === 200) {
+        if (response.data.status === "ok") {
           const token = response.data.token;
           localStorage.setItem("jwtToken", token);
           getUserName();
           navigate("/home");
+        } else if (response.data.status === "error") {
+          alert("Invalid Username or Password");
         }
       })
       .catch((error) => {
@@ -49,7 +48,7 @@ const LoginPage = () => {
     axios
       .get("http://localhost:3001/api/getUser", {
         headers: {
-          authorization: `${localStorage.getItem("jwtToken")}`
+          authorization: `${localStorage.getItem("jwtToken")}`,
         },
       })
       .then((response) => {
@@ -58,9 +57,8 @@ const LoginPage = () => {
           const firstName = response.data.firstName;
           localStorage.setItem("firstName", firstName);
         }
-        
       });
-  }
+  };
 
   return (
     <>
@@ -84,38 +82,40 @@ const LoginPage = () => {
                   <div className="form-outline">
                     <br />
 
-                    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                    <Form
+                      noValidate
+                      validated={validated}
+                      onSubmit={handleSubmit}
+                    >
                       <Form.Group controlId="validationCustomUsername">
                         <InputGroup hasValidation>
                           <Form.Control
                             type="text"
                             placeholder="Username"
+                            style={{ textTransform: "none" }}
                             aria-describedby="inputGroupPrepend"
                             required
                             onChange={(e) => setUserName(e.target.value)}
                           />
-                          <Form.Control.Feedback type="invalid">
-                            
-                          </Form.Control.Feedback>
+                          <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
                         </InputGroup>
                       </Form.Group>
                       <br></br>
-                  
+
                       <Form.Group controlId="validationCustomUsername">
                         <InputGroup hasValidation>
                           <Form.Control
                             type="password"
                             placeholder="Password"
+                            style={{ textTransform: "none" }}
                             aria-describedby="inputGroupPrepend"
                             required
                             onChange={(e) => setPassword(e.target.value)}
                           />
-                          <Form.Control.Feedback type="invalid">
-                            
-                          </Form.Control.Feedback>
+                          <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
                         </InputGroup>
                       </Form.Group>
-                    </Form>                   
+                    </Form>
                   </div>
                   <h5
                     className="mb-4 mt-2 custom-text-FP ore "

@@ -30,6 +30,7 @@ function SettingPage() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordToDelete, setPasswordToDelete] = useState("");
 
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
@@ -83,26 +84,63 @@ function SettingPage() {
   const handleChangePassword = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/api/changePassword", {
-        currentPassword: currentPassword,
-        newPassword: newPassword,
-      }, {
-        headers: {
-          Authorization: `${localStorage.getItem("jwtToken")}`,
+      .post(
+        "http://localhost:3001/api/changePassword",
+        {
+          currentPassword: currentPassword,
+          newPassword: newPassword,
+        },
+        {
+          headers: {
+            authorization: `${localStorage.getItem("jwtToken")}`,
+          },
         }
-      })
+      )
       .then((response) => {
         console.log(response);
-        if (response.status === 200) {
+        if (response.data.status === 200) {
           window.location.href = "/home";
           console.log("Password changed successfully");
+        } else if (response.data.status === 401) {
+          alert("Current password is incorrect");
+        } else {
+          alert("Password change failed");
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 
+  const handleDeleteAccount = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        "http://localhost:3001/api/deleteAccount",
+        {
+          password: passwordToDelete,
+        },
+        {
+          headers: {
+            authorization: `${localStorage.getItem("jwtToken")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        if (response.data.status === 'ok') {
+          localStorage.removeItem("jwtToken");
+          localStorage.removeItem("firstName");
+          window.location.href = "/";
+          console.log("Account deleted successfully");
+        } else {
+          alert("Account deletion failed");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <div>
@@ -768,9 +806,9 @@ function SettingPage() {
                                   size="lg"
                                   type={showPassword3 ? "text" : "password"}
                                   id="inputPassword"
+                                  style={{ textTransform: "none" }}
                                   aria-describedby="passwordHelpBlock"
                                   placeholder="Current password"
-                                  value={currentPassword}
                                   onChange={handleCurrentPasswordChange}
                                 />
                                 <InputGroup.Text
@@ -791,7 +829,7 @@ function SettingPage() {
                                   id="inputPassword"
                                   aria-describedby="passwordHelpBlock"
                                   placeholder="New Password"
-                                  value={newPassword}
+                                  style={{ textTransform: "none" }}
                                   onChange={handleNewPasswordChange}
                                 />
                                 <InputGroup.Text
@@ -813,7 +851,7 @@ function SettingPage() {
                                   id="inputConfirmPassword"
                                   aria-describedby="passwordHelpBlock"
                                   placeholder="Confirm New Password"
-                                  value={confirmPassword}
+                                  style={{ textTransform: "none" }}
                                   onChange={handleConfirmPasswordChange}
                                 />
                                 <InputGroup.Text
@@ -836,7 +874,10 @@ function SettingPage() {
                               <a href="acb" className="fogotpss">
                                 Forgot password?
                               </a>
-                              <button className="changpasss" onClick={handleChangePassword}>
+                              <button
+                                className="changpasss"
+                                onClick={handleChangePassword}
+                              >
                                 Change Password
                               </button>
                             </div>
@@ -1069,6 +1110,7 @@ function SettingPage() {
                                       <button
                                         className="btn custom-button-resetmewdlete my-1 my-sm-3"
                                         type="submit"
+                                        onClick={handleDeleteAccount}
                                       >
                                         Delete
                                       </button>
@@ -1076,27 +1118,31 @@ function SettingPage() {
                                   </Modal.Body>
                                 </Modal>
                                 {/*Delete Model End */}
-                                <InputGroup className="mb-3" style={{ width: "50%" }} >
-                                <Form.Control
-                                  size="medium"
-                                  type={showPassword3 ? "text" : "password"}
-                                  id="inputPassword"
-                                  aria-describedby="passwordHelpBlock"
-                                  placeholder="Enter your password"
-                                  
-                                />
-                                <InputGroup.Text
-                                  id="passwordHelpBlock"
-                                  onClick={togglePasswordVisibility3}
+                                <InputGroup
+                                  className="mb-3"
+                                  style={{ width: "50%" }}
                                 >
-                                  {showPassword3 ? (
-                                    <HiOutlineEyeOff />
-                                  ) : (
-                                    <HiOutlineEye />
-                                  )}
-                                </InputGroup.Text>
-                              </InputGroup>
-                              <br></br>
+                                  <Form.Control
+                                    size="medium"
+                                    type={showPassword3 ? "text" : "password"}
+                                    id="inputPassword"
+                                    style={{ textTransform: "none" }}
+                                    aria-describedby="passwordHelpBlock"
+                                    placeholder="Enter your password"
+                                    onChange={e => setPasswordToDelete(e.target.value)}
+                                  />
+                                  <InputGroup.Text
+                                    id="passwordHelpBlock"
+                                    onClick={togglePasswordVisibility3}
+                                  >
+                                    {showPassword3 ? (
+                                      <HiOutlineEyeOff />
+                                    ) : (
+                                      <HiOutlineEye />
+                                    )}
+                                  </InputGroup.Text>
+                                </InputGroup>
+                                <br></br>
                                 <button
                                   className="btndlt"
                                   onChange={handleShow4}
