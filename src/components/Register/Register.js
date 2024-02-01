@@ -114,6 +114,7 @@ function Prologin() {
                             <Form.Control
                               type="Text"
                               placeholder="First Name"
+                              style={{ textTransform: "none" }}
                               aria-describedby="inputGroupPrepend"
                               required
                               onChange={(e) => setFirstName(e.target.value)}
@@ -130,6 +131,7 @@ function Prologin() {
                             <Form.Control
                               type="text"
                               placeholder="Last Name"
+                              style={{ textTransform: "none" }}
                               aria-describedby="inputGroupPrepend"
                               required
                               onChange={(e) => setLastName(e.target.value)}
@@ -148,6 +150,7 @@ function Prologin() {
                           <Form.Control
                             type="text"
                             placeholder="Username"
+                            style={{ textTransform: "none" }}
                             aria-describedby="inputGroupPrepend"
                             required
                             onChange={(e) => setUserName(e.target.value)}
@@ -165,6 +168,7 @@ function Prologin() {
                           <Form.Control
                             type="email"
                             placeholder="Email"
+                            style={{ textTransform: "none" }}
                             aria-describedby="inputGroupPrepend"
                             required
                             onChange={(e) => setEmail(e.target.value)}
@@ -185,6 +189,7 @@ function Prologin() {
                             id="inputPassword"
                             aria-describedby="passwordHelpBlock"
                             placeholder="Password"
+                            style={{ textTransform: "none" }}
                             value={password}
                             required
                             onChange={handlePasswordChange}
@@ -211,6 +216,7 @@ function Prologin() {
                             id="inputConfirmPassword"
                             aria-describedby="passwordHelpBlock"
                             placeholder="Confirm Password"
+                            style={{ textTransform: "none" }}
                             value={confirmPassword}
                             required
                             onChange={handleConfirmPasswordChange}
