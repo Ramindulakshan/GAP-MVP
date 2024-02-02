@@ -1,4 +1,4 @@
-import React from "react";
+import React from"react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -56,6 +56,7 @@ const App = () => {
         <Route path="/verifyE" element={<VerifyE />} />
         <Route path="/resetPassword" element={<ResetPassword />} />
         <Route path="/mentoringSession" element={<MentoringSessionPage  />} />
+        <Route path="/mentoringSession " element={<MentoringSessionPage  />} />
         <Route path="/beAMentor" element={<BeAMentor  />} />
         <Route path="/underConstructionBeAMentor" element={<UnderConstructionBeAMentor  />} />
         <Route path="/emailVerify" element={<EmailVerify  />} />
