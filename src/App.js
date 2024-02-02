@@ -1,4 +1,4 @@
-import React from "react";
+import React from"react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -54,29 +54,29 @@ const App = () => {
         <Route path="/verifyE" element={<VerifyE />} />
         <Route path="/resetPassword" element={<ResetPassword />} />
         <Route path="/mentoringSession " element={<MentoringSessionPage  />} />
-        <Route path="/beAMentor " element={<BeAMentor  />} />
-        <Route path="/underConstructionBeAMentor " element={<UnderConstructionBeAMentor  />} />
-        <Route path="/emailVerify " element={<EmailVerify  />} />
-        <Route path="/verifyMN " element={<VerifyMN  />} />
-        <Route path="/historyPage " element={<HistoryPage  />} />
-        <Route path="/historyPageEmpty " element={<HistoryPageEmpty  />} />
-        <Route path="/underConstructionHistoryPage " element={<UnderConstructionHistoryPage  />} />
-        <Route path="/underConstructionHome " element={<UnderConstructionHome  />} />
-        <Route path="/landingPageAbout " element={<LandingPageAbout  />} />
-        <Route path="/landingPageContact " element={<LandingPageContact  />} />
-        <Route path="/mentoringSessionEmpty " element={<MentoringSessionEmpty  />} />
-        <Route path="/underConstructionMentorSession " element={<UnderConstructionMentorSession  />} />
-        <Route path="/mentors " element={<Mentors  />} />
-        <Route path="/mentorsFilter " element={<MentorsFilter  />} />
-        <Route path="/underConstructionMentors " element={<UnderConstructionMentors  />} />
-        <Route path="/mobileAuthentication " element={<MobileAuthentication  />} />
-        <Route path="/notification " element={<Notification  />} />
-        <Route path="/request " element={<Request  />} />  
-        <Route path="/userProfileEmptyView " element={<UserProfileEmptyView  />} />
-        <Route path="/userProfileOtherUsers " element={<UserProfileOtherUsers  />} />
-        <Route path="/verificationPage " element={<VerificationPage  />} />
-        <Route path="/underConstructionWeeklySchedulePage " element={<UnderConstructionWeeklySchedulePage  />} />
-        <Route path="/weeklySchedulePageNotMenter " element={<WeeklySchedulePageNotMenter  />} />
+        <Route path="/beAMentor" element={<BeAMentor  />} />
+        <Route path="/underConstructionBeAMentor" element={<UnderConstructionBeAMentor  />} />
+        <Route path="/emailVerify" element={<EmailVerify  />} />
+        <Route path="/verifyMN" element={<VerifyMN  />} />
+        <Route path="/historyPage" element={<HistoryPage  />} />
+        <Route path="/historyPageEmpty" element={<HistoryPageEmpty  />} />
+        <Route path="/underConstructionHistoryPage" element={<UnderConstructionHistoryPage  />} />
+        <Route path="/underConstructionHome" element={<UnderConstructionHome  />} />
+        <Route path="/landingPageAbout" element={<LandingPageAbout  />} />
+        <Route path="/landingPageContact" element={<LandingPageContact  />} />
+        <Route path="/mentoringSessionEmpty" element={<MentoringSessionEmpty  />} />
+        <Route path="/underConstructionMentorSession" element={<UnderConstructionMentorSession  />} />
+        <Route path="/mentors" element={<Mentors  />} />
+        <Route path="/mentorsFilter" element={<MentorsFilter  />} />
+        <Route path="/underConstructionMentors" element={<UnderConstructionMentors  />} />
+        <Route path="/mobileAuthentication" element={<MobileAuthentication  />} />
+        <Route path="/notification" element={<Notification  />} />
+        <Route path="/request" element={<Request  />} />  
+        <Route path="/userProfileEmptyView" element={<UserProfileEmptyView  />} />
+        <Route path="/userProfileOtherUsers" element={<UserProfileOtherUsers  />} />
+        <Route path="/verificationPage" element={<VerificationPage  />} />
+        <Route path="/underConstructionWeeklySchedulePage" element={<UnderConstructionWeeklySchedulePage  />} />
+        <Route path="/weeklySchedulePageNotMenter" element={<WeeklySchedulePageNotMenter  />} />
       </Routes>
     </React.Fragment>
   );
