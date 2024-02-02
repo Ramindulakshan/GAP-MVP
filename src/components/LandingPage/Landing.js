@@ -14,20 +14,30 @@ const LoginPage = () => {
         <div className="container-fluid vh-100  ">
           <div className="container">
             <nav className="navbar navbar-light">
-              <a className="navbar-brand" href="#">
-                <img src={GAP_Image} height="90" alt="" /> GAP
+              <a className="navbar-brand"  href="home" onClick={() => {
+                  window.location.href = "/";
+                }}>
+                <img src={GAP_Image} height="90" alt="" />
               </a>
               <div className="d-flex justify-content-end">
-                <a className="nav-link custom-nav-link " href="#">
-                  Home
+                <a className="nav-link custom-nav-link " href="home" onClick={() => {
+                  window.location.href = "/underConstructionHome";
+                }}>
+                  Home 
                 </a>
-                <a className="nav-link custom-nav-link " href="#">
+                <a className="nav-link custom-nav-link " href="about" onClick={() => {
+                  window.location.href = "/landingPageAbout";
+                }}>
                   About
                 </a>
-                <a className="nav-link custom-nav-link" href="#">
+                <a className="nav-link custom-nav-link" href="contact" onClick={() => {
+                  window.location.href = "/landingPageContact";
+                }}>
                   Contact
                 </a>
-                <a className="nav-link custom-nav-link" href="#">
+                <a className="nav-link custom-nav-link" href="login"onClick={() => {
+                  window.location.href = "/login";
+                }}>
                   Login
                 </a>
                 <form className="form-inline my-2 my-lg-0">
