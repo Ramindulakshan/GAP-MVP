@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react"; 
-
+import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 import Navbar from "react-bootstrap/Navbar";
@@ -13,16 +12,20 @@ import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
-
-const HomePage = () =>{
+import { Modal } from "react-bootstrap";
+import TakeABreak from "../HomePage/Img/Group319.png";
+const HomePage = () => {
   const [firstName, setFirstName] = useState("");
-
+  const handleShow = () => setShow(true);
+  const [show, setShow] = useState(true);
   useEffect(() => {
     const storedFirstName = localStorage.getItem("firstName");
     setFirstName(storedFirstName);
   }, [-1]);
-
-  return ( 
+  const handleClose = () => {
+    setShow(false);
+  };
+  return (
     <section>
       <div className="container-fluid">
         <div className="row">
@@ -208,10 +211,61 @@ const HomePage = () =>{
                       </svg>
                       Settings
                     </ListGroup.Item>
+                    <br />
+                    <ListGroup.Item
+                      action
+                      variant="light"
+                      className="list-group-item-custom"
+                      onClick={handleShow}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="40"
+                        height="18"
+                        fill="currentColor"
+                        class="bi bi-gear mb-1"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
+                        <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
+                      </svg>
+                      Log Out
+                    </ListGroup.Item>
                   </ListGroup>
                 </Row>
               </Tab.Container>
             </div>
+            <Modal
+              size="m"
+              show={show}
+              onHide={handleClose}
+              aria-labelledby="example-custom-modal-styling-title"
+              centered
+            >
+              <Modal.Body className="text-center mt-4">
+                <img
+                  src={TakeABreak}
+                  alt="Tickimg"
+                  className="img-fluid mb-4"
+                  style={{ width: "100px", height: "100px" }}
+                />
+
+                <p className="pre ">Are You sure you want to logout?</p>
+
+                <button
+                  className="btnlgouy1 custom-button-slot "
+                  onClick={handleClose}
+                >
+                  Yes
+                </button>
+                <button
+                  className="btnlgouy2 custom-button-slot "
+                  onClick={handleClose}
+                >
+                  No
+                </button>
+              </Modal.Body>
+            </Modal>
           </div>
           <div className="col-lg-9 vh-100">
             <Navbar className="mt-3 justify-content-between">
@@ -251,7 +305,6 @@ const HomePage = () =>{
                   alt="React Bootstrap logo"
                   onClick={() => {
                     window.location.href = "/userProfile";
-                  
                   }}
                 />
               </Navbar.Brand>
@@ -282,9 +335,13 @@ const HomePage = () =>{
             <div className="d-flex justify-content-between mt-4">
               <h4>Recommended Mentors</h4>
               <div>
-                <h6 className="View-more" style={{cursor: "pointer", color:"blue"}} onClick={() => {
-                  Window.location.href = "/mentors";
-                }}>
+                <h6
+                  className="View-more"
+                  style={{ cursor: "pointer", color: "blue" }}
+                  onClick={() => {
+                    Window.location.href = "/mentors";
+                  }}
+                >
                   <u>View More</u>
                 </h6>
               </div>
@@ -589,6 +646,6 @@ const HomePage = () =>{
       </div>
     </section>
   );
-}
+};
 
 export default HomePage;
