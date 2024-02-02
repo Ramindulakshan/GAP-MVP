@@ -38,6 +38,7 @@ import VerificationPage from "./components/Verification/VerificationPage";
 import WeeklySchedulePage from "./components/WeeklySchedulePage/WeeklySchedulePage";
 import UnderConstructionWeeklySchedulePage from "./components/WeeklySchedulePage/UnderConstructionWeeklySchedulePage";
 import WeeklySchedulePageNotMenter from "./components/WeeklySchedulePageNotMenter/WeeklySchedulePageNotMenter"
+import Sidebar from "./components/SideNavBar/Sidebar";
 
 const App = () => {
   return (
@@ -45,6 +46,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/sidebar" element={<Sidebar />} />
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/settings" element={<SettingPage />} />
@@ -53,6 +55,7 @@ const App = () => {
         <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/verifyE" element={<VerifyE />} />
         <Route path="/resetPassword" element={<ResetPassword />} />
+        <Route path="/mentoringSession" element={<MentoringSessionPage  />} />
         <Route path="/mentoringSession " element={<MentoringSessionPage  />} />
         <Route path="/beAMentor" element={<BeAMentor  />} />
         <Route path="/underConstructionBeAMentor" element={<UnderConstructionBeAMentor  />} />
