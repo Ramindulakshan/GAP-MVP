@@ -17,7 +17,14 @@ import pen from "./img/pen.png";
 import Modal from "react-bootstrap/Modal";
 import { Container } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
+import axios from "axios";
+
 function UserProfileEmptyView() {
+  const [userData, setuserData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+  });
   /*Photo Change Model*/
   const [show, setShow] = useState(false);
 
@@ -70,6 +77,28 @@ function UserProfileEmptyView() {
       setSelectedImage(URL.createObjectURL(file));
     }
   };
+
+  const getUserDetails = (e) => {
+    e.preventDefault();
+    handleShow3();
+    axios
+      .get("http://localhost:3001/api/getUser", {
+        headers: {
+          authorization: `${localStorage.getItem("jwtToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          const { firstName, lastName, email } = response.data;
+          setuserData({ firstName, lastName, email });
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  };
+
   return (
     <div>
       <div className="container-fluid">
@@ -369,7 +398,6 @@ function UserProfileEmptyView() {
                     src={pen}
                     rounded
                     className="position-absolute m-2 cursor-pointer penclzee"
-                   
                     onClick={handleShow}
                   />
                 </Col>
@@ -694,7 +722,7 @@ function UserProfileEmptyView() {
                         <div class="position-absolute bottom-0 end-0 p-3">
                           <div
                             class="box d-flex align-items-center"
-                            onClick={handleShow3}
+                            onClick={getUserDetails}
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -713,7 +741,12 @@ function UserProfileEmptyView() {
                                 fill="#2A2A72"
                               />
                             </svg>
-                            <p className="ptnpara ms-2 mb-0">Edit Profile</p>
+                            <p
+                              className="ptnpara ms-2 mb-0"
+                              style={{ cursor: "pointer" }}
+                            >
+                              Edit Profile
+                            </p>
                           </div>
                           {/*Edit personal details Model Start*/}
                           <Modal
@@ -759,6 +792,8 @@ function UserProfileEmptyView() {
                                     >
                                       <Form.Label>First name</Form.Label>
                                       <Form.Control
+                                        disabled
+                                        value={userData.firstName}
                                         placeholder="Julius"
                                         style={{
                                           border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -774,6 +809,8 @@ function UserProfileEmptyView() {
                                     >
                                       <Form.Label>Last name</Form.Label>
                                       <Form.Control
+                                        disabled
+                                        value={userData.lastName}
                                         placeholder="Aguirre"
                                         style={{
                                           border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -786,6 +823,8 @@ function UserProfileEmptyView() {
 
                                   <Form.Label>Email </Form.Label>
                                   <Form.Control
+                                    disabled
+                                    value={userData.email}
                                     placeholder="juliusaguirre99@gmail.com"
                                     style={{
                                       border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -874,6 +913,7 @@ function UserProfileEmptyView() {
                                 <button
                                   className="btn  custom-button-reset my-1 my-sm-3 t"
                                   type="submit"
+
                                 >
                                   Save
                                 </button>
@@ -1006,9 +1046,9 @@ function UserProfileEmptyView() {
                 </div>
                 <div></div>
               </div>
-              
+
               <div class="cardfu">
-              <div className="d-flex justify-content-between mt-4">
+                <div className="d-flex justify-content-between mt-4">
                   <h4>Fields of interest</h4>
 
                   <h6 className="View-more">
@@ -1229,7 +1269,7 @@ function UserProfileEmptyView() {
                   {/*Academic qualification Model End*/}
                 </div>
                 <br></br>
-              <hr></hr>
+                <hr></hr>
                 <div className="d-flex justify-content-between mt-4">
                   <h4>Professional experience</h4>
 
@@ -1375,9 +1415,7 @@ function UserProfileEmptyView() {
                 </div>
                 <hr></hr>
                 <br></br>
-                
               </div>
-         
             </div>
           </div>
         </div>
