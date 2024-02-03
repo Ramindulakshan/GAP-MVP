@@ -33,6 +33,11 @@ function UserProfileEmptyView() {
   const [birthday, setBirthday] = useState("");
   const [description, setDescription] = useState("");
   const [portfolioLink, setPortfolioLink] = useState("");
+  const [institute, setInstitute] = useState("");
+  const [degree, setDegree] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [grade, setGrade] = useState("");
 
   /*Photo Change Model*/
   const [show, setShow] = useState(false);
@@ -148,6 +153,44 @@ function UserProfileEmptyView() {
       })
       .catch((error) => {
         console.error("Error updating user data:", error);
+      });
+  };
+
+  //calling to endpoint for saving academic details of the user
+  const handleSaveAcademicData = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        "http://localhost:3001/api/academicDetails",
+        {
+          institute,
+          degree,
+          startDate,
+          endDate,
+          grade,
+        },
+        {
+          headers: {
+            authorization: `${localStorage.getItem("jwtToken")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          setInstitute("");
+          setDegree("");
+          setStartDate("");
+          setEndDate("");
+          setGrade("");
+          handleClose4();
+          alert("Academic details saved successfully");
+        } else {
+          alert("Academic details not saved");
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating academic data:", error);
       });
   };
 
@@ -834,6 +877,7 @@ function UserProfileEmptyView() {
                                           border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
                                           borderRadius: "0", // Optional: Set border-radius to 0 if needed
                                           boxShadow: "none", // Optional: Remove box-shadow
+                                          textTransform: "none",
                                         }}
                                       >
                                         <option>Mr</option>
@@ -855,6 +899,7 @@ function UserProfileEmptyView() {
                                           border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
                                           borderRadius: "0", // Optional: Set border-radius to 0 if needed
                                           boxShadow: "none", // Optional: Remove box-shadow
+                                          textTransform: "none",
                                         }}
                                       />
                                     </Form.Group>
@@ -872,6 +917,7 @@ function UserProfileEmptyView() {
                                           border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
                                           borderRadius: "0", // Optional: Set border-radius to 0 if needed
                                           boxShadow: "none", // Optional: Remove box-shadow
+                                          textTransform: "none",
                                         }}
                                       />
                                     </Form.Group>
@@ -886,6 +932,7 @@ function UserProfileEmptyView() {
                                       border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
                                       borderRadius: "0", // Optional: Set border-radius to 0 if needed
                                       boxShadow: "none", // Optional: Remove box-shadow
+                                      textTransform: "none",
                                     }}
                                   />
                                   <br></br>
@@ -898,6 +945,7 @@ function UserProfileEmptyView() {
                                       border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
                                       borderRadius: "0", // Optional: Set border-radius to 0 if needed
                                       boxShadow: "none", // Optional: Remove box-shadow
+                                      textTransform: "none",
                                     }}
                                   />
                                   <br></br>
@@ -912,6 +960,7 @@ function UserProfileEmptyView() {
                                       border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
                                       borderRadius: "0", // Optional: Set border-radius to 0 if needed
                                       boxShadow: "none", // Optional: Remove box-shadow
+                                      textTransform: "none",
                                     }}
                                   />
                                   <br></br>
@@ -931,6 +980,7 @@ function UserProfileEmptyView() {
                                           border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
                                           borderRadius: "0", // Optional: Set border-radius to 0 if needed
                                           boxShadow: "none", // Optional: Remove box-shadow
+                                          textTransform: "none",
                                         }}
                                       >
                                         <option>Male</option>
@@ -970,6 +1020,7 @@ function UserProfileEmptyView() {
                                       border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
                                       borderRadius: "0", // Optional: Set border-radius to 0 if needed
                                       boxShadow: "none", // Optional: Remove box-shadow
+                                      textTransform: "none",
                                     }}
                                   />
                                   <br></br>
@@ -984,6 +1035,7 @@ function UserProfileEmptyView() {
                                       border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
                                       borderRadius: "0", // Optional: Set border-radius to 0 if needed
                                       boxShadow: "none", // Optional: Remove box-shadow
+                                      textTransform: "none",
                                     }}
                                   />
                                 </Container>
@@ -1138,7 +1190,6 @@ function UserProfileEmptyView() {
                       viewBox="0 0 15 15"
                       fill="none"
                       cursor="pointer"
-                      onClick={handleShow4}
                     >
                       <path
                         d="M15 8.4375H8.4375V15H6.5625V8.4375H0V6.5625H6.5625V0H8.4375V6.5625H15V8.4375Z"
@@ -1147,8 +1198,7 @@ function UserProfileEmptyView() {
                       />
                     </svg>
                   </h6>
-                  {/*Academic qualification Model Start*/}
-                  <Modal
+                  {/* <Modal
                     show={show4}
                     onHide={handleClose4}
                     aria-labelledby="example-custom-modal-styling-title"
@@ -1167,6 +1217,8 @@ function UserProfileEmptyView() {
                         <Container className="mt-2">
                           <Form.Label>Institute* </Form.Label>
                           <Form.Control
+                          value={institute}
+                          onChange={(e) => setInstitute(e.target.value)}
                             placeholder="add institute name"
                             style={{
                               border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -1177,6 +1229,8 @@ function UserProfileEmptyView() {
                           <br></br>
                           <Form.Label>Degree / Course* </Form.Label>
                           <Form.Control
+                          value={degree}
+                          onChange={(e) => setDegree(e.target.value)}
                             placeholder="add degree / course name"
                             style={{
                               border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -1190,6 +1244,8 @@ function UserProfileEmptyView() {
                           <Form.Group as={Col} controlId="formGridZip">
                             <Form.Label>Start date*</Form.Label>
                             <Form.Control
+                            value={startDate}
+                            onChange={(e) => setStartDate(e.target.value)}
                               type="date"
                               style={{
                                 border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -1202,6 +1258,8 @@ function UserProfileEmptyView() {
                           <Form.Group as={Col} controlId="formGridZip">
                             <Form.Label>End date (or expected)*</Form.Label>
                             <Form.Control
+                            value={endDate}
+                            onChange={(e) => setEndDate(e.target.value)}
                               type="date"
                               style={{
                                 border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -1213,6 +1271,8 @@ function UserProfileEmptyView() {
                           <br></br>
                           <Form.Label>Grade*</Form.Label>
                           <Form.Control
+                          value={grade}
+                          onChange={(e) => setGrade(e.target.value)}
                             placeholder="add grade"
                             style={{
                               border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -1227,14 +1287,13 @@ function UserProfileEmptyView() {
                         <button
                           className="btn  custom-button-reset my-1 my-sm-3 t"
                           type="submit"
-                          onClick={handleShow}
+                          onClick={handleSaveAcademicData}
                         >
                           Save
                         </button>
                       </div>
                     </Modal.Body>
-                  </Modal>
-                  {/*Academic qualification Model End*/}
+                  </Modal> */}
                 </div>
                 <br></br>
                 <hr></hr>
@@ -1278,6 +1337,8 @@ function UserProfileEmptyView() {
                         <Container className="mt-2">
                           <Form.Label>Institute* </Form.Label>
                           <Form.Control
+                            value={institute}
+                            onChange={(e) => setInstitute(e.target.value)}
                             placeholder="add institute name"
                             style={{
                               border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -1288,6 +1349,8 @@ function UserProfileEmptyView() {
                           <br></br>
                           <Form.Label>Degree / Course* </Form.Label>
                           <Form.Control
+                            value={degree}
+                            onChange={(e) => setDegree(e.target.value)}
                             placeholder="add degree / course name"
                             style={{
                               border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -1301,6 +1364,8 @@ function UserProfileEmptyView() {
                           <Form.Group as={Col} controlId="formGridZip">
                             <Form.Label>Start date*</Form.Label>
                             <Form.Control
+                              value={startDate}
+                              onChange={(e) => setStartDate(e.target.value)}
                               type="date"
                               style={{
                                 border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -1313,6 +1378,8 @@ function UserProfileEmptyView() {
                           <Form.Group as={Col} controlId="formGridZip">
                             <Form.Label>End date (or expected)*</Form.Label>
                             <Form.Control
+                              value={endDate}
+                              onChange={(e) => setEndDate(e.target.value)}
                               type="date"
                               style={{
                                 border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -1324,6 +1391,8 @@ function UserProfileEmptyView() {
                           <br></br>
                           <Form.Label>Grade*</Form.Label>
                           <Form.Control
+                            value={grade}
+                            onChange={(e) => setGrade(e.target.value)}
                             placeholder="add grade"
                             style={{
                               border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -1338,7 +1407,7 @@ function UserProfileEmptyView() {
                         <button
                           className="btn  custom-button-reset my-1 my-sm-3 t"
                           type="submit"
-                          onClick={handleShow}
+                          onClick={handleSaveAcademicData}
                         >
                           Save
                         </button>
