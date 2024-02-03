@@ -20,11 +20,20 @@ import InputGroup from "react-bootstrap/InputGroup";
 import axios from "axios";
 
 function UserProfileEmptyView() {
-  const [userData, setuserData] = useState({
+  const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
     email: "",
   });
+
+  const [title, setTitle] = useState("");
+  const [address, setAddress] = useState("");
+  const [telephone, setTelephone] = useState("");
+  const [gender, setGender] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [description, setDescription] = useState("");
+  const [portfolioLink, setPortfolioLink] = useState("");
+
   /*Photo Change Model*/
   const [show, setShow] = useState(false);
 
@@ -78,6 +87,7 @@ function UserProfileEmptyView() {
     }
   };
 
+  //calling to endpoint for get user details which already in the database
   const getUserDetails = (e) => {
     e.preventDefault();
     handleShow3();
@@ -91,11 +101,53 @@ function UserProfileEmptyView() {
         console.log(response);
         if (response.status === 200) {
           const { firstName, lastName, email } = response.data;
-          setuserData({ firstName, lastName, email });
+          setUserData({ firstName, lastName, email });
         }
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
+      });
+  };
+
+  //calling to endpoint for saving personal details of the user
+  const handleSaveUserData = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        "http://localhost:3001/api/personalDetails",
+        {
+          title,
+          address,
+          telephone,
+          gender,
+          birthday,
+          description,
+          portfolioLink,
+        },
+        {
+          headers: {
+            authorization: `${localStorage.getItem("jwtToken")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          setTitle("");
+          setAddress("");
+          setTelephone("");
+          setGender("");
+          setBirthday("");
+          setDescription("");
+          setPortfolioLink("");
+          handleClose3();
+          alert("Personal details saved successfully");
+        } else {
+          alert("Personal details not saved");
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating user data:", error);
       });
   };
 
@@ -773,6 +825,10 @@ function UserProfileEmptyView() {
                                     >
                                       <Form.Label>Title*</Form.Label>
                                       <Form.Select
+                                        value={title}
+                                        onChange={(e) =>
+                                          setTitle(e.target.value)
+                                        }
                                         placeholder="Choose..."
                                         style={{
                                           border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -780,9 +836,9 @@ function UserProfileEmptyView() {
                                           boxShadow: "none", // Optional: Remove box-shadow
                                         }}
                                       >
-                                        <option>A</option>
-                                        <option>B</option>
-                                        <option>C</option>
+                                        <option>Mr</option>
+                                        <option>Mrs</option>
+                                        <option>Miss</option>
                                       </Form.Select>
                                     </Form.Group>
 
@@ -794,7 +850,7 @@ function UserProfileEmptyView() {
                                       <Form.Control
                                         disabled
                                         value={userData.firstName}
-                                        placeholder="Julius"
+                                        placeholder="First Name"
                                         style={{
                                           border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
                                           borderRadius: "0", // Optional: Set border-radius to 0 if needed
@@ -811,7 +867,7 @@ function UserProfileEmptyView() {
                                       <Form.Control
                                         disabled
                                         value={userData.lastName}
-                                        placeholder="Aguirre"
+                                        placeholder="Last Name"
                                         style={{
                                           border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
                                           borderRadius: "0", // Optional: Set border-radius to 0 if needed
@@ -825,7 +881,7 @@ function UserProfileEmptyView() {
                                   <Form.Control
                                     disabled
                                     value={userData.email}
-                                    placeholder="juliusaguirre99@gmail.com"
+                                    placeholder="Email"
                                     style={{
                                       border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
                                       borderRadius: "0", // Optional: Set border-radius to 0 if needed
@@ -835,7 +891,9 @@ function UserProfileEmptyView() {
                                   <br></br>
                                   <Form.Label>Address </Form.Label>
                                   <Form.Control
-                                    placeholder="Kandy, Sri lanka"
+                                    value={address}
+                                    onChange={(e) => setAddress(e.target.value)}
+                                    placeholder="Enter Your Address"
                                     style={{
                                       border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
                                       borderRadius: "0", // Optional: Set border-radius to 0 if needed
@@ -845,7 +903,11 @@ function UserProfileEmptyView() {
                                   <br></br>
                                   <Form.Label>Telephone Number </Form.Label>
                                   <Form.Control
-                                    placeholder="0761335825"
+                                    value={telephone}
+                                    onChange={(e) =>
+                                      setTelephone(e.target.value)
+                                    }
+                                    placeholder="Enter Your Phone Number"
                                     style={{
                                       border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
                                       borderRadius: "0", // Optional: Set border-radius to 0 if needed
@@ -860,6 +922,10 @@ function UserProfileEmptyView() {
                                     >
                                       <Form.Label>Gender</Form.Label>
                                       <Form.Select
+                                        value={gender}
+                                        onChange={(e) =>
+                                          setGender(e.target.value)
+                                        }
                                         placeholder="Choose..."
                                         style={{
                                           border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -878,6 +944,11 @@ function UserProfileEmptyView() {
                                     >
                                       <Form.Label>Birthday</Form.Label>
                                       <Form.Control
+                                        onChange={(e) =>
+                                          setBirthday(e.target.value)
+                                        }
+                                        placeholder="Enter Your Birthday"
+                                        value={birthday}
                                         type="date"
                                         style={{
                                           border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -890,6 +961,10 @@ function UserProfileEmptyView() {
 
                                   <Form.Label>Description*</Form.Label>
                                   <Form.Control
+                                    value={description}
+                                    onChange={(e) =>
+                                      setDescription(e.target.value)
+                                    }
                                     placeholder="write a small description about yourself"
                                     style={{
                                       border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -900,6 +975,10 @@ function UserProfileEmptyView() {
                                   <br></br>
                                   <Form.Label>Project Portfolio </Form.Label>
                                   <Form.Control
+                                    value={portfolioLink}
+                                    onChange={(e) =>
+                                      setPortfolioLink(e.target.value)
+                                    }
                                     placeholder="google drive link"
                                     style={{
                                       border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -913,7 +992,7 @@ function UserProfileEmptyView() {
                                 <button
                                   className="btn  custom-button-reset my-1 my-sm-3 t"
                                   type="submit"
-
+                                  onClick={handleSaveUserData}
                                 >
                                   Save
                                 </button>
