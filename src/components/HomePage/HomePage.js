@@ -7,6 +7,7 @@ import Homepage_image from "../HomePage/Img/homepage.png";
 import "../HomePage/Home.css";
 import GAP_Image from "../HomePage/Img/GAP_BG.png";
 import Student_Image from "../HomePage/Img/Student.png";
+import User_image from "../HomePage/Img/user.png";
 import Mentor3_Image from "../HomePage/Img/mentor3.png";
 import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -35,7 +36,7 @@ const HomePage = () => {
   useEffect(() => {
     const storedFirstName = localStorage.getItem("firstName");
     setFirstName(storedFirstName);
-  }, [-1]);
+  }, []);
   const handleClose = () => {
     setShow(false);
   };
@@ -239,13 +240,13 @@ const HomePage = () => {
                 </svg>
 
                 <img
-                  src={Student_Image}
+                  src={User_image}
                   width="45"
                   height="45"
                   className="d-inline-block "
                   alt="React Bootstrap logo"
                   onClick={() => {
-                    window.location.href = "/userProfile";
+                    window.location.href = "/userProfileEmptyView";
                   }}
                 />
               </Navbar.Brand>
