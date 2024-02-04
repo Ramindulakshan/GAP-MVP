@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import "./UserProfile.css";
 import Navbar from "react-bootstrap/Navbar";
 import GAP_Image from "./img/GAP_BG.png";
@@ -18,13 +18,21 @@ import Modal from "react-bootstrap/Modal";
 import { Container } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import axios from "axios";
+import moment from "moment/moment";
 
 function UserProfileEmptyView() {
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
     email: "",
+    title: "",
+    academicDetails: [],
+    professionalDetails: [],
   });
+
+  useEffect(() => {
+    getUserDetails(); // Fetch user details on component mount
+   }, []);
 
   const [title, setTitle] = useState("");
   const [address, setAddress] = useState("");
@@ -38,6 +46,11 @@ function UserProfileEmptyView() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [grade, setGrade] = useState("");
+  const [position, setPosition] = useState("");
+  const [empType, setEmpType] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [locationType, setLocationType] = useState("");
+  const [skills, setSkills] = useState("");
 
   /*Photo Change Model*/
   const [show, setShow] = useState(false);
@@ -94,8 +107,6 @@ function UserProfileEmptyView() {
 
   //calling to endpoint for get user details which already in the database
   const getUserDetails = (e) => {
-    e.preventDefault();
-    handleShow3();
     axios
       .get("http://localhost:3001/api/getUser", {
         headers: {
@@ -105,13 +116,42 @@ function UserProfileEmptyView() {
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
-          const { firstName, lastName, email } = response.data;
-          setUserData({ firstName, lastName, email });
+          const {
+            firstName,
+            lastName,
+            email,
+            academicDetails,
+            professionalDetails,
+          } = response.data;
+
+          if ((academicDetails && academicDetails.length > 0) || (professionalDetails && professionalDetails.length > 0)) {
+            setUserData({
+              firstName,
+              lastName,
+              email,
+              academicDetails,
+              professionalDetails,
+            });
+          } else {
+            setUserData({
+              firstName,
+              lastName,
+              email,
+              academicDetails: [],
+              professionalDetails: [],
+            });
+          }
         }
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
+  };
+
+  const handleGetUserDetails = (e) => {
+    e.preventDefault();
+    handleShow3();
+    getUserDetails();
   };
 
   //calling to endpoint for saving personal details of the user
@@ -157,8 +197,7 @@ function UserProfileEmptyView() {
   };
 
   //calling to endpoint for saving academic details of the user
-  const handleSaveAcademicData = (e) => {
-    e.preventDefault();
+  const SaveAcademicData = () => {
     axios
       .post(
         "http://localhost:3001/api/academicDetails",
@@ -185,6 +224,7 @@ function UserProfileEmptyView() {
           setGrade("");
           handleClose4();
           alert("Academic details saved successfully");
+          getUserDetails();
         } else {
           alert("Academic details not saved");
         }
@@ -193,6 +233,58 @@ function UserProfileEmptyView() {
         console.error("Error updating academic data:", error);
       });
   };
+
+  const handleAcademicData = (e) => {
+    e.preventDefault();
+    SaveAcademicData();
+  };
+
+  const SaveProfessionalData = () => {
+    axios
+      .post(
+        "http://localhost:3001/api/professionalDetails",
+        {
+          position,
+          empType,
+          companyName,
+          locationType,
+          startDate,
+          endDate,
+          skills,
+        },
+        {
+          headers: {
+            authorization: `${localStorage.getItem("jwtToken")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          setPosition("");
+          setEmpType("");
+          setCompanyName("");
+          setLocationType("");
+          setStartDate("");
+          setEndDate("");
+          setSkills("");
+          handleClose7();
+          alert("Professional details saved successfully");
+
+          getUserDetails();
+        } else {
+          alert("Professional details not saved");
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating Professional data:", error);
+      });
+  };
+
+  const handleProfessionalData = (e) => {
+    e.preventDefault();
+    SaveProfessionalData();
+  }
 
   return (
     <div>
@@ -817,7 +909,7 @@ function UserProfileEmptyView() {
                         <div class="position-absolute bottom-0 end-0 p-3">
                           <div
                             class="box d-flex align-items-center"
-                            onClick={getUserDetails}
+                            onClick={handleGetUserDetails}
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -1407,7 +1499,7 @@ function UserProfileEmptyView() {
                         <button
                           className="btn  custom-button-reset my-1 my-sm-3 t"
                           type="submit"
-                          onClick={handleSaveAcademicData}
+                          onClick={handleAcademicData}
                         >
                           Save
                         </button>
@@ -1416,6 +1508,25 @@ function UserProfileEmptyView() {
                   </Modal>
                   {/*Academic qualification Model End*/}
                 </div>
+                <div>
+                  {userData.academicDetails && userData.academicDetails.length > 0 ? (
+                    <>
+                      <p>{userData.academicDetails[0].institute}</p>
+                      <p>{userData.academicDetails[0].degree}</p>
+                      <p>{moment(userData.academicDetails[0].startDate).format(
+                          "YYYY/MM/DD"
+                        )}{" "}
+                        -{" "}
+                        {moment(userData.academicDetails[0].endDate).format(
+                          "YYYY/MM/DD"
+                        )}
+                      </p>
+                    </>
+                  ) : (
+                    <p>No academic details available</p>
+                  )}
+                </div>
+
                 <br></br>
                 <hr></hr>
                 <div className="d-flex justify-content-between mt-4">
@@ -1452,12 +1563,15 @@ function UserProfileEmptyView() {
                         className="text-center"
                       >
                         <h1>Professional Experience </h1>
+
                         <p>Add New Professional Experience </p>
                       </Modal.Title>
                       <div className="p-7">
                         <Container className="mt-2">
                           <Form.Label>position* </Form.Label>
                           <Form.Control
+                            value={position}
+                            onChange={(e) => setPosition(e.target.value)}
                             placeholder="add position"
                             style={{
                               border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -1469,6 +1583,8 @@ function UserProfileEmptyView() {
 
                           <Form.Label>Employment type*</Form.Label>
                           <Form.Select
+                            value={empType}
+                            onChange={(e) => setEmpType(e.target.value)}
                             placeholder="Select employment type"
                             style={{
                               border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -1487,6 +1603,8 @@ function UserProfileEmptyView() {
                           <br></br>
                           <Form.Label>Company name* </Form.Label>
                           <Form.Control
+                            value={companyName}
+                            onChange={(e) => setCompanyName(e.target.value)}
                             placeholder="add Company name"
                             style={{
                               border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -1498,6 +1616,8 @@ function UserProfileEmptyView() {
                           <br></br>
                           <Form.Label>Location type* </Form.Label>
                           <Form.Select
+                            value={locationType}
+                            onChange={(e) => setLocationType(e.target.value)}
                             placeholder="select location type"
                             style={{
                               border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -1514,6 +1634,8 @@ function UserProfileEmptyView() {
                           <br></br>
                           <Form.Label>Start date*</Form.Label>
                           <Form.Control
+                            value={startDate}
+                            onChange={(e) => setStartDate(e.target.value)}
                             placeholder="Start date of degree"
                             type="date"
                             style={{
@@ -1527,6 +1649,8 @@ function UserProfileEmptyView() {
                           <Form.Group as={Col} controlId="formGridZip">
                             <Form.Label>End date(or expected)*</Form.Label>
                             <Form.Control
+                              value={endDate}
+                              onChange={(e) => setEndDate(e.target.value)}
                               type="date"
                               style={{
                                 border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -1538,6 +1662,8 @@ function UserProfileEmptyView() {
                           <br></br>
                           <Form.Label>Skills</Form.Label>
                           <Form.Control
+                            value={skills}
+                            onChange={(e) => setSkills(e.target.value)}
                             placeholder="describe about skills gathered"
                             style={{
                               border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
@@ -1553,6 +1679,7 @@ function UserProfileEmptyView() {
                         <button
                           className="btn  custom-button-reset my-1 my-sm-3 t"
                           type="submit"
+                          onClick={handleProfessionalData}
                         >
                           Save
                         </button>
@@ -1560,6 +1687,25 @@ function UserProfileEmptyView() {
                     </Modal.Body>
                   </Modal>
                   {/*Professional Experience  Model End*/}
+                </div>
+                <div>
+                  {userData.professionalDetails && userData.professionalDetails.length > 0 ? (
+                    <>
+                      <p>{userData.professionalDetails[0].companyName}</p>
+                      <p>{userData.professionalDetails[0].empType}</p>
+                      <p>{moment(userData.professionalDetails[0].startDate).format(
+                          "MM/YYYY"
+                        )}{" "}
+                        -{" "}
+                        {moment(userData.professionalDetails[0].endDate).format(
+                          "MM/YYYY"
+                        )}
+                      </p>
+                      <p>{userData.professionalDetails[0].position}</p>
+                    </>
+                  ) : (
+                    <p>No professional details available</p>
+                  )}
                 </div>
                 <hr></hr>
                 <br></br>
