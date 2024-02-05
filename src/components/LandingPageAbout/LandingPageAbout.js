@@ -43,13 +43,15 @@ function LandingPageAbout() {
           <div className="text-center cenclz">
             <h5 className="card-title fw-bold titlabt">About Us </h5>
             <p className="paraabty">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-              condimentum eu arcu vel tempus. Ut faucibus id velit vel
-              porttitor. Duis eu porttitor sem. el tempus. Ut faucibus id velit
-              vel porttitor. Duis eu porttitor sem. Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit. Ut condimentum eu arcu vel tempus. Ut
-              faucibus id velit vel porttitor. Duis eu porttitor sem. el tempus.
-              Ut faucibus id velit vel porttitor. Duis eu porttitor sem.
+              Generation ALPHA is a company dedicated to providing a unique
+              space for young adults to discover their passions, enhance their
+              skills, and shape their futures. Our students receive a
+              membership, offering them a project-based learning experience.
+              Engaged in various projects, such as sharing entrepreneurial
+              knowledge in schools and universities and collaborating on
+              corporate partnerships, our members actively participate and gain
+              industry exposure. Therefore we also act as an entity which
+              connects the cooperate world with the student community.
             </p>
           </div>
           <div className="dtabx">

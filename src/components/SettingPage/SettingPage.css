@@ -604,7 +604,7 @@
   width: 800px;
   border-radius: 8px;
   padding: 30px 50px;
-  background-color: #78767611;
+  margin: 0 auto;
 }
 .pareconus {
   text-align: center;
@@ -734,4 +734,26 @@
   font-weight: 500;
   padding: 0 30px 0 25px;
   text-transform: capitalize;
+}
+
+.pdinf{
+  padding: 0 0 0 200px;
+}
+.nvtpicnew{
+  margin: 0 45px 0 0;
+}
+.nvtpicnew:hover{
+  color:#2a2a72 ;
+  border-bottom: 5px solid #2a2a72;
+}
+.nvtpicnew:active{
+  color:#2a2a72 ;
+}
+@media screen and (max-width: 768px) {
+  .pdinf{
+    padding: 0;
+  }
+  .nvtpicnew{
+    margin: 0;
+  }
 }
