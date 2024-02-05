@@ -112,3 +112,9 @@
   align-items: center;
   padding: 0 0 0 210px;
 }
+  
+  .new-background {
+    background-image: url("./img/Landing\ Page\ _\ Default.png");
+    background-size: cover;
+  
+  }

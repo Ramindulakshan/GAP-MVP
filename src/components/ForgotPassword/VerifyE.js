@@ -22,7 +22,7 @@ class VerifyE extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  VerifyOTP = (e) => {
+  VerifyOTP = async (e) => {
     e.preventDefault();
     const data = {
       otp:
@@ -33,7 +33,7 @@ class VerifyE extends React.Component {
         this.state.otp5 +
         this.state.otp6,
     };
-    axios
+    await axios
       .post("http://localhost:3001/api/verifyOTP", data)
       .then((response) => {
         if (response.data.status === "success") {
@@ -46,6 +46,20 @@ class VerifyE extends React.Component {
         console.log(err);
       });
   };
+
+   resendOTP = async(e) => {
+    e.preventDefault();
+    await axios.post("http://localhost:3001/api/forgotpassword",
+    {
+      email: localStorage.getItem("email"),
+    }
+    ).then((response) => {
+      console.log(response);
+    }).catch((err) => {
+      console.log(err);
+    });
+
+  }
 
   handleChange(value1, event) {
     this.setState({ [value1]: event.target.value });
@@ -172,9 +186,27 @@ class VerifyE extends React.Component {
                         </div>
                       </form>
                     </div>
-                    <h6 className="custom-text-AR ore mt-4 mb-5">
-                      Don’t receive OTP? <span>Resend</span>
+                    <h6 className="custom-text-AR ore mt-4 mb-4">
+                      Don’t receive OTP? <span style={{ cursor: "pointer"}} onClick={this.resendOTP}>Resend</span>
                     </h6>
+                    <div className="">
+                      <div className="mb-4 ">
+                        <input
+                          type="Password"
+                          className="form-control"
+                          placeholder="Password"
+                        />
+                      </div>
+                   
+                      <div className="">
+                        <input
+                          type="Password"
+                          className="form-control"
+                          placeholder="Confirm Password"                    
+                        />
+                      </div>
+                    </div>
+
                     <div className="text-center">
                       <button
                         className="btn custom-button2rtyu  my-1 my-sm-3"

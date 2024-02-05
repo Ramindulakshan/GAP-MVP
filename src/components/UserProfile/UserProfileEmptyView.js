@@ -19,7 +19,12 @@ import { Container } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import axios from "axios";
 import moment from "moment/moment";
+
 import { IoSaveSharp } from "react-icons/io5";
+
+import userPic from "../HomePage/Img/user.png";
+import { IoSaveSharp } from "react-icons/io5";
+
 function UserProfileEmptyView() {
   const [userData, setUserData] = useState({
     firstName: "",
@@ -28,11 +33,25 @@ function UserProfileEmptyView() {
     title: "",
     academicDetails: [],
     professionalDetails: [],
+    profilePicture: [],
   });
 
   useEffect(() => {
-    getUserDetails(); // Fetch user details on component mount
+    const storedFirstName = localStorage.getItem("firstName");
+    setDisplayFirstName(storedFirstName);
   }, []);
+
+  useEffect(() => {
+    const storedLastName = localStorage.getItem("lastName");
+    setDisplayLastName(storedLastName);
+  }, []);
+
+  useEffect(() => {
+    getUserDetails(); // Fetch user details on component mount
+   }, []);
+
+  const [displayFirstName, setDisplayFirstName] = useState("");
+  const [displayLastName, setDisplayLastName] = useState("");
 
   const [title, setTitle] = useState("");
   const [address, setAddress] = useState("");
@@ -51,6 +70,14 @@ function UserProfileEmptyView() {
   const [companyName, setCompanyName] = useState("");
   const [locationType, setLocationType] = useState("");
   const [skills, setSkills] = useState("");
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setFile(file);
+    }
+  };
 
   /*Photo Change Model*/
   const [show, setShow] = useState(false);
@@ -112,6 +139,7 @@ function UserProfileEmptyView() {
     }
   };
 
+
   //calling to endpoint for get user details which already in the database
   const getUserDetails = (e) => {
     axios
@@ -129,6 +157,7 @@ function UserProfileEmptyView() {
             email,
             academicDetails,
             professionalDetails,
+            profilePicture,
           } = response.data;
 
           if (
@@ -141,6 +170,7 @@ function UserProfileEmptyView() {
               email,
               academicDetails,
               professionalDetails,
+              profilePicture,
             });
           } else {
             setUserData({
@@ -149,6 +179,7 @@ function UserProfileEmptyView() {
               email,
               academicDetails: [],
               professionalDetails: [],
+              profilePicture,
             });
           }
         }
@@ -294,6 +325,32 @@ function UserProfileEmptyView() {
   const handleProfessionalData = (e) => {
     e.preventDefault();
     SaveProfessionalData();
+  };
+
+  const handlePhotoUpload = (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    data.append("file", file);
+    axios
+      .post("http://localhost:3001/api/photoUpload", data, {
+        headers: {
+          authorization: `${localStorage.getItem("jwtToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          handleClose();
+          alert("Photo uploaded successfully");
+
+          getUserDetails();
+        } else {
+          alert("Photo not uploaded");
+        }
+      })
+      .catch((error) => {
+        console.error("Error uploading photo:", error);
+      });
   };
 
   return (
@@ -628,15 +685,28 @@ function UserProfileEmptyView() {
                             <div className="text-center"></div>
                             <br />
                             <div className="text-center">
-                              <Image
-                                src={prolog}
-                                roundedCircle
-                                style={{
-                                  width: "150px",
-                                  height: "150px",
-                                  objectFit: "cover",
-                                }}
-                              />
+                              {file ? (
+                                <Image
+                                  src={URL.createObjectURL(file)}
+                                  alt="profile picture"
+                                  roundedCircle
+                                  style={{
+                                    width: "150px",
+                                    height: "150px",
+                                    objectFit: "cover",
+                                  }}
+                                />
+                              ) : (
+                                <Image
+                                  src={userPic}
+                                  roundedCircle
+                                  style={{
+                                    width: "150px",
+                                    height: "150px",
+                                    objectFit: "cover",
+                                  }}
+                                />
+                              )}
                             </div>
                             <br />
                             <hr />
@@ -665,15 +735,18 @@ function UserProfileEmptyView() {
 
                                     {/* Gallery icon path */}
                                   </svg>
-                                  <p style={{ textAlign: "center" }}>Gallery</p>
-                                </label>
-                                <input
+                                  <input
                                   id="fileInput"
                                   type="file"
                                   accept="image/*"
                                   style={{ display: "none" }}
                                   onChange={handleFileChange}
                                 />
+                                  <p>
+                                    Upload
+                                  </p>
+                                </label>
+                                
                               </Col>
                               <Col
                                 xs={8}
@@ -682,7 +755,11 @@ function UserProfileEmptyView() {
                                   cursor: "pointer",
                                 }}
                               >
+
                                 <IoSaveSharp className="svbtn" />
+
+                                <IoSaveSharp className="svbtn" onClick={handlePhotoUpload} />
+
                                 <p>Save</p>
                               </Col>
                               <Col
@@ -838,10 +915,18 @@ function UserProfileEmptyView() {
                 {/*Photo Change Model End*/}
                 <div class="card-body">
                   <div class="text-section">
-                    <h5 class="card-title fw-bold">Mr.julius aguirre</h5>
-                    <p className="card-para">
-                      Undergraduate | Software Engineering
-                    </p>
+                    <h5 class="card-title fw-bold">
+                      {displayFirstName} {displayLastName}
+                    </h5>
+                    {userData.professionalDetails &&
+                    userData.professionalDetails.length > 0 ? (
+                      <p className="card-para">
+                        {userData.professionalDetails[0].position}
+                      </p>
+                    ) : (
+                      <p>No professional details available</p>
+                    )}
+
                     <div class="row mt-4">
                       <div class="col-4">
                       <div onClick={handleShow2}>

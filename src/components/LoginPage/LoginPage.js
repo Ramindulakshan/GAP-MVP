@@ -55,7 +55,9 @@ const LoginPage = () => {
         console.log(response);
         if (response.status === 200) {
           const firstName = response.data.firstName;
+          const lastName = response.data.lastName;
           localStorage.setItem("firstName", firstName);
+          localStorage.setItem("lastName", lastName);
         }
       });
   };
@@ -160,8 +162,11 @@ const LoginPage = () => {
         </div>
         </div>
       </section>
+      
     </>
   );
+  
 };
+
 
 export default LoginPage;
