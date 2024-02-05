@@ -28,11 +28,13 @@ import { RxCountdownTimer } from "react-icons/rx";
 import { IoIosLogOut } from "react-icons/io";
 
 function UnderConstructionHome() {
-  const handleShowlgot = () => setShow(true);
-  const [show, setShow] = useState(true);
-  const handleClose = () => {
-    setShow(false);
-  };
+  
+  /*LogOut Model*/
+  const [show, setShow] = useState(false);
+  /*LogOut Model*/
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <section>
       <div className="container-fluid">
@@ -156,7 +158,7 @@ function UnderConstructionHome() {
                     <br />
                     <div>
                       <ListGroup.Item
-                        onClick={handleShowlgot}
+                        onClick={handleShow}
                         action
                         variant="light"
                         className="list-group-item-custom"
