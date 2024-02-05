@@ -30,11 +30,7 @@ const LandingPage = () => {
         <div className="container-fluid vh-100  ">
           <div className="container">
             <nav className="navbar navbar-light">
-
-
-              
-
-              <a className="navbar-brand"  href="home" onClick={() => {
+              <a className="navbar-brand"  href="home"></a>
 
               <a
                 className="navbar-brand"
