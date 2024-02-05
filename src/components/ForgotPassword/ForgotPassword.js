@@ -10,19 +10,20 @@ function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [validated, setValidated] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
     }
     setValidated(true);
+    localStorage.setItem("email", email);
 
     e.preventDefault();
     const data = {
       email: email,
     };
-    axios
+    await axios
       .post("http://localhost:3001/api/forgotpassword", data)
       .then((response) => {
         console.log(response);
