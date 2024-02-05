@@ -46,19 +46,12 @@ const App = () => {
     <React.Fragment>
       <AuthProvider>
         <Routes>
-
-            <Route path="/home" element={<HomePage />} exact />
-            <Route path="/settings" element={<SettingPage />} />
-            <Route
-              path="/WeeklySchedulePage"
-              element={<WeeklySchedulePage />}
-            />
-
-
+          <Route path="/home" element={<HomePage />} exact />
+          <Route path="/settings" element={<SettingPage />} />
+          <Route path="/WeeklySchedulePage" element={<WeeklySchedulePage />} />
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<Register />} />
-
           <Route path="/forgotPassword" element={<ForgotPassword />} />
           <Route path="/verifyE" element={<VerifyE />} />
           <Route path="/resetPassword" element={<ResetPassword />} />

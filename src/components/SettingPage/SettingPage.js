@@ -46,11 +46,12 @@ function SettingPage() {
   const [showPassword2, setShowPassword2] = useState(false);
   const [showPassword3, setShowPassword3] = useState(false);
 
+  /*LogOut Model*/
+  const [show, setShow] = useState(false);
+  /*LogOut Model*/
+  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [show, setShow] = useState(true);
-  const handleClose = () => {
-    setShow(false);
-  };
+
   const [show2, setShow2] = useState(false);
   const handleClose2 = () => setShow2(false);
   const handleShow2 = () => setShow2(true);
@@ -99,7 +100,7 @@ function SettingPage() {
 
   const handleChangePassword = async (e) => {
     e.preventDefault();
-    
+
     await axios
       .post(
         "http://localhost:3001/api/changePassword",
@@ -116,7 +117,6 @@ function SettingPage() {
       .then((response) => {
         console.log(response);
         if (response.data.status === "ok") {
-          
           alert("Password changed successfully");
           setCurrentPassword("");
           setNewPassword("");
@@ -407,16 +407,16 @@ function SettingPage() {
               <div id="nav" className="nave">
                 <div>
                   <h5>
-                    <a href="#About" className="mb-0 navtpic">
+                    <a href="#About" className="mb-0 navtpic333 nvtpicnew">
                       About Us
                     </a>
-                    <a href="#ChangePassword" className="mb-0 navtpic">
+                    <a href="#ChangePassword" className="mb-0 navtpic333 nvtpicnew">
                       Change Password
                     </a>
-                    <a href="#DeleteAccount" className="mb-0 navtpic">
+                    <a href="#DeleteAccount" className="mb-0 navtpic333 nvtpicnew">
                       Delete Account
                     </a>
-                    <a href="#ContactUs" className="mb-0 navtpic">
+                    <a href="#ContactUs" className="mb-0 navtpic333 nvtpicnew">
                       Contact Us
                     </a>
                   </h5>
@@ -434,19 +434,26 @@ function SettingPage() {
                               Generation ALPHA Platform
                             </h1>
                             <p className="hedpar">
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit. Ut condimentum eu arcu vel tempus. Ut
-                              faucibus id velit vel porttitor. Duis eu porttitor
-                              sem. el tempus. Ut faucibus id velit vel
-                              porttitor. Duis eu porttitor sem.
+                              Generation ALPHA is a company dedicated to
+                              providing a unique space for young adults to
+                              discover their passions, enhance their skills, and
+                              shape their futures. Our students receive a
+                              membership, offering them a project-based learning
+                              experience. Engaged in various projects, such as
+                              sharing entrepreneurial knowledge in schools and
+                              universities and collaborating on corporate
+                              partnerships, our members actively participate and
+                              gain industry exposure. Therefore we also act as
+                              an entity which connects the cooperate world with
+                              the student community.
                             </p>
                           </div>
                           <h5 className="card-title fw-bold titleneww">
                             Contact Us
                           </h5>
-                          <div className="card">
-                            <div className="container mt-2">
-                              <div className="row">
+                          <div className="card ">
+                            <div className="container mt-2 ">
+                              <div className="row pdinf">
                                 <div className="col-sm-5 col-md-5 col-lg-4 text-center">
                                   <div className="pbtn2oo">
                                     <div className="clbtn">
@@ -467,7 +474,7 @@ function SettingPage() {
                                     <p className="desbtn">011 4586936</p>
                                   </div>
                                 </div>
-                                <div className="col-sm-4 col-md-4 col-lg-4 text-center">
+                                <div className="col-sm-4 col-md-8 col-lg-4 text-center">
                                   <div className="pbtn2oo">
                                     <div className="clbtnnwe">
                                       <svg
@@ -491,32 +498,6 @@ function SettingPage() {
                                     </div>
                                     <p className="desbtn2">Email</p>
                                     <p className="desbtn2">abc@gmail.com</p>
-                                  </div>
-                                </div>
-                                <div className="col-sm-4 col-md-4 col-lg-4 text-center">
-                                  <div className="pbtn2oo">
-                                    <div className="clbtnnwe">
-                                      <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="40"
-                                        height="40"
-                                        viewBox="0 0 40 40"
-                                        fill="none"
-                                      >
-                                        <rect
-                                          width="40"
-                                          height="40"
-                                          rx="2"
-                                          fill="#2A2A72"
-                                        />
-                                        <path
-                                          d="M24.36 22C24.44 21.34 24.5 20.68 24.5 20C24.5 19.32 24.44 18.66 24.36 18H27.74C27.9 18.64 28 19.31 28 20C28 20.69 27.9 21.36 27.74 22M22.59 27.56C23.19 26.45 23.65 25.25 23.97 24H26.92C25.9512 25.6683 24.4141 26.932 22.59 27.56ZM22.34 22H17.66C17.56 21.34 17.5 20.68 17.5 20C17.5 19.32 17.56 18.65 17.66 18H22.34C22.43 18.65 22.5 19.32 22.5 20C22.5 20.68 22.43 21.34 22.34 22ZM20 27.96C19.17 26.76 18.5 25.43 18.09 24H21.91C21.5 25.43 20.83 26.76 20 27.96ZM16 16H13.08C14.0389 14.3272 15.5748 13.0615 17.4 12.44C16.8 13.55 16.35 14.75 16 16ZM13.08 24H16C16.35 25.25 16.8 26.45 17.4 27.56C15.5786 26.9317 14.0448 25.6677 13.08 24ZM12.26 22C12.1 21.36 12 20.69 12 20C12 19.31 12.1 18.64 12.26 18H15.64C15.56 18.66 15.5 19.32 15.5 20C15.5 20.68 15.56 21.34 15.64 22M20 12.03C20.83 13.23 21.5 14.57 21.91 16H18.09C18.5 14.57 19.17 13.23 20 12.03ZM26.92 16H23.97C23.657 14.7615 23.1936 13.5659 22.59 12.44C24.43 13.07 25.96 14.34 26.92 16ZM20 10C14.47 10 10 14.5 10 20C10 22.6522 11.0536 25.1957 12.9289 27.0711C13.8575 27.9997 14.9599 28.7362 16.1732 29.2388C17.3864 29.7413 18.6868 30 20 30C22.6522 30 25.1957 28.9464 27.0711 27.0711C28.9464 25.1957 30 22.6522 30 20C30 18.6868 29.7413 17.3864 29.2388 16.1732C28.7362 14.9599 27.9997 13.8575 27.0711 12.9289C26.1425 12.0003 25.0401 11.2638 23.8268 10.7612C22.6136 10.2587 21.3132 10 20 10Z"
-                                          fill="white"
-                                        />
-                                      </svg>
-                                    </div>
-                                    <p className="desbtn2">Website</p>
-                                    <p className="desbtn2">https://gap.lk</p>
                                   </div>
                                 </div>
                               </div>
@@ -709,7 +690,7 @@ function SettingPage() {
                           </div>
                           <div className="card">
                             <div className="d-flex justify-content-between mt-4">
-                              <h4>Professional experience</h4>
+                              <h4>Terms & Conditions</h4>
 
                               <h6 className="View-more">
                                 <svg
@@ -836,7 +817,7 @@ function SettingPage() {
                               )}
 
                               <a
-                                style={{cursor: "pointer"}}
+                                style={{ cursor: "pointer" }}
                                 onClick={() => {
                                   window.location.href = "/forgotPassword";
                                 }}
@@ -1135,9 +1116,9 @@ function SettingPage() {
                           <h5 className="card-title fw-bold titleneww">
                             Contact Us
                           </h5>
-                          <div className="card">
-                            <div className="container mt-2">
-                              <div className="row">
+                          <div className="card ">
+                            <div className="container mt-2 ">
+                              <div className="row pdinf">
                                 <div className="col-sm-5 col-md-5 col-lg-4 text-center">
                                   <div className="pbtn2oo">
                                     <div className="clbtn">
@@ -1158,7 +1139,7 @@ function SettingPage() {
                                     <p className="desbtn">011 4586936</p>
                                   </div>
                                 </div>
-                                <div className="col-sm-4 col-md-4 col-lg-4 text-center">
+                                <div className="col-sm-4 col-md-8 col-lg-4 text-center">
                                   <div className="pbtn2oo">
                                     <div className="clbtnnwe">
                                       <svg
@@ -1184,39 +1165,14 @@ function SettingPage() {
                                     <p className="desbtn2">abc@gmail.com</p>
                                   </div>
                                 </div>
-                                <div className="col-sm-4 col-md-4 col-lg-4 text-center">
-                                  <div className="pbtn2oo">
-                                    <div className="clbtnnwe">
-                                      <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="40"
-                                        height="40"
-                                        viewBox="0 0 40 40"
-                                        fill="none"
-                                      >
-                                        <rect
-                                          width="40"
-                                          height="40"
-                                          rx="2"
-                                          fill="#2A2A72"
-                                        />
-                                        <path
-                                          d="M24.36 22C24.44 21.34 24.5 20.68 24.5 20C24.5 19.32 24.44 18.66 24.36 18H27.74C27.9 18.64 28 19.31 28 20C28 20.69 27.9 21.36 27.74 22M22.59 27.56C23.19 26.45 23.65 25.25 23.97 24H26.92C25.9512 25.6683 24.4141 26.932 22.59 27.56ZM22.34 22H17.66C17.56 21.34 17.5 20.68 17.5 20C17.5 19.32 17.56 18.65 17.66 18H22.34C22.43 18.65 22.5 19.32 22.5 20C22.5 20.68 22.43 21.34 22.34 22ZM20 27.96C19.17 26.76 18.5 25.43 18.09 24H21.91C21.5 25.43 20.83 26.76 20 27.96ZM16 16H13.08C14.0389 14.3272 15.5748 13.0615 17.4 12.44C16.8 13.55 16.35 14.75 16 16ZM13.08 24H16C16.35 25.25 16.8 26.45 17.4 27.56C15.5786 26.9317 14.0448 25.6677 13.08 24ZM12.26 22C12.1 21.36 12 20.69 12 20C12 19.31 12.1 18.64 12.26 18H15.64C15.56 18.66 15.5 19.32 15.5 20C15.5 20.68 15.56 21.34 15.64 22M20 12.03C20.83 13.23 21.5 14.57 21.91 16H18.09C18.5 14.57 19.17 13.23 20 12.03ZM26.92 16H23.97C23.657 14.7615 23.1936 13.5659 22.59 12.44C24.43 13.07 25.96 14.34 26.92 16ZM20 10C14.47 10 10 14.5 10 20C10 22.6522 11.0536 25.1957 12.9289 27.0711C13.8575 27.9997 14.9599 28.7362 16.1732 29.2388C17.3864 29.7413 18.6868 30 20 30C22.6522 30 25.1957 28.9464 27.0711 27.0711C28.9464 25.1957 30 22.6522 30 20C30 18.6868 29.7413 17.3864 29.2388 16.1732C28.7362 14.9599 27.9997 13.8575 27.0711 12.9289C26.1425 12.0003 25.0401 11.2638 23.8268 10.7612C22.6136 10.2587 21.3132 10 20 10Z"
-                                          fill="white"
-                                        />
-                                      </svg>
-                                    </div>
-                                    <p className="desbtn2">Website</p>
-                                    <p className="desbtn2">https://gap.lk</p>
-                                  </div>
-                                </div>
                               </div>
                             </div>
                           </div>
-                          <div className="confull">
-                            <h5 className="card-title fw-bold titleneww">
+                          <h5 className="card-title fw-bold titleneww">
                               Support & Help
                             </h5>
+                          <div className="confull">
+                         
                             <div className="card">
                               <div className="container mt-3">
                                 <Form>
@@ -1248,12 +1204,11 @@ function SettingPage() {
                                     <Form.Label className="lblcous">
                                       Reason
                                     </Form.Label>
-                                    <Form.Select aria-label="Default select example">
-                                      <option>Select Your Reason</option>
-                                      <option value="1">One</option>
-                                      <option value="2">Two</option>
-                                      <option value="3">Three</option>
-                                    </Form.Select>
+                                    <Form.Control
+                                      type="Text"
+                                      placeholder="Eter Reason"
+                                      required={"required"}
+                                    />
                                   </Form.Group>
                                   <Form.Group controlId="exampleForm.ControlTextarea1">
                                     <Form.Label className="lblcous">

@@ -1608,8 +1608,8 @@ function UserProfileEmptyView() {
                   </Modal>
                   {/*Academic qualification Model End*/}
                 </div>
-                <br></br>
-                <div class="carduprofl cardnew">
+              
+                <div class="carduprofl cardnew card" style={{ border: "0" }}>
                   <div class="card-body">
                     <div class="text-section">
                       <div>
@@ -1803,7 +1803,7 @@ function UserProfileEmptyView() {
                   </Modal>
                   {/*Professional Experience  Model End*/}
                 </div>
-                <div class="carduprofl cardnew" style={{ border: "0" }}>
+                <div class="carduprofl cardnew card" style={{ border: "0" }}>
                   <div class="card-body">
                     <div class="text-section">
                       <div>

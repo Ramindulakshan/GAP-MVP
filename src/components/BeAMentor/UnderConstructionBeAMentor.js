@@ -20,16 +20,12 @@ import { IoIosLogOut } from "react-icons/io";
 import { Modal } from "react-bootstrap";
 import TakeABreak from "../HomePage/Img/Group 421.png";
 function UnderConstructionBeAMentor() {
-  const [firstName, setFirstName] = useState("");
+  /*LogOut Model*/
+  const [show, setShow] = useState(false);
+  /*LogOut Model*/
+  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [show, setShow] = useState(true);
-  useEffect(() => {
-    const storedFirstName = localStorage.getItem("firstName");
-    setFirstName(storedFirstName);
-  }, [-1]);
-  const handleClose = () => {
-    setShow(false);
-  };
+  
   return (
     <div className="d-flex">
       <div className="container-fluid">
@@ -271,7 +267,7 @@ function UnderConstructionBeAMentor() {
               >
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="flex-grow-1">
-                    <h5 className="m-3">Be a mentor</h5>
+                    <h5 className="m-3 fnbltunde">Be a mentor</h5>
                   </div>
                 </div>
 
