@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Login_image from "../LoginPage/Img/login.png";
 import "../LandingPage/Landing.css";
 // import Google_image from '../LoginPage/Img/google.png';
@@ -6,43 +6,74 @@ import CountUp from "react-countup";
 import { Card, Row, Col } from "react-bootstrap";
 import CardGroup from "react-bootstrap/CardGroup";
 import GAP_Image from "../HomePage/Img/GAP_BG.png";
-import NewBackgroundImage from "./img/Landing Page _ Default.png";
+import axios from "axios";
 
-const LoginPage = () => {
+const LandingPage = () => {
+  const [userCount, setUserCount] = useState(0);
+
+  useEffect(() => {
+    const fetchUserCount = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/api/members");
+        console.log(response);
+        setUserCount(response.data.members);
+      } catch (error) {
+        console.error("Error fetching user count: ", error);
+      }
+    };
+    fetchUserCount();
+  });
+
   return (
     <>
-      <section className="new-background" >
+      <section className="">
         <div className="container-fluid vh-100  ">
           <div className="container">
             <nav className="navbar navbar-light">
-
-              <a className="navbar-brand" href="#">
-
-              <a className="navbar-brand"  href="home" onClick={() => {
+              <a
+                className="navbar-brand"
+                href="home"
+                onClick={() => {
                   window.location.href = "/";
-                }}>
-
+                }}
+              >
                 <img src={GAP_Image} height="90" alt="" />
               </a>
               <div className="d-flex justify-content-end">
-                <a className="nav-link custom-nav-link " href="home" onClick={() => {
-                  window.location.href = "/underConstructionHome";
-                }}>
-                  Home 
+                <a
+                  className="nav-link custom-nav-link "
+                  href="home"
+                  onClick={() => {
+                    window.location.href = "/underConstructionHome";
+                  }}
+                >
+                  Home
                 </a>
-                <a className="nav-link custom-nav-link " href="about" onClick={() => {
-                  window.location.href = "/landingPageAbout";
-                }}>
+                <a
+                  className="nav-link custom-nav-link "
+                  href="about"
+                  onClick={() => {
+                    window.location.href = "/landingPageAbout";
+                  }}
+                >
                   About
                 </a>
-                <a className="nav-link custom-nav-link" href="contact" onClick={() => {
-                  window.location.href = "/landingPageContact";
-                }}>
+                <a
+                  className="nav-link custom-nav-link"
+                  href="contact"
+                  onClick={() => {
+                    window.location.href = "/landingPageContact";
+                  }}
+                >
                   Contact
                 </a>
-                <a className="nav-link custom-nav-link" href="login"onClick={() => {
-                  window.location.href = "/login";
-                }}>
+                <a
+                  className="nav-link custom-nav-link"
+                  href="login"
+                  onClick={() => {
+                    window.location.href = "/login";
+                  }}
+                >
                   Login
                 </a>
                 <form className="form-inline my-2 my-lg-0">
@@ -82,7 +113,7 @@ const LoginPage = () => {
                 <Card.Body className="text-center">
                   <Card.Text>
                     <h1>
-                      <CountUp start={0} end={623} duration={4} delay={0} />
+                      <CountUp start={0} end={0} duration={4} delay={0} />
                     </h1>
                   </Card.Text>
                   <Card.Title style={{ color: "#2A2A72", fontSize: "28px" }}>
@@ -97,7 +128,12 @@ const LoginPage = () => {
                 <Card.Body className="text-center">
                   <Card.Text>
                     <h1>
-                      <CountUp start={0} end={892} duration={4} delay={0} />
+                      <CountUp
+                        start={0}
+                        end={userCount}
+                        duration={2}
+                        delay={0}
+                      />
                     </h1>
                   </Card.Text>
                   <Card.Title style={{ color: "#2A2A72", fontSize: "28px" }}>
@@ -112,7 +148,7 @@ const LoginPage = () => {
                 <Card.Body className="text-center">
                   <Card.Text>
                     <h1>
-                      <CountUp start={0} end={970} duration={4} delay={0} />+
+                      <CountUp start={0} end={0} duration={4} delay={0} />
                     </h1>
                   </Card.Text>
                   <Card.Title style={{ color: "#2A2A72", fontSize: "28px" }}>
@@ -122,7 +158,7 @@ const LoginPage = () => {
               </Card>
             </CardGroup>
             <div className="text-center mt-1">
-            <button
+              <button
                 className="btn custom-button-reset2 my-1 my-sm-3"
                 type="submit"
                 onClick={() => {
@@ -139,4 +175,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default LandingPage;

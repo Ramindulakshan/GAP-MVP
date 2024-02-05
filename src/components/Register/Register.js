@@ -375,7 +375,7 @@ function Prologin() {
 
                         {/* Sub Message */}
                         <p className="mb-4 p-10">
-                          Please verify your mobile number to continue
+                          Please login to your account
                         </p>
 
                         {/* Submit Button */}

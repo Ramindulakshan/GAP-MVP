@@ -19,6 +19,8 @@ import { Container } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import axios from "axios";
 import moment from "moment/moment";
+import userPic from "../HomePage/Img/user.png";
+import { IoSaveSharp } from "react-icons/io5";
 
 function UserProfileEmptyView() {
   const [userData, setUserData] = useState({
@@ -28,11 +30,25 @@ function UserProfileEmptyView() {
     title: "",
     academicDetails: [],
     professionalDetails: [],
+    profilePicture: [],
   });
 
   useEffect(() => {
-    getUserDetails(); // Fetch user details on component mount
+    const storedFirstName = localStorage.getItem("firstName");
+    setDisplayFirstName(storedFirstName);
   }, []);
+
+  useEffect(() => {
+    const storedLastName = localStorage.getItem("lastName");
+    setDisplayLastName(storedLastName);
+  }, []);
+
+  useEffect(() => {
+    getUserDetails(); // Fetch user details on component mount
+   }, []);
+
+  const [displayFirstName, setDisplayFirstName] = useState("");
+  const [displayLastName, setDisplayLastName] = useState("");
 
   const [title, setTitle] = useState("");
   const [address, setAddress] = useState("");
@@ -51,6 +67,14 @@ function UserProfileEmptyView() {
   const [companyName, setCompanyName] = useState("");
   const [locationType, setLocationType] = useState("");
   const [skills, setSkills] = useState("");
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setFile(file);
+    }
+  };
 
   /*Photo Change Model*/
   const [show, setShow] = useState(false);
@@ -96,15 +120,6 @@ function UserProfileEmptyView() {
   const handleClose7 = () => setShow7(false);
   const handleShow7 = () => setShow7(true);
 
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedImage(URL.createObjectURL(file));
-    }
-  };
-
   //calling to endpoint for get user details which already in the database
   const getUserDetails = (e) => {
     axios
@@ -122,6 +137,7 @@ function UserProfileEmptyView() {
             email,
             academicDetails,
             professionalDetails,
+            profilePicture,
           } = response.data;
 
           if (
@@ -134,6 +150,7 @@ function UserProfileEmptyView() {
               email,
               academicDetails,
               professionalDetails,
+              profilePicture,
             });
           } else {
             setUserData({
@@ -142,6 +159,7 @@ function UserProfileEmptyView() {
               email,
               academicDetails: [],
               professionalDetails: [],
+              profilePicture,
             });
           }
         }
@@ -287,6 +305,32 @@ function UserProfileEmptyView() {
   const handleProfessionalData = (e) => {
     e.preventDefault();
     SaveProfessionalData();
+  };
+
+  const handlePhotoUpload = (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    data.append("file", file);
+    axios
+      .post("http://localhost:3001/api/photoUpload", data, {
+        headers: {
+          authorization: `${localStorage.getItem("jwtToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          handleClose();
+          alert("Photo uploaded successfully");
+
+          getUserDetails();
+        } else {
+          alert("Photo not uploaded");
+        }
+      })
+      .catch((error) => {
+        console.error("Error uploading photo:", error);
+      });
   };
 
   return (
@@ -621,15 +665,28 @@ function UserProfileEmptyView() {
                             <div className="text-center"></div>
                             <br />
                             <div className="text-center">
-                              <Image
-                                src={prolog}
-                                roundedCircle
-                                style={{
-                                  width: "150px",
-                                  height: "150px",
-                                  objectFit: "cover",
-                                }}
-                              />
+                              {file ? (
+                                <Image
+                                  src={URL.createObjectURL(file)}
+                                  alt="profile picture"
+                                  roundedCircle
+                                  style={{
+                                    width: "150px",
+                                    height: "150px",
+                                    objectFit: "cover",
+                                  }}
+                                />
+                              ) : (
+                                <Image
+                                  src={userPic}
+                                  roundedCircle
+                                  style={{
+                                    width: "150px",
+                                    height: "150px",
+                                    objectFit: "cover",
+                                  }}
+                                />
+                              )}
                             </div>
                             <br />
                             <hr />
@@ -658,15 +715,18 @@ function UserProfileEmptyView() {
 
                                     {/* Gallery icon path */}
                                   </svg>
-                                  <p style={{ textAlign: "center" }}>Gallery</p>
-                                </label>
-                                <input
+                                  <input
                                   id="fileInput"
                                   type="file"
                                   accept="image/*"
                                   style={{ display: "none" }}
                                   onChange={handleFileChange}
                                 />
+                                  <p>
+                                    Upload
+                                  </p>
+                                </label>
+                                
                               </Col>
                               <Col
                                 xs={8}
@@ -675,25 +735,8 @@ function UserProfileEmptyView() {
                                   cursor: "pointer",
                                 }}
                               >
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="35"
-                                  height="27"
-                                  viewBox="0 0 35 27"
-                                  fill="none"
-                                >
-                                  <path
-                                    d="M17.5009 19.6364C20.2121 19.6364 22.41 17.4385 22.41 14.7273C22.41 12.0161 20.2121 9.81824 17.5009 9.81824C14.7897 9.81824 12.5918 12.0161 12.5918 14.7273C12.5918 17.4385 14.7897 19.6364 17.5009 19.6364Z"
-                                    fill="black"
-                                    fill-opacity="0.5"
-                                  />
-                                  <path
-                                    d="M32.8411 4.90909H26.4746C26.2445 4.90909 25.9592 4.76028 25.7367 4.52557L23.6442 1.24261C22.7928 -2.92605e-07 22.4093 0 21.0286 0H13.9718C12.5911 0 12.1309 0 11.3584 1.24338L9.26364 4.52557C9.09336 4.71119 8.85404 4.90909 8.60245 4.90909V3.68182C8.60245 3.51907 8.5378 3.36299 8.42272 3.24791C8.30764 3.13283 8.15156 3.06818 7.98881 3.06818H4.92063C4.75789 3.06818 4.60181 3.13283 4.48673 3.24791C4.37165 3.36299 4.307 3.51907 4.307 3.68182V4.90909H2.15927C1.67103 4.90909 1.20279 5.10304 0.857549 5.44828C0.512312 5.79352 0.318359 6.26176 0.318359 6.75V25.1591C0.318359 25.6473 0.512312 26.1156 0.857549 26.4608C1.20279 26.806 1.67103 27 2.15927 27H32.8411C33.3293 27 33.7976 26.806 34.1428 26.4608C34.488 26.1156 34.682 25.6473 34.682 25.1591V6.75C34.682 6.26176 34.488 5.79352 34.1428 5.44828C33.7976 5.10304 33.3293 4.90909 32.8411 4.90909ZM17.8461 22.0832C16.3619 22.153 14.8913 21.772 13.6276 20.9905C12.3639 20.209 11.3662 19.0635 10.7655 17.7045C10.1648 16.3455 9.98936 14.8366 10.2621 13.376C10.5349 11.9154 11.2431 10.5715 12.2937 9.52083C13.3444 8.47019 14.6883 7.76196 16.1489 7.48921C17.6095 7.21645 19.1184 7.39194 20.4774 7.9926C21.8364 8.59326 22.982 9.591 23.7635 10.8547C24.5449 12.1184 24.9259 13.589 24.8561 15.0732C24.7682 16.904 24.0015 18.6364 22.7054 19.9325C21.4093 21.2286 19.6769 21.9953 17.8461 22.0832Z"
-                                    fill="black"
-                                    fill-opacity="0.5"
-                                  />
-                                </svg>
-                                <p>Camera</p>
+                                <IoSaveSharp className="svbtn" onClick={handlePhotoUpload} />
+                                <p>Save</p>
                               </Col>
                               <Col
                                 xs={2}
@@ -848,10 +891,18 @@ function UserProfileEmptyView() {
                 {/*Photo Change Model End*/}
                 <div class="card-body">
                   <div class="text-section">
-                    <h5 class="card-title fw-bold">Mr.julius aguirre</h5>
-                    <p className="card-para">
-                      Undergraduate | Software Engineering
-                    </p>
+                    <h5 class="card-title fw-bold">
+                      {displayFirstName} {displayLastName}
+                    </h5>
+                    {userData.professionalDetails &&
+                    userData.professionalDetails.length > 0 ? (
+                      <p className="card-para">
+                        {userData.professionalDetails[0].position}
+                      </p>
+                    ) : (
+                      <p>No professional details available</p>
+                    )}
+
                     <div class="row mt-4">
                       <div class="col-4">
                         <svg
@@ -1292,102 +1343,6 @@ function UserProfileEmptyView() {
                       />
                     </svg>
                   </h6>
-                  {/* <Modal
-                    show={show4}
-                    onHide={handleClose4}
-                    aria-labelledby="example-custom-modal-styling-title"
-                  >
-                    <Modal.Header closeButton></Modal.Header>
-
-                    <Modal.Body>
-                      <Modal.Title
-                        id="example-custom-modal-styling-title"
-                        className="text-center"
-                      >
-                        <h1>Academic Qualification</h1>
-                        <p>Add New Academic Qualification</p>
-                      </Modal.Title>
-                      <div className="p-7">
-                        <Container className="mt-2">
-                          <Form.Label>Institute* </Form.Label>
-                          <Form.Control
-                          value={institute}
-                          onChange={(e) => setInstitute(e.target.value)}
-                            placeholder="add institute name"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-                          <br></br>
-                          <Form.Label>Degree / Course* </Form.Label>
-                          <Form.Control
-                          value={degree}
-                          onChange={(e) => setDegree(e.target.value)}
-                            placeholder="add degree / course name"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-
-                          <br></br>
-
-                          <Form.Group as={Col} controlId="formGridZip">
-                            <Form.Label>Start date*</Form.Label>
-                            <Form.Control
-                            value={startDate}
-                            onChange={(e) => setStartDate(e.target.value)}
-                              type="date"
-                              style={{
-                                border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                boxShadow: "none", // Optional: Remove box-shadow
-                              }}
-                            />
-                          </Form.Group>
-                          <br></br>
-                          <Form.Group as={Col} controlId="formGridZip">
-                            <Form.Label>End date (or expected)*</Form.Label>
-                            <Form.Control
-                            value={endDate}
-                            onChange={(e) => setEndDate(e.target.value)}
-                              type="date"
-                              style={{
-                                border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                boxShadow: "none", // Optional: Remove box-shadow
-                              }}
-                            />
-                          </Form.Group>
-                          <br></br>
-                          <Form.Label>Grade*</Form.Label>
-                          <Form.Control
-                          value={grade}
-                          onChange={(e) => setGrade(e.target.value)}
-                            placeholder="add grade"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-                          <br></br>
-                        </Container>
-                      </div>
-                      <div className="text-center">
-                        <button
-                          className="btn  custom-button-reset my-1 my-sm-3 t"
-                          type="submit"
-                          onClick={handleSaveAcademicData}
-                        >
-                          Save
-                        </button>
-                      </div>
-                    </Modal.Body>
-                  </Modal> */}
                 </div>
                 <br></br>
                 <hr></hr>
