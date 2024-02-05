@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Login_image from "../LoginPage/Img/login.png";
 import "../LandingPage/Landing.css";
 // import Google_image from '../LoginPage/Img/google.png';
@@ -6,8 +6,29 @@ import CountUp from "react-countup";
 import { Card, Row, Col } from "react-bootstrap";
 import CardGroup from "react-bootstrap/CardGroup";
 import GAP_Image from "../HomePage/Img/GAP_BG.png";
+import axios from "axios";
 
-const LoginPage = () => {
+const LandingPage = () => {
+
+  const [userCount, setUserCount] = useState(0);
+
+  useEffect(() => {
+    const fetchUserCount = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/api/members");
+        console.log(response);
+        setUserCount(response.data.members);
+      }
+      catch (error) {
+        console.error("Error fetching user count: ", error);
+      }
+    };
+    fetchUserCount();
+  });
+
+
+
+
   return (
     <>
       <section className="">
@@ -77,7 +98,7 @@ const LoginPage = () => {
                 <Card.Body className="text-center">
                   <Card.Text>
                     <h1>
-                      <CountUp start={0} end={623} duration={4} delay={0} />
+                      <CountUp start={0} end={0} duration={4} delay={0} />
                     </h1>
                   </Card.Text>
                   <Card.Title style={{ color: "#2A2A72", fontSize: "28px" }}>
@@ -92,7 +113,7 @@ const LoginPage = () => {
                 <Card.Body className="text-center">
                   <Card.Text>
                     <h1>
-                      <CountUp start={0} end={892} duration={4} delay={0} />
+                      <CountUp start={0} end={userCount} duration={2} delay={0} />
                     </h1>
                   </Card.Text>
                   <Card.Title style={{ color: "#2A2A72", fontSize: "28px" }}>
@@ -107,7 +128,7 @@ const LoginPage = () => {
                 <Card.Body className="text-center">
                   <Card.Text>
                     <h1>
-                      <CountUp start={0} end={970} duration={4} delay={0} />+
+                      <CountUp start={0} end={0} duration={4} delay={0} />
                     </h1>
                   </Card.Text>
                   <Card.Title style={{ color: "#2A2A72", fontSize: "28px" }}>
@@ -134,4 +155,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default LandingPage;
