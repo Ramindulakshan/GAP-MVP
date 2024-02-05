@@ -5,6 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import Homepage_image from "../HomePage/Img/homepage.png";
 import "../HomePage/Home.css";
+import img1 from "../HomePage/Img/1.png";
 import GAP_Image from "../HomePage/Img/GAP_BG.png";
 import Student_Image from "../HomePage/Img/Student.png";
 import User_image from "../HomePage/Img/user.png";
@@ -29,9 +30,9 @@ import { IoIosLogOut } from "react-icons/io";
 
 const HomePage = () => {
   const [firstName, setFirstName] = useState("");
-  const [show, setShow] = useState(true);
-  const handleShow = () => setShow(true);
-  const handleClose = () =>  setShow(false);
+  // const [show, setShow] = useState(true);
+  // const handleShow = () => setShow(true);
+  // const handleClose = () =>  setShow(false);
   
 
   useEffect(() => {
@@ -48,6 +49,12 @@ const handleLogout = () => {
   window.location.href = "/login";
 }
 
+  /*LogOut Model*/
+  const [show, setShow] = useState(false);
+  /*LogOut Model*/
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  
   return (
     <section>
       <div className="container-fluid">
@@ -599,3 +606,4 @@ const handleLogout = () => {
 };
 
 export default HomePage;
+

@@ -836,7 +836,7 @@ function SettingPage() {
                               )}
 
                               <a
-                                href="acb"
+                                style={{cursor: "pointer"}}
                                 onClick={() => {
                                   window.location.href = "/forgotPassword";
                                 }}
