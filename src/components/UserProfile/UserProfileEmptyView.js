@@ -45,7 +45,7 @@ function UserProfileEmptyView() {
 
   useEffect(() => {
     getUserDetails(); // Fetch user details on component mount
-  }, []);
+   }, []);
 
   const [displayFirstName, setDisplayFirstName] = useState("");
   const [displayLastName, setDisplayLastName] = useState("");
@@ -625,7 +625,7 @@ function UserProfileEmptyView() {
             <br></br>
             <br></br>
             <div>
-              <div class="carduprofl">
+              <div class="carduprofl card">
                 <Col xs={5} md={3} className="mx-auto position-relative">
                   <img src={prolog} rounded alt="propick" className="imgr" />
                   <Image
@@ -1321,7 +1321,6 @@ function UserProfileEmptyView() {
                     {/*Social Media Model End*/}
                   </div>
                 </div>
-                <div></div>
               </div>
 
               <div class="cardfu">
@@ -1466,25 +1465,38 @@ function UserProfileEmptyView() {
                   </Modal>
                   {/*Academic qualification Model End*/}
                 </div>
-                <div>
-                  {userData.academicDetails &&
-                  userData.academicDetails.length > 0 ? (
-                    <>
-                      <p>{userData.academicDetails[0].institute}</p>
-                      <p>{userData.academicDetails[0].degree}</p>
-                      <p>
-                        {moment(userData.academicDetails[0].startDate).format(
-                          "YYYY/MM/DD"
-                        )}{" "}
-                        -{" "}
-                        {moment(userData.academicDetails[0].endDate).format(
-                          "YYYY/MM/DD"
+                <br></br>
+                <div class="carduprofl cardnew">
+                  <div class="card-body">
+                    <div class="text-section">
+                      <div>
+                        {userData.academicDetails &&
+                        userData.academicDetails.length > 0 ? (
+                          <>
+                            <h5 class="card-title2 fw-bold">
+                              {userData.academicDetails[0].institute}
+                            </h5>
+                            <p className="card-para2">
+                              {userData.academicDetails[0].degree}
+                            </p>
+                            <p className="card-para2">
+                              {moment(
+                                userData.academicDetails[0].startDate
+                              ).format("YYYY/MM/DD")}{" "}
+                              -{" "}
+                              {moment(
+                                userData.academicDetails[0].endDate
+                              ).format("YYYY/MM/DD")}
+                            </p>
+                          </>
+                        ) : (
+                          <p className="card-para2">
+                            No academic details available
+                          </p>
                         )}
-                      </p>
-                    </>
-                  ) : (
-                    <p>No academic details available</p>
-                  )}
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <br></br>
@@ -1648,26 +1660,40 @@ function UserProfileEmptyView() {
                   </Modal>
                   {/*Professional Experience  Model End*/}
                 </div>
-                <div>
-                  {userData.professionalDetails &&
-                  userData.professionalDetails.length > 0 ? (
-                    <>
-                      <p>{userData.professionalDetails[0].companyName}</p>
-                      <p>{userData.professionalDetails[0].empType}</p>
-                      <p>
-                        {moment(
-                          userData.professionalDetails[0].startDate
-                        ).format("MM/YYYY")}{" "}
-                        -{" "}
-                        {moment(userData.professionalDetails[0].endDate).format(
-                          "MM/YYYY"
+                <div class="carduprofl cardnew" style={{ border: "0" }}>
+                  <div class="card-body">
+                    <div class="text-section">
+                      <div>
+                        {userData.professionalDetails &&
+                        userData.professionalDetails.length > 0 ? (
+                          <>
+                            <h5 class="card-title2 fw-bold">
+                              {userData.professionalDetails[0].companyName}
+                            </h5>
+                            <p className="card-para2">
+                              {userData.professionalDetails[0].empType}
+                            </p>
+                            <p className="card-para2">
+                              {moment(
+                                userData.professionalDetails[0].startDate
+                              ).format("MM/YYYY")}{" "}
+                              -{" "}
+                              {moment(
+                                userData.professionalDetails[0].endDate
+                              ).format("MM/YYYY")}
+                            </p>
+                            <p className="card-para2">
+                              {userData.professionalDetails[0].position}
+                            </p>
+                          </>
+                        ) : (
+                          <p className="card-para2">
+                            No professional details available
+                          </p>
                         )}
-                      </p>
-                      <p>{userData.professionalDetails[0].position}</p>
-                    </>
-                  ) : (
-                    <p>No professional details available</p>
-                  )}
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <hr></hr>
                 <br></br>

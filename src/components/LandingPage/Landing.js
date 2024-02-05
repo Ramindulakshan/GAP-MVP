@@ -7,6 +7,7 @@ import { Card, Row, Col } from "react-bootstrap";
 import CardGroup from "react-bootstrap/CardGroup";
 import GAP_Image from "../HomePage/Img/GAP_BG.png";
 import axios from "axios";
+import NewBackgroundImage from "./img/Landing Page _ Default.png";
 
 const LandingPage = () => {
 
@@ -31,13 +32,17 @@ const LandingPage = () => {
 
   return (
     <>
-      <section className="">
+      <section className="new-background" >
         <div className="container-fluid vh-100  ">
           <div className="container">
             <nav className="navbar navbar-light">
+
+              <a className="navbar-brand" href="#">
+
               <a className="navbar-brand"  href="home" onClick={() => {
                   window.location.href = "/";
                 }}>
+
                 <img src={GAP_Image} height="90" alt="" />
               </a>
               <div className="d-flex justify-content-end">
