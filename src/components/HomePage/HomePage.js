@@ -15,8 +15,6 @@ import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
 import { Modal } from "react-bootstrap";
 
-
-
 import TakeABreak from "../HomePage/Img/Group 421.png";
 import {
   IoHomeOutline,
@@ -31,20 +29,30 @@ import { IoIosLogOut } from "react-icons/io";
 
 const HomePage = () => {
   const [firstName, setFirstName] = useState("");
-  const handleShow = () => setShow(true);
   const [show, setShow] = useState(true);
+  const handleShow = () => setShow(true);
+  const handleClose = () =>  setShow(false);
+  
+
   useEffect(() => {
     const storedFirstName = localStorage.getItem("firstName");
     setFirstName(storedFirstName);
   }, []);
-  const handleClose = () => {
-    setShow(false);
-  };
+  
+
+const handleLogout = () => {
+  localStorage.removeItem("jwtToken");
+  localStorage.removeItem("firstName");
+  localStorage.removeItem("lastName");
+  handleClose();  
+  window.location.href = "/login";
+}
+
   return (
     <section>
       <div className="container-fluid">
         <div className="row">
-        <div className="col-lg-3 vh-100  d-flex align-items-center justify-content-center">
+          <div className="col-lg-3 vh-100  d-flex align-items-center justify-content-center">
             <div className="vh-100">
               <div className="">
                 <img
@@ -162,12 +170,12 @@ const HomePage = () => {
                     </ListGroup.Item>
                     <br />
                     <ListGroup.Item
+                      onClick={handleShow}
                       action
                       variant="light"
                       className="list-group-item-custom"
                     >
                       <IoIosLogOut
-                        onClick={handleShow}
                         style={{ fontSize: "18px", marginRight: "20px" }}
                       />
                       Logout
@@ -195,7 +203,7 @@ const HomePage = () => {
 
                   <button
                     className="btnlgouy1 custom-button-slot "
-                    onClick={handleClose}
+                    onClick={handleLogout}
                   >
                     Yes
                   </button>
