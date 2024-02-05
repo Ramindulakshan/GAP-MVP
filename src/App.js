@@ -38,7 +38,6 @@ import VerificationPage from "./components/Verification/VerificationPage";
 import WeeklySchedulePage from "./components/WeeklySchedulePage/WeeklySchedulePage";
 import UnderConstructionWeeklySchedulePage from "./components/WeeklySchedulePage/UnderConstructionWeeklySchedulePage";
 import WeeklySchedulePageNotMenter from "./components/WeeklySchedulePageNotMenter/WeeklySchedulePageNotMenter";
-import Sidebar from "./components/SideNavBar/Sidebar";
 import PrivateRoutes from "./utils/privateRoutes";
 import { AuthProvider } from "./utils/authContext";
 
@@ -47,19 +46,17 @@ const App = () => {
     <React.Fragment>
       <AuthProvider>
         <Routes>
-          <Route element={<PrivateRoutes />}>
+
             <Route path="/home" element={<HomePage />} exact />
             <Route path="/settings" element={<SettingPage />} />
             <Route
               path="/WeeklySchedulePage"
               element={<WeeklySchedulePage />}
             />
-            <Route path="/userProfile" element={<UserProfile />} />
-          </Route>
+
 
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/register" element={<Register />} />
 
           <Route path="/forgotPassword" element={<ForgotPassword />} />
