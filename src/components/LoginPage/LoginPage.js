@@ -160,8 +160,11 @@ const LoginPage = () => {
         </div>
         </div>
       </section>
+      
     </>
   );
+  
 };
+
 
 export default LoginPage;

@@ -172,9 +172,27 @@ class VerifyE extends React.Component {
                         </div>
                       </form>
                     </div>
-                    <h6 className="custom-text-AR ore mt-4 mb-5">
+                    <h6 className="custom-text-AR ore mt-4 mb-4">
                       Don’t receive OTP? <span>Resend</span>
                     </h6>
+                    <div className="">
+                      <div className="mb-4 ">
+                        <input
+                          type="Password"
+                          className="form-control"
+                          placeholder="Password"
+                        />
+                      </div>
+                   
+                      <div className="">
+                        <input
+                          type="Password"
+                          className="form-control"
+                          placeholder="Confirm Password"                    
+                        />
+                      </div>
+                    </div>
+
                     <div className="text-center">
                       <button
                         className="btn custom-button2rtyu  my-1 my-sm-3"
