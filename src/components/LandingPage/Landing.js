@@ -16,7 +16,7 @@ const LoginPage = () => {
           <div className="container">
             <nav className="navbar navbar-light">
 
-              <a className="navbar-brand" href="#">
+              
 
               <a className="navbar-brand"  href="home" onClick={() => {
                   window.location.href = "/";
@@ -133,7 +133,8 @@ const LoginPage = () => {
               </button>
             </div>
           </div>
-        </div>
+          </div>
+        
       </section>
     </>
   );
