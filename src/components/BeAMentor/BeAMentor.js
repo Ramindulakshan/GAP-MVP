@@ -12,6 +12,17 @@ import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import Select from "react-dropdown-select";
+import TakeABreak from "../HomePage/Img/Group 421.png";
+import {
+  IoHomeOutline,
+  IoPeopleOutline,
+  IoCalendarOutline,
+  IoSettingsOutline,
+} from "react-icons/io5";
+import { TfiBookmarkAlt } from "react-icons/tfi";
+import { MdOutlinePeopleAlt } from "react-icons/md";
+import { RxCountdownTimer } from "react-icons/rx";
+import { IoIosLogOut } from "react-icons/io";
 
 function BeAMentor() {
   const handleClose = () => {

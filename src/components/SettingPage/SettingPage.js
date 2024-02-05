@@ -24,7 +24,7 @@ import { TfiBookmarkAlt } from "react-icons/tfi";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { RxCountdownTimer } from "react-icons/rx";
 import { IoIosLogOut } from "react-icons/io";
-
+import TakeABreak from "../HomePage/Img/Group 421.png";
 function SettingPage() {
   const { Formik } = formik;
 
@@ -41,6 +41,11 @@ function SettingPage() {
   const [showPassword2, setShowPassword2] = useState(false);
   const [showPassword3, setShowPassword3] = useState(false);
 
+  const handleShow = () => setShow(true);
+  const [show, setShow] = useState(true);
+  const handleClose = () => {
+    setShow(false);
+  };
   const [show2, setShow2] = useState(false);
   const handleClose2 = () => setShow2(false);
   const handleShow2 = () => setShow2(true);
@@ -151,22 +156,20 @@ function SettingPage() {
     <div>
       <div className="container-fluid">
         <div className="row">
-          <div className="col-lg-3 vh-100">
-            <div className="d-flex align-items-center justify-content-center">
-              <div className="vh-100  ">
-                <div className="">
-                  <img
-                    src={GAP_Image}
-                    alt="logo"
-                    className="img-fluid custom-image-Gap"
-                  />
-                </div>
-
-                <Tab.Container
-                  id="list-group-tabs-example"
-                  defaultActiveKey="#link1"
-                >
-                   <Row>
+        <div className="col-lg-3 vh-100  d-flex align-items-center justify-content-center">
+            <div className="vh-100">
+              <div className="">
+                <img
+                  src={GAP_Image}
+                  alt="logo"
+                  className="img-fluid custom-image-Gap"
+                />
+              </div>
+              <Tab.Container
+                id="list-group-tabs-example"
+                defaultActiveKey="/underConstructionHome"
+              >
+                <Row>
                   <ListGroup>
                     <ListGroup.Item
                       action
@@ -175,9 +178,11 @@ function SettingPage() {
                       onClick={() => {
                         window.location.href = "/underConstructionHome";
                       }}
-                      
+                      style={{ backgroundColor: "#DDDDFE", border: "0" }}
                     >
-                      <IoHomeOutline style={{ fontSize: "18px", marginRight: "20px" }} />
+                      <IoHomeOutline
+                        style={{ fontSize: "18px", marginRight: "20px" }}
+                      />
                       Home
                     </ListGroup.Item>
                     <br />
@@ -185,11 +190,14 @@ function SettingPage() {
                       action
                       variant="light"
                       className="list-group-item-custom"
+                      // href="#link2"
                       onClick={() => {
-                        window.location.href = "/underConstructionBeAMentor";
+                        window.location.href = "/underConstructionMentors";
                       }}
                     >
-                      <IoPeopleOutline style={{ fontSize: "18px", marginRight: "20px" }}/>
+                      <IoPeopleOutline
+                        style={{ fontSize: "18px", marginRight: "20px" }}
+                      />
                       Mentors
                     </ListGroup.Item>
                     <br />
@@ -198,10 +206,13 @@ function SettingPage() {
                       variant="light"
                       className="list-group-item-custom"
                       onClick={() => {
-                        window.location.href = "/underConstructionMentorSession";
+                        window.location.href =
+                          "/underConstructionMentorSession";
                       }}
                     >
-                      <TfiBookmarkAlt style={{ fontSize: "18px", marginRight: "20px" }}/>
+                      <TfiBookmarkAlt
+                        style={{ fontSize: "18px", marginRight: "20px" }}
+                      />
                       Mentoring Session
                     </ListGroup.Item>
                     <br />
@@ -213,7 +224,9 @@ function SettingPage() {
                         window.location.href = "/underConstructionBeAMentor";
                       }}
                     >
-                      <MdOutlinePeopleAlt style={{ fontSize: "18px", marginRight: "20px" }}/>
+                      <MdOutlinePeopleAlt
+                        style={{ fontSize: "18px", marginRight: "20px" }}
+                      />
                       Be A Mentor
                     </ListGroup.Item>
                     <br />
@@ -222,10 +235,13 @@ function SettingPage() {
                       variant="light"
                       className="list-group-item-custom"
                       onClick={() => {
-                        window.location.href = "/underConstructionWeeklySchedulePage";
+                        window.location.href =
+                          "/underConstructionWeeklySchedulePage";
                       }}
                     >
-                      <IoCalendarOutline style={{ fontSize: "18px", marginRight: "20px" }}/>
+                      <IoCalendarOutline
+                        style={{ fontSize: "18px", marginRight: "20px" }}
+                      />
                       Weekly Schedule
                     </ListGroup.Item>
                     <br />
@@ -237,7 +253,9 @@ function SettingPage() {
                         window.location.href = "/underConstructionHistoryPage";
                       }}
                     >
-                      <RxCountdownTimer style={{ fontSize: "18px", marginRight: "20px" }}/>
+                      <RxCountdownTimer
+                        style={{ fontSize: "18px", marginRight: "20px" }}
+                      />
                       Mentoring History
                     </ListGroup.Item>
                     <br />
@@ -245,30 +263,63 @@ function SettingPage() {
                       action
                       variant="light"
                       className="list-group-item-custom"
-                      style={{ backgroundColor: "#DDDDFE", border: "0" }}
                       onClick={() => {
                         window.location.href = "/settings";
                       }}
                     >
-                      <IoSettingsOutline style={{ fontSize: "18px", marginRight: "20px" }}/>
+                      <IoSettingsOutline
+                        style={{ fontSize: "18px", marginRight: "20px" }}
+                      />
                       Settings
                     </ListGroup.Item>
                     <br />
                     <ListGroup.Item
+                     onClick={handleShow}
                       action
                       variant="light"
                       className="list-group-item-custom"
-                      href="#link7"
                     >
-                      <IoIosLogOut style={{ fontSize: "18px", marginRight: "20px" }}/>
+                      <IoIosLogOut
+                       
+                        style={{ fontSize: "18px", marginRight: "20px" }}
+                      />
                       Logout
                     </ListGroup.Item>
                     <br />
-
                   </ListGroup>
                 </Row>
-                </Tab.Container>
-              </div>
+              </Tab.Container>
+              <Modal
+                size="m"
+                show={show}
+                onHide={handleClose}
+                aria-labelledby="example-custom-modal-styling-title"
+                centered
+              >
+                <Modal.Body className="text-center mt-4">
+                  <img
+                    src={TakeABreak}
+                    alt="Tickimg"
+                    className="img-fluid mb-4"
+                    style={{ width: "100px", height: "100px" }}
+                  />
+
+                  <p className="pre ">Are You sure you want to logout?</p>
+
+                  <button
+                    className="btnlgouy1 custom-button-slot "
+                    onClick={handleClose}
+                  >
+                    Yes
+                  </button>
+                  <button
+                    className="btnlgouy2 custom-button-slot "
+                    onClick={handleClose}
+                  >
+                    No
+                  </button>
+                </Modal.Body>
+              </Modal>
             </div>
           </div>
           <div className="col-lg-9 vh-100 overflow-auto">
