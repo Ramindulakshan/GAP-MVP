@@ -155,18 +155,17 @@ function UnderConstructionHome() {
                     </ListGroup.Item>
                     <br />
                     <div>
-                    <ListGroup.Item
-                     onClick={handleShowlgot}
-                      action
-                      variant="light"
-                      className="list-group-item-custom"
-                    >
-                      <IoIosLogOut
-                       
-                        style={{ fontSize: "18px", marginRight: "20px" }}
-                      />
-                      Logout
-                    </ListGroup.Item>
+                      <ListGroup.Item
+                        onClick={handleShowlgot}
+                        action
+                        variant="light"
+                        className="list-group-item-custom"
+                      >
+                        <IoIosLogOut
+                          style={{ fontSize: "18px", marginRight: "20px" }}
+                        />
+                        Logout
+                      </ListGroup.Item>
                     </div>
                     <br />
                   </ListGroup>
