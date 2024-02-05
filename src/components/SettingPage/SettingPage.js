@@ -19,7 +19,12 @@ import * as formik from "formik";
 import * as yup from "yup";
 import err from "./img/err.png";
 import axios from "axios";
-import { IoHomeOutline, IoPeopleOutline, IoCalendarOutline, IoSettingsOutline } from "react-icons/io5";
+import {
+  IoHomeOutline,
+  IoPeopleOutline,
+  IoCalendarOutline,
+  IoSettingsOutline,
+} from "react-icons/io5";
 import { TfiBookmarkAlt } from "react-icons/tfi";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { RxCountdownTimer } from "react-icons/rx";
@@ -77,6 +82,7 @@ function SettingPage() {
   };
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
+    console.log(confirmPassword);
   };
   const confirmPasswordMatch = () => {
     return newPassword === confirmPassword;
@@ -91,14 +97,15 @@ function SettingPage() {
     }
   };
 
-  const handleChangePassword = (e) => {
+  const handleChangePassword = async (e) => {
     e.preventDefault();
-    axios
+    
+    await axios
       .post(
         "http://localhost:3001/api/changePassword",
         {
-          currentPassword: currentPassword,
-          newPassword: newPassword,
+          currentPassword,
+          newPassword,
         },
         {
           headers: {
@@ -108,9 +115,16 @@ function SettingPage() {
       )
       .then((response) => {
         console.log(response);
-        if (response.data.status === 200) {
-          window.location.href = "/home";
-          console.log("Password changed successfully");
+        if (response.data.status === "ok") {
+          
+          alert("Password changed successfully");
+          setCurrentPassword("");
+          setNewPassword("");
+          setConfirmPassword("");
+          localStorage.removeItem("jwtToken");
+          localStorage.removeItem("firstName");
+          localStorage.removeItem("lastName");
+          window.location.href = "/login";
         } else if (response.data.status === 401) {
           alert("Current password is incorrect");
         } else {
@@ -122,9 +136,9 @@ function SettingPage() {
       });
   };
 
-  const handleDeleteAccount = (e) => {
+  const handleDeleteAccount = async (e) => {
     e.preventDefault();
-    axios
+    await axios
       .post(
         "http://localhost:3001/api/deleteAccount",
         {
@@ -138,9 +152,10 @@ function SettingPage() {
       )
       .then((response) => {
         console.log(response);
-        if (response.data.status === 'ok') {
+        if (response.data.status === "ok") {
           localStorage.removeItem("jwtToken");
           localStorage.removeItem("firstName");
+          localStorage.removeItem("lastName");
           window.location.href = "/";
           console.log("Account deleted successfully");
         } else {
@@ -156,7 +171,7 @@ function SettingPage() {
     <div>
       <div className="container-fluid">
         <div className="row">
-        <div className="col-lg-3 vh-100  d-flex align-items-center justify-content-center">
+          <div className="col-lg-3 vh-100  d-flex align-items-center justify-content-center">
             <div className="vh-100">
               <div className="">
                 <img
@@ -274,13 +289,12 @@ function SettingPage() {
                     </ListGroup.Item>
                     <br />
                     <ListGroup.Item
-                     onClick={handleShow}
+                      onClick={handleShow}
                       action
                       variant="light"
                       className="list-group-item-custom"
                     >
                       <IoIosLogOut
-                       
                         style={{ fontSize: "18px", marginRight: "20px" }}
                       />
                       Logout
@@ -751,15 +765,16 @@ function SettingPage() {
                               <InputGroup className="mb-3">
                                 <Form.Control
                                   size="lg"
+                                  value={currentPassword}
                                   type={showPassword3 ? "text" : "password"}
                                   id="inputPassword"
                                   style={{ textTransform: "none" }}
-                                  aria-describedby="passwordHelpBlock"
+                                  aria-describedby="passwordHelpBlock1"
                                   placeholder="Current password"
                                   onChange={handleCurrentPasswordChange}
                                 />
                                 <InputGroup.Text
-                                  id="passwordHelpBlock"
+                                  id="passwordHelpBlock1"
                                   onClick={togglePasswordVisibility3}
                                 >
                                   {showPassword3 ? (
@@ -772,15 +787,16 @@ function SettingPage() {
                               <InputGroup className="mb-3">
                                 <Form.Control
                                   size="lg"
+                                  value={newPassword}
                                   type={showPassword ? "text" : "password"}
                                   id="inputPassword"
-                                  aria-describedby="passwordHelpBlock"
+                                  aria-describedby="passwordHelpBlock2"
                                   placeholder="New Password"
                                   style={{ textTransform: "none" }}
                                   onChange={handleNewPasswordChange}
                                 />
                                 <InputGroup.Text
-                                  id="passwordHelpBlock"
+                                  id="passwordHelpBlock2"
                                   onClick={togglePasswordVisibility}
                                 >
                                   {showPassword ? (
@@ -794,15 +810,16 @@ function SettingPage() {
                               <InputGroup className="mb-3">
                                 <Form.Control
                                   size="lg"
+                                  value={confirmPassword}
                                   type={showPassword2 ? "text" : "password"}
                                   id="inputConfirmPassword"
-                                  aria-describedby="passwordHelpBlock"
+                                  aria-describedby="passwordHelpBlock3"
                                   placeholder="Confirm New Password"
                                   style={{ textTransform: "none" }}
                                   onChange={handleConfirmPasswordChange}
                                 />
                                 <InputGroup.Text
-                                  id="passwordHelpBlock"
+                                  id="passwordHelpBlock3"
                                   onClick={togglePasswordVisibility2}
                                 >
                                   {showPassword2 ? (
@@ -818,7 +835,13 @@ function SettingPage() {
                                 <p>Passwords do not match.</p>
                               )}
 
-                              <a href="acb" className="fogotpss">
+                              <a
+                                href="acb"
+                                onClick={() => {
+                                  window.location.href = "/forgotPassword";
+                                }}
+                                className="fogotpss"
+                              >
                                 Forgot password?
                               </a>
                               <button
@@ -1076,7 +1099,9 @@ function SettingPage() {
                                     style={{ textTransform: "none" }}
                                     aria-describedby="passwordHelpBlock"
                                     placeholder="Enter your password"
-                                    onChange={e => setPasswordToDelete(e.target.value)}
+                                    onChange={(e) =>
+                                      setPasswordToDelete(e.target.value)
+                                    }
                                   />
                                   <InputGroup.Text
                                     id="passwordHelpBlock"
