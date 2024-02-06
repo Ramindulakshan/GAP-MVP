@@ -1147,7 +1147,7 @@ function SettingPage() {
                                     <p className="desbtn">076 7090757</p>
                                   </div>
                                 </div>
-                                <div className="col-sm-4 col-md-8 col-lg-9 text-center">
+                                <div className="col-sm-4 col-md-8 col-lg-4 text-center">
                                   <div className="pbtn2oo">
                                     <div className="clbtnnwe">
                                       <svg
