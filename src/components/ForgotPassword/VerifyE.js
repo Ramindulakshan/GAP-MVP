@@ -17,6 +17,8 @@ class VerifyE extends React.Component {
       otp5: "",
       otp6: "",
       disable: true,
+      password: "",
+      confirmPassword: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,6 +27,7 @@ class VerifyE extends React.Component {
   VerifyOTP = async (e) => {
     e.preventDefault();
     const data = {
+      password: this.state.password,
       otp:
         this.state.otp1 +
         this.state.otp2 +
@@ -34,32 +37,34 @@ class VerifyE extends React.Component {
         this.state.otp6,
     };
     await axios
-      .post("http://localhost:3001/api/verifyOTP", data)
+      .post("http://localhost:3001/api/resetPassword", data)
       .then((response) => {
         if (response.data.status === "success") {
-          window.location.href = "/resetPassword";
+          alert("Password Succesfully Reseted")
+          window.location.href = "/login";
         } else {
-          alert("OTP is incorrect or expired");
+          alert("Incorrect Credentials");
         }
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  
 
-   resendOTP = async(e) => {
+  resendOTP = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:3001/api/forgotpassword",
-    {
-      email: localStorage.getItem("email"),
-    }
-    ).then((response) => {
-      console.log(response);
-    }).catch((err) => {
-      console.log(err);
-    });
-
-  }
+    await axios
+      .post("http://localhost:3001/api/forgotPassword", {
+        email: localStorage.getItem("email"),
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   handleChange(value1, event) {
     this.setState({ [value1]: event.target.value });
@@ -187,22 +192,26 @@ class VerifyE extends React.Component {
                       </form>
                     </div>
                     <h6 className="custom-text-AR ore mt-4 mb-4">
-                      Don’t receive OTP? <span style={{ cursor: "pointer"}} onClick={this.resendOTP}>Resend</span>
+                      Don’t receive OTP? <span style={{cursor: "pointer"}} onClick={this.resendOTP}>Resend</span>
                     </h6>
                     <div className="">
                       <div className="mb-4 ">
                         <input
-                          type="Password"
+                          value={this.state.password}
+                          onChange={(e) => this.handleChange("password", e)}
+                          type="text"
                           className="form-control"
                           placeholder="Password"
                         />
                       </div>
-                   
+
                       <div className="">
                         <input
+                          value={this.state.confirmPassword}
+                          onChange={(e) => this.handleChange("confirmPassword", e)}
                           type="Password"
                           className="form-control"
-                          placeholder="Confirm Password"                    
+                          placeholder="Confirm Password"
                         />
                       </div>
                     </div>

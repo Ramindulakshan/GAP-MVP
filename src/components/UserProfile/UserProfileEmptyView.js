@@ -27,6 +27,7 @@ import { IoIosLogOut } from "react-icons/io";
 import { IoSaveSharp } from "react-icons/io5";
 import userPic from "../HomePage/Img/user.png";
 
+
 function UserProfileEmptyView() {
   const [userData, setUserData] = useState({
     firstName: "",
@@ -133,13 +134,6 @@ function UserProfileEmptyView() {
   const handleShowadd = () => setShowadd(true);
 
   const [selectedImage, setSelectedImage] = useState(null);
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedImage(URL.createObjectURL(file));
-    }
-  };
 
 
   //calling to endpoint for get user details which already in the database
@@ -1613,8 +1607,8 @@ function UserProfileEmptyView() {
                   </Modal>
                   {/*Academic qualification Model End*/}
                 </div>
-                <br></br>
-                <div class="carduprofl cardnew">
+              
+                <div class="carduprofl cardnew card" style={{ border: "0" }}>
                   <div class="card-body">
                     <div class="text-section">
                       <div>
@@ -1808,7 +1802,7 @@ function UserProfileEmptyView() {
                   </Modal>
                   {/*Professional Experience  Model End*/}
                 </div>
-                <div class="carduprofl cardnew" style={{ border: "0" }}>
+                <div class="carduprofl cardnew card" style={{ border: "0" }}>
                   <div class="card-body">
                     <div class="text-section">
                       <div>

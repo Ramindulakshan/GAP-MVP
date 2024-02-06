@@ -28,9 +28,22 @@ const LandingPage = () => {
         <div className="container-fluid vh-100">
           <div className="container">
             <nav className="navbar navbar-light">
+
               <a className="navbar-brand" href="home" onClick={() => {
                 window.location.href = "/";
               }}>
+
+              <a className="navbar-brand"  href="home"></a>
+
+              <a
+                className="navbar-brand"
+                href="home"
+                onClick={() => {
+
+                  window.location.href = "/";
+                }}
+              >
+
                 <img src={GAP_Image} height="90" alt="" />
               </a>
               <div className="d-flex justify-content-end">
