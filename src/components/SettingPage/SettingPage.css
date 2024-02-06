@@ -749,6 +749,14 @@
 .nvtpicnew:active{
   color:#2a2a72 ;
 }
+.pintnnmmm{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+.pintnnmmm:hover{
+  color:#2a2a72 ;
+}
 @media screen and (max-width: 768px) {
   .pdinf{
     padding: 0;
