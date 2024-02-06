@@ -5,18 +5,17 @@ import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import Homepage_image from "../HomePage/Img/homepage.png";
 import "../HomePage/Home.css";
-import img1 from "../HomePage/Img/1.png";
 import GAP_Image from "../HomePage/Img/GAP_BG.png";
-import Student_Image from "../HomePage/Img/Student.png";
 import User_image from "../HomePage/Img/user.png";
-import Mentor3_Image from "../HomePage/Img/mentor3.png";
-import Col from "react-bootstrap/Col";
+import Level from "../SettingPage/img/level.png";
+import img1 from "../HomePage/Img/1.png";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
 import { Modal } from "react-bootstrap";
-
 import TakeABreak from "../HomePage/Img/Group 421.png";
+import { FaSearch } from "react-icons/fa";
+import { FormControl } from "react-bootstrap";
 import {
   IoHomeOutline,
   IoPeopleOutline,
@@ -79,7 +78,7 @@ const handleLogout = () => {
                       variant="light"
                       className="list-group-item-custom"
                       onClick={() => {
-                        window.location.href = "/underConstructionHome";
+                        window.location.href = "/home";
                       }}
                       style={{ backgroundColor: "#DDDDFE", border: "0" }}
                     >
@@ -176,6 +175,8 @@ const handleLogout = () => {
                       Settings
                     </ListGroup.Item>
                     <br />
+                    <br />
+                    <br />
                     <ListGroup.Item
                       onClick={handleShow}
                       action
@@ -226,46 +227,64 @@ const handleLogout = () => {
           </div>
           <div className="col-lg-9 vh-100">
             <Navbar className="mt-3 justify-content-between">
-              <Form inline>
-                <Col xs="auto">
-                  <Form.Control
+            <Form className="mx-auto">
+                <div className="position-relative">
+                  <FormControl
                     type="text"
-                    placeholder="Find a Mentor"
-                    className="mr-sm-3 custom-form-control"
+                    placeholder="Find A Mentor"
+                    className="w-100"
                   />
-                </Col>
+                  <FaSearch
+                    className="position-absolute top-50 translate-middle-y text-muted"
+                    style={{ right: "15px" }}
+                  />
+                </div>
               </Form>
-              <Navbar.Brand href="#home">
-                {/* <img
-                  src={Student_Image}
-                  width="50"
+              <Navbar.Brand
+                href="#"
+                className="d-flex align-items-center"
+                style={{ marginLeft: "auto" }}
+              >
+                <img
+                  src={Level}
+                  width="60"
                   height="40"
                   className="d-inline-block "
                   alt="React Bootstrap logo"
-                /> */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="50"
-                  height="30"
-                  fill="currentColor"
-                  class="bi bi-bell"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
-                </svg>
-
-                <img
-                  src={User_image}
-                  width="45"
-                  height="45"
-                  className="d-inline-block "
-                  alt="React Bootstrap logo"
-                  onClick={() => {
-                    window.location.href = "/userProfileEmptyView";
-                  }}
-                />
+                />{" "}
+                &nbsp;&nbsp;
+                <div className="ml-auto d-flex align-items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="39"
+                    height="40"
+                    viewBox="0 0 39 40"
+                    fill="none"
+                  >
+                    <path
+                      d="M31.6875 20.7142V17.5625H29.25V21.2188C29.2501 21.542 29.3785 21.8519 29.6071 22.0804L32.9062 25.3796V27.3125H6.09375V25.3796L9.39291 22.0804C9.62148 21.8519 9.74993 21.542 9.75 21.2188V16.3438C9.7466 14.6312 10.1952 12.948 11.0505 11.4643C11.9058 9.98053 13.1375 8.74879 14.6212 7.89343C16.1049 7.03808 17.7881 6.58941 19.5007 6.59275C21.2133 6.59609 22.8946 7.05131 24.375 7.91244V5.18853C23.2149 4.67485 21.9809 4.34745 20.7188 4.21841V1.71875H18.2812V4.21719C15.2765 4.52301 12.4919 5.93211 10.4659 8.17201C8.43982 10.4119 7.31628 13.3235 7.3125 16.3438V20.7142L4.01334 24.0133C3.78477 24.2418 3.65632 24.5518 3.65625 24.875V28.5312C3.65625 28.8545 3.78465 29.1645 4.01321 29.393C4.24177 29.6216 4.55177 29.75 4.875 29.75H13.4062V30.9688C13.4062 32.5849 14.0483 34.1349 15.1911 35.2777C16.3339 36.4205 17.8838 37.0625 19.5 37.0625C21.1162 37.0625 22.6661 36.4205 23.8089 35.2777C24.9517 34.1349 25.5938 32.5849 25.5938 30.9688V29.75H34.125C34.4482 29.75 34.7582 29.6216 34.9868 29.393C35.2153 29.1645 35.3438 28.8545 35.3438 28.5312V24.875C35.3437 24.5518 35.2152 24.2418 34.9867 24.0133L31.6875 20.7142ZM23.1562 30.9688C23.1562 31.9384 22.771 32.8684 22.0854 33.5541C21.3997 34.2398 20.4697 34.625 19.5 34.625C18.5303 34.625 17.6003 34.2398 16.9146 33.5541C16.229 32.8684 15.8438 31.9384 15.8438 30.9688V29.75H23.1562V30.9688Z"
+                      fill="#2A2A72"
+                    />
+                    <path
+                      d="M31.6875 15.125C34.3799 15.125 36.5625 12.9424 36.5625 10.25C36.5625 7.55761 34.3799 5.375 31.6875 5.375C28.9951 5.375 26.8125 7.55761 26.8125 10.25C26.8125 12.9424 28.9951 15.125 31.6875 15.125Z"
+                      fill="#FF0000"
+                    />
+                  </svg>
+                  &nbsp;&nbsp;
+                  <img
+                    src={User_image}
+                    width="45"
+                    height="45"
+                    className="d-inline-block"
+                    alt="React Bootstrap logo"
+                    onClick={() => {
+                      window.location.href = "/userProfileEmptyView";
+                    }}
+                   
+                  />
+                </div>
               </Navbar.Brand>
-            </Navbar>
+            </Navbar> 
             <div className="col-lg-12 custom-Point d-flex mt-4 ">
               <div className="col-lg-9">
                 <h4 className="custom-S-text1 mt-4">Hi {firstName}!!</h4>
@@ -296,8 +315,9 @@ const handleLogout = () => {
                   className="View-more"
                   style={{ cursor: "pointer", color: "blue" }}
                   onClick={() => {
-                    Window.location.href = "/mentors";
+                    window.location.href = "/underConstructionMentors";
                   }}
+                  
                 >
                   <u>View More</u>
                 </h6>
@@ -306,296 +326,17 @@ const handleLogout = () => {
 
             <CardGroup style={{ marginTop: "5px" }}>
               <Card style={{ marginRight: "20px", borderRadius: "10px" }}>
-                <Card.Img variant="top" src={Mentor3_Image} />
-                <Card.Body
-                  style={{ backgroundColor: "#474040cc", borderRadius: "10px" }}
-                >
-                  <Card.Title style={{ color: "#ffffff" }}>
-                    Amanda Silva
-                  </Card.Title>
-                  <Card.Text style={{ color: "#ffffff" }}>
-                    IT | Technology
-                    <br />
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#FFE70F"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#FFE70F"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#FFE70F"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#FFE70F"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#DEDEDE"
-                      class="bi bi-star"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
-                    </svg>
-                    <br />
-                    <div className="text-center">
-                      <button
-                        className="btn custom-mentor my-1 my-sm-3 "
-                        type="submit"
-                      >
-                        Request
-                      </button>
-                    </div>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              <Card style={{ marginRight: "20px", borderRadius: "10px" }}>
-                <img className="klmyi" alt="imgg" src={Mentor3_Image} />
-                <Card.Body
-                  style={{ backgroundColor: "#474040cc", borderRadius: "10px" }}
-                >
-                  <Card.Title style={{ color: "#ffffff" }}>
-                    Amanda Silva
-                  </Card.Title>
-                  <Card.Text style={{ color: "#ffffff" }}>
-                    IT | Technology
-                    <br />
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#FFE70F"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#FFE70F"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#FFE70F"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#FFE70F"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#DEDEDE"
-                      class="bi bi-star"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
-                    </svg>
-                    <br />
-                    <div className="text-center">
-                      <button
-                        className="btn custom-mentor my-1 my-sm-3 "
-                        type="submit"
-                      >
-                        Request
-                      </button>
-                    </div>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              <Card style={{ marginRight: "20px", borderRadius: "10px" }}>
-                <Card.Img variant="top" src={Mentor3_Image} />
-                <Card.Body
-                  style={{ backgroundColor: "#474040cc", borderRadius: "10px" }}
-                >
-                  <Card.Title style={{ color: "#ffffff" }}>
-                    Amanda Silva
-                  </Card.Title>
-                  <Card.Text style={{ color: "#ffffff" }}>
-                    IT | Technology
-                    <br />
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#FFE70F"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#FFE70F"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#FFE70F"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#FFE70F"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#DEDEDE"
-                      class="bi bi-star"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
-                    </svg>
-                    <br />
-                    <div className="text-center">
-                      <button
-                        className="btn custom-mentor my-1 my-sm-3 "
-                        type="submit"
-                      >
-                        Request
-                      </button>
-                    </div>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              <Card style={{ marginRight: "20px", borderRadius: "10px" }}>
-                <Card.Img variant="top" src={Mentor3_Image} />
-                <Card.Body
-                  style={{ backgroundColor: "#474040cc", borderRadius: "10px" }}
-                >
-                  <Card.Title style={{ color: "#ffffff" }}>
-                    Amanda Silva
-                  </Card.Title>
-                  <Card.Text style={{ color: "#ffffff" }}>
-                    IT | Technology
-                    <br />
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#FFE70F"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#FFE70F"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#FFE70F"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#FFE70F"
-                      class="bi bi-star-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#DEDEDE"
-                      class="bi bi-star"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
-                    </svg>
-                    <br />
-                    <div className="text-center">
-                      <button
-                        className="btn custom-mentor my-1 my-sm-3 "
-                        type="submit"
-                      >
-                        Request
-                      </button>
-                    </div>
-                  </Card.Text>
-                </Card.Body>
+                <div className="text-center">
+                  <div>
+                    <img src={img1} alt="YourImage" className="conimg" />
+                  </div>
+                  <div>
+                    <h2 className="contpik"> Under construction</h2>
+                    <p className="conpret">
+                      To make things perfect we need some time to build.
+                    </p>
+                  </div>
+                </div>
               </Card>
             </CardGroup>
           </div>

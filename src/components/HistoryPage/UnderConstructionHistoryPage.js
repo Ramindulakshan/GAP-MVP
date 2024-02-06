@@ -41,7 +41,7 @@ function UnderConstructionHistoryPage() {
               </div>
               <Tab.Container
                 id="list-group-tabs-example"
-                defaultActiveKey="/underConstructionHome"
+                defaultActiveKey="/home"
               >
                 <Row>
                   <ListGroup>
@@ -50,9 +50,8 @@ function UnderConstructionHistoryPage() {
                       variant="light"
                       className="list-group-item-custom"
                       onClick={() => {
-                        window.location.href = "/underConstructionHome";
+                        window.location.href = "/home";
                       }}
-                      style={{ backgroundColor: "#DDDDFE", border: "0" }}
                     >
                       <IoHomeOutline
                         style={{ fontSize: "18px", marginRight: "20px" }}
@@ -64,7 +63,6 @@ function UnderConstructionHistoryPage() {
                       action
                       variant="light"
                       className="list-group-item-custom"
-                      // href="#link2"
                       onClick={() => {
                         window.location.href = "/underConstructionMentors";
                       }}
@@ -123,6 +121,7 @@ function UnderConstructionHistoryPage() {
                       action
                       variant="light"
                       className="list-group-item-custom"
+                      style={{ backgroundColor: "#DDDDFE", border: "0" }}
                       onClick={() => {
                         window.location.href = "/underConstructionHistoryPage";
                       }}
@@ -133,6 +132,7 @@ function UnderConstructionHistoryPage() {
                       Mentoring History
                     </ListGroup.Item>
                     <br />
+                   
                     <ListGroup.Item
                       action
                       variant="light"
@@ -146,6 +146,8 @@ function UnderConstructionHistoryPage() {
                       />
                       Settings
                     </ListGroup.Item>
+                    <br />
+                    <br />
                     <br />
                     <ListGroup.Item
                       onClick={handleShow}

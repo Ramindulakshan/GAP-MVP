@@ -182,7 +182,7 @@ function SettingPage() {
               </div>
               <Tab.Container
                 id="list-group-tabs-example"
-                defaultActiveKey="/underConstructionHome"
+                defaultActiveKey="/home"
               >
                 <Row>
                   <ListGroup>
@@ -191,9 +191,8 @@ function SettingPage() {
                       variant="light"
                       className="list-group-item-custom"
                       onClick={() => {
-                        window.location.href = "/underConstructionHome";
+                        window.location.href = "/home";
                       }}
-                      style={{ backgroundColor: "#DDDDFE", border: "0" }}
                     >
                       <IoHomeOutline
                         style={{ fontSize: "18px", marginRight: "20px" }}
@@ -278,6 +277,7 @@ function SettingPage() {
                       action
                       variant="light"
                       className="list-group-item-custom"
+                      style={{ backgroundColor: "#DDDDFE", border: "0" }}
                       onClick={() => {
                         window.location.href = "/settings";
                       }}
@@ -287,6 +287,8 @@ function SettingPage() {
                       />
                       Settings
                     </ListGroup.Item>
+                    <br />
+                    <br />
                     <br />
                     <ListGroup.Item
                       onClick={handleShow}
@@ -436,9 +438,11 @@ function SettingPage() {
                       <div id="About">
                         <div class="Cardsection">
                           <div className="maintopicset">
+                          <br></br>
                             <h1 className="hedtpic">
                               Generation ALPHA Platform
                             </h1>
+                            <br></br>
                             <p className="hedpar">
                               Generation ALPHA is a company dedicated to
                               providing a unique space for young adults to
@@ -460,7 +464,7 @@ function SettingPage() {
                           <div className="card ">
                             <div className="container mt-2 ">
                               <div className="row pdinf">
-                                <div className="col-sm-5 col-md-5 col-lg-4 text-center">
+                                <div className="col-sm-2 col-md-4 col-lg-5 text-center">
                                   <div className="pbtn2oo">
                                     <div className="clbtn">
                                       <svg
@@ -770,6 +774,7 @@ function SettingPage() {
                       <div className="main-box" id="ChangePassword">
                         <div class="Cardsection">
                           <div className="card">
+                          <br></br>
                             <h3 className="card-title fw-bold">
                               Change your password
                             </h3>
@@ -875,6 +880,7 @@ function SettingPage() {
                       <div className="main-box" id="DeleteAccount">
                         <div class="Cardsection">
                           <div className="card">
+                            <br></br>
                             <h3 className="card-title fw-bold">
                               Are you sure you want to delete your account ?
                             </h3>
@@ -1154,7 +1160,7 @@ function SettingPage() {
                           <div className="card ">
                             <div className="container mt-2 ">
                               <div className="row pdinf">
-                                <div className="col-sm-5 col-md-5 col-lg-4 text-center">
+                                <div className="col-sm-5 col-md-5 col-lg-5 text-center">
                                   <div className="pbtn2oo">
                                     <div className="clbtn">
                                       <svg

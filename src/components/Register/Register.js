@@ -41,9 +41,13 @@ function Prologin() {
   const handleShow2 = () => setShow2(true);
 
   const [showPassword, setShowPassword] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+  const togglePasswordVisibility2 = () => {
+    setShowPassword2(!showPassword2);
   };
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -194,12 +198,12 @@ function Prologin() {
                             required
                             onChange={handlePasswordChange}
                           />
-                          {/* <InputGroup.Text
+                          <InputGroup.Text
                             id="passwordHelpBlock"
                             onClick={togglePasswordVisibility}
                           >
-                            {showPassword ? <HiOutlineEyeOff /> : <HiOutlineEye />}
-                          </InputGroup.Text> */}
+                            {!showPassword ? <HiOutlineEyeOff /> : <HiOutlineEye />}
+                          </InputGroup.Text>
                           <Form.Control.Feedback type="invalid">
                             
                           </Form.Control.Feedback>
@@ -212,21 +216,21 @@ function Prologin() {
                         <InputGroup hasValidation>
                           <Form.Control
                             size="medium"
-                            type={showPassword ? "text" : "password"}
+                            type={showPassword2 ? "text" : "password"}
                             id="inputConfirmPassword"
-                            aria-describedby="passwordHelpBlock"
+                            aria-describedby="passwordHelpBlock2"
                             placeholder="Confirm Password"
                             style={{ textTransform: "none" }}
                             value={confirmPassword}
                             required
                             onChange={handleConfirmPasswordChange}
                           />
-                          {/* <InputGroup.Text
-                            id="passwordHelpBlock"
-                            onClick={togglePasswordVisibility}
+                          <InputGroup.Text
+                            id="passwordHelpBlock2"
+                            onClick={togglePasswordVisibility2}
                           >
-                            {showPassword ? <HiOutlineEyeOff /> : <HiOutlineEye />}
-                          </InputGroup.Text> */}
+                            {!showPassword2 ? <HiOutlineEyeOff /> : <HiOutlineEye />}
+                          </InputGroup.Text>
                           <Form.Control.Feedback type="invalid">
                             
                           </Form.Control.Feedback>

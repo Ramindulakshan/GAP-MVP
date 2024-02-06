@@ -7,12 +7,22 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Register_image from "../Register/img/register.png";
 import InputGroup from "react-bootstrap/InputGroup";
+import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 
 const LoginPage = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [validated, setValidated] = useState(false);
   const navigate = useNavigate();
+
+
+  const [showPassword, setShowPassword] = useState(false);
+
+const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+
 
   const handleSubmit = (e) => {
     const form = e.currentTarget;
@@ -108,14 +118,27 @@ const LoginPage = () => {
                       <Form.Group controlId="validationCustomUsername">
                         <InputGroup hasValidation>
                           <Form.Control
-                            type="password"
+                            
+                            type ={showPassword ? "text" : "password"}
                             placeholder="Password"
+                            value={password}
+                            aria-describedby="passwordHelpBlock2"
+                            id="inputConfirmPassword"
+
                             style={{ textTransform: "none" }}
-                            aria-describedby="inputGroupPrepend"
+                            
                             required
                             onChange={(e) => setPassword(e.target.value)}
                           />
-                          <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
+                          <InputGroup.Text
+                            id="passwordHelpBlock"
+                            onClick={togglePasswordVisibility}
+                          >
+                            {!showPassword ? <HiOutlineEyeOff /> : <HiOutlineEye />}
+                          </InputGroup.Text>
+                          <Form.Control.Feedback type="invalid">
+                            
+                          </Form.Control.Feedback>
                         </InputGroup>
                       </Form.Group>
                     </Form>
