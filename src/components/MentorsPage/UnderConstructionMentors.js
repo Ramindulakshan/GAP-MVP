@@ -40,7 +40,7 @@ function UnderConstructionMentors() {
               </div>
               <Tab.Container
                 id="list-group-tabs-example"
-                defaultActiveKey="/underConstructionHome"
+                defaultActiveKey="/home"
               >
                 <Row>
                   <ListGroup>
@@ -49,9 +49,8 @@ function UnderConstructionMentors() {
                       variant="light"
                       className="list-group-item-custom"
                       onClick={() => {
-                        window.location.href = "/underConstructionHome";
+                        window.location.href = "/home";
                       }}
-                      style={{ backgroundColor: "#DDDDFE", border: "0" }}
                     >
                       <IoHomeOutline
                         style={{ fontSize: "18px", marginRight: "20px" }}
@@ -63,7 +62,7 @@ function UnderConstructionMentors() {
                       action
                       variant="light"
                       className="list-group-item-custom"
-                      // href="#link2"
+                      style={{ backgroundColor: "#DDDDFE", border: "0" }}
                       onClick={() => {
                         window.location.href = "/underConstructionMentors";
                       }}
@@ -145,6 +144,8 @@ function UnderConstructionMentors() {
                       />
                       Settings
                     </ListGroup.Item>
+                    <br />
+                    <br />
                     <br />
                     <ListGroup.Item
                         onClick={handleShow}

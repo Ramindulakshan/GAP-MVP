@@ -46,7 +46,7 @@ function UnderConstructionWeeklySchedulePage() {
               </div>
               <Tab.Container
                 id="list-group-tabs-example"
-                defaultActiveKey="/underConstructionHome"
+                defaultActiveKey="/home"
               >
                 <Row>
                   <ListGroup>
@@ -55,9 +55,8 @@ function UnderConstructionWeeklySchedulePage() {
                       variant="light"
                       className="list-group-item-custom"
                       onClick={() => {
-                        window.location.href = "/underConstructionHome";
+                        window.location.href = "/home";
                       }}
-                      style={{ backgroundColor: "#DDDDFE", border: "0" }}
                     >
                       <IoHomeOutline
                         style={{ fontSize: "18px", marginRight: "20px" }}
@@ -113,6 +112,7 @@ function UnderConstructionWeeklySchedulePage() {
                       action
                       variant="light"
                       className="list-group-item-custom"
+                      style={{ backgroundColor: "#DDDDFE", border: "0" }}
                       onClick={() => {
                         window.location.href =
                           "/underConstructionWeeklySchedulePage";
@@ -151,6 +151,8 @@ function UnderConstructionWeeklySchedulePage() {
                       />
                       Settings
                     </ListGroup.Item>
+                    <br />
+                    <br />
                     <br />
                     <ListGroup.Item
                     onClick={handleShow}

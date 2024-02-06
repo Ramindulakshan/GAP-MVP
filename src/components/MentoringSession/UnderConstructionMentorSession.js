@@ -41,7 +41,7 @@ function UnderConstructionMentorSession() {
               </div>
               <Tab.Container
                 id="list-group-tabs-example"
-                defaultActiveKey="/underConstructionHome"
+                defaultActiveKey="/home"
               >
                 <Row>
                   <ListGroup>
@@ -50,9 +50,8 @@ function UnderConstructionMentorSession() {
                       variant="light"
                       className="list-group-item-custom"
                       onClick={() => {
-                        window.location.href = "/underConstructionHome";
+                        window.location.href = "/home";
                       }}
-                      style={{ backgroundColor: "#DDDDFE", border: "0" }}
                     >
                       <IoHomeOutline
                         style={{ fontSize: "18px", marginRight: "20px" }}
@@ -79,6 +78,7 @@ function UnderConstructionMentorSession() {
                       action
                       variant="light"
                       className="list-group-item-custom"
+                      style={{ backgroundColor: "#DDDDFE", border: "0" }}
                       onClick={() => {
                         window.location.href =
                           "/underConstructionMentorSession";
@@ -133,6 +133,7 @@ function UnderConstructionMentorSession() {
                       Mentoring History
                     </ListGroup.Item>
                     <br />
+                    
                     <ListGroup.Item
                       action
                       variant="light"
@@ -146,6 +147,8 @@ function UnderConstructionMentorSession() {
                       />
                       Settings
                     </ListGroup.Item>
+                    <br />
+                    <br />
                     <br />
                     <ListGroup.Item
                          onClick={handleShow}

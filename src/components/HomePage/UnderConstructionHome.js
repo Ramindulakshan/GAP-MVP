@@ -156,6 +156,8 @@ function UnderConstructionHome() {
                       Settings
                     </ListGroup.Item>
                     <br />
+                    <br />
+                    <br />
                     <div>
                       <ListGroup.Item
                         onClick={handleShow}

@@ -29,10 +29,12 @@ const LandingPage = () => {
           <div className="container">
             <nav className="navbar navbar-light">
 
-              <a className="navbar-brand" href="home" onClick={() => {
-                window.location.href = "/";
-              }}>
+            <a className="navbar-brand"  href="home" onClick={() => {
+                  window.location.href = "/";
+                }}>
 
+                <img src={GAP_Image} height="90" alt="" />
+              </a>
               <a className="navbar-brand"  href="home"></a>
 
               <a
