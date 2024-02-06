@@ -471,7 +471,7 @@ function SettingPage() {
                                       </svg>
                                     </div>
                                     <p className="desbtn">Phone</p>
-                                    <p className="desbtn">011 4586936</p>
+                                    <p className="desbtn">076 7090757</p>
                                   </div>
                                 </div>
                                 <div className="col-sm-4 col-md-8 col-lg-4 text-center">
@@ -497,7 +497,7 @@ function SettingPage() {
                                       </svg>
                                     </div>
                                     <p className="desbtn2">Email</p>
-                                    <p className="desbtn2">abc@gmail.com</p>
+                                    <p className="desbtn2">generationalpha2025@gmail.com</p>
                                   </div>
                                 </div>
                               </div>
@@ -510,6 +510,7 @@ function SettingPage() {
                             <div className="container mt-2">
                               <div className="row">
                                 <div className="col-sm-4 col-md-4 col-lg-3 text-center">
+                                  <a href="https://www.facebook.com/generationalpha2025?mibextid=ZbWKwL" target="blanck" className="pintnnmmm">
                                   <div className="pbtn2oo">
                                     <svg
                                       xmlns="http://www.w3.org/2000/svg"
@@ -533,8 +534,10 @@ function SettingPage() {
                                     </svg>
                                   </div>
                                   <p className="mb-0 pint">Facebook</p>
+                                  </a>
                                 </div>
                                 <div className="col-sm-4 col-md-4 col-lg-3 text-center">
+                                <a href="/" target="blanck" className="pintnnmmm">
                                   <div className="pbtn2oo">
                                     <svg
                                       xmlns="http://www.w3.org/2000/svg"
@@ -626,8 +629,10 @@ function SettingPage() {
                                     </svg>
                                   </div>
                                   <p className="mb-0 pint">Instagram</p>
+                                  </a>
                                 </div>
                                 <div className="col-sm-4 col-md-4 col-lg-3 text-center">
+                                <a href="/" target="blanck" className="pintnnmmm">
                                   <div className="pbtn2oo">
                                     <svg
                                       xmlns="http://www.w3.org/2000/svg"
@@ -659,8 +664,10 @@ function SettingPage() {
                                     </svg>
                                   </div>
                                   <p className="mb-0 pint">Tik Tok</p>
+                                  </a>
                                 </div>
                                 <div className="col-sm-4 col-md-4 col-lg-3 text-center">
+                                <a href="https://www.linkedin.com/company/generation-alpha2025/" target="blanck" className="pintnnmmm">
                                   <div className="pbtn2oo">
                                     <svg
                                       xmlns="http://www.w3.org/2000/svg"
@@ -684,6 +691,7 @@ function SettingPage() {
                                     </svg>
                                   </div>
                                   <p className="mb-0 pint">Linkedin</p>
+                                </a>
                                 </div>
                               </div>
                             </div>
@@ -1136,10 +1144,10 @@ function SettingPage() {
                                       </svg>
                                     </div>
                                     <p className="desbtn">Phone</p>
-                                    <p className="desbtn">011 4586936</p>
+                                    <p className="desbtn">076 7090757</p>
                                   </div>
                                 </div>
-                                <div className="col-sm-4 col-md-8 col-lg-4 text-center">
+                                <div className="col-sm-4 col-md-8 col-lg-9 text-center">
                                   <div className="pbtn2oo">
                                     <div className="clbtnnwe">
                                       <svg
@@ -1162,7 +1170,7 @@ function SettingPage() {
                                       </svg>
                                     </div>
                                     <p className="desbtn2">Email</p>
-                                    <p className="desbtn2">abc@gmail.com</p>
+                                    <p className="desbtn2">generationalpha2025@gmail.com</p>
                                   </div>
                                 </div>
                               </div>
