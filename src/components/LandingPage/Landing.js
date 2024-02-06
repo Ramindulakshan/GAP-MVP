@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Login_image from "../LoginPage/Img/login.png";
 import "../LandingPage/Landing.css";
-// import Google_image from '../LoginPage/Img/google.png';
 import CountUp from "react-countup";
-import { Card, Row, Col } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import CardGroup from "react-bootstrap/CardGroup";
 import GAP_Image from "../HomePage/Img/GAP_BG.png";
 import axios from "axios";
@@ -26,24 +24,13 @@ const LandingPage = () => {
 
   return (
     <>
-      <section className="">
-        <div className="container-fluid vh-100  ">
+      <section className="new-background">
+        <div className="container-fluid vh-100">
           <div className="container">
             <nav className="navbar navbar-light">
-
-
-              
-
-              <a className="navbar-brand"  href="home" onClick={() => {
-
-              <a
-                className="navbar-brand"
-                href="home"
-                onClick={() => {
-
-                  window.location.href = "/";
-                }}
-              >
+              <a className="navbar-brand" href="home" onClick={() => {
+                window.location.href = "/";
+              }}>
                 <img src={GAP_Image} height="90" alt="" />
               </a>
               <div className="d-flex justify-content-end">
@@ -176,8 +163,8 @@ const LandingPage = () => {
               </button>
             </div>
           </div>
-          </div>
-        
+        </div>
+
       </section>
     </>
   );

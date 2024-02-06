@@ -24,11 +24,8 @@ import { TfiBookmarkAlt } from "react-icons/tfi";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { RxCountdownTimer } from "react-icons/rx";
 import { IoIosLogOut } from "react-icons/io";
-
 import { IoSaveSharp } from "react-icons/io5";
-
 import userPic from "../HomePage/Img/user.png";
-import { IoSaveSharp } from "react-icons/io5";
 
 function UserProfileEmptyView() {
   const [userData, setUserData] = useState({
@@ -77,12 +74,12 @@ function UserProfileEmptyView() {
   const [skills, setSkills] = useState("");
   const [file, setFile] = useState(null);
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setFile(file);
-    }
-  };
+  // const handleFileChange = (event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     setFile(file);
+  //   }
+  // };
 
   /*Photo Change Model*/
   const [show, setShow] = useState(false);
