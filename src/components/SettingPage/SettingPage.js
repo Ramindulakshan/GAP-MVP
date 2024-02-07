@@ -166,7 +166,11 @@ function SettingPage() {
         console.error(error);
       });
   };
+  const [activePage, setActivePage] = useState('#About'); // Set the default active page
 
+  const handlePageChange = (page) => {
+    setActivePage(page);
+  };
   return (
     <div>
       <div className="container-fluid">
@@ -406,30 +410,40 @@ function SettingPage() {
                 margin: "0 0 50px 20px",
               }}
             >
-              <div id="nav" className="nave">
-                <div>
-                  <h5>
-                    <a href="#About" className="mb-0 navtpic333 nvtpicnew">
-                      About Us
-                    </a>
-                    <a
-                      href="#ChangePassword"
-                      className="mb-0 navtpic333 nvtpicnew"
-                    >
-                      Change Password
-                    </a>
-                    <a
-                      href="#DeleteAccount"
-                      className="mb-0 navtpic333 nvtpicnew"
-                    >
-                      Delete Account
-                    </a>
-                    <a href="#ContactUs" className="mb-0 navtpic333 nvtpicnew">
-                      Contact Us
-                    </a>
-                  </h5>
-                </div>
-              </div>
+           <div id="nav" className="nave">
+      <div>
+        <h5>
+          <a
+            href="#About"
+            className={`mb-0 navtpic333 nvtpicnew ${activePage === '#About' ? 'active' : ''}`}
+            onClick={() => handlePageChange('#About')}
+          >
+            About Us
+          </a>
+          <a
+            href="#ChangePassword"
+            className={`mb-0 navtpic333 nvtpicnew ${activePage === '#ChangePassword' ? 'active' : ''}`}
+            onClick={() => handlePageChange('#ChangePassword')}
+          >
+            Change Password
+          </a>
+          <a
+            href="#DeleteAccount"
+            className={`mb-0 navtpic333 nvtpicnew ${activePage === '#DeleteAccount' ? 'active' : ''}`}
+            onClick={() => handlePageChange('#DeleteAccount')}
+          >
+            Delete Account
+          </a>
+          <a
+            href="#ContactUs"
+            className={`mb-0 navtpic333 nvtpicnew ${activePage === '#ContactUs' ? 'active' : ''}`}
+            onClick={() => handlePageChange('#ContactUs')}
+          >
+            Contact Us
+          </a>
+        </h5>
+      </div>
+    </div>
               <div>
                 <div className="col-lg-12 vh-100 overflow-auto">
                   <div>
