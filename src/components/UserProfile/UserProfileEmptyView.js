@@ -1359,7 +1359,7 @@ function UserProfileEmptyView() {
                             />
                           </Form.Group>
                           <br></br>
-                          <Form.Label>Grade*</Form.Label>
+                          <Form.Label>Grade</Form.Label>
                           <Form.Control
                           value={grade}
                           onChange={(e) => setGrade(e.target.value)}
@@ -1580,7 +1580,7 @@ function UserProfileEmptyView() {
                             />
                           </Form.Group>
                           <br></br>
-                          <Form.Label>Grade*</Form.Label>
+                          <Form.Label>Grade</Form.Label>
                           <Form.Control
                             value={grade}
                             onChange={(e) => setGrade(e.target.value)}

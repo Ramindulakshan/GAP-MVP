@@ -757,6 +757,12 @@
 .pintnnmmm:hover{
   color:#2a2a72 ;
 }
+/* Add this to your CSS stylesheet */
+.nvtpicnew.active {
+  color:#2a2a72 ;
+  border-bottom: 5px solid #2a2a72;
+}
+
 @media screen and (max-width: 768px) {
   .pdinf{
     padding: 0;

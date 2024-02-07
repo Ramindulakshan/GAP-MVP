@@ -1206,7 +1206,7 @@ function UserProfile() {
                             />
                           </Form.Group>
                           <br></br>
-                          <Form.Label>Grade*</Form.Label>
+                          <Form.Label>Grade</Form.Label>
                           <Form.Control
                             placeholder="add grade"
                             style={{
