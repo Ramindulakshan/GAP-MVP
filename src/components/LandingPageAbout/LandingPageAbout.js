@@ -14,19 +14,43 @@ function LandingPageAbout() {
           <div className="container">
             <nav className="navbar navbar-light">
               <a className="navbar-brand" href="#c">
-                <img src={GAP_Image} height="90" alt="" /> GAP
+                <img src={GAP_Image} height="90" alt="" />
               </a>
               <div className="d-flex justify-content-end">
-                <a className="nav-link custom-nav-link " href="#c">
+                <a
+                  className="nav-link custom-nav-link "
+                  href="home"
+                  onClick={() => {
+                    window.location.href = "/underConstructionHome";
+                  }}
+                >
                   Home
                 </a>
-                <a className="nav-link custom-nav-link " href="#c">
+                <a
+                  className="nav-link custom-nav-link "
+                  href="landingPageAbout"
+                  onClick={() => {
+                    window.location.href = "/landingPageAbout";
+                  }}
+                >
                   About
                 </a>
-                <a className="nav-link custom-nav-link" href="#c">
+                <a
+                  className="nav-link custom-nav-link"
+                  href="landingPageContact"
+                  onClick={() => {
+                    window.location.href = "/landingPageContact";
+                  }}
+                >
                   Contact
                 </a>
-                <a className="nav-link custom-nav-link" href="#c">
+                <a
+                  className="nav-link custom-nav-link"
+                  href="login"
+                  onClick={() => {
+                    window.location.href = "/login";
+                  }}
+                >
                   Login
                 </a>
                 <form className="form-inline my-2 my-lg-0">
@@ -40,9 +64,9 @@ function LandingPageAbout() {
               </div>
             </nav>
           </div>
-          <div className="text-center cenclz">
-            <h5 className="card-title fw-bold titlabt">About Us </h5>
-            <p className="paraabty">
+          <div className="text-center cenclz mt-4 ">
+            <h5 className="card-title fw-bold titlabt mb-4">About Us </h5>
+            <p className="paraabty ">
               Generation ALPHA is a company dedicated to providing a unique
               space for young adults to discover their passions, enhance their
               skills, and shape their futures. Our students receive a
