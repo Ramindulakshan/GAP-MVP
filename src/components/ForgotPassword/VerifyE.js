@@ -19,6 +19,8 @@ class VerifyE extends React.Component {
       disable: true,
       password: "",
       confirmPassword: "",
+      resendDisabled: false,
+      countdown: 60,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -50,10 +52,22 @@ class VerifyE extends React.Component {
         console.log(err);
       });
   };
-  
+
 
   resendOTP = async (e) => {
     e.preventDefault();
+    this.setState({ resendDisabled: true });
+    let countdown = 60; // Reset countdown to 60 seconds
+    this.countdownInterval = setInterval(() => {
+      countdown--;
+      if (countdown === 0) {
+        clearInterval(this.countdownInterval);
+        this.setState({ resendDisabled: false, countdown: 60 });
+      } else {
+        this.setState({ countdown });
+      }
+    }, 1000); // Update countdown every second
+
     await axios
       .post("http://localhost:3001/api/forgotPassword", {
         email: localStorage.getItem("email"),
@@ -65,6 +79,13 @@ class VerifyE extends React.Component {
         console.log(err);
       });
   };
+
+  componentWillUnmount() {
+    clearInterval(this.countdownInterval);
+  }
+
+
+
 
   handleChange(value1, event) {
     this.setState({ [value1]: event.target.value });
@@ -110,15 +131,13 @@ class VerifyE extends React.Component {
                 <img
                   src={Email_image}
                   alt="Your Image"
-                  className="img-fluid img-fluid custom-image-ULock mx-auto d-block"
-                />
-                <h1 className="text-center mb-5">Verify Email Address</h1>
+                  className="img-fluid img-fluid custom-image-ULock3 mx-auto d-block"
+                />      
+                <h1 className="text-center mb-4">Verify Email Address</h1>
                 <div className="row justify-content-center">
                   <div className="col-lg-9">
                     <div className="form-outline">
-                      <h5 className="mb-4 custom-text-sendcode ">
-                        Enter the OTP that send to your email
-                      </h5>
+                      
                       <form onSubmit={this.handleSubmit}>
                         <div className="otpContainer">
                           <input
@@ -191,9 +210,32 @@ class VerifyE extends React.Component {
                         </div>
                       </form>
                     </div>
-                    <h6 className="custom-text-AR ore mt-4 mb-4">
-                      Don’t receive OTP? <span style={{cursor: "pointer"}} onClick={this.resendOTP}>Resend</span>
+                    <h6 className="custom-text-AR ore mt-3 mb-2">
+                      Don’t receive OTP?{" "}
+                      <span
+                        style={{ cursor: "pointer" }}
+                        onClick={this.resendOTP}
+                        disabled={this.state.resendDisabled}
+                      >
+                        Resend
+                      </span>{" "}
+                      {this.state.resendDisabled && (
+                        <span>{this.state.countdown} seconds</span>
+                      )}
                     </h6>
+                    <div className="text-center">
+                      <button
+                        className="btn custom-button2rtyu  my-1 my-sm-3"
+                        type="submit"
+                        onClick={this.VerifyOTP}
+                      >
+                        Verify
+                      </button>
+                    </div>
+                    <div className="custom-input">
+                    <h5 className="mb-4 custom-text-sendcode ">
+                    Create A New Password
+                      </h5>
                     <div className="">
                       <div className="mb-4 ">
                         <input
@@ -216,14 +258,15 @@ class VerifyE extends React.Component {
                       </div>
                     </div>
 
-                    <div className="text-center">
+                    <div className="text-center mt-3">
                       <button
                         className="btn custom-button2rtyu  my-1 my-sm-3"
                         type="submit"
-                        onClick={this.VerifyOTP}
+                        // onClick={this.VerifyOTP}
                       >
-                        Verify
+                        Reset
                       </button>
+                    </div>
                     </div>
                   </div>
                 </div>
