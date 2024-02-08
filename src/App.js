@@ -70,6 +70,10 @@ const App = () => {
             path="/underConstructionHistoryPage"
             element={<UnderConstructionHistoryPage />}
           />
+            <Route
+            path="/userProfile"
+            element={<UserProfile />}
+          />
           <Route
             path="/underConstructionHome"
             element={<UnderConstructionHome />}
