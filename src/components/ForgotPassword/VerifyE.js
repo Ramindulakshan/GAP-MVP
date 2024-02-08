@@ -241,7 +241,7 @@ class VerifyE extends React.Component {
                         <input
                           value={this.state.password}
                           onChange={(e) => this.handleChange("password", e)}
-                          type="text"
+                          type="Password"
                           className="form-control"
                           placeholder="Password"
                         />

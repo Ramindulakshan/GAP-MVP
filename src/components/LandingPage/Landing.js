@@ -49,7 +49,7 @@ const LandingPage = () => {
                 </a>
                 <a
                   className="nav-link custom-nav-link "
-                  href="about"
+                  href="landingPageAbout"
                   onClick={() => {
                     window.location.href = "/landingPageAbout";
                   }}
@@ -58,7 +58,7 @@ const LandingPage = () => {
                 </a>
                 <a
                   className="nav-link custom-nav-link"
-                  href="contact"
+                  href="landingPageContact"
                   onClick={() => {
                     window.location.href = "/landingPageContact";
                   }}
@@ -75,9 +75,13 @@ const LandingPage = () => {
                   Login
                 </a>
                 <form className="form-inline my-2 my-lg-0">
+                
                   <button
                     className="btn custom-button1 my-2 my-sm-3"
                     type="submit"
+                    onClick={() => {
+                      window.location.href = "/register";
+                    }}
                   >
                     Register
                   </button>

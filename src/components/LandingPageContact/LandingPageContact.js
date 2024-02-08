@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import "../LandingPage/Landing.css";
 import GAP_Image from "../HomePage/Img/GAP_BG.png";
 import "../SettingPage/SettingPage.css";
-import { Form, FormControl } from "react-bootstrap";
-import { InputGroup } from "react-bootstrap";
-import { FaSearch } from "react-icons/fa";
-import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
+import { Form } from "react-bootstrap";
+
 function LandingPageContact() {
   const [text, setText] = useState("");
 
@@ -23,19 +21,43 @@ function LandingPageContact() {
           <div className="container">
             <nav className="navbar navbar-light">
               <a className="navbar-brand" href="#c">
-                <img src={GAP_Image} height="90" alt="" /> GAP
+                <img src={GAP_Image} height="90" alt="" />
               </a>
               <div className="d-flex justify-content-end">
-                <a className="nav-link custom-nav-link " href="#c">
+                <a
+                  className="nav-link custom-nav-link "
+                  href="home"
+                  onClick={() => {
+                    window.location.href = "/underConstructionHome";
+                  }}
+                >
                   Home
                 </a>
-                <a className="nav-link custom-nav-link " href="#c">
+                <a
+                  className="nav-link custom-nav-link "
+                  href="landingPageAbout"
+                  onClick={() => {
+                    window.location.href = "/landingPageAbout";
+                  }}
+                >
                   About
                 </a>
-                <a className="nav-link custom-nav-link" href="#c">
+                <a
+                  className="nav-link custom-nav-link"
+                  href="landingPageContact"
+                  onClick={() => {
+                    window.location.href = "/landingPageContact";
+                  }}
+                >
                   Contact
                 </a>
-                <a className="nav-link custom-nav-link" href="#c">
+                <a
+                  className="nav-link custom-nav-link"
+                  href="login"
+                  onClick={() => {
+                    window.location.href = "/login";
+                  }}
+                >
                   Login
                 </a>
                 <form className="form-inline my-2 my-lg-0">
@@ -51,8 +73,8 @@ function LandingPageContact() {
           </div>
           <div className="">
             {/*Contact Us Section Start*/}
-            <div>
-              <div class="newrtty">
+            <div className="d-flex justify-content-center">
+              <div className="">
                 <div className="confull">
                   <h5 className="card-title fw-bold titlenewwrt">Contact Us</h5>
                   <p className="pareconus">
@@ -62,9 +84,7 @@ function LandingPageContact() {
                     <div className=" mt-3">
                       <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                          <Form.Label className="lblcous">
-                            Phone Number
-                          </Form.Label>
+                          <Form.Label className="lblcous">Phone Number</Form.Label>
                           <Form.Control
                             type="email"
                             placeholder="+94 000000000"
@@ -72,19 +92,16 @@ function LandingPageContact() {
                           />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                          <Form.Label className="lblcous">
-                            Email (Optional)
-                          </Form.Label>
+                          <Form.Label className="lblcous">Email (Optional)</Form.Label>
                           <Form.Control
                             type="email"
                             placeholder="example@gmail.com "
                             required={"required"}
                           />
                           <Form.Label className="lblcous">Reason</Form.Label>
-                          <Form.Label className="lblcous">Reason</Form.Label>
                           <Form.Control
                             type="Text"
-                            placeholder="Eter Reason"
+                            placeholder="Enter Reason"
                             required={"required"}
                           />
                         </Form.Group>
@@ -100,7 +117,6 @@ function LandingPageContact() {
                             required={"required"}
                           />
                         </Form.Group>
-
                         <div className="text-right">
                           <p>{text.length}/300</p>
                         </div>
@@ -111,6 +127,7 @@ function LandingPageContact() {
                 </div>
               </div>
             </div>
+
 
             {/*Contact Us Section End */}
           </div>
