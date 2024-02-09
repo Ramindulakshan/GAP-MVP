@@ -500,7 +500,15 @@
 .newcrddetyl {
   padding: 0 0 0 60px;
 }
-
+.btn-add-new{
+  background-color: #E6F6FF;
+  color: #2A2A72;
+  padding: 3px 8px;
+  border-radius: 2px;
+  border: 0;
+  font-weight: bold;
+  cursor: pointer;
+}
 .svbtn{
   color: grey;
   width: 100px;
