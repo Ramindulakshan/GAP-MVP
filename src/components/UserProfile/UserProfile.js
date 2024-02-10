@@ -606,6 +606,8 @@ function UserProfile() {
                               fill="#2A2A72"
                             />
                           </svg>
+                          &nbsp;&nbsp;
+                          <button className="btn-add-new">button</button>
                         </div>
                         <div class="position-absolute bottom-0 end-0 p-3">
                           <div

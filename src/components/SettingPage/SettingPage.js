@@ -29,6 +29,8 @@ import { TfiBookmarkAlt } from "react-icons/tfi";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { RxCountdownTimer } from "react-icons/rx";
 import { IoIosLogOut } from "react-icons/io";
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
 import TakeABreak from "../HomePage/Img/Group 421.png";
 function SettingPage() {
   const { Formik } = formik;
@@ -166,11 +168,34 @@ function SettingPage() {
         console.error(error);
       });
   };
-  const [activePage, setActivePage] = useState('#About'); // Set the default active page
+  const [activePage, setActivePage] = useState("#About"); // Set the default active page
 
   const handlePageChange = (page) => {
     setActivePage(page);
   };
+
+  //Contact Us
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm("service_ujbarye", "template_vdnepgd", form.current, {
+        publicKey: "A7gPSfsx2Sr9vN779",
+      })
+      .then(
+        (result) => {
+          console.log(result.text);
+          alert("Gmail Send Success!");
+        },
+        (error) => {
+          console.log(error.text);
+          alert("Not Send");
+        }
+      );
+  };
+
   return (
     <div>
       <div className="container-fluid">
@@ -410,40 +435,48 @@ function SettingPage() {
                 margin: "0 0 50px 20px",
               }}
             >
-           <div id="nav" className="nave">
-      <div>
-        <h5>
-          <a
-            href="#About"
-            className={`mb-0 navtpic333 nvtpicnew ${activePage === '#About' ? 'active' : ''}`}
-            onClick={() => handlePageChange('#About')}
-          >
-            About Us
-          </a>
-          <a
-            href="#ChangePassword"
-            className={`mb-0 navtpic333 nvtpicnew ${activePage === '#ChangePassword' ? 'active' : ''}`}
-            onClick={() => handlePageChange('#ChangePassword')}
-          >
-            Change Password
-          </a>
-          <a
-            href="#DeleteAccount"
-            className={`mb-0 navtpic333 nvtpicnew ${activePage === '#DeleteAccount' ? 'active' : ''}`}
-            onClick={() => handlePageChange('#DeleteAccount')}
-          >
-            Delete Account
-          </a>
-          <a
-            href="#ContactUs"
-            className={`mb-0 navtpic333 nvtpicnew ${activePage === '#ContactUs' ? 'active' : ''}`}
-            onClick={() => handlePageChange('#ContactUs')}
-          >
-            Contact Us
-          </a>
-        </h5>
-      </div>
-    </div>
+              <div id="nav" className="nave">
+                <div>
+                  <h5>
+                    <a
+                      href="#About"
+                      className={`mb-0 navtpic333 nvtpicnew ${
+                        activePage === "#About" ? "active" : ""
+                      }`}
+                      onClick={() => handlePageChange("#About")}
+                    >
+                      About Us
+                    </a>
+                    <a
+                      href="#ChangePassword"
+                      className={`mb-0 navtpic333 nvtpicnew ${
+                        activePage === "#ChangePassword" ? "active" : ""
+                      }`}
+                      onClick={() => handlePageChange("#ChangePassword")}
+                    >
+                      Change Password
+                    </a>
+                    <a
+                      href="#DeleteAccount"
+                      className={`mb-0 navtpic333 nvtpicnew ${
+                        activePage === "#DeleteAccount" ? "active" : ""
+                      }`}
+                      onClick={() => handlePageChange("#DeleteAccount")}
+                    >
+                      Delete Account
+                    </a>
+                    <a
+                      href="#ContactUs"
+                      className={`mb-0 navtpic333 nvtpicnew ${
+                        activePage === "#ContactUs" ? "active" : ""
+                      }`}
+                      onClick={() => handlePageChange("#ContactUs")}
+                    >
+                      Contact Us
+                    </a>
+                  </h5>
+                </div>
+              </div>
               <div>
                 <div className="col-lg-12 vh-100 overflow-auto">
                   <div>
@@ -452,7 +485,7 @@ function SettingPage() {
                       <div id="About">
                         <div class="Cardsection">
                           <div className="maintopicset">
-                          <br></br>
+                            <br></br>
                             <h1 className="hedtpic">
                               Generation ALPHA Platform
                             </h1>
@@ -788,7 +821,7 @@ function SettingPage() {
                       <div className="main-box" id="ChangePassword">
                         <div class="Cardsection">
                           <div className="card">
-                          <br></br>
+                            <br></br>
                             <h3 className="card-title fw-bold">
                               Change your password
                             </h3>
@@ -1234,7 +1267,21 @@ function SettingPage() {
                           <div className="confull">
                             <div className="card">
                               <div className="container mt-3">
-                                <Form>
+                                <Form ref={form} onSubmit={sendEmail}>
+                                  <Form.Group
+                                    className="mb-3"
+                                    controlId="formBasicEmail"
+                                  >
+                                    <Form.Label className="lblcous">
+                                      Name
+                                    </Form.Label>
+                                    <Form.Control
+                                      type="text"
+                                      placeholder="your name"
+                                      required={"required"}
+                                      name="user_name"
+                                    />
+                                  </Form.Group>
                                   <Form.Group
                                     className="mb-3"
                                     controlId="formBasicEmail"
@@ -1243,9 +1290,10 @@ function SettingPage() {
                                       Phone Number
                                     </Form.Label>
                                     <Form.Control
-                                      type="email"
+                                      type="text"
                                       placeholder="+94 000000000"
                                       required={"required"}
+                                      name="phoneNumber"
                                     />
                                   </Form.Group>
                                   <Form.Group
@@ -1259,14 +1307,16 @@ function SettingPage() {
                                       type="email"
                                       placeholder="example@gmail.com "
                                       required={"required"}
+                                      name="user_email"
                                     />
                                     <Form.Label className="lblcous">
                                       Reason
                                     </Form.Label>
                                     <Form.Control
                                       type="Text"
-                                      placeholder="Eter Reason"
+                                      placeholder="Enter Reason"
                                       required={"required"}
+                                      name="reason"
                                     />
                                   </Form.Group>
                                   <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -1281,6 +1331,7 @@ function SettingPage() {
                                       value={text}
                                       onChange={handleChange}
                                       required={"required"}
+                                      name="message"
                                     />
                                   </Form.Group>
 

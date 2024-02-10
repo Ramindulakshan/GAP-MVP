@@ -660,8 +660,6 @@ function UserProfileEmptyView() {
                                   cursor: "pointer",
                                 }}
                               >
-                                <IoSaveSharp className="svbtn" />
-
                                 <IoSaveSharp
                                   className="svbtn"
                                   onClick={handlePhotoUpload}

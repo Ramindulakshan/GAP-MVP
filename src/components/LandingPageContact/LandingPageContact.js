@@ -3,7 +3,8 @@ import "../LandingPage/Landing.css";
 import GAP_Image from "../HomePage/Img/GAP_BG.png";
 import "../SettingPage/SettingPage.css";
 import { Form } from "react-bootstrap";
-
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
 function LandingPageContact() {
   const [text, setText] = useState("");
 
@@ -14,6 +15,27 @@ function LandingPageContact() {
       setText(inputText);
     }
   };
+    //Contact Us
+    const form = useRef();
+
+    const sendEmail = (e) => {
+      e.preventDefault();
+  
+      emailjs
+        .sendForm("service_ujbarye", "template_vdnepgd", form.current, {
+          publicKey: "A7gPSfsx2Sr9vN779",
+        })
+        .then(
+          (result) => {
+            console.log(result.text);
+            alert("Gmail Send Success!");
+          },
+          (error) => {
+            console.log(error.text);
+            alert("Not Send");
+          }
+        );
+    };
   return (
     <div>
       <section className="">
@@ -82,46 +104,81 @@ function LandingPageContact() {
                   </p>
                   <div className="cardll">
                     <div className=" mt-3">
-                      <Form>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                          <Form.Label className="lblcous">Phone Number</Form.Label>
-                          <Form.Control
-                            type="email"
-                            placeholder="+94 000000000"
-                            required={"required"}
-                          />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                          <Form.Label className="lblcous">Email (Optional)</Form.Label>
-                          <Form.Control
-                            type="email"
-                            placeholder="example@gmail.com "
-                            required={"required"}
-                          />
-                          <Form.Label className="lblcous">Reason</Form.Label>
-                          <Form.Control
-                            type="Text"
-                            placeholder="Enter Reason"
-                            required={"required"}
-                          />
-                        </Form.Group>
-                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                          <Form.Label className="lblcous">Message</Form.Label>
-                          <Form.Control
-                            as="textarea"
-                            rows={5}
-                            className="form-control"
-                            style={{ resize: "none" }}
-                            value={text}
-                            onChange={handleChange}
-                            required={"required"}
-                          />
-                        </Form.Group>
-                        <div className="text-right">
-                          <p>{text.length}/300</p>
-                        </div>
-                        <button className="sbmitbtn">Submit</button>
-                      </Form>
+                    <Form ref={form} onSubmit={sendEmail}>
+                                  <Form.Group
+                                    className="mb-3"
+                                    controlId="formBasicEmail"
+                                  >
+                                    <Form.Label className="lblcous">
+                                      Name
+                                    </Form.Label>
+                                    <Form.Control
+                                      type="text"
+                                      placeholder="your name"
+                                      required={"required"}
+                                      name="user_name"
+                                    />
+                                  </Form.Group>
+                                  <Form.Group
+                                    className="mb-3"
+                                    controlId="formBasicEmail"
+                                  >
+                                    <Form.Label className="lblcous">
+                                      Phone Number
+                                    </Form.Label>
+                                    <Form.Control
+                                      type="text"
+                                      placeholder="+94 000000000"
+                                      required={"required"}
+                                      name="phoneNumber"
+                                    />
+                                  </Form.Group>
+                                  <Form.Group
+                                    className="mb-3"
+                                    controlId="formBasicEmail"
+                                  >
+                                    <Form.Label className="lblcous">
+                                      Email (Optional)
+                                    </Form.Label>
+                                    <Form.Control
+                                      type="email"
+                                      placeholder="example@gmail.com "
+                                      required={"required"}
+                                      name="user_email"
+                                    />
+                                    <Form.Label className="lblcous">
+                                      Reason
+                                    </Form.Label>
+                                    <Form.Control
+                                      type="Text"
+                                      placeholder="Enter Reason"
+                                      required={"required"}
+                                      name="reason"
+                                    />
+                                  </Form.Group>
+                                  <Form.Group controlId="exampleForm.ControlTextarea1">
+                                    <Form.Label className="lblcous">
+                                      Message
+                                    </Form.Label>
+                                    <Form.Control
+                                      as="textarea"
+                                      rows={5}
+                                      className="form-control"
+                                      style={{ resize: "none" }}
+                                      value={text}
+                                      onChange={handleChange}
+                                      required={"required"}
+                                      name="message"
+                                    />
+                                  </Form.Group>
+
+                                  <div className="text-right">
+                                    <p>{text.length}/300</p>
+                                  </div>
+                                  <button className="subbtnconus">
+                                    Submit
+                                  </button>
+                                </Form>
                     </div>
                   </div>
                 </div>
