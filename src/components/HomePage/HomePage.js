@@ -32,29 +32,27 @@ const HomePage = () => {
   // const [show, setShow] = useState(true);
   // const handleShow = () => setShow(true);
   // const handleClose = () =>  setShow(false);
-  
 
   useEffect(() => {
     const storedFirstName = localStorage.getItem("firstName");
     setFirstName(storedFirstName);
-    
-  }, []);
-  
+  });
 
-const handleLogout = () => {
-  localStorage.removeItem("jwtToken");
-  localStorage.removeItem("firstName");
-  localStorage.removeItem("lastName");
-  handleClose();  
-  window.location.href = "/login";
-}
+  const handleLogout = () => {
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("lastName");
+    localStorage.removeItem("email");
+    handleClose();
+    window.location.href = "/login";
+  };
 
   /*LogOut Model*/
   const [show, setShow] = useState(false);
   /*LogOut Model*/
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
+
   return (
     <section>
       <div className="container-fluid">
@@ -228,7 +226,7 @@ const handleLogout = () => {
           </div>
           <div className="col-lg-9 vh-100">
             <Navbar className="mt-3 justify-content-between">
-            <Form className="mx-auto">
+              <Form className="mx-auto">
                 <div className="position-relative">
                   <FormControl
                     type="text"
@@ -281,11 +279,10 @@ const handleLogout = () => {
                     onClick={() => {
                       window.location.href = "/userProfileEmptyView";
                     }}
-                   
                   />
                 </div>
               </Navbar.Brand>
-            </Navbar> 
+            </Navbar>
             <div className="col-lg-12 custom-Point d-flex mt-4 ">
               <div className="col-lg-9">
                 <h4 className="custom-S-text1 mt-4">Hi {firstName}!!</h4>
@@ -318,7 +315,6 @@ const handleLogout = () => {
                   onClick={() => {
                     window.location.href = "/underConstructionMentors";
                   }}
-                  
                 >
                   <u>View More</u>
                 </h6>
@@ -348,4 +344,3 @@ const handleLogout = () => {
 };
 
 export default HomePage;
-
