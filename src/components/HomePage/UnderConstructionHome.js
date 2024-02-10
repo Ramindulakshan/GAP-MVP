@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Homepage_image from "../HomePage/Img/homepage.png";
 import "../HomePage/Home.css";
 import GAP_Image from "../HomePage/Img/GAP_BG.png";
+import User_image from "../HomePage/Img/user.png";
 import Student_Image from "../HomePage/Img/Student.png";
 import img1 from "../HomePage/Img/1.png";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -28,7 +29,24 @@ import { RxCountdownTimer } from "react-icons/rx";
 import { IoIosLogOut } from "react-icons/io";
 
 function UnderConstructionHome() {
-  
+  const [firstName, setFirstName] = useState("");
+  // const [show, setShow] = useState(true);
+  // const handleShow = () => setShow(true);
+  // const handleClose = () =>  setShow(false);
+
+  useEffect(() => {
+    const storedFirstName = localStorage.getItem("firstName");
+    setFirstName(storedFirstName);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("lastName");
+    handleClose();
+    window.location.href = "/login";
+  };
+
   /*LogOut Model*/
   const [show, setShow] = useState(false);
   /*LogOut Model*/
@@ -194,7 +212,7 @@ function UnderConstructionHome() {
 
                   <button
                     className="btnlgouy1 custom-button-slot "
-                    onClick={handleClose}
+                    onClick={handleLogout}
                   >
                     Yes
                   </button>
@@ -255,18 +273,21 @@ function UnderConstructionHome() {
                   </svg>
                   &nbsp;&nbsp;
                   <img
-                    src={Student_Image}
+                    src={User_image}
                     width="45"
                     height="45"
                     className="d-inline-block"
                     alt="React Bootstrap logo"
+                    onClick={() => {
+                      window.location.href = "/userProfileEmptyView";
+                    }}
                   />
                 </div>
               </Navbar.Brand>
             </Navbar>
             <div className="col-lg-12 custom-Point d-flex mt-4 ">
               <dic className="col-lg-9">
-                <h4 className="custom-S-text1 mt-4">Hi Tiara!!</h4>
+                <h4 className="custom-S-text1 mt-4">{firstName}</h4>
                 <h4 className="custom-S-text2">
                   Congratulations on earning points, <br />
                   Let's keep stepping forward!

@@ -38,7 +38,7 @@ function UserProfileEmptyView() {
     lastName: "",
     email: "",
     title: "",
-    academicDetails: [],
+    academicDetails: [{}],
     professionalDetails: [],
     profilePicture: [],
   });
@@ -830,9 +830,8 @@ function UserProfileEmptyView() {
                       </p>
                     ) : (
                       <p>No professional details available</p>
-                      
                     )}
-                 
+
                     <div class="row mt-4">
                       <div class="col-4">
                         <div onClick={handleShow2}>
@@ -903,8 +902,6 @@ function UserProfileEmptyView() {
                               fill="#2A2A72"
                             />
                           </svg>
-                          &nbsp;&nbsp;
-                          <button className="btn-add-new">button</button>
                         </div>
 
                         <div class="position-absolute bottom-0 end-0 p-3">

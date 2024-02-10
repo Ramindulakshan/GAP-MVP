@@ -37,6 +37,7 @@ const HomePage = () => {
   useEffect(() => {
     const storedFirstName = localStorage.getItem("firstName");
     setFirstName(storedFirstName);
+    
   }, []);
   
 
