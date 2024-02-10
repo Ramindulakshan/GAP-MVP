@@ -19,7 +19,12 @@ import { Container } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import axios from "axios";
 import moment from "moment/moment";
-import { IoHomeOutline, IoPeopleOutline, IoCalendarOutline, IoSettingsOutline } from "react-icons/io5";
+import {
+  IoHomeOutline,
+  IoPeopleOutline,
+  IoCalendarOutline,
+  IoSettingsOutline,
+} from "react-icons/io5";
 import { TfiBookmarkAlt } from "react-icons/tfi";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { RxCountdownTimer } from "react-icons/rx";
@@ -27,14 +32,13 @@ import { IoIosLogOut } from "react-icons/io";
 import { IoSaveSharp } from "react-icons/io5";
 import userPic from "../HomePage/Img/user.png";
 
-
 function UserProfileEmptyView() {
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     title: "",
-    academicDetails: [],
+    academicDetails: [{}],
     professionalDetails: [],
     profilePicture: [],
   });
@@ -51,7 +55,7 @@ function UserProfileEmptyView() {
 
   useEffect(() => {
     getUserDetails(); // Fetch user details on component mount
-   }, []);
+  }, []);
 
   const [displayFirstName, setDisplayFirstName] = useState("");
   const [displayLastName, setDisplayLastName] = useState("");
@@ -75,12 +79,12 @@ function UserProfileEmptyView() {
   const [skills, setSkills] = useState("");
   const [file, setFile] = useState(null);
 
-  // const handleFileChange = (event) => {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     setFile(file);
-  //   }
-  // };
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setFile(file);
+    }
+  };
 
   /*Photo Change Model*/
   const [show, setShow] = useState(false);
@@ -134,7 +138,6 @@ function UserProfileEmptyView() {
   const handleShowadd = () => setShowadd(true);
 
   const [selectedImage, setSelectedImage] = useState(null);
-
 
   //calling to endpoint for get user details which already in the database
   const getUserDetails = (e) => {
@@ -368,125 +371,125 @@ function UserProfileEmptyView() {
                   id="list-group-tabs-example"
                   defaultActiveKey="#link1"
                 >
-                   <Row>
-                  <ListGroup>
-                    <ListGroup.Item
-                      action
-                      variant="light"
-                      className="list-group-item-custom"
-                      onClick={() => {
-                        window.location.href = "/underConstructionHome";
-                      }}
-                      style={{ backgroundColor: "#DDDDFE", border: "0" }}
-                    >
-                      <IoHomeOutline
-                        style={{ fontSize: "18px", marginRight: "20px" }}
-                      />
-                      Home
-                    </ListGroup.Item>
-                    <br />
-                    <ListGroup.Item
-                      action
-                      variant="light"
-                      className="list-group-item-custom"
-                      // href="#link2"
-                      onClick={() => {
-                        window.location.href = "/underConstructionMentors";
-                      }}
-                    >
-                      <IoPeopleOutline
-                        style={{ fontSize: "18px", marginRight: "20px" }}
-                      />
-                      Mentors
-                    </ListGroup.Item>
-                    <br />
-                    <ListGroup.Item
-                      action
-                      variant="light"
-                      className="list-group-item-custom"
-                      onClick={() => {
-                        window.location.href =
-                          "/underConstructionMentorSession";
-                      }}
-                    >
-                      <TfiBookmarkAlt
-                        style={{ fontSize: "18px", marginRight: "20px" }}
-                      />
-                      Mentoring Session
-                    </ListGroup.Item>
-                    <br />
-                    <ListGroup.Item
-                      action
-                      variant="light"
-                      className="list-group-item-custom"
-                      onClick={() => {
-                        window.location.href = "/underConstructionBeAMentor";
-                      }}
-                    >
-                      <MdOutlinePeopleAlt
-                        style={{ fontSize: "18px", marginRight: "20px" }}
-                      />
-                      Be A Mentor
-                    </ListGroup.Item>
-                    <br />
-                    <ListGroup.Item
-                      action
-                      variant="light"
-                      className="list-group-item-custom"
-                      onClick={() => {
-                        window.location.href =
-                          "/underConstructionWeeklySchedulePage";
-                      }}
-                    >
-                      <IoCalendarOutline
-                        style={{ fontSize: "18px", marginRight: "20px" }}
-                      />
-                      Weekly Schedule
-                    </ListGroup.Item>
-                    <br />
-                    <ListGroup.Item
-                      action
-                      variant="light"
-                      className="list-group-item-custom"
-                      onClick={() => {
-                        window.location.href = "/underConstructionHistoryPage";
-                      }}
-                    >
-                      <RxCountdownTimer
-                        style={{ fontSize: "18px", marginRight: "20px" }}
-                      />
-                      Mentoring History
-                    </ListGroup.Item>
-                    <br />
-                    <ListGroup.Item
-                      action
-                      variant="light"
-                      className="list-group-item-custom"
-                      onClick={() => {
-                        window.location.href = "/settings";
-                      }}
-                    >
-                      <IoSettingsOutline
-                        style={{ fontSize: "18px", marginRight: "20px" }}
-                      />
-                      Settings
-                    </ListGroup.Item>
-                    <br />
-                    <ListGroup.Item
-                     onClick={handleShow}
-                      action
-                      variant="light"
-                      className="list-group-item-custom"
-                    >
-                      <IoIosLogOut
-                       
-                        style={{ fontSize: "18px", marginRight: "20px" }}
-                      />
-                      Logout
-                    </ListGroup.Item>
-                    <br />
-                  </ListGroup>
-                </Row>
+                  <Row>
+                    <ListGroup>
+                      <ListGroup.Item
+                        action
+                        variant="light"
+                        className="list-group-item-custom"
+                        onClick={() => {
+                          window.location.href = "/underConstructionHome";
+                        }}
+                        style={{ backgroundColor: "#DDDDFE", border: "0" }}
+                      >
+                        <IoHomeOutline
+                          style={{ fontSize: "18px", marginRight: "20px" }}
+                        />
+                        Home
+                      </ListGroup.Item>
+                      <br />
+                      <ListGroup.Item
+                        action
+                        variant="light"
+                        className="list-group-item-custom"
+                        // href="#link2"
+                        onClick={() => {
+                          window.location.href = "/underConstructionMentors";
+                        }}
+                      >
+                        <IoPeopleOutline
+                          style={{ fontSize: "18px", marginRight: "20px" }}
+                        />
+                        Mentors
+                      </ListGroup.Item>
+                      <br />
+                      <ListGroup.Item
+                        action
+                        variant="light"
+                        className="list-group-item-custom"
+                        onClick={() => {
+                          window.location.href =
+                            "/underConstructionMentorSession";
+                        }}
+                      >
+                        <TfiBookmarkAlt
+                          style={{ fontSize: "18px", marginRight: "20px" }}
+                        />
+                        Mentoring Session
+                      </ListGroup.Item>
+                      <br />
+                      <ListGroup.Item
+                        action
+                        variant="light"
+                        className="list-group-item-custom"
+                        onClick={() => {
+                          window.location.href = "/underConstructionBeAMentor";
+                        }}
+                      >
+                        <MdOutlinePeopleAlt
+                          style={{ fontSize: "18px", marginRight: "20px" }}
+                        />
+                        Be A Mentor
+                      </ListGroup.Item>
+                      <br />
+                      <ListGroup.Item
+                        action
+                        variant="light"
+                        className="list-group-item-custom"
+                        onClick={() => {
+                          window.location.href =
+                            "/underConstructionWeeklySchedulePage";
+                        }}
+                      >
+                        <IoCalendarOutline
+                          style={{ fontSize: "18px", marginRight: "20px" }}
+                        />
+                        Weekly Schedule
+                      </ListGroup.Item>
+                      <br />
+                      <ListGroup.Item
+                        action
+                        variant="light"
+                        className="list-group-item-custom"
+                        onClick={() => {
+                          window.location.href =
+                            "/underConstructionHistoryPage";
+                        }}
+                      >
+                        <RxCountdownTimer
+                          style={{ fontSize: "18px", marginRight: "20px" }}
+                        />
+                        Mentoring History
+                      </ListGroup.Item>
+                      <br />
+                      <ListGroup.Item
+                        action
+                        variant="light"
+                        className="list-group-item-custom"
+                        onClick={() => {
+                          window.location.href = "/settings";
+                        }}
+                      >
+                        <IoSettingsOutline
+                          style={{ fontSize: "18px", marginRight: "20px" }}
+                        />
+                        Settings
+                      </ListGroup.Item>
+                      <br />
+                      <ListGroup.Item
+                        onClick={handleShow}
+                        action
+                        variant="light"
+                        className="list-group-item-custom"
+                      >
+                        <IoIosLogOut
+                          style={{ fontSize: "18px", marginRight: "20px" }}
+                        />
+                        Logout
+                      </ListGroup.Item>
+                      <br />
+                    </ListGroup>
+                  </Row>
                 </Tab.Container>
               </div>
             </div>
@@ -641,17 +644,14 @@ function UserProfileEmptyView() {
                                     {/* Gallery icon path */}
                                   </svg>
                                   <input
-                                  id="fileInput"
-                                  type="file"
-                                  accept="image/*"
-                                  style={{ display: "none" }}
-                                  onChange={handleFileChange}
-                                />
-                                  <p>
-                                    Upload
-                                  </p>
+                                    id="fileInput"
+                                    type="file"
+                                    accept="image/*"
+                                    style={{ display: "none" }}
+                                    onChange={handleFileChange}
+                                  />
+                                  <p>Upload</p>
                                 </label>
-                                
                               </Col>
                               <Col
                                 xs={8}
@@ -660,10 +660,12 @@ function UserProfileEmptyView() {
                                   cursor: "pointer",
                                 }}
                               >
-
                                 <IoSaveSharp className="svbtn" />
 
-                                <IoSaveSharp className="svbtn" onClick={handlePhotoUpload} />
+                                <IoSaveSharp
+                                  className="svbtn"
+                                  onClick={handlePhotoUpload}
+                                />
 
                                 <p>Save</p>
                               </Col>
@@ -834,7 +836,7 @@ function UserProfileEmptyView() {
 
                     <div class="row mt-4">
                       <div class="col-4">
-                      <div onClick={handleShow2}>
+                        <div onClick={handleShow2}>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="30"
@@ -903,7 +905,7 @@ function UserProfileEmptyView() {
                             />
                           </svg>
                         </div>
-                    
+
                         <div class="position-absolute bottom-0 end-0 p-3">
                           <div
                             class="box d-flex align-items-center"
@@ -1386,7 +1388,7 @@ function UserProfileEmptyView() {
                   </Modal> */}
                   {/*Academic qualification Model Start*/}
                   <Modal
-                   size="lg"
+                    size="lg"
                     show={showadd}
                     onHide={handleCloseadd}
                     aria-labelledby="example-custom-modal-styling-title"
@@ -1607,7 +1609,7 @@ function UserProfileEmptyView() {
                   </Modal>
                   {/*Academic qualification Model End*/}
                 </div>
-              
+
                 <div class="carduprofl cardnew card" style={{ border: "0" }}>
                   <div class="card-body">
                     <div class="text-section">
