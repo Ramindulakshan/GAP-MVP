@@ -25,6 +25,15 @@ function UnderConstructionMentors() {
   /*LogOut Model*/
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleLogout = () => {
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("lastName");
+    localStorage.removeItem("email");
+    handleClose();
+    window.location.href = "/login";
+  };
   return (
     <div className="d-flex">
       <div className="container-fluid">
@@ -182,7 +191,7 @@ function UnderConstructionMentors() {
 
                   <button
                     className="btnlgouy1 custom-button-slot "
-                    onClick={handleClose}
+                    onClick={handleLogout}
                   >
                     Yes
                   </button>

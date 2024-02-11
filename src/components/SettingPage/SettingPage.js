@@ -47,6 +47,7 @@ function SettingPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const [showPassword3, setShowPassword3] = useState(false);
+  const [showLogout, setShowLogout] = useState(false);
 
   /*LogOut Model*/
   const [show, setShow] = useState(false);
@@ -65,6 +66,9 @@ function SettingPage() {
   const [show4, setShow4] = useState(false);
   const handleClose4 = () => setShow4(false);
   const handleShow4 = () => setShow4(true);
+
+  const handleCloseLogout = () => setShowLogout(false);
+  const handleShowLogout = () => setShowLogout(true);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -98,6 +102,18 @@ function SettingPage() {
     if (inputText.length <= 300) {
       setText(inputText);
     }
+  };
+
+  const handleLogout = () => {
+    // if (user) {
+    //   logout();   //google login
+    // }
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("lastName");
+    localStorage.removeItem("email");
+    handleCloseLogout();
+    window.location.href = "/login";
   };
 
   const handleChangePassword = async (e) => {
@@ -320,7 +336,7 @@ function SettingPage() {
                     <br />
                     <br />
                     <ListGroup.Item
-                      onClick={handleShow}
+                      onClick={handleShowLogout}
                       action
                       variant="light"
                       className="list-group-item-custom"
@@ -336,8 +352,8 @@ function SettingPage() {
               </Tab.Container>
               <Modal
                 size="m"
-                show={show}
-                onHide={handleClose}
+                show={showLogout}
+                onHide={handleCloseLogout}
                 aria-labelledby="example-custom-modal-styling-title"
                 centered
               >
@@ -353,13 +369,13 @@ function SettingPage() {
 
                   <button
                     className="btnlgouy1 custom-button-slot "
-                    onClick={handleClose}
+                    onClick={handleLogout}
                   >
                     Yes
                   </button>
                   <button
                     className="btnlgouy2 custom-button-slot "
-                    onClick={handleClose}
+                    onClick={handleCloseLogout}
                   >
                     No
                   </button>

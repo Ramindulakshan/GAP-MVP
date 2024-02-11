@@ -17,6 +17,7 @@ import pen from "./img/pen.png";
 import Modal from "react-bootstrap/Modal";
 import { Container } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
+import TakeABreak from "../HomePage/Img/Group 421.png";
 import axios from "axios";
 import moment from "moment/moment";
 import {
@@ -86,6 +87,18 @@ function UserProfileEmptyView() {
     }
   };
 
+  const handleLogout = () => {
+    // if (user) {
+    //   logout();   //google login
+    // }
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("lastName");
+    localStorage.removeItem("email");
+    handleCloseLogout();
+    window.location.href = "/login";
+  };
+
   /*Photo Change Model*/
   const [show, setShow] = useState(false);
 
@@ -108,6 +121,8 @@ function UserProfileEmptyView() {
 
   /*professional experience Model */
   const [show7, setShow7] = useState(false);
+
+  const [showLogout, setShowLogout] = useState(false);
 
   /*Photo Change Model*/
   const handleClose = () => setShow(false);
@@ -136,6 +151,9 @@ function UserProfileEmptyView() {
   /*Fields experience Model */
   const handleCloseadd = () => setShowadd(false);
   const handleShowadd = () => setShowadd(true);
+
+  const handleCloseLogout = () => setShowLogout(false);
+  const handleShowLogout = () => setShowLogout(true);
 
   //calling to endpoint for get user details which already in the database
   const getUserDetails = (e) => {
@@ -344,7 +362,7 @@ function UserProfileEmptyView() {
         .catch((error) => {
           console.error("Error uploading photo:", error);
         });
-    }else {
+    } else {
       alert("Please select a photo to upload");
     }
   };
@@ -491,8 +509,10 @@ function UserProfileEmptyView() {
                         Settings
                       </ListGroup.Item>
                       <br />
+                      <br />
+                      <br />
                       <ListGroup.Item
-                        onClick={handleShow}
+                        onClick={handleShowLogout}
                         action
                         variant="light"
                         className="list-group-item-custom"
@@ -506,6 +526,37 @@ function UserProfileEmptyView() {
                     </ListGroup>
                   </Row>
                 </Tab.Container>
+                <Modal
+                  size="m"
+                  show={showLogout}
+                  onHide={handleCloseLogout}
+                  aria-labelledby="example-custom-modal-styling-title"
+                  centered
+                >
+                  <Modal.Body className="text-center mt-4">
+                    <img
+                      src={TakeABreak}
+                      alt="Tickimg"
+                      className="img-fluid mb-4"
+                      style={{ width: "100px", height: "100px" }}
+                    />
+
+                    <p className="pre ">Are You sure you want to logout?</p>
+
+                    <button
+                      className="btnlgouy1 custom-button-slot "
+                      onClick={handleLogout}
+                    >
+                      Yes
+                    </button>
+                    <button
+                      className="btnlgouy2 custom-button-slot "
+                      onClick={handleCloseLogout}
+                    >
+                      No
+                    </button>
+                  </Modal.Body>
+                </Modal>
               </div>
             </div>
           </div>
@@ -556,13 +607,17 @@ function UserProfileEmptyView() {
                   </svg>
                   &nbsp;&nbsp;
                   <img
-                    src={`http://localhost:3001/uploads/` + selectedImage}
+                    src={
+                      !selectedImage
+                        ? { userPic }
+                        : `http://localhost:3001/uploads/` + selectedImage
+                    }
                     roundedCircle
                     width="45"
                     height="45"
                     style={{
-                      borderRadius:'100000px'
-                     }}
+                      borderRadius: "100000px",
+                    }}
                     className="d-inline-block"
                     alt="React Bootstrap logo"
                   />
@@ -575,12 +630,16 @@ function UserProfileEmptyView() {
               <div class="carduprofl card">
                 <Col xs={5} md={3} className="mx-auto position-relative">
                   <img
-                    src={`http://localhost:3001/uploads/` + selectedImage}
+                    src={
+                      !selectedImage
+                        ? { userPic }
+                        : `http://localhost:3001/uploads/` + selectedImage
+                    }
                     rounded
                     alt="propick"
                     className="imgr"
                     style={{
-                     borderRadius:'100000px'
+                      borderRadius: "100000px",
                     }}
                   />
                   <Image
@@ -620,13 +679,9 @@ function UserProfileEmptyView() {
                             <div className="text-center"></div>
                             <br />
                             <div className="text-center">
-                              {selectedImage ? (
+                              {!selectedImage ? (
                                 <Image
-                                  src={
-                                    `http://localhost:3001/uploads/` +
-                                    selectedImage
-                                  }
-                                  alt="profile picture"
+                                  src={userPic}
                                   roundedCircle
                                   style={{
                                     width: "150px",
@@ -636,7 +691,11 @@ function UserProfileEmptyView() {
                                 />
                               ) : (
                                 <Image
-                                  src={userPic}
+                                  src={
+                                    `http://localhost:3001/uploads/` +
+                                    selectedImage
+                                  }
+                                  alt="profile picture"
                                   roundedCircle
                                   style={{
                                     width: "150px",
