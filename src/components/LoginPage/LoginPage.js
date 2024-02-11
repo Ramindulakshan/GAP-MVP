@@ -73,6 +73,13 @@ const togglePasswordVisibility = () => {
       });
   };
 
+  // const googleAuth = () => {
+  //   window.open(
+  //     "http://localhost:3001/auth/google/callback",
+  //     "_self"
+  //   );
+  // } //google login 
+ 
   return (
     <>
       <section className="newwitchg">
@@ -164,7 +171,8 @@ const togglePasswordVisibility = () => {
                   <div class="text-center mb-4">
                     <h4 className="mb-4 ore">Or, login with</h4>
                     <div className="Icon">
-                      <img src={Google_image} alt="Image 1" />
+                      {/* <img src={Google_image} style={{cursor:"pointer"}} alt="Image 1" onClick={googleAuth} /> */}
+                      <img src={Google_image} style={{cursor:"pointer"}} alt="Image 1" />
                     </div>
                   </div>
                   <h6 className="custom-text-AR ore">

@@ -28,6 +28,7 @@ import { RxCountdownTimer } from "react-icons/rx";
 import { IoIosLogOut } from "react-icons/io";
 
 const HomePage = () => {
+  // const user = userDetails.user; //google login
   const [firstName, setFirstName] = useState("");
   // const [show, setShow] = useState(true);
   // const handleShow = () => setShow(true);
@@ -39,12 +40,19 @@ const HomePage = () => {
   });
 
   const handleLogout = () => {
+    // if (user) {
+    //   logout();   //google login
+    // }
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("firstName");
     localStorage.removeItem("lastName");
     localStorage.removeItem("email");
     handleClose();
     window.location.href = "/login";
+  };
+
+  const logout = () => {
+    window.open(`${process.env.BACKEND_API_URL}/auth/logout`, "_self");
   };
 
   /*LogOut Model*/
@@ -285,7 +293,7 @@ const HomePage = () => {
             </Navbar>
             <div className="col-lg-12 custom-Point d-flex mt-4 ">
               <div className="col-lg-9">
-                <h4 className="custom-S-text1 mt-4">Hi {firstName}!!</h4>
+                {/* {user ? <h4>Hi {firstName}!!</h4> : <h4>Hi {firstName}!!</h4>} */}  {/*google login*/}
                 <h4 className="custom-S-text2">
                   Congratulations on earning points, <br />
                   Let's keep stepping forward!
