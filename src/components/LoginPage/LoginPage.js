@@ -15,7 +15,6 @@ const LoginPage = () => {
   const [validated, setValidated] = useState(false);
   const navigate = useNavigate();
 
-
   const [showPassword, setShowPassword] = useState(false);
 
 const togglePasswordVisibility = () => {
@@ -44,9 +43,11 @@ const togglePasswordVisibility = () => {
           const token = response.data.token;
           localStorage.setItem("jwtToken", token);
           getUserName();
+          alert("Login Successful");
           navigate("/home");
-        } else if (response.data.status === "error") {
+        } else if(response.data.status === "error") {
           alert("Invalid Username or Password");
+          console.log("Invalid Username or Password");
         }
       })
       .catch((error) => {
@@ -98,7 +99,6 @@ const togglePasswordVisibility = () => {
                     <Form
                       noValidate
                       validated={validated}
-                      onSubmit={handleSubmit}
                     >
                       <Form.Group controlId="validationCustomUsername">
                         <InputGroup hasValidation>

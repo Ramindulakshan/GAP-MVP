@@ -40,7 +40,6 @@ function UserProfileEmptyView() {
     title: "",
     academicDetails: [{}],
     professionalDetails: [],
-    profilePicture: [],
   });
 
   useEffect(() => {
@@ -78,6 +77,7 @@ function UserProfileEmptyView() {
   const [locationType, setLocationType] = useState("");
   const [skills, setSkills] = useState("");
   const [file, setFile] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -137,8 +137,6 @@ function UserProfileEmptyView() {
   const handleCloseadd = () => setShowadd(false);
   const handleShowadd = () => setShowadd(true);
 
-  const [selectedImage, setSelectedImage] = useState(null);
-
   //calling to endpoint for get user details which already in the database
   const getUserDetails = (e) => {
     axios
@@ -156,7 +154,6 @@ function UserProfileEmptyView() {
             email,
             academicDetails,
             professionalDetails,
-            profilePicture,
           } = response.data;
 
           if (
@@ -169,7 +166,6 @@ function UserProfileEmptyView() {
               email,
               academicDetails,
               professionalDetails,
-              profilePicture,
             });
           } else {
             setUserData({
@@ -178,7 +174,6 @@ function UserProfileEmptyView() {
               email,
               academicDetails: [],
               professionalDetails: [],
-              profilePicture,
             });
           }
         }
@@ -330,8 +325,33 @@ function UserProfileEmptyView() {
     e.preventDefault();
     const data = new FormData();
     data.append("file", file);
+    if (file) {
+      axios
+        .post("http://localhost:3001/api/photoUpload", data, {
+          headers: {
+            authorization: `${localStorage.getItem("jwtToken")}`,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.status === 200) {
+            handleClose();
+            alert("Photo uploaded successfully");
+          } else {
+            alert("Photo not uploaded");
+          }
+        })
+        .catch((error) => {
+          console.error("Error uploading photo:", error);
+        });
+    }else {
+      alert("Please select a photo to upload");
+    }
+  };
+
+  useEffect(() => {
     axios
-      .post("http://localhost:3001/api/photoUpload", data, {
+      .get("http://localhost:3001/api/getUserImage", {
         headers: {
           authorization: `${localStorage.getItem("jwtToken")}`,
         },
@@ -339,18 +359,13 @@ function UserProfileEmptyView() {
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
-          handleClose();
-          alert("Photo uploaded successfully");
-
-          getUserDetails();
-        } else {
-          alert("Photo not uploaded");
+          setSelectedImage(response.data.profilePicture);
         }
       })
       .catch((error) => {
-        console.error("Error uploading photo:", error);
+        console.error("Error fetching user image:", error);
       });
-  };
+  }, [handlePhotoUpload]);
 
   return (
     <div>
@@ -541,7 +556,8 @@ function UserProfileEmptyView() {
                   </svg>
                   &nbsp;&nbsp;
                   <img
-                    src={Student_Image}
+                    src={`http://localhost:3001/uploads/` + selectedImage}
+                    roundedCircle
                     width="45"
                     height="45"
                     className="d-inline-block"
@@ -555,7 +571,12 @@ function UserProfileEmptyView() {
             <div>
               <div class="carduprofl card">
                 <Col xs={5} md={3} className="mx-auto position-relative">
-                  <img src={prolog} rounded alt="propick" className="imgr" />
+                  <img
+                    src={`http://localhost:3001/uploads/` + selectedImage}
+                    rounded
+                    alt="propick"
+                    className="imgr"
+                  />
                   <Image
                     src={pen}
                     rounded
@@ -593,9 +614,12 @@ function UserProfileEmptyView() {
                             <div className="text-center"></div>
                             <br />
                             <div className="text-center">
-                              {file ? (
+                              {selectedImage ? (
                                 <Image
-                                  src={URL.createObjectURL(file)}
+                                  src={
+                                    `http://localhost:3001/uploads/` +
+                                    selectedImage
+                                  }
                                   alt="profile picture"
                                   roundedCircle
                                   style={{

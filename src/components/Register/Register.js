@@ -15,15 +15,15 @@ import axios from "axios";
 function Prologin() {
   const [validated, setValidated] = useState(false);
 
-  const handleSubmit2 = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+  // const handleSubmit2 = (event) => {
+  //   const form = event.currentTarget;
+  //   if (form.checkValidity() === false) {
+  //     event.preventDefault();
+  //     event.stopPropagation();
+  //   }
 
-    setValidated(true);
-  };
+  //   setValidated(true);
+  // };
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -80,8 +80,10 @@ function Prologin() {
       })
       .then((response) => {
         console.log(response);
-        if (response.status == 200) {
+        if (response.data.status === 200) {
           handleShow2();
+        } else if (response.data.status === 'error') {
+          alert("Invalid Details. Please try again.");
         }
       })
       .catch((error) => {
