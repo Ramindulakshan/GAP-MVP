@@ -932,6 +932,8 @@ function UserProfileEmptyView() {
                               fill="#2A2A72"
                             />
                           </svg>
+                          &nbsp;&nbsp;
+                          <button className="btn-add-new">button</button>
                         </div>
 
                         <div class="position-absolute bottom-0 end-0 p-3">
@@ -1639,8 +1641,8 @@ function UserProfileEmptyView() {
                 </div>
 
                 <div class="carduprofl cardnew card" style={{ border: "0" }}>
-                  <div class="card-body">
-                    <div class="text-section">
+                  <div class="card-body bordernew">
+                    <div class="text-section ">
                       <div>
                         {userData.academicDetails &&
                         userData.academicDetails.length > 0 ? (
@@ -1833,7 +1835,7 @@ function UserProfileEmptyView() {
                   {/*Professional Experience  Model End*/}
                 </div>
                 <div class="carduprofl cardnew card" style={{ border: "0" }}>
-                  <div class="card-body">
+                  <div class="card-body bordernew">
                     <div class="text-section">
                       <div>
                         {userData.professionalDetails &&
