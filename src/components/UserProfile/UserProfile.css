@@ -513,6 +513,10 @@
   color: grey;
   width: 100px;
 }
+.bordernew{
+  border: 1px solid rgba(128, 128, 128, 0.497);
+  border-radius: 10px;
+}
 @media screen and (max-width: 768px) {
   .ser {
     width: 100%;

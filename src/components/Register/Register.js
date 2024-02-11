@@ -62,7 +62,6 @@ function Prologin() {
   };
 
   const handleSubmit = (e) => {
-
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
@@ -82,7 +81,7 @@ function Prologin() {
         console.log(response);
         if (response.data.status === 200) {
           handleShow2();
-        } else if (response.data.status === 'error') {
+        } else if (response.data.status === "error") {
           alert("Invalid Details. Please try again.");
         }
       })
@@ -100,22 +99,29 @@ function Prologin() {
               <div className="text-center">
                 <img
                   src={Register_image}
-                  className="img-fluid custom-image-LI" 
-                  style={{ maxHeight: "100%", width: "100%" }} 
+                  className="img-fluid custom-image-LI"
+                  style={{ maxHeight: "100%", width: "100%" }}
                   alt="Regi Img"
                 />
               </div>
             </div>
             <div className="col-lg-6 overflow-auto">
+              <br></br>
+              <br></br>
               <h2 className="text-center mb-4 mt-2 ">Register</h2>
               <div className="row justify-content-center">
                 <div className="col-lg-9 sitewyey ">
                   <div className="form-outline ">
-
-
-                    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                    <Form
+                      noValidate
+                      validated={validated}
+                      onSubmit={handleSubmit}
+                    >
                       <Row className="">
-                        <Form.Group as={Col} controlId="validationCustomUsername">
+                        <Form.Group
+                          as={Col}
+                          controlId="validationCustomUsername"
+                        >
                           <InputGroup hasValidation>
                             <Form.Control
                               type="Text"
@@ -125,14 +131,14 @@ function Prologin() {
                               required
                               onChange={(e) => setFirstName(e.target.value)}
                             />
-                            <Form.Control.Feedback type="invalid">
-                              
-                            </Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
                           </InputGroup>
                         </Form.Group>
 
-
-                        <Form.Group as={Col} controlId="validationCustomUsername">
+                        <Form.Group
+                          as={Col}
+                          controlId="validationCustomUsername"
+                        >
                           <InputGroup hasValidation>
                             <Form.Control
                               type="text"
@@ -142,9 +148,7 @@ function Prologin() {
                               required
                               onChange={(e) => setLastName(e.target.value)}
                             />
-                            <Form.Control.Feedback type="invalid">
-                            
-                            </Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
                           </InputGroup>
                         </Form.Group>
                       </Row>
@@ -161,9 +165,7 @@ function Prologin() {
                             required
                             onChange={(e) => setUserName(e.target.value)}
                           />
-                          <Form.Control.Feedback type="invalid">
-                          
-                          </Form.Control.Feedback>
+                          <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
                         </InputGroup>
                       </Form.Group>
 
@@ -179,9 +181,7 @@ function Prologin() {
                             required
                             onChange={(e) => setEmail(e.target.value)}
                           />
-                          <Form.Control.Feedback type="invalid">
-                           
-                          </Form.Control.Feedback>
+                          <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
                         </InputGroup>
                       </Form.Group>
 
@@ -204,11 +204,13 @@ function Prologin() {
                             id="passwordHelpBlock"
                             onClick={togglePasswordVisibility}
                           >
-                            {!showPassword ? <HiOutlineEyeOff /> : <HiOutlineEye />}
+                            {!showPassword ? (
+                              <HiOutlineEyeOff />
+                            ) : (
+                              <HiOutlineEye />
+                            )}
                           </InputGroup.Text>
-                          <Form.Control.Feedback type="invalid">
-                            
-                          </Form.Control.Feedback>
+                          <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
                         </InputGroup>
                       </Form.Group>
 
@@ -231,43 +233,47 @@ function Prologin() {
                             id="passwordHelpBlock2"
                             onClick={togglePasswordVisibility2}
                           >
-                            {!showPassword2 ? <HiOutlineEyeOff /> : <HiOutlineEye />}
+                            {!showPassword2 ? (
+                              <HiOutlineEyeOff />
+                            ) : (
+                              <HiOutlineEye />
+                            )}
                           </InputGroup.Text>
-                          <Form.Control.Feedback type="invalid">
-                            
-                          </Form.Control.Feedback>
+                          <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
                         </InputGroup>
                       </Form.Group>
 
-                      
-                    {confirmPasswordMatch() ? (
-                      <p></p>
-                    ) : (
-                      <p className="pnmt">Passwords do not match.</p>
-                    )}
+                      {confirmPasswordMatch() ? (
+                        <p></p>
+                      ) : (
+                        <p className="pnmt">Passwords do not match.</p>
+                      )}
 
-                    <Form.Group className="mb-0" controlId="formBasicCheckbox">
-                      <Form.Check
-                        type="checkbox"
-                        required
-                        feedback="You must agree before submitting."
-                        feedbackType="invalid"
-                        label={
-                          <span>
-                            By registering to GAP you agree to the{" "}
-                            <u
-                              style={{ cursor: "pointer", color: "blue" }}
-                              onClick={handleShow}
-                            >
-                              terms & conditions
-                            </u>
-                          </span>
-                        }
-                        onChange={handleShow}
-                      // checked={true}
-                      />
-                    </Form.Group>
-                    </Form>            
+                      <Form.Group
+                        className="mb-0"
+                        controlId="formBasicCheckbox"
+                      >
+                        <Form.Check
+                          type="checkbox"
+                          required
+                          feedback="You must agree before submitting."
+                          feedbackType="invalid"
+                          label={
+                            <span>
+                              By registering to GAP you agree to the{" "}
+                              <u
+                                style={{ cursor: "pointer", color: "blue" }}
+                                onClick={handleShow}
+                              >
+                                terms & conditions
+                              </u>
+                            </span>
+                          }
+                          onChange={handleShow}
+                          // checked={true}
+                        />
+                      </Form.Group>
+                    </Form>
                     <Modal
                       size="lg"
                       show={show}
@@ -400,12 +406,13 @@ function Prologin() {
                     </Modal>
                   </div>
 
-                  <div class="text-center mb-2">
+                  {/* {       <div class="text-center mb-2">
                     <h4 className="mb-2 ore">Or, Register with</h4>
                     <div className="Icon">
                       <img src={Google_image} alt="Imag1" />
                     </div>
-                  </div>
+                  </div>} */}
+                  <br></br>
                   <h6 className="custom-text-AR ore">
                     Already have an account?{" "}
                     <span

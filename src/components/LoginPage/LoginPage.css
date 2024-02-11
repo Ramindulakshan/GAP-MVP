@@ -68,10 +68,27 @@
   justify-content: center;
 }
 
-.bxbxset {
-  width: 1050px;
-  height: 630px;
+.bxbxsetlog {
+  width: 850px;
+  height: 500px;
   border-radius: 5px;
   border: 2px solid #2a2a72;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.custom-bglog {
+  background-color: #e7f3fe;
+  display: flex;
+  border-radius: 5px;
+  width: 400px;
+  height: 100%;
+  padding: 0 0 110px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.sitewyey-log {
+  width: 480px;
+  padding: 0 20px;
+  height: 100%;
+  margin: 0;
 }

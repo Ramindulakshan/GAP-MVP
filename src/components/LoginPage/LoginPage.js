@@ -83,10 +83,12 @@ const togglePasswordVisibility = () => {
   return (
     <>
       <section className="newwitchg">
+       
         <div className="container-fluid container-fluidreg">
         <div className="">
-          <div className="row bxbxset">
-            <div className="col-lg-5  custom-bgregit  align-items-center justify-content-center">
+        <br></br> <br></br> <br></br>
+          <div className="row bxbxsetlog">
+            <div className="col-lg-5  custom-bglog  align-items-center justify-content-center">
               <div className=" text-center">
                 <img
                   src={Register_image}
@@ -96,12 +98,12 @@ const togglePasswordVisibility = () => {
                 />
               </div>
             </div>
-            <div className="col-lg-6 overflow-auto ">
+            <div className="col-lg-6 overflow-auto "><br />
               <h1 className="text-center mb-5 mt-5 ">Login to Account</h1>
               <div className="row justify-content-center">
-                <div className="col-lg-9 sitewyey">
+                <div className="col-lg-9 sitewyey-log">
                   <div className="form-outline">
-                    <br />
+                    <br /> 
 
                     <Form
                       noValidate
@@ -168,13 +170,13 @@ const togglePasswordVisibility = () => {
                       Login
                     </button>
                   </div>
-                  <div class="text-center mb-4">
+               {/* {   <div class="text-center mb-4">
                     <h4 className="mb-4 ore">Or, login with</h4>
                     <div className="Icon">
-                      {/* <img src={Google_image} style={{cursor:"pointer"}} alt="Image 1" onClick={googleAuth} /> */}
-                      <img src={Google_image} style={{cursor:"pointer"}} alt="Image 1" />
+                      <img src={Google_image} alt="Image1" />
                     </div>
-                  </div>
+                  </div>} */}
+                  <br /> <br />
                   <h6 className="custom-text-AR ore">
                     Don't have an account?{" "}
                     <span
