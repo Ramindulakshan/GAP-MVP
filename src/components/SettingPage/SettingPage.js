@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaRegBell } from "react-icons/fa6";
 import "./SettingPage.css";
 import Navbar from "react-bootstrap/Navbar";
 import GAP_Image from "./img/GAP_BG.png";
@@ -47,6 +48,7 @@ function SettingPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const [showPassword3, setShowPassword3] = useState(false);
+  const [showLogout, setShowLogout] = useState(false);
 
   /*LogOut Model*/
   const [show, setShow] = useState(false);
@@ -65,6 +67,9 @@ function SettingPage() {
   const [show4, setShow4] = useState(false);
   const handleClose4 = () => setShow4(false);
   const handleShow4 = () => setShow4(true);
+
+  const handleCloseLogout = () => setShowLogout(false);
+  const handleShowLogout = () => setShowLogout(true);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -98,6 +103,18 @@ function SettingPage() {
     if (inputText.length <= 300) {
       setText(inputText);
     }
+  };
+
+  const handleLogout = () => {
+    // if (user) {
+    //   logout();   //google login
+    // }
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("lastName");
+    localStorage.removeItem("email");
+    handleCloseLogout();
+    window.location.href = "/login";
   };
 
   const handleChangePassword = async (e) => {
@@ -187,7 +204,7 @@ function SettingPage() {
       .then(
         (result) => {
           console.log(result.text);
-          alert("Gmail Send Success!");
+          alert("Message Send Success!");
         },
         (error) => {
           console.log(error.text);
@@ -320,7 +337,7 @@ function SettingPage() {
                     <br />
                     <br />
                     <ListGroup.Item
-                      onClick={handleShow}
+                      onClick={handleShowLogout}
                       action
                       variant="light"
                       className="list-group-item-custom"
@@ -336,8 +353,8 @@ function SettingPage() {
               </Tab.Container>
               <Modal
                 size="m"
-                show={show}
-                onHide={handleClose}
+                show={showLogout}
+                onHide={handleCloseLogout}
                 aria-labelledby="example-custom-modal-styling-title"
                 centered
               >
@@ -353,13 +370,13 @@ function SettingPage() {
 
                   <button
                     className="btnlgouy1 custom-button-slot "
-                    onClick={handleClose}
+                    onClick={handleLogout}
                   >
                     Yes
                   </button>
                   <button
                     className="btnlgouy2 custom-button-slot "
-                    onClick={handleClose}
+                    onClick={handleCloseLogout}
                   >
                     No
                   </button>
@@ -396,22 +413,7 @@ function SettingPage() {
                 />{" "}
                 &nbsp;&nbsp;
                 <div className="ml-auto d-flex align-items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="39"
-                    height="40"
-                    viewBox="0 0 39 40"
-                    fill="none"
-                  >
-                    <path
-                      d="M31.6875 20.7142V17.5625H29.25V21.2188C29.2501 21.542 29.3785 21.8519 29.6071 22.0804L32.9062 25.3796V27.3125H6.09375V25.3796L9.39291 22.0804C9.62148 21.8519 9.74993 21.542 9.75 21.2188V16.3438C9.7466 14.6312 10.1952 12.948 11.0505 11.4643C11.9058 9.98053 13.1375 8.74879 14.6212 7.89343C16.1049 7.03808 17.7881 6.58941 19.5007 6.59275C21.2133 6.59609 22.8946 7.05131 24.375 7.91244V5.18853C23.2149 4.67485 21.9809 4.34745 20.7188 4.21841V1.71875H18.2812V4.21719C15.2765 4.52301 12.4919 5.93211 10.4659 8.17201C8.43982 10.4119 7.31628 13.3235 7.3125 16.3438V20.7142L4.01334 24.0133C3.78477 24.2418 3.65632 24.5518 3.65625 24.875V28.5312C3.65625 28.8545 3.78465 29.1645 4.01321 29.393C4.24177 29.6216 4.55177 29.75 4.875 29.75H13.4062V30.9688C13.4062 32.5849 14.0483 34.1349 15.1911 35.2777C16.3339 36.4205 17.8838 37.0625 19.5 37.0625C21.1162 37.0625 22.6661 36.4205 23.8089 35.2777C24.9517 34.1349 25.5938 32.5849 25.5938 30.9688V29.75H34.125C34.4482 29.75 34.7582 29.6216 34.9868 29.393C35.2153 29.1645 35.3438 28.8545 35.3438 28.5312V24.875C35.3437 24.5518 35.2152 24.2418 34.9867 24.0133L31.6875 20.7142ZM23.1562 30.9688C23.1562 31.9384 22.771 32.8684 22.0854 33.5541C21.3997 34.2398 20.4697 34.625 19.5 34.625C18.5303 34.625 17.6003 34.2398 16.9146 33.5541C16.229 32.8684 15.8438 31.9384 15.8438 30.9688V29.75H23.1562V30.9688Z"
-                      fill="#2A2A72"
-                    />
-                    <path
-                      d="M31.6875 15.125C34.3799 15.125 36.5625 12.9424 36.5625 10.25C36.5625 7.55761 34.3799 5.375 31.6875 5.375C28.9951 5.375 26.8125 7.55761 26.8125 10.25C26.8125 12.9424 28.9951 15.125 31.6875 15.125Z"
-                      fill="#FF0000"
-                    />
-                  </svg>
+                  <FaRegBell className="bell-nav" />
                   &nbsp;&nbsp;
                   <img
                     src={Student_Image}
@@ -604,7 +606,7 @@ function SettingPage() {
                                 </div>
                                 <div className="col-sm-4 col-md-4 col-lg-3 text-center">
                                   <a
-                                    href="/"
+                                    href="https://www.instagram.com/generation_alpha_official/"
                                     target="blanck"
                                     className="pintnnmmm"
                                   >
@@ -703,7 +705,7 @@ function SettingPage() {
                                 </div>
                                 <div className="col-sm-4 col-md-4 col-lg-3 text-center">
                                   <a
-                                    href="/"
+                                    href="https://www.tiktok.com/@generation.alpha"
                                     target="blanck"
                                     className="pintnnmmm"
                                   >
@@ -777,42 +779,76 @@ function SettingPage() {
                           <div className="card">
                             <div className="d-flex justify-content-between mt-4">
                               <h4>Terms & Conditions</h4>
-
-                              <h6 className="View-more">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="8"
-                                  height="14"
-                                  viewBox="0 0 8 14"
-                                  fill="none"
-                                >
-                                  <path
-                                    d="M0.305919 13.6918C0.110039 13.4945 0 13.2268 0 12.9477C0 12.6686 0.110039 12.401 0.305919 12.2036L5.47795 6.99365L0.305919 1.78371C0.115591 1.5852 0.0102754 1.31933 0.0126557 1.04337C0.0150366 0.767402 0.124922 0.503418 0.318647 0.308273C0.512371 0.113129 0.774434 0.00243855 1.04839 4.00543e-05C1.32235 -0.00235748 1.58628 0.103729 1.78334 0.295453L7.69408 6.24952C7.88996 6.44689 8 6.71456 8 6.99365C8 7.27273 7.88996 7.5404 7.69408 7.73777L1.78334 13.6918C1.5874 13.8892 1.32169 14 1.04463 14C0.767573 14 0.501858 13.8892 0.305919 13.6918Z"
-                                    fill="black"
-                                  />
-                                </svg>
-                              </h6>
                             </div>
+                            <p>
+                              Acceptance of Terms By accessing or using the
+                              Generation ALPHA platform, you agree to comply
+                              with and be bound by these terms and conditions.
+                              Services Generation ALPHA provides mentoring,
+                              recruitment, and project-based learning services.
+                              Users must adhere to the guidelines and policies
+                              outlined in this document. Membership Membership
+                              is open to individuals interested in education,
+                              innovation, and entrepreneurship. Members must
+                              provide accurate information during registration.
+                              Privacy Policy Generation ALPHA respects your
+                              privacy. Please review our Privacy Policy [link to
+                              privacy policy]. Code of Conduct Members are
+                              expected to uphold a high standard of conduct. Any
+                              violation may result in termination of membership.
+                              Intellectual Property All content and materials on
+                              the platform are the intellectual property of
+                              Generation ALPHA. Unauthorized use is prohibited.
+                              User Responsibilities Users are responsible for
+                              the security of their accounts. Report any
+                              unauthorized access promptly. Termination
+                              Generation ALPHA reserves the right to terminate
+                              or suspend any user account for violation of
+                              terms. Disclaimer Generation ALPHA is not liable
+                              for any damages or losses incurred through the use
+                              of its services. Changes to Terms Generation ALPHA
+                              may update these terms. Users will be notified,
+                              and continued use constitutes acceptance of the
+                              changes.
+                            </p>
                           </div>
                           <div className="card ">
                             <div className="d-flex justify-content-between mt-4">
                               <h4>Privacy Policy</h4>
-
-                              <h6 className="View-more">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="8"
-                                  height="14"
-                                  viewBox="0 0 8 14"
-                                  fill="none"
-                                >
-                                  <path
-                                    d="M0.305919 13.6918C0.110039 13.4945 0 13.2268 0 12.9477C0 12.6686 0.110039 12.401 0.305919 12.2036L5.47795 6.99365L0.305919 1.78371C0.115591 1.5852 0.0102754 1.31933 0.0126557 1.04337C0.0150366 0.767402 0.124922 0.503418 0.318647 0.308273C0.512371 0.113129 0.774434 0.00243855 1.04839 4.00543e-05C1.32235 -0.00235748 1.58628 0.103729 1.78334 0.295453L7.69408 6.24952C7.88996 6.44689 8 6.71456 8 6.99365C8 7.27273 7.88996 7.5404 7.69408 7.73777L1.78334 13.6918C1.5874 13.8892 1.32169 14 1.04463 14C0.767573 14 0.501858 13.8892 0.305919 13.6918Z"
-                                    fill="black"
-                                  />
-                                </svg>
-                              </h6>
-                            </div>
+                              </div>
+                              <p>
+                                Information We Collect We collect personal
+                                information provided voluntarily by users during
+                                the registration process. This may include
+                                names, contact information, and other relevant
+                                details. Use of Information Personal information
+                                is used for membership management,
+                                communication, and to provide and improve our
+                                services. Generation ALPHA does not sell or
+                                share this information with third parties
+                                without explicit consent. Data Security We
+                                implement reasonable security measures to
+                                protect personal information. However, no method
+                                of transmission over the internet or electronic
+                                storage is 100% secure. Cookies Generation ALPHA
+                                uses cookies to enhance user experience. Users
+                                may choose to disable cookies, but this might
+                                impact the functionality of certain features.
+                                Third-Party Links Our platform may contain links
+                                to third-party websites. Generation ALPHA is not
+                                responsible for the privacy practices or content
+                                of these sites. Users should review the privacy
+                                policies of these third parties. Changes to
+                                Privacy Policy Generation ALPHA may update this
+                                privacy policy. Users will be notified, and
+                                continued use constitutes acceptance of the
+                                changes. User Control Users can access, modify,
+                                or delete their personal information by
+                                contacting [contact email/phone]. Compliance
+                                with Laws Generation ALPHA complies with
+                                applicable data protection laws and regulations.
+                              </p>
+                          
                           </div>
                         </div>
                       </div>
@@ -1157,32 +1193,34 @@ function SettingPage() {
                                   </Modal.Body>
                                 </Modal>
                                 {/*Delete Model End */}
-                                <InputGroup
-                                  className="mb-3"
-                                  style={{ width: "50%" }}
-                                >
-                                  <Form.Control
-                                    size="medium"
-                                    type={showPassword3 ? "text" : "password"}
-                                    id="inputPassword"
-                                    style={{ textTransform: "none" }}
-                                    aria-describedby="passwordHelpBlock"
-                                    placeholder="Enter your password"
-                                    onChange={(e) =>
-                                      setPasswordToDelete(e.target.value)
-                                    }
-                                  />
-                                  <InputGroup.Text
-                                    id="passwordHelpBlock"
-                                    onClick={togglePasswordVisibility3}
+                                <div className="text-center centinpt">
+                                  <InputGroup
+                                    className="mb-3"
+                                    style={{ width: "100%" }}
                                   >
-                                    {showPassword3 ? (
-                                      <HiOutlineEyeOff />
-                                    ) : (
-                                      <HiOutlineEye />
-                                    )}
-                                  </InputGroup.Text>
-                                </InputGroup>
+                                    <Form.Control
+                                      size="medium"
+                                      type={showPassword3 ? "text" : "password"}
+                                      id="inputPassword"
+                                      style={{ textTransform: "none" }}
+                                      aria-describedby="passwordHelpBlock"
+                                      placeholder="Enter your password"
+                                      onChange={(e) =>
+                                        setPasswordToDelete(e.target.value)
+                                      }
+                                    />
+                                    <InputGroup.Text
+                                      id="passwordHelpBlock"
+                                      onClick={togglePasswordVisibility3}
+                                    >
+                                      {showPassword3 ? (
+                                        <HiOutlineEyeOff />
+                                      ) : (
+                                        <HiOutlineEye />
+                                      )}
+                                    </InputGroup.Text>
+                                  </InputGroup>
+                                </div>
                                 <br></br>
                                 <button
                                   className="btndlt"

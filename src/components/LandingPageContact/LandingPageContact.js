@@ -19,6 +19,7 @@ function LandingPageContact() {
   //Contact Us
   const form = useRef();
 
+
   const sendEmail = (e) => {
     e.preventDefault();
 
@@ -37,6 +38,33 @@ function LandingPageContact() {
         }
       );
   };
+
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm("service_ujbarye", "template_vdnepgd", form.current, {
+        publicKey: "A7gPSfsx2Sr9vN779",
+      })
+      .then(
+        (result) => {
+          console.log(result.text);
+          alert("Gmail Send Success!");
+        },
+        (error) => {
+          console.log(error.text);
+          alert("Not Send");
+        }
+      );
+  };
+
+  const clearForm = () => {
+    form.current.reset();
+  }
+
+
+
   return (
     <div>
       <section className="">
@@ -46,6 +74,7 @@ function LandingPageContact() {
               <a className="navbar-brand" href="/">
                 <img src={GAP_Image} height="90" alt="" />
               </a>
+
               <nav class=" navbar-expand-lg navbar-light bg-light">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -72,10 +101,54 @@ function LandingPageContact() {
                 </div>
               </nav>
 
+
+              <div className="d-flex justify-content-end">
+                <a className="nav-link custom-nav-link " href="/">
+                  Home
+                </a>
+                <a
+                  className="nav-link custom-nav-link "
+                  href="landingPageAbout"
+                  onClick={() => {
+                    window.location.href = "/landingPageAbout";
+                  }}
+                >
+                  About
+                </a>
+                <a
+                  className="nav-link custom-nav-link"
+                  href="landingPageContact"
+                  onClick={() => {
+                    window.location.href = "/landingPageContact";
+                  }}
+                >
+                  Contact
+                </a>
+                <a
+                  className="nav-link custom-nav-link"
+                  href="login"
+                  onClick={() => {
+                    window.location.href = "/login";
+                  }}
+                >
+                  Login
+                </a>
+                <button
+                  className="btn custom-button1 my-2 my-sm-3"
+                  type="submit"
+                  onClick={() => {
+                    window.location.href = "/register";
+                  }}
+                >
+                  Register
+                </button>
+              </div>
+
             </nav>
           </div>
           <div className="">
             {/*Contact Us Section Start*/}
+
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-md-8">
@@ -145,12 +218,82 @@ function LandingPageContact() {
                           </div>
                         </Form>
                       </div>
+
+            <div className="d-flex justify-content-center">
+              <div className="">
+                <div className="confull">
+                  <h5 className="card-title fw-bold titlenewwrt">Contact Us</h5>
+                  <p className="pareconus">
+                    Any Questions or Remarks? Just write us a message!
+                  </p>
+                  <div className="cardll">
+                    <div className=" mt-3">
+                      <Form ref={form} onSubmit={sendEmail}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                          <Form.Label className="lblcous">Name</Form.Label>
+                          <Form.Control
+                            type="text"
+                            placeholder="your name"
+                            required={"required"}
+                            name="user_name"
+                          />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                          <Form.Label className="lblcous">
+                            Phone Number
+                          </Form.Label>
+                          <Form.Control
+                            type="text"
+                            placeholder="+94 000000000"
+                            required={"required"}
+                            name="phoneNumber"
+                          />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                          <Form.Label className="lblcous">
+                            Email (Optional)
+                          </Form.Label>
+                          <Form.Control
+                            type="email"
+                            style={{textTransform: "none"}}
+                            placeholder="example@gmail.com "
+                            required={"required"}
+                            name="user_email"
+                          />
+                          <Form.Label className="lblcous">Reason</Form.Label>
+                          <Form.Control
+                            type="Text"
+                            style={{textTransform: "none"}}
+                            placeholder="Enter Reason"
+                            required={"required"}
+                            name="reason"
+                          />
+                        </Form.Group>
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                          <Form.Label className="lblcous">Message</Form.Label>
+                          <Form.Control
+                            as="textarea"
+                            rows={5}
+                            className="form-control"
+                            style={{ resize: "none" }}
+                            value={text}
+                            onChange={handleChange}
+                            required={"required"}
+                            name="message"
+                          />
+                        </Form.Group>
+
+                        <div className="text-right">
+                          <p>{text.length}/300</p>
+                        </div>
+                        <button className="subbtnconus" onClick={clearForm}>Submit</button>
+                      </Form>
+
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
 
             {/*Contact Us Section End */}
           </div>
@@ -170,6 +313,11 @@ function LandingPageContact() {
                       <p class="desbtn">Phone</p>
                       <p class="desbtn">076 7090757</p>
                     </div>
+
+
+                    <p className="desbtn2">Email</p>
+                    <p className="desbtn2">generationalpha2025@gmail.com</p>
+
                   </div>
                   <div class="col-sm-4 col-md-4 col-lg-3 ">
                     <div class="pbtn2oo">

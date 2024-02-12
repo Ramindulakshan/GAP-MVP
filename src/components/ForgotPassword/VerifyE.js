@@ -223,15 +223,7 @@ class VerifyE extends React.Component {
                         <span>{this.state.countdown} seconds</span>
                       )}
                     </h6>
-                    <div className="text-center">
-                      <button
-                        className="btn custom-button2rtyu  my-1 my-sm-3"
-                        type="submit"
-                        onClick={this.VerifyOTP}
-                      >
-                        Verify
-                      </button>
-                    </div>
+
                     <div className="custom-input">
                     <h5 className="mb-4 custom-text-sendcode ">
                     Create A New Password
@@ -244,6 +236,7 @@ class VerifyE extends React.Component {
                           type="Password"
                           className="form-control"
                           placeholder="Password"
+                          style={{textTransform: "none"}}
                         />
                       </div>
 
@@ -254,6 +247,7 @@ class VerifyE extends React.Component {
                           type="Password"
                           className="form-control"
                           placeholder="Confirm Password"
+                          style={{textTransform: "none"}}
                         />
                       </div>
                     </div>
@@ -262,9 +256,9 @@ class VerifyE extends React.Component {
                       <button
                         className="btn custom-button2rtyu  my-1 my-sm-3"
                         type="submit"
-                        // onClick={this.VerifyOTP}
+                        onClick={this.VerifyOTP}
                       >
-                        Reset
+                        Verify
                       </button>
                     </div>
                     </div>

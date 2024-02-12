@@ -22,6 +22,7 @@ function LandingPageAbout() {
               <a className="navbar-brand" href="/">
                 <img src={GAP_Image} height="90" alt="" />
               </a>
+
               <nav class=" navbar-expand-lg navbar-light bg-light">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -47,6 +48,52 @@ function LandingPageAbout() {
                   </form>
                 </div>
               </nav>
+
+
+              <div className="d-flex justify-content-end">
+                <a
+                  className="nav-link custom-nav-link "
+                  href="/"
+                >
+                  Home
+                </a>
+                <a
+                  className="nav-link custom-nav-link "
+                  href="landingPageAbout"
+                  onClick={() => {
+                    window.location.href = "/landingPageAbout";
+                  }}
+                >
+                  About
+                </a>
+                <a
+                  className="nav-link custom-nav-link"
+                  href="landingPageContact"
+                  onClick={() => {
+                    window.location.href = "/landingPageContact";
+                  }}
+                >
+                  Contact
+                </a>
+                <a
+                  className="nav-link custom-nav-link"
+                  href="login"
+                  onClick={() => {
+                    window.location.href = "/login";
+                  }}
+                >
+                  Login
+                </a>
+                <button
+                  className="btn custom-button1 my-2 my-sm-3"
+                  type="submit"
+                  onClick={() => {
+                    window.location.href = "/register";
+                  }}
+                >
+                  Register
+                </button>
+              </div>
 
             </nav>
           </div>
