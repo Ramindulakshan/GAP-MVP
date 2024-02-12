@@ -15,27 +15,33 @@ function LandingPageContact() {
       setText(inputText);
     }
   };
-    //Contact Us
-    const form = useRef();
+  //Contact Us
+  const form = useRef();
 
-    const sendEmail = (e) => {
-      e.preventDefault();
-  
-      emailjs
-        .sendForm("service_ujbarye", "template_vdnepgd", form.current, {
-          publicKey: "A7gPSfsx2Sr9vN779",
-        })
-        .then(
-          (result) => {
-            console.log(result.text);
-            alert("Gmail Send Success!");
-          },
-          (error) => {
-            console.log(error.text);
-            alert("Not Send");
-          }
-        );
-    };
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm("service_ujbarye", "template_vdnepgd", form.current, {
+        publicKey: "A7gPSfsx2Sr9vN779",
+      })
+      .then(
+        (result) => {
+          console.log(result.text);
+          alert("Gmail Send Success!");
+        },
+        (error) => {
+          console.log(error.text);
+          alert("Not Send");
+        }
+      );
+  };
+
+  const clearForm = () => {
+    form.current.reset();
+  }
+
+
   return (
     <div>
       <section className="">
@@ -46,13 +52,7 @@ function LandingPageContact() {
                 <img src={GAP_Image} height="90" alt="" />
               </a>
               <div className="d-flex justify-content-end">
-                <a
-                  className="nav-link custom-nav-link "
-                  href="home"
-                  onClick={() => {
-                    window.location.href = "/underConstructionHome";
-                  }}
-                >
+                <a className="nav-link custom-nav-link " href="/">
                   Home
                 </a>
                 <a
@@ -82,14 +82,15 @@ function LandingPageContact() {
                 >
                   Login
                 </a>
-                <form className="form-inline my-2 my-lg-0">
-                  <button
-                    className="btn custom-button1 my-2 my-sm-3"
-                    type="submit"
-                  >
-                    Register
-                  </button>
-                </form>
+                <button
+                  className="btn custom-button1 my-2 my-sm-3"
+                  type="submit"
+                  onClick={() => {
+                    window.location.href = "/register";
+                  }}
+                >
+                  Register
+                </button>
               </div>
             </nav>
           </div>
@@ -104,87 +105,71 @@ function LandingPageContact() {
                   </p>
                   <div className="cardll">
                     <div className=" mt-3">
-                    <Form ref={form} onSubmit={sendEmail}>
-                                  <Form.Group
-                                    className="mb-3"
-                                    controlId="formBasicEmail"
-                                  >
-                                    <Form.Label className="lblcous">
-                                      Name
-                                    </Form.Label>
-                                    <Form.Control
-                                      type="text"
-                                      placeholder="your name"
-                                      required={"required"}
-                                      name="user_name"
-                                    />
-                                  </Form.Group>
-                                  <Form.Group
-                                    className="mb-3"
-                                    controlId="formBasicEmail"
-                                  >
-                                    <Form.Label className="lblcous">
-                                      Phone Number
-                                    </Form.Label>
-                                    <Form.Control
-                                      type="text"
-                                      placeholder="+94 000000000"
-                                      required={"required"}
-                                      name="phoneNumber"
-                                    />
-                                  </Form.Group>
-                                  <Form.Group
-                                    className="mb-3"
-                                    controlId="formBasicEmail"
-                                  >
-                                    <Form.Label className="lblcous">
-                                      Email (Optional)
-                                    </Form.Label>
-                                    <Form.Control
-                                      type="email"
-                                      placeholder="example@gmail.com "
-                                      required={"required"}
-                                      name="user_email"
-                                    />
-                                    <Form.Label className="lblcous">
-                                      Reason
-                                    </Form.Label>
-                                    <Form.Control
-                                      type="Text"
-                                      placeholder="Enter Reason"
-                                      required={"required"}
-                                      name="reason"
-                                    />
-                                  </Form.Group>
-                                  <Form.Group controlId="exampleForm.ControlTextarea1">
-                                    <Form.Label className="lblcous">
-                                      Message
-                                    </Form.Label>
-                                    <Form.Control
-                                      as="textarea"
-                                      rows={5}
-                                      className="form-control"
-                                      style={{ resize: "none" }}
-                                      value={text}
-                                      onChange={handleChange}
-                                      required={"required"}
-                                      name="message"
-                                    />
-                                  </Form.Group>
+                      <Form ref={form} onSubmit={sendEmail}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                          <Form.Label className="lblcous">Name</Form.Label>
+                          <Form.Control
+                            type="text"
+                            placeholder="your name"
+                            required={"required"}
+                            name="user_name"
+                          />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                          <Form.Label className="lblcous">
+                            Phone Number
+                          </Form.Label>
+                          <Form.Control
+                            type="text"
+                            placeholder="+94 000000000"
+                            required={"required"}
+                            name="phoneNumber"
+                          />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                          <Form.Label className="lblcous">
+                            Email (Optional)
+                          </Form.Label>
+                          <Form.Control
+                            type="email"
+                            style={{textTransform: "none"}}
+                            placeholder="example@gmail.com "
+                            required={"required"}
+                            name="user_email"
+                          />
+                          <Form.Label className="lblcous">Reason</Form.Label>
+                          <Form.Control
+                            type="Text"
+                            style={{textTransform: "none"}}
+                            placeholder="Enter Reason"
+                            required={"required"}
+                            name="reason"
+                          />
+                        </Form.Group>
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                          <Form.Label className="lblcous">Message</Form.Label>
+                          <Form.Control
+                            as="textarea"
+                            rows={5}
+                            className="form-control"
+                            style={{ resize: "none" }}
+                            value={text}
+                            onChange={handleChange}
+                            required={"required"}
+                            name="message"
+                          />
+                        </Form.Group>
 
-                                  <div className="text-right">
-                                    <p>{text.length}/300</p>
-                                  </div>
-                                  <button className="subbtnconus">
-                                    Submit
-                                  </button>
-                                </Form>
+                        <div className="text-right">
+                          <p>{text.length}/300</p>
+                        </div>
+                        <button className="subbtnconus" onClick={clearForm}>Submit</button>
+                      </Form>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
 
             {/*Contact Us Section End */}
           </div>
@@ -230,7 +215,7 @@ function LandingPageContact() {
                       </svg>
                     </div>
                     <p className="desbtn2">Email</p>
-                    <p className="desbtn2">abc@gmail.com</p>
+                    <p className="desbtn2">generationalpha2025@gmail.com</p>
                   </div>
                 </div>
                 <div className="col-sm-4 col-md-4 col-lg-4 text-center">

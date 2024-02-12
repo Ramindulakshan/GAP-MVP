@@ -73,6 +73,13 @@ const togglePasswordVisibility = () => {
       });
   };
 
+  // const googleAuth = () => {
+  //   window.open(
+  //     "http://localhost:3001/auth/google/callback",
+  //     "_self"
+  //   );
+  // } //google login 
+ 
   return (
     <>
       <section className="newwitchg">

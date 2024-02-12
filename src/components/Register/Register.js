@@ -69,6 +69,7 @@ function Prologin() {
     }
     setValidated(true);
     e.preventDefault();
+    
     axios
       .post("http://localhost:3001/api/register", {
         firstName: firstName,
@@ -79,8 +80,9 @@ function Prologin() {
       })
       .then((response) => {
         console.log(response);
-        if (response.data.status === 200) {
+        if (response.data.status === 'ok') {
           handleShow2();
+
         } else if (response.data.status === "error") {
           alert("Invalid Details. Please try again.");
         }
@@ -170,7 +172,7 @@ function Prologin() {
                       </Form.Group>
 
                       <br></br>
-
+                      {/* 
                       <Form.Group controlId="validationCustomUsername">
                         <InputGroup hasValidation>
                           <Form.Control
@@ -182,6 +184,36 @@ function Prologin() {
                             onChange={(e) => setEmail(e.target.value)}
                           />
                           <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
+                        </InputGroup>
+                      </Form.Group> */}
+
+                      <Form.Group controlId="validationCustomUsername">
+                        <InputGroup hasValidation>
+                          <Form.Control
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            style={{ textTransform: "none" }}
+                            aria-describedby="inputGroupPrepend"
+                            required
+                            onChange={(e) => {
+                              const inputEmail = e.target.value;
+                              setEmail(inputEmail);
+
+                              // Add validation for '@' symbol
+                              const isValidEmail = inputEmail.includes("@");
+                              if (!isValidEmail) {
+                                e.target.setCustomValidity(
+                                  "Please enter a valid email address."
+                                );
+                              } else {
+                                e.target.setCustomValidity("");
+                              }
+                            }}
+                          />
+                          <Form.Control.Feedback type="invalid">
+                            Please enter a valid email address.
+                          </Form.Control.Feedback>
                         </InputGroup>
                       </Form.Group>
 

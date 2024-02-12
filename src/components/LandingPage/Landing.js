@@ -28,64 +28,38 @@ const LandingPage = () => {
         <div className="container-fluid vh-100">
           <div className="container">
             <nav className="navbar navbar-light">
-
-            <a className="navbar-brand"  href="home" onClick={() => {
-                  window.location.href = "/";
-                }}>
-
+              <a className="navbar-brand" href="/">
                 <img src={GAP_Image} height="90" alt="" />
               </a>
-              <a className="navbar-brand"  href="home"></a>
 
               <div className="d-flex justify-content-end">
-                <a
-                  className="nav-link custom-nav-link "
-                  href="home"
-                  onClick={() => {
-                    window.location.href = "/underConstructionHome";
-                  }}
-                >
+                <a className="nav-link custom-nav-link " href="/">
                   Home
                 </a>
                 <a
                   className="nav-link custom-nav-link "
                   href="landingPageAbout"
-                  onClick={() => {
-                    window.location.href = "/landingPageAbout";
-                  }}
                 >
                   About
                 </a>
                 <a
                   className="nav-link custom-nav-link"
                   href="landingPageContact"
-                  onClick={() => {
-                    window.location.href = "/landingPageContact";
-                  }}
                 >
                   Contact
                 </a>
-                <a
-                  className="nav-link custom-nav-link"
-                  href="login"
-                  onClick={() => {
-                    window.location.href = "/login";
-                  }}
-                >
+                <a className="nav-link custom-nav-link" href="login">
                   Login
                 </a>
-                <form className="form-inline my-2 my-lg-0">
-                
-                  <button
-                    className="btn custom-button1 my-2 my-sm-3"
-                    type="submit"
-                    onClick={() => {
-                      window.location.href = "/register";
-                    }}
-                  >
-                    Register
-                  </button>
-                </form>
+                <button
+                  className="btn custom-button1 my-2 my-sm-3"
+                  type="submit"
+                  onClick={() => {
+                    window.location.href = "/register";
+                  }}
+                >
+                  Register
+                </button>
               </div>
             </nav>
           </div>
@@ -172,7 +146,6 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-
       </section>
     </>
   );

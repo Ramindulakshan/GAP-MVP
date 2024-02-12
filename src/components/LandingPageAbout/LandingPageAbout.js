@@ -19,10 +19,7 @@ function LandingPageAbout() {
               <div className="d-flex justify-content-end">
                 <a
                   className="nav-link custom-nav-link "
-                  href="home"
-                  onClick={() => {
-                    window.location.href = "/underConstructionHome";
-                  }}
+                  href="/"
                 >
                   Home
                 </a>
@@ -53,14 +50,15 @@ function LandingPageAbout() {
                 >
                   Login
                 </a>
-                <form className="form-inline my-2 my-lg-0">
-                  <button
-                    className="btn custom-button1 my-2 my-sm-3"
-                    type="submit"
-                  >
-                    Register
-                  </button>
-                </form>
+                <button
+                  className="btn custom-button1 my-2 my-sm-3"
+                  type="submit"
+                  onClick={() => {
+                    window.location.href = "/register";
+                  }}
+                >
+                  Register
+                </button>
               </div>
             </nav>
           </div>
