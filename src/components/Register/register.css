@@ -136,7 +136,17 @@
     display: none;
    
   }
+  .custom-bglog {
+    display: none;
+   
+  }
   .bxbxset {
+    width: 90%;
+    padding: 10px;
+    height: auto;
+   margin: 0 10px;
+  }
+  .bxbxsetlog {
     width: 90%;
     padding: 10px;
     height: auto;
