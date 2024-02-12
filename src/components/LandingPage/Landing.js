@@ -13,130 +13,105 @@ const LandingPage = () => {
     const fetchUserCount = async () => {
       try {
         const response = await axios.get("http://localhost:3001/api/members");
-        console.log(response);
         setUserCount(response.data.members);
       } catch (error) {
         console.error("Error fetching user count: ", error);
       }
     };
     fetchUserCount();
-  });
+  }, []);
 
   return (
     <>
       <section className="new-background">
         <div className="container-fluid vh-100">
-          <div className="container">
+        <div className="container">
             <nav className="navbar navbar-light">
               <a className="navbar-brand" href="/">
                 <img src={GAP_Image} height="90" alt="" />
               </a>
 
-              <div className="d-flex justify-content-end">
-                <a className="nav-link custom-nav-link " href="/">
-                  Home
-                </a>
-                <a
-                  className="nav-link custom-nav-link "
-                  href="landingPageAbout"
-                >
-                  About
-                </a>
-                <a
-                  className="nav-link custom-nav-link"
-                  href="landingPageContact"
-                >
-                  Contact
-                </a>
-                <a className="nav-link custom-nav-link" href="login">
-                  Login
-                </a>
-                <button
-                  className="btn custom-button1 my-2 my-sm-3"
-                  type="submit"
-                  onClick={() => {
-                    window.location.href = "/register";
-                  }}
-                >
-                  Register
+              <nav class=" navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
                 </button>
-              </div>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="">
+                      <a class="nav-link custom-nav-link  " href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link custom-nav-link " href="/landingPageAbout">About</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link custom-nav-link " href="/landingPageContact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link custom-nav-link " href="/login">Login</a>
+                    </li>
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0 mt-4">
+                    <button class="btn custom-button1 my-2 my-sm-3" type="button" onclick="window.location.href='/register'">Register</button>
+                  </form>
+                </div>
+              </nav>
+
             </nav>
           </div>
           <div>
             <div>
-              <h1
-                className="custom-text-LA text-center mb-4 mt-3"
-                style={{ marginLeft: "150px", marginRight: "150px" }}
-              >
-                Explore The World And Discover
-                <br /> Your Potential
+              <h1 className="custom-text-LA text-center mb-4 mt-3">
+                Explore The World And Discover <br /> Your Potential
               </h1>
-              <h1
-                className="custom-text-LA2 text-center mb-1 mt-1"
-                style={{ marginLeft: "100px", marginRight: "100px" }}
-              >
-                Connect with industry pros, discover opportunities, showcase
-                your skills. Join a thriving community, and empower
-                <br /> your future. Your journey starts here!
+              <h1 className="custom-text-LA2 text-center mb-1 mt-1">
+                Connect with industry pros, discover opportunities, showcase your
+                skills. Join a thriving community, and empower <br /> your future.
+                Your journey starts here!
               </h1>
             </div>
             <CardGroup className="d-flex justify-content-center flex-wrap">
-              <Card
-                className="m-5"
-                style={{ backgroundColor: "#DCDDF9", width: "5rem" }}
-              >
-                <Card.Body className="text-center">
+              <Card className="m-3 text-center" style={{ backgroundColor: "#DCDDF9" }}>
+                <Card.Body>
                   <Card.Text>
                     <h1>
                       <CountUp start={0} end={0} duration={4} delay={0} />
                     </h1>
                   </Card.Text>
-                  <Card.Title style={{ color: "#2A2A72", fontSize: "28px" }}>
+                  <Card.Title style={{ color: "#2A2A72", fontSize: "24px" }}>
                     Mentors
                   </Card.Title>
                 </Card.Body>
               </Card>
-              <Card
-                className="m-5"
-                style={{ backgroundColor: "#DCDDF9", width: "10rem" }}
-              >
-                <Card.Body className="text-center">
+              <Card className="m-3 text-center" style={{ backgroundColor: "#DCDDF9" }}>
+                <Card.Body>
                   <Card.Text>
                     <h1>
-                      <CountUp
-                        start={0}
-                        end={userCount}
-                        duration={2}
-                        delay={0}
-                      />
+                      <CountUp start={0} end={userCount} duration={2} delay={0} />
                     </h1>
                   </Card.Text>
-                  <Card.Title style={{ color: "#2A2A72", fontSize: "28px" }}>
+                  <Card.Title style={{ color: "#2A2A72", fontSize: "24px" }}>
                     Members
                   </Card.Title>
                 </Card.Body>
               </Card>
-              <Card
-                className="m-5"
-                style={{ backgroundColor: "#DCDDF9", width: "10rem" }}
-              >
-                <Card.Body className="text-center">
+              <Card className="m-3 text-center" style={{ backgroundColor: "#DCDDF9" }}>
+                <Card.Body>
                   <Card.Text>
                     <h1>
                       <CountUp start={0} end={0} duration={4} delay={0} />
                     </h1>
                   </Card.Text>
-                  <Card.Title style={{ color: "#2A2A72", fontSize: "28px" }}>
+                  <Card.Title style={{ color: "#2A2A72", fontSize: "24px" }}>
                     Sessions
                   </Card.Title>
                 </Card.Body>
               </Card>
             </CardGroup>
-            <div className="text-center mt-1">
+            <div className="text-center mt-3">
               <button
-                className="btn custom-button-reset2 my-1 my-sm-3"
-                type="submit"
+                className="btn custom-button-reset2"
+                type="button"
                 onClick={() => {
                   window.location.href = "/register";
                 }}

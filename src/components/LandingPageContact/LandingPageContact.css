@@ -1,0 +1,49 @@
+/* LandingPageContact.css */
+.newbroder{
+  border: 2px solid rgba(128, 128, 128, 0.651);
+}
+.desbtn2new {
+  text-align: start;
+  position: relative;
+  bottom: 38px;
+   padding: 0; 
+  margin: 0;
+  right: 50px;
+  cursor: pointer;
+}
+@media screen and (max-width: 900px) {
+.confull {
+  align-items: center;
+  width: 100%;
+  border-radius: 8px;
+  padding: 30px 50px;
+  margin: 0 20px;
+}
+.cardkml {
+  width: 100%;
+  background: #dfecf9;
+  padding: 10px;
+}
+.desbtn2new {
+  text-align: start;
+  position: relative;
+  bottom: 38px;
+   padding: 0; 
+  margin: 0;
+  right: 0;
+  cursor: pointer;
+}
+}
+@media screen and (max-width: 500px) {
+  .confull {
+    align-items: center;
+    width: 80%;
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid rgba(128, 128, 128, 0.651);
+    margin: 0 20px;
+  }
+  .newbroder{
+    border: 0;
+  }
+  }

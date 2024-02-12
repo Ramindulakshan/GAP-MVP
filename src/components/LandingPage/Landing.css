@@ -42,9 +42,10 @@
   font-weight: 600;
   margin-left: 4vh;
   margin-right: 5vh;
-  margin-top: 3vh;
+  /* margin-top: 1vh; */
   text-decoration: none;
   transition: color 0.3s ease-in-out;
+  /* background-color: #ffffff; */
 }
 
 .custom-nav-link:hover {
@@ -117,4 +118,11 @@
     background-image: url("./img/Landing\ Page\ _\ Default.png");
     background-size: cover;
   
+  }
+
+  .navbar-collapse{
+    background-color: #ffffff;
+  }
+  .collapse{
+    background-color: #ffffff;
   }

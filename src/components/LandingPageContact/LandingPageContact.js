@@ -5,6 +5,7 @@ import "../SettingPage/SettingPage.css";
 import { Form } from "react-bootstrap";
 import { useRef } from "react";
 import emailjs from "@emailjs/browser";
+import "./LandingPageContact.css";
 function LandingPageContact() {
   const [text, setText] = useState("");
 
@@ -39,8 +40,7 @@ function LandingPageContact() {
 
   const clearForm = () => {
     form.current.reset();
-  }
-
+  };
 
   return (
     <div>
@@ -48,57 +48,73 @@ function LandingPageContact() {
         <div className="vh-100">
           <div className="container">
             <nav className="navbar navbar-light">
-              <a className="navbar-brand" href="#c">
+              <a className="navbar-brand" href="/">
                 <img src={GAP_Image} height="90" alt="" />
               </a>
-              <div className="d-flex justify-content-end">
-                <a className="nav-link custom-nav-link " href="/">
-                  Home
-                </a>
-                <a
-                  className="nav-link custom-nav-link "
-                  href="landingPageAbout"
-                  onClick={() => {
-                    window.location.href = "/landingPageAbout";
-                  }}
-                >
-                  About
-                </a>
-                <a
-                  className="nav-link custom-nav-link"
-                  href="landingPageContact"
-                  onClick={() => {
-                    window.location.href = "/landingPageContact";
-                  }}
-                >
-                  Contact
-                </a>
-                <a
-                  className="nav-link custom-nav-link"
-                  href="login"
-                  onClick={() => {
-                    window.location.href = "/login";
-                  }}
-                >
-                  Login
-                </a>
+
+              <nav class=" navbar-expand-lg navbar-light bg-light">
                 <button
-                  className="btn custom-button1 my-2 my-sm-3"
-                  type="submit"
-                  onClick={() => {
-                    window.location.href = "/register";
-                  }}
+                  class="navbar-toggler"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
                 >
-                  Register
+                  <span class="navbar-toggler-icon"></span>
                 </button>
-              </div>
+
+                <div
+                  class="collapse navbar-collapse"
+                  id="navbarSupportedContent"
+                >
+                  <ul class="navbar-nav mr-auto">
+                    <li class="">
+                      <a class="nav-link custom-nav-link  " href="/">
+                        Home
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a
+                        class="nav-link custom-nav-link "
+                        href="/landingPageAbout"
+                      >
+                        About
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a
+                        class="nav-link custom-nav-link "
+                        href="/landingPageContact"
+                      >
+                        Contact
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link custom-nav-link " href="/login">
+                        Login
+                      </a>
+                    </li>
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0 mt-4">
+                    <button
+                      class="btn custom-button1 my-2 my-sm-3"
+                      type="button"
+                      onclick="window.location.href='/register'"
+                    >
+                      Register
+                    </button>
+                  </form>
+                </div>
+              </nav>
             </nav>
           </div>
           <div className="">
             {/*Contact Us Section Start*/}
             <div className="d-flex justify-content-center">
               <div className="">
-                <div className="confull">
+                <div className="confull newbroder">
                   <h5 className="card-title fw-bold titlenewwrt">Contact Us</h5>
                   <p className="pareconus">
                     Any Questions or Remarks? Just write us a message!
@@ -132,7 +148,7 @@ function LandingPageContact() {
                           </Form.Label>
                           <Form.Control
                             type="email"
-                            style={{textTransform: "none"}}
+                            style={{ textTransform: "none" }}
                             placeholder="example@gmail.com "
                             required={"required"}
                             name="user_email"
@@ -140,7 +156,7 @@ function LandingPageContact() {
                           <Form.Label className="lblcous">Reason</Form.Label>
                           <Form.Control
                             type="Text"
-                            style={{textTransform: "none"}}
+                            style={{ textTransform: "none" }}
                             placeholder="Enter Reason"
                             required={"required"}
                             name="reason"
@@ -163,21 +179,24 @@ function LandingPageContact() {
                         <div className="text-right">
                           <p>{text.length}/300</p>
                         </div>
-                        <button className="subbtnconus" onClick={clearForm}>Submit</button>
+                        <button className="subbtnconus" onClick={clearForm}>
+                          Submit
+                        </button>
                       </Form>
+                      <br></br> <br></br> <br></br>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
+            <br></br> <br></br>
             {/*Contact Us Section End */}
           </div>
 
-          <div className="cardkml">
-            <div className="container mt-2">
-              <div className="row">
-                <div className="col-sm-5 col-md-5 col-lg-4 text-center">
+          <div className="cardkml ">
+            <div className="container mt-2 ">
+              <div className="row pdinf">
+                <div className="col-sm-5 col-md-5 col-lg-5 text-center">
                   <div className="pbtn2oo">
                     <div className="clbtn">
                       <svg
@@ -194,10 +213,33 @@ function LandingPageContact() {
                       </svg>
                     </div>
                     <p className="desbtn">Phone</p>
-                    <p className="desbtn">011 4586936</p>
+                    <p className="desbtn">076 7090757</p>
                   </div>
                 </div>
-                <div className="col-sm-4 col-md-4 col-lg-4 text-center">
+                <div className="col-sm-5 col-md-5 col-lg-5 text-center">
+                  <div className="pbtn2oo">
+                    <div className="clbtnnwe">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                      >
+                        <rect width="40" height="40" rx="2" fill="#E86F00" />
+                        <path
+                          d="M28 12H12C10.9 12 10.01 12.9 10.01 14L10 26C10 27.1 10.9 28 12 28H28C29.1 28 30 27.1 30 26V14C30 12.9 29.1 12 28 12ZM28 16L20 21L12 16V14L20 19L28 14V16Z"
+                          fill="white"
+                        />
+                      </svg>
+                    </div>
+                    <p className="desbtn"> &nbsp;&nbsp;Email</p>
+                    <p className="desbtn">
+                      &nbsp;&nbsp;generationalpha2025@gmail.com
+                    </p>
+                  </div>
+                </div>
+                {/* <div className="col-sm-4 col-md-2 col-lg-5 text-center">
                   <div className="pbtn2oo">
                     <div className="clbtnnwe">
                       <svg
@@ -215,30 +257,14 @@ function LandingPageContact() {
                       </svg>
                     </div>
                     <p className="desbtn2">Email</p>
-                    <p className="desbtn2">generationalpha2025@gmail.com</p>
+                    <a
+                      href="mailto:generationalpha2025@gmail.com"
+                      class="desbtn2new"
+                    >
+                      generationalpha2025@gmail.com
+                    </a>
                   </div>
-                </div>
-                <div className="col-sm-4 col-md-4 col-lg-4 text-center">
-                  <div className="pbtn2oo">
-                    <div className="clbtnnwe">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="40"
-                        height="40"
-                        viewBox="0 0 40 40"
-                        fill="none"
-                      >
-                        <rect width="40" height="40" rx="2" fill="#2A2A72" />
-                        <path
-                          d="M24.36 22C24.44 21.34 24.5 20.68 24.5 20C24.5 19.32 24.44 18.66 24.36 18H27.74C27.9 18.64 28 19.31 28 20C28 20.69 27.9 21.36 27.74 22M22.59 27.56C23.19 26.45 23.65 25.25 23.97 24H26.92C25.9512 25.6683 24.4141 26.932 22.59 27.56ZM22.34 22H17.66C17.56 21.34 17.5 20.68 17.5 20C17.5 19.32 17.56 18.65 17.66 18H22.34C22.43 18.65 22.5 19.32 22.5 20C22.5 20.68 22.43 21.34 22.34 22ZM20 27.96C19.17 26.76 18.5 25.43 18.09 24H21.91C21.5 25.43 20.83 26.76 20 27.96ZM16 16H13.08C14.0389 14.3272 15.5748 13.0615 17.4 12.44C16.8 13.55 16.35 14.75 16 16ZM13.08 24H16C16.35 25.25 16.8 26.45 17.4 27.56C15.5786 26.9317 14.0448 25.6677 13.08 24ZM12.26 22C12.1 21.36 12 20.69 12 20C12 19.31 12.1 18.64 12.26 18H15.64C15.56 18.66 15.5 19.32 15.5 20C15.5 20.68 15.56 21.34 15.64 22M20 12.03C20.83 13.23 21.5 14.57 21.91 16H18.09C18.5 14.57 19.17 13.23 20 12.03ZM26.92 16H23.97C23.657 14.7615 23.1936 13.5659 22.59 12.44C24.43 13.07 25.96 14.34 26.92 16ZM20 10C14.47 10 10 14.5 10 20C10 22.6522 11.0536 25.1957 12.9289 27.0711C13.8575 27.9997 14.9599 28.7362 16.1732 29.2388C17.3864 29.7413 18.6868 30 20 30C22.6522 30 25.1957 28.9464 27.0711 27.0711C28.9464 25.1957 30 22.6522 30 20C30 18.6868 29.7413 17.3864 29.2388 16.1732C28.7362 14.9599 27.9997 13.8575 27.0711 12.9289C26.1425 12.0003 25.0401 11.2638 23.8268 10.7612C22.6136 10.2587 21.3132 10 20 10Z"
-                          fill="white"
-                        />
-                      </svg>
-                    </div>
-                    <p className="desbtn2">Website</p>
-                    <p className="desbtn2">https://gap.lk</p>
-                  </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
