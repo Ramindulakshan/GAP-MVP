@@ -6,8 +6,8 @@ import Form from "react-bootstrap/Form";
 import Homepage_image from "../HomePage/Img/homepage.png";
 import "../HomePage/Home.css";
 import GAP_Image from "../HomePage/Img/GAP_BG.png";
-import User_image from "../HomePage/Img/user.png";
 import Level from "../SettingPage/img/level.png";
+import userPic from "../HomePage/Img/user.png";
 import img1 from "../HomePage/Img/1.png";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
@@ -26,10 +26,12 @@ import { TfiBookmarkAlt } from "react-icons/tfi";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { RxCountdownTimer } from "react-icons/rx";
 import { IoIosLogOut } from "react-icons/io";
+import axios from "axios";
 
 const HomePage = () => {
   // const user = userDetails.user; //google login
   const [firstName, setFirstName] = useState("");
+  const [selectedImage, setSelectedImage] = useState("");
   // const [show, setShow] = useState(true);
   // const handleShow = () => setShow(true);
   // const handleClose = () =>  setShow(false);
@@ -37,6 +39,27 @@ const HomePage = () => {
   useEffect(() => {
     const storedFirstName = localStorage.getItem("firstName");
     setFirstName(storedFirstName);
+  });
+
+  useEffect(() => {
+    const getUserImage = () => {
+      axios
+        .get("http://localhost:3001/api/getUserImage", {
+          headers: {
+            authorization: `${localStorage.getItem("jwtToken")}`,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.data.profilePicture) {
+            setSelectedImage(response.data.profilePicture);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching user image:", error);
+        });
+    };
+    getUserImage();
   });
 
   const handleLogout = () => {
@@ -51,9 +74,9 @@ const HomePage = () => {
     window.location.href = "/login";
   };
 
-  const logout = () => {
-    window.open(`${process.env.BACKEND_API_URL}/auth/logout`, "_self");
-  };
+  // const logout = () => {
+  //   window.open(`${process.env.BACKEND_API_URL}/auth/logout`, "_self");
+  // }; //google login related code
 
   /*LogOut Model*/
   const [show, setShow] = useState(false);
@@ -279,9 +302,17 @@ const HomePage = () => {
                   </svg>
                   &nbsp;&nbsp;
                   <img
-                    src={User_image}
+                    src={
+                      !selectedImage
+                        ? userPic
+                        : `http://localhost:3001/uploads/` + selectedImage
+                    }
+                    roundedCircle
                     width="45"
                     height="45"
+                    style={{
+                      borderRadius: "100000px",
+                    }}
                     className="d-inline-block"
                     alt="React Bootstrap logo"
                     onClick={() => {
@@ -294,7 +325,8 @@ const HomePage = () => {
             <div className="col-lg-12 custom-Point d-flex mt-4 ">
               <div className="col-lg-9">
                 <h4 className="custom-S-text1 mt-5">Hi {firstName}!!</h4>
-                {/* {user ? <h4>Hi {firstName}!!</h4> : <h4>Hi {firstName}!!</h4>} */}  {/*google login*/}
+                {/* {user ? <h4>Hi {firstName}!!</h4> : <h4>Hi {firstName}!!</h4>} */}{" "}
+                {/*google login*/}
                 <h4 className="custom-S-text2">
                   Congratulations on earning points, <br />
                   Let's keep stepping forward!
