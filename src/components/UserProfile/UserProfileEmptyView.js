@@ -79,6 +79,8 @@ function UserProfileEmptyView() {
   const [skills, setSkills] = useState("");
   const [file, setFile] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [linkedinLink, setLinkedinLink] = useState("");
+  const [websiteLink, setWebsiteLink] = useState("");
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -172,11 +174,13 @@ function UserProfileEmptyView() {
             email,
             academicDetails,
             professionalDetails,
+            socialMedia,
           } = response.data;
 
           if (
             (academicDetails && academicDetails.length > 0) ||
-            (professionalDetails && professionalDetails.length > 0)
+            (professionalDetails && professionalDetails.length > 0) ||
+            (socialMedia && socialMedia.length > 0)
           ) {
             setUserData({
               firstName,
@@ -184,6 +188,7 @@ function UserProfileEmptyView() {
               email,
               academicDetails,
               professionalDetails,
+              socialMedia,
             });
           } else {
             setUserData({
@@ -192,6 +197,7 @@ function UserProfileEmptyView() {
               email,
               academicDetails: [],
               professionalDetails: [],
+              socialMedia: [],
             });
           }
         }
@@ -339,6 +345,37 @@ function UserProfileEmptyView() {
     SaveProfessionalData();
   };
 
+  const handleSocialLinks = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        "http://localhost:3001/api/socialMedia",
+        {
+          websiteLink,
+          linkedinLink,
+        },
+        {
+          headers: {
+            authorization: `${localStorage.getItem("jwtToken")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          setLinkedinLink("");
+          setWebsiteLink("");
+          handleClose2();
+          alert("Social Media Links  saved successfully");
+        } else {
+          alert("Social Media Links not saved");
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating social media data:", error);
+      });
+  };
+
   const handlePhotoUpload = (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -366,6 +403,25 @@ function UserProfileEmptyView() {
       alert("Please select a photo to upload");
     }
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/api/getSocialLinks", {
+        headers: {
+          authorization: `${localStorage.getItem("jwtToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.data.socialMedia) {
+          setLinkedinLink(response.data.socialMedia.linkedinLink);
+          setWebsiteLink(response.data.socialMedia.websiteLink);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching Social Links:", error);
+      });
+  }, [handleSocialLinks]);
 
   useEffect(() => {
     axios
@@ -411,7 +467,7 @@ function UserProfileEmptyView() {
                         variant="light"
                         className="list-group-item-custom"
                         onClick={() => {
-                          window.location.href = "/underConstructionHome";
+                          window.location.href = "/home";
                         }}
                         style={{ backgroundColor: "#DDDDFE", border: "0" }}
                       >
@@ -924,36 +980,69 @@ function UserProfileEmptyView() {
 
                     <div class="row mt-4">
                       <div class="col-4">
-                        <div onClick={handleShow2}>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="30"
-                            height="30"
-                            viewBox="0 0 30 30"
-                            fill="none"
-                            cursor="pointer"
-                          >
-                            <rect
+                        <div>
+                          {linkedinLink ? (
+                            <svg
+                              href={linkedinLink}
+                              xmlns="http://www.w3.org/2000/svg"
                               width="30"
                               height="30"
-                              rx="5"
-                              fill="#E6F6FF"
-                            />
-                            <path
-                              d="M10.8393 12.1759H7.28711V22.664H10.8393V12.1759Z"
-                              fill="#2A2A72"
-                            />
-                            <path
-                              d="M20.447 11.9486C20.3161 11.9335 20.1769 11.9259 20.0378 11.9183C18.0489 11.8425 16.9275 12.9338 16.5347 13.4036C16.4283 13.5324 16.3791 13.6082 16.3791 13.6082V12.2063H12.9824V22.6944H16.3791H16.5347C16.5347 21.6259 16.5347 20.5649 16.5347 19.4964C16.5347 18.9205 16.5347 18.3446 16.5347 17.7686C16.5347 17.0563 16.4774 16.2985 16.8621 15.6467C17.1894 15.1011 17.7788 14.8283 18.4417 14.8283C20.4061 14.8283 20.447 16.4728 20.447 16.6243C20.447 16.6319 20.447 16.6395 20.447 16.6395V22.7399H23.9993V15.8968C23.9993 13.5552 22.7142 12.176 20.447 11.9486Z"
-                              fill="#2A2A72"
-                            />
-                            <path
-                              d="M9.06258 10.8194C10.2017 10.8194 11.1252 9.96438 11.1252 8.90969C11.1252 7.855 10.2017 7 9.06258 7C7.92345 7 7 7.855 7 8.90969C7 9.96438 7.92345 10.8194 9.06258 10.8194Z"
-                              fill="#2A2A72"
-                            />
-                          </svg>{" "}
+                              viewBox="0 0 30 30"
+                              fill="none"
+                              cursor="pointer"
+                            >
+                              <rect
+                                width="30"
+                                height="30"
+                                rx="5"
+                                fill="#E6F6FF"
+                              />
+                              <path
+                                d="M10.8393 12.1759H7.28711V22.664H10.8393V12.1759Z"
+                                fill="#2A2A72"
+                              />
+                              <path
+                                d="M20.447 11.9486C20.3161 11.9335 20.1769 11.9259 20.0378 11.9183C18.0489 11.8425 16.9275 12.9338 16.5347 13.4036C16.4283 13.5324 16.3791 13.6082 16.3791 13.6082V12.2063H12.9824V22.6944H16.3791H16.5347C16.5347 21.6259 16.5347 20.5649 16.5347 19.4964C16.5347 18.9205 16.5347 18.3446 16.5347 17.7686C16.5347 17.0563 16.4774 16.2985 16.8621 15.6467C17.1894 15.1011 17.7788 14.8283 18.4417 14.8283C20.4061 14.8283 20.447 16.4728 20.447 16.6243C20.447 16.6319 20.447 16.6395 20.447 16.6395V22.7399H23.9993V15.8968C23.9993 13.5552 22.7142 12.176 20.447 11.9486Z"
+                                fill="#2A2A72"
+                              />
+                              <path
+                                d="M9.06258 10.8194C10.2017 10.8194 11.1252 9.96438 11.1252 8.90969C11.1252 7.855 10.2017 7 9.06258 7C7.92345 7 7 7.855 7 8.90969C7 9.96438 7.92345 10.8194 9.06258 10.8194Z"
+                                fill="#2A2A72"
+                              />
+                            </svg>
+                          ) : (
+                            <svg
+                              href="#"
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="30"
+                              height="30"
+                              viewBox="0 0 30 30"
+                              fill="none"
+                              cursor="pointer"
+                            >
+                              <rect
+                                width="30"
+                                height="30"
+                                rx="5"
+                                fill="#E6F6FF"
+                              />
+                              <path
+                                d="M10.8393 12.1759H7.28711V22.664H10.8393V12.1759Z"
+                                fill="#2A2A72"
+                              />
+                              <path
+                                d="M20.447 11.9486C20.3161 11.9335 20.1769 11.9259 20.0378 11.9183C18.0489 11.8425 16.9275 12.9338 16.5347 13.4036C16.4283 13.5324 16.3791 13.6082 16.3791 13.6082V12.2063H12.9824V22.6944H16.3791H16.5347C16.5347 21.6259 16.5347 20.5649 16.5347 19.4964C16.5347 18.9205 16.5347 18.3446 16.5347 17.7686C16.5347 17.0563 16.4774 16.2985 16.8621 15.6467C17.1894 15.1011 17.7788 14.8283 18.4417 14.8283C20.4061 14.8283 20.447 16.4728 20.447 16.6243C20.447 16.6319 20.447 16.6395 20.447 16.6395V22.7399H23.9993V15.8968C23.9993 13.5552 22.7142 12.176 20.447 11.9486Z"
+                                fill="#2A2A72"
+                              />
+                              <path
+                                d="M9.06258 10.8194C10.2017 10.8194 11.1252 9.96438 11.1252 8.90969C11.1252 7.855 10.2017 7 9.06258 7C7.92345 7 7 7.855 7 8.90969C7 9.96438 7.92345 10.8194 9.06258 10.8194Z"
+                                fill="#2A2A72"
+                              />
+                            </svg>
+                          )}
                           &nbsp;&nbsp;
                           <svg
+                            href={userData.email}
                             xmlns="http://www.w3.org/2000/svg"
                             width="30"
                             height="30"
@@ -973,27 +1062,53 @@ function UserProfileEmptyView() {
                             />
                           </svg>
                           &nbsp;&nbsp;
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="30"
-                            height="30"
-                            viewBox="0 0 30 30"
-                            fill="none"
-                            cursor="pointer"
-                          >
-                            <rect
+                          {websiteLink ? (
+                            <svg
+                              href={websiteLink}
+                              xmlns="http://www.w3.org/2000/svg"
                               width="30"
                               height="30"
-                              rx="5"
-                              fill="#E6F6FF"
-                            />
-                            <path
-                              d="M15.7545 20.3545C15.8552 20.4548 15.9351 20.574 15.9896 20.7052C16.0441 20.8365 16.0721 20.9772 16.0721 21.1193C16.0721 21.2614 16.0441 21.4021 15.9896 21.5333C15.9351 21.6645 15.8552 21.7837 15.7545 21.884L15.22 22.4184C14.2071 23.4311 12.8334 24 11.4009 24C9.96852 24 8.59477 23.4311 7.5819 22.4184C6.56903 21.4057 6 20.0323 6 18.6001C6 17.168 6.56903 15.7945 7.5819 14.7819L9.75238 12.6127C10.7256 11.6373 12.035 11.0708 13.4124 11.0294C14.7897 10.9879 16.1309 11.4745 17.161 12.3896C17.2674 12.4841 17.3541 12.5986 17.4161 12.7267C17.4782 12.8547 17.5145 12.9937 17.5228 13.1357C17.5312 13.2777 17.5115 13.42 17.4648 13.5544C17.4182 13.6888 17.3455 13.8127 17.251 13.9191C17.1565 14.0254 17.0419 14.1121 16.9138 14.1741C16.7858 14.2362 16.6468 14.2725 16.5047 14.2808C16.3627 14.2892 16.2204 14.2695 16.0859 14.2228C15.9515 14.1762 15.8276 14.1035 15.7212 14.009C15.1035 13.4605 14.2995 13.1687 13.4736 13.1933C12.6478 13.2179 11.8626 13.557 11.2786 14.1413L9.10988 16.3077C8.50225 16.9152 8.16089 17.7392 8.16089 18.5983C8.16089 19.4575 8.50225 20.2814 9.10988 20.8889C9.71751 21.4965 10.5416 21.8377 11.4009 21.8377C12.2603 21.8377 13.0844 21.4965 13.692 20.8889L14.2265 20.3545C14.3268 20.2542 14.4459 20.1745 14.577 20.1202C14.7081 20.0659 14.8486 20.0379 14.9905 20.0379C15.1324 20.0379 15.2729 20.0659 15.404 20.1202C15.5351 20.1745 15.6542 20.2542 15.7545 20.3545ZM22.4207 7.57895C21.407 6.56784 20.0336 6 18.6017 6C17.1698 6 15.7963 6.56784 14.7826 7.57895L14.2481 8.11337C14.0453 8.31619 13.9313 8.59127 13.9313 8.8781C13.9313 9.16493 14.0453 9.44002 14.2481 9.64284C14.451 9.84566 14.7261 9.9596 15.013 9.9596C15.2999 9.9596 15.575 9.84566 15.7779 9.64284L16.3124 9.10842C16.9201 8.50091 17.7442 8.15962 18.6035 8.15962C19.4628 8.15962 20.2869 8.50091 20.8946 9.10842C21.5022 9.71593 21.8435 10.5399 21.8435 11.399C21.8435 12.2582 21.5022 13.0821 20.8946 13.6896L18.725 15.8597C18.1405 16.4437 17.3548 16.7824 16.5288 16.8063C15.7027 16.8302 14.8988 16.5376 14.2814 15.9883C14.1751 15.8938 14.0511 15.8212 13.9167 15.7745C13.7823 15.7279 13.64 15.7082 13.4979 15.7166C13.3558 15.7249 13.2168 15.7612 13.0888 15.8232C12.9607 15.8853 12.8462 15.972 12.7516 16.0783C12.6571 16.1846 12.5844 16.3086 12.5378 16.443C12.4912 16.5774 12.4715 16.7197 12.4798 16.8617C12.4882 17.0037 12.5244 17.1427 12.5865 17.2707C12.6486 17.3987 12.7353 17.5133 12.8416 17.6078C13.8711 18.5226 15.2113 19.0096 16.588 18.9689C17.9648 18.9283 19.2739 18.3632 20.2476 17.3892L22.418 15.22C23.4305 14.2068 23.9995 12.8332 24 11.4009C24.0005 9.96866 23.4325 8.59471 22.4207 7.58075V7.57895Z"
-                              fill="#2A2A72"
-                            />
-                          </svg>
+                              viewBox="0 0 30 30"
+                              fill="none"
+                              cursor="pointer"
+                            >
+                              <rect
+                                width="30"
+                                height="30"
+                                rx="5"
+                                fill="#E6F6FF"
+                              />
+                              <path
+                                d="M15.7545 20.3545C15.8552 20.4548 15.9351 20.574 15.9896 20.7052C16.0441 20.8365 16.0721 20.9772 16.0721 21.1193C16.0721 21.2614 16.0441 21.4021 15.9896 21.5333C15.9351 21.6645 15.8552 21.7837 15.7545 21.884L15.22 22.4184C14.2071 23.4311 12.8334 24 11.4009 24C9.96852 24 8.59477 23.4311 7.5819 22.4184C6.56903 21.4057 6 20.0323 6 18.6001C6 17.168 6.56903 15.7945 7.5819 14.7819L9.75238 12.6127C10.7256 11.6373 12.035 11.0708 13.4124 11.0294C14.7897 10.9879 16.1309 11.4745 17.161 12.3896C17.2674 12.4841 17.3541 12.5986 17.4161 12.7267C17.4782 12.8547 17.5145 12.9937 17.5228 13.1357C17.5312 13.2777 17.5115 13.42 17.4648 13.5544C17.4182 13.6888 17.3455 13.8127 17.251 13.9191C17.1565 14.0254 17.0419 14.1121 16.9138 14.1741C16.7858 14.2362 16.6468 14.2725 16.5047 14.2808C16.3627 14.2892 16.2204 14.2695 16.0859 14.2228C15.9515 14.1762 15.8276 14.1035 15.7212 14.009C15.1035 13.4605 14.2995 13.1687 13.4736 13.1933C12.6478 13.2179 11.8626 13.557 11.2786 14.1413L9.10988 16.3077C8.50225 16.9152 8.16089 17.7392 8.16089 18.5983C8.16089 19.4575 8.50225 20.2814 9.10988 20.8889C9.71751 21.4965 10.5416 21.8377 11.4009 21.8377C12.2603 21.8377 13.0844 21.4965 13.692 20.8889L14.2265 20.3545C14.3268 20.2542 14.4459 20.1745 14.577 20.1202C14.7081 20.0659 14.8486 20.0379 14.9905 20.0379C15.1324 20.0379 15.2729 20.0659 15.404 20.1202C15.5351 20.1745 15.6542 20.2542 15.7545 20.3545ZM22.4207 7.57895C21.407 6.56784 20.0336 6 18.6017 6C17.1698 6 15.7963 6.56784 14.7826 7.57895L14.2481 8.11337C14.0453 8.31619 13.9313 8.59127 13.9313 8.8781C13.9313 9.16493 14.0453 9.44002 14.2481 9.64284C14.451 9.84566 14.7261 9.9596 15.013 9.9596C15.2999 9.9596 15.575 9.84566 15.7779 9.64284L16.3124 9.10842C16.9201 8.50091 17.7442 8.15962 18.6035 8.15962C19.4628 8.15962 20.2869 8.50091 20.8946 9.10842C21.5022 9.71593 21.8435 10.5399 21.8435 11.399C21.8435 12.2582 21.5022 13.0821 20.8946 13.6896L18.725 15.8597C18.1405 16.4437 17.3548 16.7824 16.5288 16.8063C15.7027 16.8302 14.8988 16.5376 14.2814 15.9883C14.1751 15.8938 14.0511 15.8212 13.9167 15.7745C13.7823 15.7279 13.64 15.7082 13.4979 15.7166C13.3558 15.7249 13.2168 15.7612 13.0888 15.8232C12.9607 15.8853 12.8462 15.972 12.7516 16.0783C12.6571 16.1846 12.5844 16.3086 12.5378 16.443C12.4912 16.5774 12.4715 16.7197 12.4798 16.8617C12.4882 17.0037 12.5244 17.1427 12.5865 17.2707C12.6486 17.3987 12.7353 17.5133 12.8416 17.6078C13.8711 18.5226 15.2113 19.0096 16.588 18.9689C17.9648 18.9283 19.2739 18.3632 20.2476 17.3892L22.418 15.22C23.4305 14.2068 23.9995 12.8332 24 11.4009C24.0005 9.96866 23.4325 8.59471 22.4207 7.58075V7.57895Z"
+                                fill="#2A2A72"
+                              />
+                            </svg>
+                          ) : (
+                            <svg
+                              href="#"
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="30"
+                              height="30"
+                              viewBox="0 0 30 30"
+                              fill="none"
+                              cursor="pointer"
+                            >
+                              <rect
+                                width="30"
+                                height="30"
+                                rx="5"
+                                fill="#E6F6FF"
+                              />
+                              <path
+                                d="M15.7545 20.3545C15.8552 20.4548 15.9351 20.574 15.9896 20.7052C16.0441 20.8365 16.0721 20.9772 16.0721 21.1193C16.0721 21.2614 16.0441 21.4021 15.9896 21.5333C15.9351 21.6645 15.8552 21.7837 15.7545 21.884L15.22 22.4184C14.2071 23.4311 12.8334 24 11.4009 24C9.96852 24 8.59477 23.4311 7.5819 22.4184C6.56903 21.4057 6 20.0323 6 18.6001C6 17.168 6.56903 15.7945 7.5819 14.7819L9.75238 12.6127C10.7256 11.6373 12.035 11.0708 13.4124 11.0294C14.7897 10.9879 16.1309 11.4745 17.161 12.3896C17.2674 12.4841 17.3541 12.5986 17.4161 12.7267C17.4782 12.8547 17.5145 12.9937 17.5228 13.1357C17.5312 13.2777 17.5115 13.42 17.4648 13.5544C17.4182 13.6888 17.3455 13.8127 17.251 13.9191C17.1565 14.0254 17.0419 14.1121 16.9138 14.1741C16.7858 14.2362 16.6468 14.2725 16.5047 14.2808C16.3627 14.2892 16.2204 14.2695 16.0859 14.2228C15.9515 14.1762 15.8276 14.1035 15.7212 14.009C15.1035 13.4605 14.2995 13.1687 13.4736 13.1933C12.6478 13.2179 11.8626 13.557 11.2786 14.1413L9.10988 16.3077C8.50225 16.9152 8.16089 17.7392 8.16089 18.5983C8.16089 19.4575 8.50225 20.2814 9.10988 20.8889C9.71751 21.4965 10.5416 21.8377 11.4009 21.8377C12.2603 21.8377 13.0844 21.4965 13.692 20.8889L14.2265 20.3545C14.3268 20.2542 14.4459 20.1745 14.577 20.1202C14.7081 20.0659 14.8486 20.0379 14.9905 20.0379C15.1324 20.0379 15.2729 20.0659 15.404 20.1202C15.5351 20.1745 15.6542 20.2542 15.7545 20.3545ZM22.4207 7.57895C21.407 6.56784 20.0336 6 18.6017 6C17.1698 6 15.7963 6.56784 14.7826 7.57895L14.2481 8.11337C14.0453 8.31619 13.9313 8.59127 13.9313 8.8781C13.9313 9.16493 14.0453 9.44002 14.2481 9.64284C14.451 9.84566 14.7261 9.9596 15.013 9.9596C15.2999 9.9596 15.575 9.84566 15.7779 9.64284L16.3124 9.10842C16.9201 8.50091 17.7442 8.15962 18.6035 8.15962C19.4628 8.15962 20.2869 8.50091 20.8946 9.10842C21.5022 9.71593 21.8435 10.5399 21.8435 11.399C21.8435 12.2582 21.5022 13.0821 20.8946 13.6896L18.725 15.8597C18.1405 16.4437 17.3548 16.7824 16.5288 16.8063C15.7027 16.8302 14.8988 16.5376 14.2814 15.9883C14.1751 15.8938 14.0511 15.8212 13.9167 15.7745C13.7823 15.7279 13.64 15.7082 13.4979 15.7166C13.3558 15.7249 13.2168 15.7612 13.0888 15.8232C12.9607 15.8853 12.8462 15.972 12.7516 16.0783C12.6571 16.1846 12.5844 16.3086 12.5378 16.443C12.4912 16.5774 12.4715 16.7197 12.4798 16.8617C12.4882 17.0037 12.5244 17.1427 12.5865 17.2707C12.6486 17.3987 12.7353 17.5133 12.8416 17.6078C13.8711 18.5226 15.2113 19.0096 16.588 18.9689C17.9648 18.9283 19.2739 18.3632 20.2476 17.3892L22.418 15.22C23.4305 14.2068 23.9995 12.8332 24 11.4009C24.0005 9.96866 23.4325 8.59471 22.4207 7.58075V7.57895Z"
+                                fill="#2A2A72"
+                              />
+                            </svg>
+                          )}
                           &nbsp;&nbsp;
-                          <button className="btn-add-new">button</button>
+                          <button className="btn-add-new" onClick={handleShow2}>
+                            button
+                          </button>
                         </div>
 
                         <div class="position-absolute bottom-0 end-0 p-3">
@@ -1282,10 +1397,14 @@ function UserProfileEmptyView() {
                               />
                             </InputGroup>
                             <br></br>
-                            <label style={{ color: "#2A2A72" }}>
+                            <label
+                              style={{
+                                color: "#2A2A72",
+                                textTransform: "none",
+                              }}
+                            >
                               LinkedIn Link
                             </label>
-
                             <InputGroup className="mb-3">
                               <InputGroup.Text id="basic-addon1">
                                 <svg
@@ -1322,7 +1441,10 @@ function UserProfileEmptyView() {
                             </label>
 
                             <InputGroup className="mb-3">
-                              <InputGroup.Text id="basic-addon1">
+                              <InputGroup.Text
+                                id="basic-addon1"
+                                style={{ textTransform: "none" }}
+                              >
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   width="22"
@@ -1337,7 +1459,6 @@ function UserProfileEmptyView() {
                                 </svg>
                               </InputGroup.Text>
                               <Form.Control
-                                placeholder="/juliusaguirre.com"
                                 aria-label="/juliusaguirre.com"
                                 aria-describedby="basic-addon1"
                                 className="flex-grow-1" // Use Bootstrap's utility class for flexible width
@@ -1349,6 +1470,7 @@ function UserProfileEmptyView() {
                           <button
                             className="btn  custom-button-reset my-1 my-sm-3 t"
                             type="submit"
+                            onClick={handleSocialLinks}
                           >
                             Save
                           </button>
@@ -1381,102 +1503,7 @@ function UserProfileEmptyView() {
                       />
                     </svg>
                   </h6>
-                  {/* <Modal
-                    show={show4}
-                    onHide={handleClose4}
-                    aria-labelledby="example-custom-modal-styling-title"
-                  >
-                    <Modal.Header closeButton></Modal.Header>
 
-                    <Modal.Body>
-                      <Modal.Title
-                        id="example-custom-modal-styling-title"
-                        className="text-center"
-                      >
-                        <h1>Academic Qualification</h1>
-                        <p>Add New Academic Qualification</p>
-                      </Modal.Title>
-                      <div className="p-7">
-                        <Container className="mt-2">
-                          <Form.Label>Institute* </Form.Label>
-                          <Form.Control
-                          value={institute}
-                          onChange={(e) => setInstitute(e.target.value)}
-                            placeholder="add institute name"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-                          <br></br>
-                          <Form.Label>Degree / Course* </Form.Label>
-                          <Form.Control
-                          value={degree}
-                          onChange={(e) => setDegree(e.target.value)}
-                            placeholder="add degree / course name"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-
-                          <br></br>
-
-                          <Form.Group as={Col} controlId="formGridZip">
-                            <Form.Label>Start date*</Form.Label>
-                            <Form.Control
-                            value={startDate}
-                            onChange={(e) => setStartDate(e.target.value)}
-                              type="date"
-                              style={{
-                                border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                boxShadow: "none", // Optional: Remove box-shadow
-                              }}
-                            />
-                          </Form.Group>
-                          <br></br>
-                          <Form.Group as={Col} controlId="formGridZip">
-                            <Form.Label>End date (or expected)*</Form.Label>
-                            <Form.Control
-                            value={endDate}
-                            onChange={(e) => setEndDate(e.target.value)}
-                              type="date"
-                              style={{
-                                border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                boxShadow: "none", // Optional: Remove box-shadow
-                              }}
-                            />
-                          </Form.Group>
-                          <br></br>
-                          <Form.Label>Grade</Form.Label>
-                          <Form.Control
-                          value={grade}
-                          onChange={(e) => setGrade(e.target.value)}
-                            placeholder="add grade"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-                          <br></br>
-                        </Container>
-                      </div>
-                      <div className="text-center">
-                        <button
-                          className="btn  custom-button-reset my-1 my-sm-3 t"
-                          type="submit"
-                          onClick={handleSaveAcademicData}
-                        >
-                          Save
-                        </button>
-                      </div>
-                    </Modal.Body>
-                  </Modal> */}
                   {/*Academic qualification Model Start*/}
                   <Modal
                     size="lg"
@@ -1703,23 +1730,18 @@ function UserProfileEmptyView() {
                       <div>
                         {userData.academicDetails &&
                         userData.academicDetails.length > 0 ? (
-                          <>
-                            <h5 class="card-title2 fw-bold">
-                              {userData.academicDetails[0].institute}
-                            </h5>
-                            <p className="card-para2">
-                              {userData.academicDetails[0].degree}
-                            </p>
-                            <p className="card-para2">
-                              {moment(
-                                userData.academicDetails[0].startDate
-                              ).format("YYYY/MM/DD")}{" "}
-                              -{" "}
-                              {moment(
-                                userData.academicDetails[0].endDate
-                              ).format("YYYY/MM/DD")}
-                            </p>
-                          </>
+                          userData.academicDetails.map((detail, index) => (
+                            <div key={index}>
+                              <h5 className="card-title2 fw-bold">
+                                {detail.institute}
+                              </h5>
+                              <p className="card-para2">{detail.degree}</p>
+                              <p className="card-para2">
+                                {moment(detail.startDate).format("YYYY/MM/DD")}{" "}
+                                - {moment(detail.endDate).format("YYYY/MM/DD")}
+                              </p>
+                            </div>
+                          ))
                         ) : (
                           <p className="card-para2">
                             No academic details available
@@ -1897,29 +1919,21 @@ function UserProfileEmptyView() {
                       <div>
                         {userData.professionalDetails &&
                         userData.professionalDetails.length > 0 ? (
-                          <>
-                            <h5 class="card-title2 fw-bold">
-                              {userData.professionalDetails[0].companyName}
-                            </h5>
-                            <p className="card-para2">
-                              {userData.professionalDetails[0].empType}
-                            </p>
-                            <p className="card-para2">
-                              {moment(
-                                userData.professionalDetails[0].startDate
-                              ).format("MM/YYYY")}{" "}
-                              -{" "}
-                              {moment(
-                                userData.professionalDetails[0].endDate
-                              ).format("MM/YYYY")}
-                            </p>
-                            <p className="card-para2">
-                              {userData.professionalDetails[0].position}
-                            </p>
-                          </>
+                          userData.professionalDetails.map((detail, index) => (
+                            <div key={index}>
+                              <h5 className="card-title2 fw-bold">
+                                {detail.companyName}
+                              </h5>
+                              <p className="card-para2">{detail.position}</p>
+                              <p className="card-para2">
+                                {moment(detail.startDate).format("YYYY/MM/DD")}{" "}
+                                - {moment(detail.endDate).format("YYYY/MM/DD")}
+                              </p>
+                            </div>
+                          ))
                         ) : (
                           <p className="card-para2">
-                            No professional details available
+                            No academic details available
                           </p>
                         )}
                       </div>
