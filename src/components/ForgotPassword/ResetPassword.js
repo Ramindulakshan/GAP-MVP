@@ -5,6 +5,7 @@ import Password_image from "../ForgotPassword/Img/password.png";
 import Unlock_image from "../ForgotPassword/Img/unlock.png";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import InputGroup from "react-bootstrap/InputGroup";
 
 const ResetPassword = () => {
@@ -17,6 +18,14 @@ const ResetPassword = () => {
   const [validated, setValidated] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  const togglePasswordVisibility2 = () => {
+    setShowPassword2(!showPassword2);
+  };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -79,10 +88,21 @@ const ResetPassword = () => {
                             id="inputPassword"
                             aria-describedby="passwordHelpBlock"
                             placeholder="Password"
+                            style={{ textTransform: "none" }}
                             value={password}
                             required
                             onChange={handlePasswordChange}
                           />
+                          <InputGroup.Text
+                            id="passwordHelpBlock"
+                            onClick={togglePasswordVisibility}
+                          >
+                            {!showPassword ? (
+                              <HiOutlineEyeOff />
+                            ) : (
+                              <HiOutlineEye />
+                            )}
+                          </InputGroup.Text>
 
                           <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
                         </InputGroup>
@@ -93,15 +113,25 @@ const ResetPassword = () => {
                         <InputGroup hasValidation>
                           <Form.Control
                             size="medium"
-                            type={showPassword ? "text" : "password"}
+                            type={showPassword2 ? "text" : "password"}
                             id="inputConfirmPassword"
                             aria-describedby="passwordHelpBlock"
+                            style={{ textTransform: "none" }}
                             placeholder="Confirm Password"
                             value={confirmPassword}
                             required
                             onChange={handleConfirmPasswordChange}
                           />
-
+                          <InputGroup.Text
+                            id="passwordHelpBlock2"
+                            onClick={togglePasswordVisibility2}
+                          >
+                            {!showPassword2 ? (
+                              <HiOutlineEyeOff />
+                            ) : (
+                              <HiOutlineEye />
+                            )}
+                          </InputGroup.Text>
                           <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
                         </InputGroup>
                       </Form.Group>
@@ -148,7 +178,6 @@ const ResetPassword = () => {
                         >
                           Login
                         </button>
-                        
                       </div>
                     </Modal.Body>
                   </Modal>
