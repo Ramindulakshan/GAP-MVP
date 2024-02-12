@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SettingPage.css";
 import Navbar from "react-bootstrap/Navbar";
 import GAP_Image from "./img/GAP_BG.png";
@@ -18,7 +18,9 @@ import Col from "react-bootstrap/Col";
 import * as formik from "formik";
 import * as yup from "yup";
 import err from "./img/err.png";
+import userPic from "../HomePage/Img/user.png";
 import axios from "axios";
+
 import {
   IoHomeOutline,
   IoPeopleOutline,
@@ -48,6 +50,7 @@ function SettingPage() {
   const [showPassword2, setShowPassword2] = useState(false);
   const [showPassword3, setShowPassword3] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
 
   /*LogOut Model*/
   const [show, setShow] = useState(false);
@@ -211,6 +214,27 @@ function SettingPage() {
         }
       );
   };
+
+  useEffect(() => {
+    const getUserImage = () => {
+      axios
+        .get("http://localhost:3001/api/getUserImage", {
+          headers: {
+            authorization: `${localStorage.getItem("jwtToken")}`,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.data.profilePicture) {
+            setSelectedImage(response.data.profilePicture);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching user image:", error);
+        });
+    };
+    getUserImage();
+  });
 
   return (
     <div>
@@ -430,11 +454,22 @@ function SettingPage() {
                   </svg>
                   &nbsp;&nbsp;
                   <img
-                    src={Student_Image}
+                    src={
+                      !selectedImage
+                        ? userPic
+                        : `http://localhost:3001/uploads/` + selectedImage
+                    }
+                    roundedCircle
+                    style={{
+                      borderRadius: "100000px",
+                    }}
                     width="45"
                     height="45"
                     className="d-inline-block"
-                    alt="React Bootstrap logo"
+                    alt=" Profile Pic"
+                      onClick={() => {
+                        window.location.href = "/userProfileEmptyView";
+                      }}
                   />
                 </div>
               </Navbar.Brand>
