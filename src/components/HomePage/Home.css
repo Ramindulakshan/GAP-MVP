@@ -16,7 +16,12 @@
   background-color: #2a2a721a;
   color: #2a2a72;
 }
-
+.bell-nav{
+  color: #2a2a72;
+}
+.bell-nav:hover{
+  color: #2a2a72;
+}
 /* styles.css */
 .list-group-item-custom.active {
   background-color: #2a2a721a;

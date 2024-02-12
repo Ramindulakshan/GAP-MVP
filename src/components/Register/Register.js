@@ -69,7 +69,7 @@ function Prologin() {
     }
     setValidated(true);
     e.preventDefault();
-    
+
     axios
       .post("http://localhost:3001/api/register", {
         firstName: firstName,
@@ -80,9 +80,8 @@ function Prologin() {
       })
       .then((response) => {
         console.log(response);
-        if (response.data.status === 'ok') {
+        if (response.data.status === "ok") {
           handleShow2();
-
         } else if (response.data.status === "error") {
           alert("Invalid Details. Please try again.");
         }
