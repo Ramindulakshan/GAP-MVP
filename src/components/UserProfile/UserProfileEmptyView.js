@@ -1543,7 +1543,6 @@ function UserProfileEmptyView() {
                           <div className="position-relative ser">
                             <FormControl
                               type="text"
-                              placeholder="Find A Mentor"
                               className="w-100"
                             />
                             <FaSearch
