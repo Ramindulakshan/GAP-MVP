@@ -1,0 +1,64 @@
+/* LandingPageContact.css */
+
+/* Add styles for mobile devices */
+@media (max-width: 768px) {
+    /* Adjust the navbar styles */
+    .navbar-brand img {
+      height: 60px; /* Reduce the height of the logo */
+    }
+  
+    .navbar-collapse {
+      margin-top: 20px; /* Add some margin to the top of the collapsed navbar */
+    }
+  
+    .nav-link {
+      padding: 0.5rem; /* Adjust the padding of the nav links */
+    }
+  
+    .custom-button1 {
+      margin-top: 20px; /* Add some margin to the register button */
+    }
+  
+    /* Adjust the contact form styles */
+    .cardll {
+      margin-top: 20px; /* Add some margin to the contact card */
+    }
+  
+    .titlenewwrt {
+      font-size: 1.5rem; /* Decrease the title font size */
+    }
+  
+    .pareconus {
+      font-size: 0.9rem; /* Decrease the paragraph font size */
+    }
+  
+    .lblcous {
+      font-size: 0.8rem; /* Decrease the label font size */
+    }
+  
+    .text-right {
+      font-size: 0.8rem; /* Decrease the character count font size */
+    }
+  
+    .mt-5 {
+      margin-top: 20px; /* Add some margin to the submit button */
+    }
+  
+    .mb-4 {
+      margin-bottom: 20px; /* Add some margin to the bottom of the form */
+    }
+  
+    /* Adjust the contact details card styles */
+    .cardkml {
+      margin-top: 20px; /* Add some margin to the contact details card */
+    }
+  
+    .desbtn {
+      font-size: 0.9rem; /* Decrease the contact details font size */
+    }
+  
+    .desbtn2 {
+      font-size: 0.9rem; /* Decrease the contact email font size */
+    }
+  }
+  
