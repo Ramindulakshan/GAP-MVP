@@ -293,6 +293,7 @@ const HomePage = () => {
             </Navbar>
             <div className="col-lg-12 custom-Point d-flex mt-4 ">
               <div className="col-lg-9">
+                <h4 className="custom-S-text1 mt-5">Hi {firstName}!!</h4>
                 {/* {user ? <h4>Hi {firstName}!!</h4> : <h4>Hi {firstName}!!</h4>} */}  {/*google login*/}
                 <h4 className="custom-S-text2">
                   Congratulations on earning points, <br />
