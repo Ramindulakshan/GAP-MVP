@@ -43,9 +43,9 @@ const LoginPage = () => {
           getUserName();
           alert("Login Successful");
           navigate("/home");
-        } else if (response.data.status === "error") {
+        }
+        if (response.data.status === "error") {
           alert("Invalid Username or Password");
-          console.log("Invalid Username or Password");
         }
       })
       .catch((error) => {

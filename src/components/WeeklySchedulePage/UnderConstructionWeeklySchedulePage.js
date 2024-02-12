@@ -25,13 +25,38 @@ import { RxCountdownTimer } from "react-icons/rx";
 import { IoIosLogOut } from "react-icons/io";
 import { Modal } from "react-bootstrap";
 import TakeABreak from "../HomePage/Img/Group 421.png";
+import userPic from "../HomePage/Img/user.png";
+import axios from "axios";
 
 function UnderConstructionWeeklySchedulePage() {
   /*LogOut Model*/
   const [show, setShow] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
   /*LogOut Model*/
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  useEffect(() => {
+    const getUserImage = () => {
+      axios
+        .get("http://localhost:3001/api/getUserImage", {
+          headers: {
+            authorization: `${localStorage.getItem("jwtToken")}`,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.data.profilePicture) {
+            setSelectedImage(response.data.profilePicture);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching user image:", error);
+        });
+    };
+    getUserImage();
+  });
+
   return (
     <div className="d-flex">
       <div className="container-fluid">
@@ -156,13 +181,12 @@ function UnderConstructionWeeklySchedulePage() {
                     <br />
                     <br />
                     <ListGroup.Item
-                    onClick={handleShow}
+                      onClick={handleShow}
                       action
                       variant="light"
                       className="list-group-item-custom"
                     >
                       <IoIosLogOut
-                        
                         style={{ fontSize: "18px", marginRight: "20px" }}
                       />
                       Logout
@@ -237,11 +261,22 @@ function UnderConstructionWeeklySchedulePage() {
                   <FaRegBell className="bell-nav" />
                     &nbsp;&nbsp;
                     <img
-                      src={Student_Image}
+                      src={
+                        !selectedImage
+                          ? userPic
+                          : `http://localhost:3001/uploads/` + selectedImage
+                      }
+                      roundedCircle
+                      style={{
+                        borderRadius: "100000px",
+                      }}
                       width="45"
                       height="45"
                       className="d-inline-block"
-                      alt="React Bootstrap logo"
+                      alt=" Profile Pic"
+                      onClick={() => {
+                        window.location.href = "/userProfileEmptyView";
+                      }}
                     />
                   </div>
                 </Navbar.Brand>

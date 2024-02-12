@@ -3,7 +3,6 @@ import "./Mentors.css";
 import Navbar from "react-bootstrap/Navbar";
 import GAP_Image from "./img/GAP_BG.png";
 import { FaRegBell } from "react-icons/fa6";
-import Student_Image from "./img/Student.png";
 import Level from "./img/level.png";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
@@ -13,16 +12,24 @@ import { Form, FormControl } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 import Card from "react-bootstrap/Card";
 import img1 from "../HomePage/Img/1.png";
-import { IoHomeOutline, IoPeopleOutline, IoCalendarOutline, IoSettingsOutline } from "react-icons/io5";
+import {
+  IoHomeOutline,
+  IoPeopleOutline,
+  IoCalendarOutline,
+  IoSettingsOutline,
+} from "react-icons/io5";
 import { TfiBookmarkAlt } from "react-icons/tfi";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { RxCountdownTimer } from "react-icons/rx";
 import { IoIosLogOut } from "react-icons/io";
 import { Modal } from "react-bootstrap";
+import userPic from "../HomePage/Img/user.png";
 import TakeABreak from "../HomePage/Img/Group 421.png";
+import axios from "axios";
 function UnderConstructionMentors() {
   /*LogOut Model*/
   const [show, setShow] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
   /*LogOut Model*/
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -35,11 +42,33 @@ function UnderConstructionMentors() {
     handleClose();
     window.location.href = "/login";
   };
+
+  useEffect(() => {
+    const getUserImage = () => {
+      axios
+        .get("http://localhost:3001/api/getUserImage", {
+          headers: {
+            authorization: `${localStorage.getItem("jwtToken")}`,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.data.profilePicture) {
+            setSelectedImage(response.data.profilePicture);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching user image:", error);
+        });
+    };
+    getUserImage();
+  });
+
   return (
     <div className="d-flex">
       <div className="container-fluid">
         <div className="row">
-        <div className="col-lg-3 vh-100  d-flex align-items-center justify-content-center">
+          <div className="col-lg-3 vh-100  d-flex align-items-center justify-content-center">
             <div className="vh-100">
               <div className="">
                 <img
@@ -158,13 +187,12 @@ function UnderConstructionMentors() {
                     <br />
                     <br />
                     <ListGroup.Item
-                        onClick={handleShow}
+                      onClick={handleShow}
                       action
                       variant="light"
                       className="list-group-item-custom"
                     >
                       <IoIosLogOut
-                    
                         style={{ fontSize: "18px", marginRight: "20px" }}
                       />
                       Logout
@@ -239,11 +267,22 @@ function UnderConstructionMentors() {
                   <FaRegBell className="bell-nav" />
                     &nbsp;&nbsp;
                     <img
-                      src={Student_Image}
+                      src={
+                        !selectedImage
+                          ? userPic
+                          : `http://localhost:3001/uploads/` + selectedImage
+                      }
+                      roundedCircle
+                      style={{
+                        borderRadius: "100000px",
+                      }}
                       width="45"
                       height="45"
                       className="d-inline-block"
-                      alt="React Bootstrap logo"
+                      alt=" Profile Pic"
+                      onClick={() => {
+                        window.location.href = "/userProfileEmptyView";
+                      }}
                     />
                   </div>
                 </Navbar.Brand>
