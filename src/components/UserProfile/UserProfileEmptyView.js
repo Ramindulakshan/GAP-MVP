@@ -11,7 +11,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, FormControl } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 import Col from "react-bootstrap/Col";
-import prolog from "./img/Student.png";
 import Image from "react-bootstrap/Image";
 import pen from "./img/pen.png";
 import Modal from "react-bootstrap/Modal";
@@ -41,6 +40,7 @@ function UserProfileEmptyView() {
     title: "",
     academicDetails: [{}],
     professionalDetails: [],
+    socialMedia: [],
   });
 
   useEffect(() => {
@@ -376,7 +376,7 @@ function UserProfileEmptyView() {
       })
       .then((response) => {
         console.log(response);
-        if (response.status === 200) {
+        if (response.data.profilePicture) {
           setSelectedImage(response.data.profilePicture);
         }
       })
@@ -609,7 +609,7 @@ function UserProfileEmptyView() {
                   <img
                     src={
                       !selectedImage
-                        ? { userPic }
+                        ? userPic
                         : `http://localhost:3001/uploads/` + selectedImage
                     }
                     roundedCircle
@@ -632,7 +632,7 @@ function UserProfileEmptyView() {
                   <img
                     src={
                       !selectedImage
-                        ? { userPic }
+                        ? userPic
                         : `http://localhost:3001/uploads/` + selectedImage
                     }
                     rounded
@@ -678,8 +678,22 @@ function UserProfileEmptyView() {
                           >
                             <div className="text-center"></div>
                             <br />
-                            <div className="text-center">
-                              {!selectedImage ? (
+                            <div className="text-center"></div>
+                            <br />
+                            {file ? (
+                              <div className="text-center">
+                                <Image
+                                  src={URL.createObjectURL(file)}
+                                  roundedCircle
+                                  style={{
+                                    width: "150px",
+                                    height: "150px",
+                                    objectFit: "cover",
+                                  }}
+                                />
+                              </div>
+                            ) : (
+                              <div className="text-center">
                                 <Image
                                   src={userPic}
                                   roundedCircle
@@ -689,22 +703,9 @@ function UserProfileEmptyView() {
                                     objectFit: "cover",
                                   }}
                                 />
-                              ) : (
-                                <Image
-                                  src={
-                                    `http://localhost:3001/uploads/` +
-                                    selectedImage
-                                  }
-                                  alt="profile picture"
-                                  roundedCircle
-                                  style={{
-                                    width: "150px",
-                                    height: "150px",
-                                    objectFit: "cover",
-                                  }}
-                                />
-                              )}
-                            </div>
+                              </div>
+                            )}
+
                             <br />
                             <hr />
                             <Row>
@@ -1273,7 +1274,8 @@ function UserProfileEmptyView() {
                                 </svg>
                               </InputGroup.Text>
                               <Form.Control
-                                placeholder="juliusaguirre@gmail.com"
+                                value={userData.email}
+                                disabled
                                 aria-label="juliusaguirre@gmail.com"
                                 aria-describedby="basic-addon1"
                                 className="flex-grow-1" // Use Bootstrap's utility class for flexible width
@@ -1308,7 +1310,7 @@ function UserProfileEmptyView() {
                                 </svg>
                               </InputGroup.Text>
                               <Form.Control
-                                placeholder="/in/juliusaguirre"
+                                value={userData.social}
                                 aria-label="/in/juliusaguirre"
                                 aria-describedby="basic-addon1"
                                 className="flex-grow-1" // Use Bootstrap's utility class for flexible width
@@ -1316,7 +1318,7 @@ function UserProfileEmptyView() {
                             </InputGroup>
                             <br></br>
                             <label style={{ color: "#2A2A72" }}>
-                              LinkedIn Link
+                              Portfolio Link
                             </label>
 
                             <InputGroup className="mb-3">
@@ -1541,10 +1543,7 @@ function UserProfileEmptyView() {
                         <br></br>
                         <Form className="mx-auto">
                           <div className="position-relative ser">
-                            <FormControl
-                              type="text"
-                              className="w-100"
-                            />
+                            <FormControl type="text" className="w-100" />
                             <FaSearch
                               className="position-absolute top-50 translate-middle-y text-muted"
                               style={{ right: "15px" }}
