@@ -781,74 +781,87 @@ function SettingPage() {
                               <h4>Terms & Conditions</h4>
                             </div>
                             <p>
-                              Acceptance of Terms By accessing or using the
-                              Generation ALPHA platform, you agree to comply
-                              with and be bound by these terms and conditions.
-                              Services Generation ALPHA provides mentoring,
-                              recruitment, and project-based learning services.
-                              Users must adhere to the guidelines and policies
-                              outlined in this document. Membership Membership
-                              is open to individuals interested in education,
-                              innovation, and entrepreneurship. Members must
-                              provide accurate information during registration.
-                              Privacy Policy Generation ALPHA respects your
-                              privacy. Please review our Privacy Policy [link to
-                              privacy policy]. Code of Conduct Members are
-                              expected to uphold a high standard of conduct. Any
-                              violation may result in termination of membership.
-                              Intellectual Property All content and materials on
-                              the platform are the intellectual property of
-                              Generation ALPHA. Unauthorized use is prohibited.
-                              User Responsibilities Users are responsible for
-                              the security of their accounts. Report any
-                              unauthorized access promptly. Termination
-                              Generation ALPHA reserves the right to terminate
-                              or suspend any user account for violation of
-                              terms. Disclaimer Generation ALPHA is not liable
-                              for any damages or losses incurred through the use
-                              of its services. Changes to Terms Generation ALPHA
-                              may update these terms. Users will be notified,
-                              and continued use constitutes acceptance of the
-                              changes.
+                              By accessing or using the Generation ALPHA
+                              platform, you agree to comply with and be bound by
+                              these terms and conditions. Generation ALPHA
+                              provides mentoring, recruitment, and project-based
+                              learning services. Users must adhere to the
+                              guidelines and policies outlined in this document.
+                              <br></br>
+                              Membership is open to individuals interested in
+                              education, innovation, and entrepreneurship.
+                              Members must provide accurate information during
+                              registration.<br></br>Generation ALPHA respects
+                              your privacy.Members are expected to uphold a high
+                              standard of conduct. Any violation may result in
+                              termination of membership.All content and
+                              materials on the platform are the intellectual
+                              property of Generation ALPHA. Unauthorized use is
+                              prohibited. Users are responsible for the security
+                              of their accounts. Report any unauthorized access
+                              promptly. Termination<br></br>Generation ALPHA
+                              reserves the right to terminate or suspend any
+                              user account for violation of terms. Disclaimer
+                              and not liable for any damages or losses incurred
+                              through the use of its services. We may update
+                              these terms. Users will be notified, and continued
+                              use constitutes acceptance of the changes.
                             </p>
                           </div>
                           <div className="card ">
                             <div className="d-flex justify-content-between mt-4">
                               <h4>Privacy Policy</h4>
-                              </div>
-                              <p>
-                                Information We Collect We collect personal
-                                information provided voluntarily by users during
-                                the registration process. This may include
-                                names, contact information, and other relevant
-                                details. Use of Information Personal information
-                                is used for membership management,
-                                communication, and to provide and improve our
-                                services. Generation ALPHA does not sell or
-                                share this information with third parties
-                                without explicit consent. Data Security We
-                                implement reasonable security measures to
-                                protect personal information. However, no method
-                                of transmission over the internet or electronic
-                                storage is 100% secure. Cookies Generation ALPHA
-                                uses cookies to enhance user experience. Users
-                                may choose to disable cookies, but this might
-                                impact the functionality of certain features.
-                                Third-Party Links Our platform may contain links
-                                to third-party websites. Generation ALPHA is not
-                                responsible for the privacy practices or content
-                                of these sites. Users should review the privacy
-                                policies of these third parties. Changes to
-                                Privacy Policy Generation ALPHA may update this
-                                privacy policy. Users will be notified, and
-                                continued use constitutes acceptance of the
-                                changes. User Control Users can access, modify,
-                                or delete their personal information by
-                                contacting [contact email/phone]. Compliance
-                                with Laws Generation ALPHA complies with
-                                applicable data protection laws and regulations.
-                              </p>
-                          
+                            </div>
+                            <p>
+                              We collect personal information provided
+                              voluntarily by users during the registration
+                              process. This may include names, contact
+                              information, and other relevant details.Personal
+                              information is used for membership management,
+                              communication, and to provide and improve our
+                              services. Generation ALPHA does not sell or share
+                              this information with third parties without
+                              explicit consent.We implement reasonable security
+                              measures to protect personal information. However,
+                              no method of transmission over the internet or
+                              electronic storage is 100% secure.
+                              <br></br>
+                              Generation ALPHA uses cookies to enhance user
+                              experience. Users may choose to disable cookies,
+                              but this might impact the functionality of certain
+                              features.Our platform may contain links to
+                              third-party websites. Generation ALPHA is not
+                              responsible for the privacy practices or content
+                              of these sites. Users should review the privacy
+                              policies of these third parties.
+                              <br></br>We collect personal information provided
+                              voluntarily by users during the registration
+                              process. This may include names, contact
+                              information, and other relevant details.Personal
+                              information is used for membership management,
+                              communication, and to provide and improve our
+                              services. Generation ALPHA does not sell or share
+                              this information with third parties without
+                              explicit consent.We implement reasonable security
+                              measures to protect personal information. However,
+                              no method of transmission over the internet or
+                              electronic storage is 100% secure. Generation
+                              ALPHA uses cookies to enhance user experience.
+                              Users may choose to disable cookies, but this
+                              might impact the functionality of certain
+                              features.Our platform may contain links to
+                              third-party websites. Generation ALPHA is not
+                              responsible for the privacy practices or content
+                              of these sites. Users should review the privacy
+                              policies of these third parties. We may update
+                              this privacy policy. Users will be notified, and
+                              continued use constitutes acceptance of the
+                              changes.Users can access, modify, or delete their
+                              personal information by contacting
+                              generationalpha2025@gmail.com. Generation ALPHA
+                              complies with applicable data protection laws
+                              and regulations.
+                            </p>
                           </div>
                         </div>
                       </div>

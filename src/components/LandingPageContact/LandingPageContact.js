@@ -20,25 +20,6 @@ function LandingPageContact() {
   const form = useRef();
 
 
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs
-      .sendForm("service_ujbarye", "template_vdnepgd", form.current, {
-        publicKey: "A7gPSfsx2Sr9vN779",
-      })
-      .then(
-        (result) => {
-          console.log(result.text);
-          alert("Gmail Send Success!");
-        },
-        (error) => {
-          console.log(error.text);
-          alert("Not Send");
-        }
-      );
-  };
-
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -339,6 +320,7 @@ function LandingPageContact() {
             </div>
           </div>
         </div>
+        
       </section>
     </div>
   );
