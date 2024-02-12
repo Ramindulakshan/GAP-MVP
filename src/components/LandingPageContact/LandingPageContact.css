@@ -1,64 +1,49 @@
 /* LandingPageContact.css */
-
-/* Add styles for mobile devices */
-@media (max-width: 768px) {
-    /* Adjust the navbar styles */
-    .navbar-brand img {
-      height: 60px; /* Reduce the height of the logo */
-    }
-  
-    .navbar-collapse {
-      margin-top: 20px; /* Add some margin to the top of the collapsed navbar */
-    }
-  
-    .nav-link {
-      padding: 0.5rem; /* Adjust the padding of the nav links */
-    }
-  
-    .custom-button1 {
-      margin-top: 20px; /* Add some margin to the register button */
-    }
-  
-    /* Adjust the contact form styles */
-    .cardll {
-      margin-top: 20px; /* Add some margin to the contact card */
-    }
-  
-    .titlenewwrt {
-      font-size: 1.5rem; /* Decrease the title font size */
-    }
-  
-    .pareconus {
-      font-size: 0.9rem; /* Decrease the paragraph font size */
-    }
-  
-    .lblcous {
-      font-size: 0.8rem; /* Decrease the label font size */
-    }
-  
-    .text-right {
-      font-size: 0.8rem; /* Decrease the character count font size */
-    }
-  
-    .mt-5 {
-      margin-top: 20px; /* Add some margin to the submit button */
-    }
-  
-    .mb-4 {
-      margin-bottom: 20px; /* Add some margin to the bottom of the form */
-    }
-  
-    /* Adjust the contact details card styles */
-    .cardkml {
-      margin-top: 20px; /* Add some margin to the contact details card */
-    }
-  
-    .desbtn {
-      font-size: 0.9rem; /* Decrease the contact details font size */
-    }
-  
-    .desbtn2 {
-      font-size: 0.9rem; /* Decrease the contact email font size */
-    }
+.newbroder{
+  border: 2px solid rgba(128, 128, 128, 0.651);
+}
+.desbtn2new {
+  text-align: start;
+  position: relative;
+  bottom: 38px;
+   padding: 0; 
+  margin: 0;
+  right: 50px;
+  cursor: pointer;
+}
+@media screen and (max-width: 900px) {
+.confull {
+  align-items: center;
+  width: 100%;
+  border-radius: 8px;
+  padding: 30px 50px;
+  margin: 0 20px;
+}
+.cardkml {
+  width: 100%;
+  background: #dfecf9;
+  padding: 10px;
+}
+.desbtn2new {
+  text-align: start;
+  position: relative;
+  bottom: 38px;
+   padding: 0; 
+  margin: 0;
+  right: 0;
+  cursor: pointer;
+}
+}
+@media screen and (max-width: 500px) {
+  .confull {
+    align-items: center;
+    width: 80%;
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid rgba(128, 128, 128, 0.651);
+    margin: 0 20px;
   }
-  
+  .newbroder{
+    border: 0;
+  }
+  }

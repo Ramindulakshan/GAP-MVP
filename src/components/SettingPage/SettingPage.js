@@ -787,19 +787,20 @@ function SettingPage() {
                               provides mentoring, recruitment, and project-based
                               learning services. Users must adhere to the
                               guidelines and policies outlined in this document.
-                              <br></br>
+                              <br></br> <br></br>
                               Membership is open to individuals interested in
                               education, innovation, and entrepreneurship.
                               Members must provide accurate information during
-                              registration.<br></br>Generation ALPHA respects
-                              your privacy.Members are expected to uphold a high
-                              standard of conduct. Any violation may result in
-                              termination of membership.All content and
-                              materials on the platform are the intellectual
-                              property of Generation ALPHA. Unauthorized use is
-                              prohibited. Users are responsible for the security
-                              of their accounts. Report any unauthorized access
-                              promptly. Termination<br></br>Generation ALPHA
+                              registration.<br></br> <br></br>Generation ALPHA
+                              respects your privacy.Members are expected to
+                              uphold a high standard of conduct. Any violation
+                              may result in termination of membership.All
+                              content and materials on the platform are the
+                              intellectual property of Generation ALPHA.
+                              Unauthorized use is prohibited. Users are
+                              responsible for the security of their accounts.
+                              Report any unauthorized access promptly.
+                              Termination<br></br> <br></br>Generation ALPHA
                               reserves the right to terminate or suspend any
                               user account for violation of terms. Disclaimer
                               and not liable for any damages or losses incurred
@@ -825,7 +826,7 @@ function SettingPage() {
                               measures to protect personal information. However,
                               no method of transmission over the internet or
                               electronic storage is 100% secure.
-                              <br></br>
+                              <br></br> <br></br>
                               Generation ALPHA uses cookies to enhance user
                               experience. Users may choose to disable cookies,
                               but this might impact the functionality of certain
@@ -834,23 +835,23 @@ function SettingPage() {
                               responsible for the privacy practices or content
                               of these sites. Users should review the privacy
                               policies of these third parties.
-                              <br></br>We collect personal information provided
-                              voluntarily by users during the registration
-                              process. This may include names, contact
-                              information, and other relevant details.Personal
-                              information is used for membership management,
-                              communication, and to provide and improve our
-                              services. Generation ALPHA does not sell or share
-                              this information with third parties without
-                              explicit consent.We implement reasonable security
-                              measures to protect personal information. However,
-                              no method of transmission over the internet or
-                              electronic storage is 100% secure. Generation
-                              ALPHA uses cookies to enhance user experience.
-                              Users may choose to disable cookies, but this
-                              might impact the functionality of certain
-                              features.Our platform may contain links to
-                              third-party websites. Generation ALPHA is not
+                              <br></br> <br></br>We collect personal information
+                              provided voluntarily by users during the
+                              registration process. This may include names,
+                              contact information, and other relevant
+                              details.Personal information is used for
+                              membership management, communication, and to
+                              provide and improve our services. Generation ALPHA
+                              does not sell or share this information with third
+                              parties without explicit consent.We implement
+                              reasonable security measures to protect personal
+                              information. However, no method of transmission
+                              over the internet or electronic storage is 100%
+                              secure. Generation ALPHA uses cookies to enhance
+                              user experience. Users may choose to disable
+                              cookies, but this might impact the functionality
+                              of certain features.Our platform may contain links
+                              to third-party websites. Generation ALPHA is not
                               responsible for the privacy practices or content
                               of these sites. Users should review the privacy
                               policies of these third parties. We may update

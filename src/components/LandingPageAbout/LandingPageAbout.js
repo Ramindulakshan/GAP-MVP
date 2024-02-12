@@ -50,50 +50,7 @@ function LandingPageAbout() {
               </nav>
 
 
-              <div className="d-flex justify-content-end">
-                <a
-                  className="nav-link custom-nav-link "
-                  href="/"
-                >
-                  Home
-                </a>
-                <a
-                  className="nav-link custom-nav-link "
-                  href="landingPageAbout"
-                  onClick={() => {
-                    window.location.href = "/landingPageAbout";
-                  }}
-                >
-                  About
-                </a>
-                <a
-                  className="nav-link custom-nav-link"
-                  href="landingPageContact"
-                  onClick={() => {
-                    window.location.href = "/landingPageContact";
-                  }}
-                >
-                  Contact
-                </a>
-                <a
-                  className="nav-link custom-nav-link"
-                  href="login"
-                  onClick={() => {
-                    window.location.href = "/login";
-                  }}
-                >
-                  Login
-                </a>
-                <button
-                  className="btn custom-button1 my-2 my-sm-3"
-                  type="submit"
-                  onClick={() => {
-                    window.location.href = "/register";
-                  }}
-                >
-                  Register
-                </button>
-              </div>
+       
 
             </nav>
           </div>
