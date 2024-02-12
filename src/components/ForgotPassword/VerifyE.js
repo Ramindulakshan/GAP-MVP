@@ -236,6 +236,7 @@ class VerifyE extends React.Component {
                           type="Password"
                           className="form-control"
                           placeholder="Password"
+                          style={{textTransform: "none"}}
                         />
                       </div>
 
@@ -246,6 +247,7 @@ class VerifyE extends React.Component {
                           type="Password"
                           className="form-control"
                           placeholder="Confirm Password"
+                          style={{textTransform: "none"}}
                         />
                       </div>
                     </div>
