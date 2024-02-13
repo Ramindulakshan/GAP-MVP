@@ -27,7 +27,6 @@ class VerifyMN extends React.Component {
 
   handleSubmit(event) {
     const data = new FormData(event.target);
-    console.log(this.state);
     event.preventDefault();
   }
 
@@ -38,7 +37,6 @@ class VerifyMN extends React.Component {
         elmnt.target.form.elements[next].focus();
       }
     } else {
-      console.log("next");
       const next = elmnt.target.tabIndex;
       if (next < 6) {
         elmnt.target.form.elements[next].focus();

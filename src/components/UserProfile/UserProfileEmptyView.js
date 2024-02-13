@@ -170,7 +170,6 @@ function UserProfileEmptyView() {
         },
       })
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           const {
             firstName,
@@ -244,7 +243,6 @@ function UserProfileEmptyView() {
         }
       )
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           setTitle("");
           setAddress("");
@@ -283,7 +281,6 @@ function UserProfileEmptyView() {
         }
       )
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           setInstitute("");
           setDegree("");
@@ -327,7 +324,6 @@ function UserProfileEmptyView() {
         }
       )
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           setPosition("");
           setEmpType("");
@@ -370,7 +366,6 @@ function UserProfileEmptyView() {
         }
       )
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           setLinkedinLink("");
           setWebsiteLink("");
@@ -389,13 +384,11 @@ function UserProfileEmptyView() {
   const visitLinkedIn = () => {
     if (userData.socialMedia && userData.socialMedia.linkedinLink) {
       navigate(userData.socialMedia.linkedinLink);
-      console.log(userData.socialMedia.linkedinLink);
     }
   };
 
   const visitwebsiteLink = () => {
     if (userData.socialMedia && userData.socialMedia.websiteLink) {
-      navigate(userData.socialMedia.websiteLink);
       navigate(userData.socialMedia.websiteLink);
     }
   };
@@ -412,7 +405,6 @@ function UserProfileEmptyView() {
           },
         })
         .then((response) => {
-          console.log(response);
           if (response.status === 200) {
             handleClose();
             alert("Photo uploaded successfully");
@@ -430,7 +422,6 @@ function UserProfileEmptyView() {
 
   const handleInterest = (e) => {
     e.preventDefault();
-    console.log(getInterest);
     axios
       .post(
         "http://localhost:3001/api/fieldOfInterest",
@@ -444,7 +435,6 @@ function UserProfileEmptyView() {
         }
       )
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           getUserDetails();
           setGetInterest("");
@@ -459,25 +449,6 @@ function UserProfileEmptyView() {
       });
   };
 
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:3001/api/getSocialLinks", {
-  //       headers: {
-  //         authorization: `${localStorage.getItem("jwtToken")}`,
-  //       },
-  //     })
-  //     .then((response) => {
-  //       console.log(response);
-  //       if (response.data.socialMedia) {
-  //         setLinkedinLink(response.data.socialMedia.linkedinLink);
-  //         setWebsiteLink(response.data.socialMedia.websiteLink);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching Social Links:", error);
-  //     });
-  // }, [handleSocialLinks]);
-
   useEffect(() => {
     axios
       .get("http://localhost:3001/api/getUserImage", {
@@ -486,7 +457,6 @@ function UserProfileEmptyView() {
         },
       })
       .then((response) => {
-        console.log(response);
         if (response.data.profilePicture) {
           setSelectedImage(response.data.profilePicture);
         }

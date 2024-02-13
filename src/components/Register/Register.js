@@ -79,7 +79,6 @@ function Prologin() {
         password: password,
       })
       .then((response) => {
-        console.log(response);
         if (response.data.status === "ok") {
           handleShow2();
         } else if (response.data.status === "error") {
@@ -87,7 +86,6 @@ function Prologin() {
         }
       })
       .catch((error) => {
-        console.log(error);
       });
   };
 

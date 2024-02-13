@@ -45,7 +45,6 @@ function UnderConstructionMentorSession() {
           },
         })
         .then((response) => {
-          console.log(response);
           if (response.data.profilePicture) {
             setSelectedImage(response.data.profilePicture);
           }
