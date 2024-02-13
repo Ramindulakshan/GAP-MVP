@@ -2,7 +2,6 @@ import { React, useState, useEffect } from "react";
 import "./UserProfile.css";
 import Navbar from "react-bootstrap/Navbar";
 import GAP_Image from "./img/GAP_BG.png";
-import Student_Image from "./img/Student.png";
 import Level from "./img/level.png";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
@@ -31,6 +30,7 @@ import { RxCountdownTimer } from "react-icons/rx";
 import { IoIosLogOut } from "react-icons/io";
 import { IoSaveSharp } from "react-icons/io5";
 import userPic from "../HomePage/Img/user.png";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function UserProfileEmptyView() {
   const [userData, setUserData] = useState({
@@ -41,6 +41,7 @@ function UserProfileEmptyView() {
     academicDetails: [{}],
     professionalDetails: [],
     socialMedia: [],
+    fieldOfInterest: [],
   });
 
   useEffect(() => {
@@ -81,6 +82,9 @@ function UserProfileEmptyView() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [linkedinLink, setLinkedinLink] = useState("");
   const [websiteLink, setWebsiteLink] = useState("");
+  const [getInterest, setGetInterest] = useState("");
+
+  const navigate = useNavigate();
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -175,11 +179,14 @@ function UserProfileEmptyView() {
             academicDetails,
             professionalDetails,
             socialMedia,
+            fieldOfInterest,
           } = response.data;
 
           if (
             (academicDetails && academicDetails.length > 0) ||
             (professionalDetails && professionalDetails.length > 0) ||
+            (socialMedia && socialMedia.length > 0) ||
+            (fieldOfInterest && fieldOfInterest.length > 0) ||
             (socialMedia && socialMedia.length > 0)
           ) {
             setUserData({
@@ -189,6 +196,7 @@ function UserProfileEmptyView() {
               academicDetails,
               professionalDetails,
               socialMedia,
+              fieldOfInterest,
             });
           } else {
             setUserData({
@@ -198,6 +206,7 @@ function UserProfileEmptyView() {
               academicDetails: [],
               professionalDetails: [],
               socialMedia: [],
+              fieldOfInterest: [],
             });
           }
         }
@@ -365,6 +374,7 @@ function UserProfileEmptyView() {
         if (response.status === 200) {
           setLinkedinLink("");
           setWebsiteLink("");
+          getUserDetails();
           handleClose2();
           alert("Social Media Links  saved successfully");
         } else {
@@ -374,6 +384,20 @@ function UserProfileEmptyView() {
       .catch((error) => {
         console.error("Error updating social media data:", error);
       });
+  };
+
+  const visitLinkedIn = () => {
+    if (userData.socialMedia && userData.socialMedia.linkedinLink) {
+      navigate(userData.socialMedia.linkedinLink);
+      console.log(userData.socialMedia.linkedinLink);
+    }
+  };
+
+  const visitwebsiteLink = () => {
+    if (userData.socialMedia && userData.socialMedia.websiteLink) {
+      navigate(userData.socialMedia.websiteLink);
+      navigate(userData.socialMedia.websiteLink);
+    }
   };
 
   const handlePhotoUpload = (e) => {
@@ -404,24 +428,55 @@ function UserProfileEmptyView() {
     }
   };
 
-  useEffect(() => {
+  const handleInterest = (e) => {
+    e.preventDefault();
+    console.log(getInterest);
     axios
-      .get("http://localhost:3001/api/getSocialLinks", {
-        headers: {
-          authorization: `${localStorage.getItem("jwtToken")}`,
+      .post(
+        "http://localhost:3001/api/fieldOfInterest",
+        {
+          interest: getInterest,
         },
-      })
+        {
+          headers: {
+            authorization: `${localStorage.getItem("jwtToken")}`,
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
-        if (response.data.socialMedia) {
-          setLinkedinLink(response.data.socialMedia.linkedinLink);
-          setWebsiteLink(response.data.socialMedia.websiteLink);
+        if (response.status === 200) {
+          getUserDetails();
+          setGetInterest("");
+          handleCloseadd();
+          alert("Interest Details Added successfully");
+        } else {
+          alert("Some Error Occured");
         }
       })
       .catch((error) => {
-        console.error("Error fetching Social Links:", error);
+        console.error("Error add interest:", error);
       });
-  }, [handleSocialLinks]);
+  };
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:3001/api/getSocialLinks", {
+  //       headers: {
+  //         authorization: `${localStorage.getItem("jwtToken")}`,
+  //       },
+  //     })
+  //     .then((response) => {
+  //       console.log(response);
+  //       if (response.data.socialMedia) {
+  //         setLinkedinLink(response.data.socialMedia.linkedinLink);
+  //         setWebsiteLink(response.data.socialMedia.websiteLink);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching Social Links:", error);
+  //     });
+  // }, [handleSocialLinks]);
 
   useEffect(() => {
     axios
@@ -981,9 +1036,9 @@ function UserProfileEmptyView() {
                     <div class="row mt-4">
                       <div class="col-4">
                         <div>
-                          {linkedinLink ? (
+                          {userData.socialMedia ? (
                             <svg
-                              href={linkedinLink}
+                              onClick={visitLinkedIn}
                               xmlns="http://www.w3.org/2000/svg"
                               width="30"
                               height="30"
@@ -1012,7 +1067,7 @@ function UserProfileEmptyView() {
                             </svg>
                           ) : (
                             <svg
-                              href="#"
+                              onClick={alert("Invalid link")}
                               xmlns="http://www.w3.org/2000/svg"
                               width="30"
                               height="30"
@@ -1062,9 +1117,9 @@ function UserProfileEmptyView() {
                             />
                           </svg>
                           &nbsp;&nbsp;
-                          {websiteLink ? (
+                          {userData.socialMedia ? (
                             <svg
-                              href={websiteLink}
+                              onClick={visitwebsiteLink}
                               xmlns="http://www.w3.org/2000/svg"
                               width="30"
                               height="30"
@@ -1085,7 +1140,7 @@ function UserProfileEmptyView() {
                             </svg>
                           ) : (
                             <svg
-                              href="#"
+                              onClick={alert("Invalid link")}
                               xmlns="http://www.w3.org/2000/svg"
                               width="30"
                               height="30"
@@ -1107,7 +1162,7 @@ function UserProfileEmptyView() {
                           )}
                           &nbsp;&nbsp;
                           <button className="btn-add-new" onClick={handleShow2}>
-                            button
+                            Add Links
                           </button>
                         </div>
 
@@ -1429,7 +1484,11 @@ function UserProfileEmptyView() {
                                 </svg>
                               </InputGroup.Text>
                               <Form.Control
-                                value={userData.social}
+                                value={linkedinLink}
+                                onChange={(e) =>
+                                  setLinkedinLink(e.target.value)
+                                }
+                                style={{ textTransform: "none" }}
                                 aria-label="/in/juliusaguirre"
                                 aria-describedby="basic-addon1"
                                 className="flex-grow-1" // Use Bootstrap's utility class for flexible width
@@ -1442,6 +1501,8 @@ function UserProfileEmptyView() {
 
                             <InputGroup className="mb-3">
                               <InputGroup.Text
+                                value={websiteLink}
+                                onChange={(e) => setWebsiteLink(e.target.value)}
                                 id="basic-addon1"
                                 style={{ textTransform: "none" }}
                               >
@@ -1459,6 +1520,9 @@ function UserProfileEmptyView() {
                                 </svg>
                               </InputGroup.Text>
                               <Form.Control
+                                value={websiteLink}
+                                onChange={(e) => setWebsiteLink(e.target.value)}
+                                style={{ textTransform: "none" }}
                                 aria-label="/juliusaguirre.com"
                                 aria-describedby="basic-addon1"
                                 className="flex-grow-1" // Use Bootstrap's utility class for flexible width
@@ -1515,64 +1579,16 @@ function UserProfileEmptyView() {
 
                     <Modal.Body>
                       <div class="cardm">
-                        <div className="container mt-3">
-                          <div className="d-inline-block">
-                            <button className="pbtn289">
-                              Time Management&nbsp;&nbsp;{" "}
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="11"
-                                height="11"
-                                viewBox="0 0 11 11"
-                                fill="none"
-                              >
-                                <path
-                                  d="M0.77955 0.601815C0.958599 0.42282 1.20141 0.322266 1.45459 0.322266C1.70776 0.322266 1.95057 0.42282 2.12962 0.601815L5.50576 3.97796L8.8819 0.601815C9.06198 0.427893 9.30316 0.331655 9.55351 0.33383C9.80385 0.336006 10.0433 0.43642 10.2203 0.613446C10.3974 0.790472 10.4978 1.02995 10.5 1.28029C10.5021 1.53063 10.4059 1.77181 10.232 1.95189L6.85584 5.32803L10.232 8.70417C10.4059 8.88425 10.5021 9.12543 10.5 9.37577C10.4978 9.62611 10.3974 9.86559 10.2203 10.0426C10.0433 10.2196 9.80385 10.3201 9.55351 10.3222C9.30316 10.3244 9.06198 10.2282 8.8819 10.0542L5.50576 6.6781L2.12962 10.0542C1.94955 10.2282 1.70837 10.3244 1.45802 10.3222C1.20768 10.3201 0.968206 10.2196 0.791181 10.0426C0.614155 9.86559 0.51374 9.62611 0.511565 9.37577C0.509389 9.12543 0.605627 8.88425 0.77955 8.70417L4.15569 5.32803L0.77955 1.95189C0.600554 1.77284 0.5 1.53003 0.5 1.27685C0.5 1.02368 0.600554 0.780865 0.77955 0.601815Z"
-                                  fill="white"
-                                />
-                              </svg>
-                            </button>
-                            &nbsp;&nbsp;
-                            <button className="pbtn289">
-                              Team Work &nbsp;&nbsp;
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="11"
-                                height="11"
-                                viewBox="0 0 11 11"
-                                fill="none"
-                              >
-                                <path
-                                  d="M0.77955 0.601815C0.958599 0.42282 1.20141 0.322266 1.45459 0.322266C1.70776 0.322266 1.95057 0.42282 2.12962 0.601815L5.50576 3.97796L8.8819 0.601815C9.06198 0.427893 9.30316 0.331655 9.55351 0.33383C9.80385 0.336006 10.0433 0.43642 10.2203 0.613446C10.3974 0.790472 10.4978 1.02995 10.5 1.28029C10.5021 1.53063 10.4059 1.77181 10.232 1.95189L6.85584 5.32803L10.232 8.70417C10.4059 8.88425 10.5021 9.12543 10.5 9.37577C10.4978 9.62611 10.3974 9.86559 10.2203 10.0426C10.0433 10.2196 9.80385 10.3201 9.55351 10.3222C9.30316 10.3244 9.06198 10.2282 8.8819 10.0542L5.50576 6.6781L2.12962 10.0542C1.94955 10.2282 1.70837 10.3244 1.45802 10.3222C1.20768 10.3201 0.968206 10.2196 0.791181 10.0426C0.614155 9.86559 0.51374 9.62611 0.511565 9.37577C0.509389 9.12543 0.605627 8.88425 0.77955 8.70417L4.15569 5.32803L0.77955 1.95189C0.600554 1.77284 0.5 1.53003 0.5 1.27685C0.5 1.02368 0.600554 0.780865 0.77955 0.601815Z"
-                                  fill="white"
-                                />
-                              </svg>
-                            </button>
-                            &nbsp;&nbsp;
-                            <button className="pbtn289">
-                              Work Balance &nbsp;&nbsp;{" "}
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="11"
-                                height="11"
-                                viewBox="0 0 11 11"
-                                fill="none"
-                              >
-                                <path
-                                  d="M0.77955 0.601815C0.958599 0.42282 1.20141 0.322266 1.45459 0.322266C1.70776 0.322266 1.95057 0.42282 2.12962 0.601815L5.50576 3.97796L8.8819 0.601815C9.06198 0.427893 9.30316 0.331655 9.55351 0.33383C9.80385 0.336006 10.0433 0.43642 10.2203 0.613446C10.3974 0.790472 10.4978 1.02995 10.5 1.28029C10.5021 1.53063 10.4059 1.77181 10.232 1.95189L6.85584 5.32803L10.232 8.70417C10.4059 8.88425 10.5021 9.12543 10.5 9.37577C10.4978 9.62611 10.3974 9.86559 10.2203 10.0426C10.0433 10.2196 9.80385 10.3201 9.55351 10.3222C9.30316 10.3244 9.06198 10.2282 8.8819 10.0542L5.50576 6.6781L2.12962 10.0542C1.94955 10.2282 1.70837 10.3244 1.45802 10.3222C1.20768 10.3201 0.968206 10.2196 0.791181 10.0426C0.614155 9.86559 0.51374 9.62611 0.511565 9.37577C0.509389 9.12543 0.605627 8.88425 0.77955 8.70417L4.15569 5.32803L0.77955 1.95189C0.600554 1.77284 0.5 1.53003 0.5 1.27685C0.5 1.02368 0.600554 0.780865 0.77955 0.601815Z"
-                                  fill="white"
-                                />
-                              </svg>
-                            </button>
-                          </div>
-                        </div>
+                        <div className="container mt-3"></div>
 
                         <br></br>
                         <Form className="mx-auto">
                           <div className="position-relative ser">
-                            <FormControl type="text" className="w-100" />
-                            <FaSearch
-                              className="position-absolute top-50 translate-middle-y text-muted"
+                            <FormControl
+                              type="text"
+                              value={getInterest}
+                              onChange={(e) => setGetInterest(e.target.value)}
+                              className="w-100 position-absolute top-50 translate-middle-y text-muted"
                               style={{ right: "15px" }}
                             />
                           </div>
@@ -1584,6 +1600,7 @@ function UserProfileEmptyView() {
                               <button
                                 className="custom-button218 custom-button-reset my-1 my-sm-3 t"
                                 type="submit"
+                                onClick={handleCloseadd}
                               >
                                 Cancel
                               </button>
@@ -1591,6 +1608,7 @@ function UserProfileEmptyView() {
                               <button
                                 className="custom-button2136o custom-button-reset my-1 my-sm-3 t"
                                 type="submit"
+                                onClick={handleInterest}
                               >
                                 Add
                               </button>
@@ -1600,9 +1618,44 @@ function UserProfileEmptyView() {
                       </div>
                     </Modal.Body>
                   </Modal>
+
                   {/*Academic qualification Model End*/}
                 </div>
+
                 <br></br>
+                <div className="container mt-3">
+                  <div className="d-inline-block">
+                    {userData.fieldOfInterest &&
+                    userData.fieldOfInterest.length > 0 ? (
+                      userData.fieldOfInterest.map((detail, index) => {
+                        return (
+                          <div className="d-inline-block" key={index}>
+                            <p className="pbtn289 spaceinterset">{detail.interest}
+                            &nbsp;&nbsp;{" "}
+                              <svg
+
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="11"
+                                height="11"
+                                viewBox="0 0 11 11"
+                                fill="none"
+                              >
+                                <path
+                                  d="M0.77955 0.601815C0.958599 0.42282 1.20141 0.322266 1.45459 0.322266C1.70776 0.322266 1.95057 0.42282 2.12962 0.601815L5.50576 3.97796L8.8819 0.601815C9.06198 0.427893 9.30316 0.331655 9.55351 0.33383C9.80385 0.336006 10.0433 0.43642 10.2203 0.613446C10.3974 0.790472 10.4978 1.02995 10.5 1.28029C10.5021 1.53063 10.4059 1.77181 10.232 1.95189L6.85584 5.32803L10.232 8.70417C10.4059 8.88425 10.5021 9.12543 10.5 9.37577C10.4978 9.62611 10.3974 9.86559 10.2203 10.0426C10.0433 10.2196 9.80385 10.3201 9.55351 10.3222C9.30316 10.3244 9.06198 10.2282 8.8819 10.0542L5.50576 6.6781L2.12962 10.0542C1.94955 10.2282 1.70837 10.3244 1.45802 10.3222C1.20768 10.3201 0.968206 10.2196 0.791181 10.0426C0.614155 9.86559 0.51374 9.62611 0.511565 9.37577C0.509389 9.12543 0.605627 8.88425 0.77955 8.70417L4.15569 5.32803L0.77955 1.95189C0.600554 1.77284 0.5 1.53003 0.5 1.27685C0.5 1.02368 0.600554 0.780865 0.77955 0.601815Z"
+                                  fill="white"
+                                />
+                              </svg>
+                            </p>
+                            &nbsp;&nbsp;
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <p className="text-muted">No fields of interest</p>
+                    )}
+                  </div>
+                </div>
+
                 <hr></hr>
                 <div className="d-flex justify-content-between mt-4">
                   <h4>Academic Qualification</h4>
@@ -1725,13 +1778,13 @@ function UserProfileEmptyView() {
                 </div>
 
                 <div class="carduprofl cardnew card" style={{ border: "0" }}>
-                  <div class="card-body bordernew">
+                  <div class="card-body ">
                     <div class="text-section ">
                       <div>
                         {userData.academicDetails &&
                         userData.academicDetails.length > 0 ? (
                           userData.academicDetails.map((detail, index) => (
-                            <div key={index}>
+                            <div className="bordernew" key={index}>
                               <h5 className="card-title2 fw-bold">
                                 {detail.institute}
                               </h5>
@@ -1914,13 +1967,13 @@ function UserProfileEmptyView() {
                   {/*Professional Experience  Model End*/}
                 </div>
                 <div class="carduprofl cardnew card" style={{ border: "0" }}>
-                  <div class="card-body bordernew">
+                  <div class="card-body">
                     <div class="text-section">
                       <div>
                         {userData.professionalDetails &&
                         userData.professionalDetails.length > 0 ? (
                           userData.professionalDetails.map((detail, index) => (
-                            <div key={index}>
+                            <div className="bordernew" key={index}>
                               <h5 className="card-title2 fw-bold">
                                 {detail.companyName}
                               </h5>
