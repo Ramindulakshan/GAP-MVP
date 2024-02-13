@@ -453,6 +453,11 @@
   border-color: #2a2a72;
   color: #ffffff;
 }
+
+.spaceinterset{
+  margin:0px 5px;
+}
+
 .custom-button2136o {
   font-size: 20px;
   font-weight: 700;
@@ -514,6 +519,8 @@
   width: 100px;
 }
 .bordernew{
+  padding: 10px;
+  margin: 10px 0px;
   border: 1px solid rgba(128, 128, 128, 0.497);
   border-radius: 10px;
 }
