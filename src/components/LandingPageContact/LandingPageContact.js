@@ -97,15 +97,16 @@ function LandingPageContact() {
                       </a>
                     </li>
                   </ul>
-                  <form class="form-inline my-2 my-lg-0 mt-4">
-                    <button
-                      class="btn custom-button1 my-2 my-sm-3"
-                      type="button"
-                      onclick="window.location.href='/register'"
-                    >
-                      Register
-                    </button>
-                  </form>
+                  <button
+                    className="btn custom-button1 my-2 my-sm-3"
+                    type="submit"
+                    onClick={() => {
+                      window.location.href = "/register";
+                    }}
+                  >
+                    Register
+                  </button>
+                  
                 </div>
               </nav>
             </nav>
