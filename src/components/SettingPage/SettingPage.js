@@ -92,7 +92,6 @@ function SettingPage() {
   };
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
-    console.log(confirmPassword);
   };
   const confirmPasswordMatch = () => {
     return newPassword === confirmPassword;
@@ -136,7 +135,6 @@ function SettingPage() {
         }
       )
       .then((response) => {
-        console.log(response);
         if (response.data.status === "ok") {
           alert("Password changed successfully");
           setCurrentPassword("");
@@ -172,13 +170,11 @@ function SettingPage() {
         }
       )
       .then((response) => {
-        console.log(response);
         if (response.data.status === "ok") {
           localStorage.removeItem("jwtToken");
           localStorage.removeItem("firstName");
           localStorage.removeItem("lastName");
           window.location.href = "/";
-          console.log("Account deleted successfully");
         } else {
           alert("Account deletion failed");
         }
@@ -205,11 +201,9 @@ function SettingPage() {
       })
       .then(
         (result) => {
-          console.log(result.text);
           alert("Message Send Success!");
         },
         (error) => {
-          console.log(error.text);
           alert("Not Send");
         }
       );
@@ -224,7 +218,6 @@ function SettingPage() {
           },
         })
         .then((response) => {
-          console.log(response);
           if (response.data.profilePicture) {
             setSelectedImage(response.data.profilePicture);
           }

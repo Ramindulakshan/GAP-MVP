@@ -28,11 +28,9 @@ function LandingPageContact() {
       })
       .then(
         (result) => {
-          console.log(result.text);
           alert("Gmail Send Success!");
         },
         (error) => {
-          console.log(error.text);
           alert("Not Send");
         }
       );

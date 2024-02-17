@@ -36,7 +36,6 @@ const LoginPage = () => {
         password: password,
       })
       .then((response) => {
-        console.log(response);
         if (response.data.status === "ok") {
           const token = response.data.token;
           localStorage.setItem("jwtToken", token);
@@ -49,7 +48,6 @@ const LoginPage = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
       });
   };
 
@@ -61,7 +59,6 @@ const LoginPage = () => {
         },
       })
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           const firstName = response.data.firstName;
           const lastName = response.data.lastName;

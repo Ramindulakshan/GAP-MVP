@@ -49,7 +49,6 @@ class VerifyE extends React.Component {
         }
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 
@@ -73,10 +72,8 @@ class VerifyE extends React.Component {
         email: localStorage.getItem("email"),
       })
       .then((response) => {
-        console.log(response);
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 
@@ -93,7 +90,6 @@ class VerifyE extends React.Component {
 
   handleSubmit(event) {
     const data = new FormData(event.target);
-    console.log(this.state);
     event.preventDefault();
   }
 
@@ -104,7 +100,6 @@ class VerifyE extends React.Component {
         elmnt.target.form.elements[next].focus();
       }
     } else {
-      console.log("next");
       const next = elmnt.target.tabIndex;
       if (next < 6) {
         elmnt.target.form.elements[next].focus();

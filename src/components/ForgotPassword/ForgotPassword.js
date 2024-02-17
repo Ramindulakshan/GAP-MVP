@@ -26,11 +26,9 @@ function ForgotPassword() {
     await axios
       .post("http://localhost:3001/api/forgotpassword", data)
       .then((response) => {
-        console.log(response);
         window.location.href = "/verifyE";
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 
