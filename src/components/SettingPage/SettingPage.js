@@ -454,15 +454,8 @@ function SettingPage() {
             </Navbar>
             <br></br>
             <br></br>
-            <div
-              style={{
-                border: "2px solid #63636380",
-                width: "95%",
-                height: "auto",
-                padding: "10px 10px 10px 0px",
-                borderRadius: "10px",
-                margin: "0 0 50px 20px",
-              }}
+            <div className="SettingPage-MainBox"
+      
             >
               <div id="nav" className="nave">
                 <div>
@@ -514,11 +507,11 @@ function SettingPage() {
                       <div id="About">
                         <div class="Cardsection">
                           <div className="maintopicset">
-                            <br></br>
+                           
                             <h1 className="hedtpic">
                               Generation ALPHA Platform
                             </h1>
-                            <br></br>
+                           
                             <p className="hedpar">
                               Generation ALPHA is a company dedicated to
                               providing a unique space for young adults to

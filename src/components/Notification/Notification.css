@@ -20,7 +20,7 @@
   margin-top: 2vh;
   margin-bottom: 2vh;
 }
-#nav {
+#nav-noty {
   padding: 10px 0 0 50px;
   font-size: 30px;
 }
@@ -498,37 +498,8 @@
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
 }
 
-.btndletacc {
-  text-align: center;
-  margin: 50px 0;
-}
-.hedtpic {
-  color: #000;
-  text-align: center;
-  font-family: Poppins;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: bold;
-  line-height: normal;
-  text-transform: capitalize;
-}
-.hedpar {
-  color: rgba(0, 0, 0, 0.8);
-  text-align: center;
-  font-family: Poppins;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 129.688%; /* 20.75px */
-}
 
-.maintopicset {
-  padding: 30px 60px;
-}
-.titleneww {
-  padding: 0 0 0 30px;
-  font-size: 25px;
-}
+
 .clbtn {
   width: 40px;
   height: 40px;

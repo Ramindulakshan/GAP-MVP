@@ -54,7 +54,7 @@ const App = () => {
           <Route path="/userProfileEmptyView" element={<UserProfileEmptyView />} />
         </Route>
         <Route path="/WeeklySchedulePage" element={<WeeklySchedulePage />} />
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<SettingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
