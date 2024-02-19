@@ -126,3 +126,10 @@
   .collapse{
     background-color: #ffffff;
   }
+
+  @media screen and (max-width: 550px) {
+    .custom-text-LA {
+      font-size: 18px;
+    }
+
+  }
