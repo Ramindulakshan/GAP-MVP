@@ -765,6 +765,11 @@
   color:#2a2a72 ;
   border-bottom: 5px solid #2a2a72;
 }
+@media (max-width: 990px) {
+  .nvtpicnew {
+    margin: 0 20px 0 0;
+}
+}
 
 @media screen and (max-width: 768px) {
   .pdinf{

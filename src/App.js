@@ -44,7 +44,7 @@ const App = () => {
   return (
     <React.Fragment>
       <Routes>
-        <Route element={<HandleAuth />}>
+        <Route>
           <Route path="/home" element={<HomePage />} />
           <Route path="/settings" element={<SettingPage />} />
           <Route path="/mentoringSession" element={<MentoringSessionPage />} />
@@ -53,7 +53,6 @@ const App = () => {
           <Route path="/underConstructionBeAMentor" element={<UnderConstructionBeAMentor />} />
           <Route path="/userProfileEmptyView" element={<UserProfileEmptyView />} />
         </Route>
-
         <Route path="/WeeklySchedulePage" element={<WeeklySchedulePage />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -61,7 +60,6 @@ const App = () => {
         <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/verifyE" element={<VerifyE />} />
         <Route path="/resetPassword" element={<ResetPassword />} />
-
         <Route path="/emailVerify" element={<EmailVerify />} />
         <Route path="/verifyMN" element={<VerifyMN />} />
         <Route path="/historyPage" element={<HistoryPage />} />
