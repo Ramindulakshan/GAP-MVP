@@ -593,7 +593,7 @@ function SettingPage() {
                           <div className="card">
                             <div className="container mt-2">
                               <div className="row">
-                                <div className="col-sm-4 col-md-4 col-lg-3 text-center">
+                                <div className="col-sm-4 col-md-4 col-lg-3 text-center responsive-margin">
                                   <a
                                     href="https://www.facebook.com/generationalpha2025?mibextid=ZbWKwL"
                                     target="blanck"
@@ -624,7 +624,7 @@ function SettingPage() {
                                     <p className="mb-0 pint">Facebook</p>
                                   </a>
                                 </div>
-                                <div className="col-sm-4 col-md-4 col-lg-3 text-center">
+                                <div className="col-sm-4 col-md-4 col-lg-3 text-center responsive-margin">
                                   <a
                                     href="https://www.instagram.com/generation_alpha_official/"
                                     target="blanck"
@@ -723,7 +723,7 @@ function SettingPage() {
                                     <p className="mb-0 pint">Instagram</p>
                                   </a>
                                 </div>
-                                <div className="col-sm-4 col-md-4 col-lg-3 text-center">
+                                <div className="col-sm-4 col-md-4 col-lg-3 text-center responsive-margin">
                                   <a
                                     href="https://www.tiktok.com/@generation.alpha"
                                     target="blanck"
@@ -762,7 +762,7 @@ function SettingPage() {
                                     <p className="mb-0 pint">Tik Tok</p>
                                   </a>
                                 </div>
-                                <div className="col-sm-4 col-md-4 col-lg-3 text-center">
+                                <div className="col-sm-4 col-md-4 col-lg-3 text-center responsive-margin">
                                   <a
                                     href="https://www.linkedin.com/company/generation-alpha2025/"
                                     target="blanck"
@@ -797,10 +797,10 @@ function SettingPage() {
                             </div>
                           </div>
                           <div className="card">
-                            <div className="d-flex justify-content-between mt-4">
-                              <h4>Terms & Conditions</h4>
+                            <div className="d-flex justify-content-between margin-top-css-add">
+                              <h4 className="font-bold-setting">Terms & Conditions</h4>
                             </div>
-                            <p>
+                            <p className="responsive-TC-para">
                               By accessing or using the Generation ALPHA
                               platform, you agree to comply with and be bound by
                               these terms and conditions. Generation ALPHA
@@ -830,10 +830,10 @@ function SettingPage() {
                             </p>
                           </div>
                           <div className="card ">
-                            <div className="d-flex justify-content-between mt-4">
-                              <h4>Privacy Policy</h4>
+                            <div className="d-flex justify-content-between margin-top-css-add">
+                              <h4 className="font-bold-setting">Privacy Policy</h4>
                             </div>
-                            <p>
+                            <p className="responsive-TC-para">
                               We collect personal information provided
                               voluntarily by users during the registration
                               process. This may include names, contact
@@ -891,11 +891,11 @@ function SettingPage() {
                       <div className="main-box" id="ChangePassword">
                         <div class="Cardsection">
                           <div className="card">
-                            <br></br>
-                            <h3 className="card-title fw-bold">
+                           
+                            <h3 className="card-title fw-bold title-setting">
                               Change your password
                             </h3>
-                            <p className="para1">
+                            <p className="para1-setting">
                               You Should Enter at Least 6 Characters
                             </p>
                             <br></br>
@@ -997,16 +997,16 @@ function SettingPage() {
                       <div className="main-box" id="DeleteAccount">
                         <div class="Cardsection">
                           <div className="card">
-                            <br></br>
+                        
                             <h3 className="card-title fw-bold">
                               Are you sure you want to delete your account ?
                             </h3>
-                            <p className="para1">
+                            <p className="para1-setting ">
                               By deleting your account you will lose your
                               progress
                             </p>
                             <br></br>
-                            <div>
+                           
                               <div className="mb-3">
                                 <p className="why">
                                   Why do you want to delete your account ?
@@ -1255,7 +1255,7 @@ function SettingPage() {
                                     </InputGroup.Text>
                                   </InputGroup>
                                 </div>
-                                <br></br>
+                                
                                 <button
                                   className="btndlt"
                                   onChange={handleShow4}
@@ -1265,7 +1265,7 @@ function SettingPage() {
                                 </button>
                               </div>
                             </div>
-                          </div>
+                        
                         </div>
                       </div>
                       {/*Delete Account Section End */}
@@ -1336,7 +1336,7 @@ function SettingPage() {
                           <h5 className="card-title fw-bold titleneww">
                             Support & Help
                           </h5>
-                          <div className="confull">
+                          <div className="confull-setting">
                             <div className="card">
                               <div className="container mt-3">
                                 <Form ref={form} onSubmit={sendEmail}>

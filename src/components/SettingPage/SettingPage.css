@@ -610,7 +610,7 @@
   margin: 10px 0;
 }
 
-.confull {
+.confull-setting {
   align-items: center;
   width: 800px;
   border-radius: 8px;
@@ -771,7 +771,18 @@
   color: #2a2a72;
   border-bottom: 5px solid #2a2a72;
 }
-
+.margin-top-css-add {
+  margin-top: 10px;
+}
+.font-bold-setting {
+  font-weight: bold;
+}
+.para1-setting {
+  padding: 0 0 5px 0;
+  font-size: 18px;
+  margin: 0;
+  font-weight: bold;
+}
 @media (max-width: 990px) {
   .nvtpicnew {
     margin: 0 20px 0 0;
@@ -789,8 +800,8 @@
 }
 @media (max-width: 600px) {
   .nvtpicnew {
-    margin: 0 7px 0 0;
-    font-size: 11px;
+    margin: 0 5px;
+    font-size: 10px;
   }
   .SettingPage-MainBox {
     border: 2px solid #63636380;
@@ -835,5 +846,78 @@
   }
   .titleneww {
     padding: 10px 0 0 0;
+  }
+  .pbtn2oo {
+    padding: 0;
+  }
+  .clbtnnwe {
+    padding: 0px;
+  }
+  .desbtn2 {
+    padding: 0 0 0 50px;
+  }
+
+  .responsive-margin {
+    margin: 0 0 30px 0;
+  }
+  .pint {
+    margin: 8px 0 0 0;
+  }
+  .responsive-TC-para {
+    font-size: 12px;
+  }
+  .margin-top-css-add {
+    margin-top: 0px;
+  }
+  .para1-setting {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    text-align: center;
+  }
+  .title-setting {
+    padding: 0;
+    margin: 0;
+  }
+  .passbox {
+    width: 100%;
+  }
+  .fogotpss {
+    margin: 0 0 10px 0;
+    font-size: 15px;
+  }
+  .changpasss {
+    width: 100%;
+    border-radius: 4px;
+    font-size: 15px;
+    margin: 0px 0 15px 0;
+    padding: 5px 0;
+  }
+  .why {
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .possishan-setting {
+    position: relative;
+  }
+  .centinpt {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .btndletacc {
+    margin: 0 0 30px 0;
+  }
+  .confull-setting {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .subbtnconus {
+    border-radius: 5px;
+    border: 2px solid #2a2a72;
+    font-family: Poppins;
+    font-size: 15px;
+    margin: 0;
   }
 }
