@@ -106,6 +106,7 @@ function Prologin() {
             <div className="col-lg-6 overflow-auto">
               <br></br>
               <br></br>
+              <div className="responsive-border-log-reg">
               <h2 className="text-center mb-4 mt-2 ">Register</h2>
               <div className="row justify-content-center">
                 <div className="col-lg-9 sitewyey ">
@@ -435,6 +436,7 @@ function Prologin() {
                   </h6>
                   <br></br>
                 </div>
+              </div>
               </div>
             </div>
           </div>

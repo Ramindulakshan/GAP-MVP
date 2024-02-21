@@ -800,8 +800,8 @@
 }
 @media (max-width: 600px) {
   .nvtpicnew {
-    margin: 0 5px;
-    font-size: 10px;
+    margin:0 5px;
+    font-size: 11px;
   }
   .SettingPage-MainBox {
     border: 2px solid #63636380;

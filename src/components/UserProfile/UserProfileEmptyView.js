@@ -1004,7 +1004,7 @@ function UserProfileEmptyView() {
                     )}
 
                     <div class="row mt-4">
-                      <div class="col-4">
+                      <div class="col-10 mb-4">
                         <div>
                           {userData.socialMedia ? (
                             <svg

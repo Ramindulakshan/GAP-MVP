@@ -555,4 +555,10 @@
   .disnon {
     display: none;
   }
+  .penclzee {
+    width: 30px;
+    cursor: pointer;
+    top: 35%;
+    left: 95%;
+}
 }
