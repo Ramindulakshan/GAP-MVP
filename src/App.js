@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -39,23 +40,44 @@ import WeeklySchedulePage from "./components/WeeklySchedulePage/WeeklySchedulePa
 import UnderConstructionWeeklySchedulePage from "./components/WeeklySchedulePage/UnderConstructionWeeklySchedulePage";
 import WeeklySchedulePageNotMenter from "./components/WeeklySchedulePageNotMenter/WeeklySchedulePageNotMenter";
 import HandleAuth from "./utils/HandleAuth";
+import Loader from "./components/WebLoader/Loader";
 
 const App = () => {
-  return (
+  // loader state
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fakeDataFetch = () => {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000); //add releted time
+    };
+
+    fakeDataFetch();
+  }, []);
+
+  return isLoading ? (
+    <Loader />
+  ) : (
     <React.Fragment>
       <Routes>
         <Route>
-        <Route path="/la" element={<LandingPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/settings" element={<SettingPage />} />
           <Route path="/mentoringSession" element={<MentoringSessionPage />} />
           <Route path="/mentoringSession " element={<MentoringSessionPage />} />
           <Route path="/beAMentor" element={<BeAMentor />} />
-          <Route path="/underConstructionBeAMentor" element={<UnderConstructionBeAMentor />} />
-          <Route path="/userProfileEmptyView" element={<UserProfileEmptyView />} />
+          <Route
+            path="/underConstructionBeAMentor"
+            element={<UnderConstructionBeAMentor />}
+          />
+          <Route
+            path="/userProfileEmptyView"
+            element={<UserProfileEmptyView />}
+          />
         </Route>
         <Route path="/WeeklySchedulePage" element={<WeeklySchedulePage />} />
-        <Route path="/" element={<SettingPage />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
