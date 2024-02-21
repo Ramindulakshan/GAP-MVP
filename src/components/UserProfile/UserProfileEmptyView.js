@@ -1067,6 +1067,7 @@ function UserProfileEmptyView() {
                           )}
                           &nbsp;&nbsp;
                           <svg
+                   
                             href={userData.email}
                             xmlns="http://www.w3.org/2000/svg"
                             width="30"
@@ -1621,7 +1622,8 @@ function UserProfileEmptyView() {
                         );
                       })
                     ) : (
-                      <p className="text-muted">No fields of interest</p>
+                      <p className="card-para2">No fields of interest</p>
+                      
                     )}
                   </div>
                 </div>
@@ -1895,7 +1897,7 @@ function UserProfileEmptyView() {
 
                           <br></br>
                           <Form.Group as={Col} controlId="formGridZip">
-                            <Form.Label>End date(or expected)*</Form.Label>
+                            <Form.Label>End date(or expected)</Form.Label>
                             <Form.Control
                               value={endDate}
                               onChange={(e) => setEndDate(e.target.value)}
@@ -1956,7 +1958,7 @@ function UserProfileEmptyView() {
                           ))
                         ) : (
                           <p className="card-para2">
-                            No academic details available
+                            No Professional details available
                           </p>
                         )}
                       </div>

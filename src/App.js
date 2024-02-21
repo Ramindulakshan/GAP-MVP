@@ -45,6 +45,7 @@ const App = () => {
     <React.Fragment>
       <Routes>
         <Route>
+        <Route path="/la" element={<LandingPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/settings" element={<SettingPage />} />
           <Route path="/mentoringSession" element={<MentoringSessionPage />} />
