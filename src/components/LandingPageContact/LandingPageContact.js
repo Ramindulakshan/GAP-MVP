@@ -19,23 +19,40 @@ function LandingPageContact() {
   //Contact Us
   const form = useRef();
 
-  const sendEmail = (e) => {
+  // const sendEmail = (e) => {
+  //   e.preventDefault();
+
+  //   emailjs
+  //     .sendForm("service_ujbarye", "template_vdnepgd", form.current, {
+  //       publicKey: "A7gPSfsx2Sr9vN779",
+  //     })
+  //     .then(
+  //       (result) => {
+  //         alert("Gmail Send Success!");
+  //       },
+  //       (error) => {
+  //         alert("Not Send");
+  //       }
+  //     );
+  // };
+
+  const sendEmail = async (e) => {
     e.preventDefault();
-
-    emailjs
-      .sendForm("service_ujbarye", "template_vdnepgd", form.current, {
+  
+    try {
+      const result = await emailjs.sendForm("service_ujbarye", "template_vdnepgd", form.current, {
         publicKey: "A7gPSfsx2Sr9vN779",
-      })
-      .then(
-        (result) => {
-          alert("Gmail Send Success!");
-        },
-        (error) => {
-          alert("Not Send");
-        }
-      );
+      });
+  
+      console.log(result); // Log the result for further inspection
+  
+      alert("Gmail Send Success!");
+    } catch (error) {
+      console.error("Error sending email:", error);
+      alert("Email not sent. Please check the console for details.");
+    }
   };
-
+  
   const clearForm = () => {
     form.current.reset();
   };
@@ -113,7 +130,7 @@ function LandingPageContact() {
             {/*Contact Us Section Start*/}
             <div className="d-flex justify-content-center">
               <div className="">
-                <div className="confull newbroder">
+                <div className="confull-lan newbroder">
                   <h5 className="card-title fw-bold titlenewwrt">Contact Us</h5>
                   <p className="pareconus">
                     Any Questions or Remarks? Just write us a message!
