@@ -593,7 +593,13 @@ function UserProfileEmptyView() {
         console.error("Error fetching user image:", error);
       });
   }, [handlePhotoUpload]);
+  function nav_open() {
+    document.getElementById("mySidebar").style.display = "block";
+  }
 
+  function nav_close() {
+    document.getElementById("mySidebar").style.display = "none";
+  }
   return (
     <div>
       <div className="container-fluid">
@@ -607,6 +613,10 @@ function UserProfileEmptyView() {
                     alt="logo"
                     className="img-fluid custom-image-Gap"
                   />
+                  <button onClick={nav_close} class="resclose">
+                    {" "}
+                    &times;
+                  </button>
                 </div>
 
                 <Tab.Container
@@ -622,7 +632,7 @@ function UserProfileEmptyView() {
                         onClick={() => {
                           window.location.href = "/home";
                         }}
-                        style={{ backgroundColor: "#DDDDFE", border: "0" }}
+
                       >
                         <IoHomeOutline
                           style={{ fontSize: "18px", marginRight: "20px" }}
@@ -771,7 +781,7 @@ function UserProfileEmptyView() {
           </div>
           <div className="col-lg-9 vh-100 overflow-auto">
             <Navbar className="mt-3 justify-content-between">
-              <Form className="mx-auto">
+              <Form className="mx-auto search-res-hide">
                 <div className="position-relative">
                   <FormControl
                     type="text"
@@ -798,7 +808,7 @@ function UserProfileEmptyView() {
                 />{" "}
                 &nbsp;&nbsp;
                 <div className="ml-auto d-flex align-items-center">
-                <FaRegBell className="bell-nav" />
+                  <FaRegBell className="bell-nav" />
                   &nbsp;&nbsp;
                   <img
                     src={
@@ -815,9 +825,28 @@ function UserProfileEmptyView() {
                     className="d-inline-block"
                     alt="React Bootstrap logo"
                   />
+                  <button
+                    className="mobile-toggle-btn togelbtn"
+                    onClick={nav_open}
+                  >
+                    ☰
+                  </button>
                 </div>
               </Navbar.Brand>
             </Navbar>
+            <Form className="mx-auto search-res-dis">
+              <div className="position-relative">
+                <FormControl
+                  type="text"
+                  placeholder="Find A Mentor"
+                  className="w-100"
+                />
+                <FaSearch
+                  className="position-absolute top-50 translate-middle-y text-muted"
+                  style={{ right: "15px" }}
+                />
+              </div>
+            </Form>
             <br></br>
             <br></br>
             <div>
@@ -1186,7 +1215,6 @@ function UserProfileEmptyView() {
                           )}
                           &nbsp;&nbsp;
                           <svg
-                   
                             href={userData.email}
                             xmlns="http://www.w3.org/2000/svg"
                             width="30"
@@ -1744,7 +1772,6 @@ function UserProfileEmptyView() {
                       })
                     ) : (
                       <p className="card-para2">No fields of interest</p>
-                      
                     )}
                   </div>
                 </div>

@@ -23,6 +23,10 @@ const LandingPage = () => {
   }, []);
   const [showNav, setShowNav] = useState(false);
 
+  const [showSidebar, setShowSidebar] = useState(false);
+
+
+
   return (
     <>
       <section className="new-background">
