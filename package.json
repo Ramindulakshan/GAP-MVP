@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://generationalpha.info",
+  "proxy": "https://generationalpha.info",
   "dependencies": {
     "@emailjs/browser": "^4.1.0",
     "@syncfusion/ej2-react-calendars": "^24.1.44",
