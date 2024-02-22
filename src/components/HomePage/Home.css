@@ -16,10 +16,10 @@
   background-color: #2a2a721a;
   color: #2a2a72;
 }
-.bell-nav{
+.bell-nav {
   color: #2a2a72;
 }
-.bell-nav:hover{
+.bell-nav:hover {
   color: #2a2a72;
 }
 /* styles.css */
@@ -127,7 +127,7 @@
   text-transform: capitalize;
 }
 
-.btnlgouy1{
+.btnlgouy1 {
   color: #2a2a72;
   background-color: white;
   border: 2px solid #2a2a72;
@@ -136,17 +136,94 @@
   font-weight: bold;
   margin: 0 30px;
 }
-.btnlgouy2{
+.btnlgouy2 {
   color: white;
-  background-color:#2a2a72;
+  background-color: #2a2a72;
   border: 2px solid #2a2a72;
   border-radius: 3px;
   padding: 5px 20px;
   font-weight: bold;
   margin: 0 30px;
 }
-.pre{
+.pre {
   font-size: 20px;
   font-weight: 600;
   padding: 20px 50px;
+}
+.search-res-dis {
+  display: none;
+}
+.resclose {
+  display: none;
+}
+.nav-colum {
+  flex: 0 0 25%; /* Equivalent to col-lg-3 */
+  height: 100vh; /* Equivalent to vh-100 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.togelbtn {
+  display: none;
+}
+.custom-Point {
+  flex: 0 0 100%; /* Equivalent to col-lg-12 */
+  margin-top: 4rem; /* Equivalent to mt-4 */
+  display: flex;
+}
+.img-brdr {
+  border-radius: 10px;
+}
+.home-bx-one {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+.home-bx-2 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+@media screen and (max-width: 950px) {
+  .search-res-dis {
+    display: block;
+  }
+  .search-res-hide {
+    display: none;
+  }
+  .togelbtn {
+    font-size: 25px;
+    padding: 1px 10px;
+    color: white;
+    display: block;
+    background-color: #2a2a72;
+    margin: 0 0 0 20px;
+    border-radius: 5px;
+  }
+
+  .resclose {
+    display: block;
+    position: relative;
+    top: 30px;
+    float: inline-end;
+    padding: 0 10px;
+    border-radius: 5px;
+    font-size: 25px;
+    background-color: #2a2a72;
+    margin: 0 0 0 20px;
+    font-weight: bold;
+    color: white;
+  }
+  .home-bx-2 {
+    display: none;
+  }
+  .home-bx-one {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .custom-Point {
+    margin-top: 1rem;
+  }
+  .custom-S-text1 {
+    margin-left: 1vh;
+  }
 }

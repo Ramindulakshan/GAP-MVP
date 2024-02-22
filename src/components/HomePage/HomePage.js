@@ -85,18 +85,36 @@ const HomePage = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
+
+  function nav_open() {
+    document.getElementById("mySidebar").style.display = "block";
+  }
+
+  function nav_close() {
+    document.getElementById("mySidebar").style.display = "none";
+  }
+
   return (
-    <section>
+    <div className="d-flex">
       <div className="container-fluid">
         <div className="row">
-          <div className="col-lg-3 vh-100  d-flex align-items-center justify-content-center">
-            <div className="vh-100">
+          <div className="nav-colum" id="mySidebar">
+            <div className="vh-100 ">
               <div className="">
                 <img
                   src={GAP_Image}
                   alt="logo"
                   className="img-fluid custom-image-Gap"
                 />
+                <button onClick={nav_close} class="resclose">
+                  {" "}
+                  &times;
+                </button>
               </div>
               <Tab.Container
                 id="list-group-tabs-example"
@@ -256,9 +274,10 @@ const HomePage = () => {
               </Modal>
             </div>
           </div>
-          <div className="col-lg-9 vh-100">
+
+          <div className="col-lg-9 vh-100 overflow-auto">
             <Navbar className="mt-3 justify-content-between">
-              <Form className="mx-auto">
+              <Form className="mx-auto search-res-hide">
                 <div className="position-relative">
                   <FormControl
                     type="text"
@@ -282,7 +301,7 @@ const HomePage = () => {
                   height="40"
                   className="d-inline-block "
                   alt="React Bootstrap logo"
-                />{" "}
+                />
                 &nbsp;&nbsp;
                 <div className="ml-auto d-flex align-items-center">
                   <FaRegBell className="bell-nav" />
@@ -305,11 +324,31 @@ const HomePage = () => {
                       window.location.href = "/userProfileEmptyView";
                     }}
                   />
+                  {/* Toggle Button for Mobile View */}
+                  <button
+                    className="mobile-toggle-btn togelbtn"
+                    onClick={nav_open}
+                  >
+                    ☰
+                  </button>
                 </div>
               </Navbar.Brand>
             </Navbar>
-            <div className="col-lg-12 custom-Point d-flex mt-4 ">
-              <div className="col-lg-9">
+            <Form className="mx-auto search-res-dis">
+              <div className="position-relative">
+                <FormControl
+                  type="text"
+                  placeholder="Find A Mentor"
+                  className="w-100"
+                />
+                <FaSearch
+                  className="position-absolute top-50 translate-middle-y text-muted"
+                  style={{ right: "15px" }}
+                />
+              </div>
+            </Form>
+            <div className="custom-Point">
+              <div className="home-bx-one">
                 <h4 className="custom-S-text1 mt-3">Hi {firstName}!!</h4>
                 {/* {user ? <h4>Hi {firstName}!!</h4> : <h4>Hi {firstName}!!</h4>} */}{" "}
                 {/*google login*/}
@@ -324,11 +363,11 @@ const HomePage = () => {
                   Total 10📀
                 </button>
               </div>
-              <div className="col-lg-3">
+              <div className="home-bx-2">
                 <img
                   src={Homepage_image}
                   alt="YourImage"
-                  className="img-fluid mt-2"
+                  className="img-fluid mt-2 img-brdr"
                   style={{ objectFit: "cover", width: "100%", height: "96%" }}
                 />
               </div>
@@ -367,7 +406,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
