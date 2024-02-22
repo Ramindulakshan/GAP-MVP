@@ -356,12 +356,16 @@ const HomePage = () => {
                   Congratulations on earning points, <br />
                   Let's keep stepping forward!
                 </h4>
-                <button
-                  className="btn custom-button-Total my-1 my-sm-3"
-                  type="submit"
-                >
-                  Total 10📀
-                </button>
+                <div className="btn my-1 my-sm-3">
+                  <img
+                    src={Level}
+                    width="100"
+                    height="60"
+                    style={{margin:"0 0 0 30px"}}
+                    className="d-inline-block "
+                    alt="React Bootstrap logo"
+                  />
+                </div>
               </div>
               <div className="home-bx-2">
                 <img
