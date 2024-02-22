@@ -30,6 +30,8 @@ function LandingPageContact() {
       .then(
         (result) => {
           alert("Gmail Send Success!");
+          form.current.reset();
+          setText("");
         },
         (error) => {
           alert("Not Send");
