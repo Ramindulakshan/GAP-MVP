@@ -6,7 +6,7 @@ import CardGroup from "react-bootstrap/CardGroup";
 import GAP_Image from "../HomePage/Img/GAP_BG.png";
 import { backEndURL } from "../../server";
 import axios from "axios";
-
+import { Navbar, Nav, Button } from "react-bootstrap";
 const LandingPage = () => {
   const [userCount, setUserCount] = useState(0);
 
@@ -21,76 +21,60 @@ const LandingPage = () => {
     };
     fetchUserCount();
   }, []);
+  const [showNav, setShowNav] = useState(false);
 
   return (
     <>
       <section className="new-background">
         <div className="container-fluid vh-100">
           <div className="container">
-            <nav className="navbar navbar-light">
-              <a className="navbar-brand" href="/">
+            <Navbar expand="lg">
+              <Navbar.Brand href="/">
                 <img src={GAP_Image} height="90" alt="" />
-              </a>
+              </Navbar.Brand>
 
-              <nav class=" navbar-expand-lg navbar-light bg-light">
-                <button
-                  class="navbar-toggler"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#navbarSupportedContent"
-                  aria-controls="navbarSupportedContent"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                >
-                  <span class="navbar-toggler-icon"></span>
-                </button>
+              <Navbar.Toggle
+                aria-controls="navbarSupportedContent"
+                onClick={() => setShowNav(!showNav)}
+              />
 
-                <div
-                  class="collapse navbar-collapse"
-                  id="navbarSupportedContent"
-                >
-                  <ul class="navbar-nav mr-auto">
-                    <li class="">
-                      <a class="nav-link custom-nav-link  " href="/">
-                        Home
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        class="nav-link custom-nav-link "
-                        href="/landingPageAbout"
-                      >
-                        About
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        class="nav-link custom-nav-link "
-                        href="/landingPageContact"
-                      >
-                        Contact
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link custom-nav-link " href="/login">
-                        Login
-                      </a>
-                    </li>
-                  </ul>
-                  <button
-                    className="btn custom-button1 my-2 my-sm-3"
-                    type="submit"
-                    onClick={() => {
-                      window.location.href = "/register";
-                    }}
+              <Navbar.Collapse
+                id="navbarSupportedContent"
+                className={`${showNav ? "show" : ""} navbar-class-left`}
+              >
+                <Nav className="ml-auto">
+                  <Nav.Link href="/" className="nav-link custom-nav-link">
+                    Home
+                  </Nav.Link>
+                  <Nav.Link
+                    href="/landingPageAbout"
+                    className="nav-link custom-nav-link"
                   >
-                    Register
-                  </button>
-                </div>
-              </nav>
-            </nav>
+                    About
+                  </Nav.Link>
+                  <Nav.Link
+                    href="/landingPageContact"
+                    className="nav-link custom-nav-link"
+                  >
+                    Contact
+                  </Nav.Link>
+                  <Nav.Link href="/login" className="nav-link custom-nav-link">
+                    Login
+                  </Nav.Link>
+                </Nav>
+
+                <Button
+                  className="btn custom-button1 my-2 my-sm-3"
+                  onClick={() => {
+                    window.location.href = "/register";
+                  }}
+                >
+                  Register
+                </Button>
+              </Navbar.Collapse>
+            </Navbar>
           </div>
-          <div>
+          <div className="landing-set-res">
             <div>
               <h1 className="custom-text-LA text-center mb-4 mt-3">
                 Explore The World And Discover <br /> Your Potential
@@ -155,7 +139,7 @@ const LandingPage = () => {
             </CardGroup>
             <div className="text-center mt-3">
               <button
-                className="btn custom-button-reset2"
+                className="btn btn-lan-btn custom-button-reset2"
                 type="button"
                 onClick={() => {
                   window.location.href = "/register";

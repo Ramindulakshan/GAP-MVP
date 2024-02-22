@@ -93,6 +93,7 @@ const LoginPage = () => {
               </div>
               <div className="col-lg-6 overflow-auto ">
                 <br />
+                <div className="responsive-border-log-reg">
                 <h1 className="text-center mb-5 mt-5 ">Login to Account</h1>
                 <div className="row justify-content-center">
                   <div className="col-lg-9 sitewyey-log">
@@ -179,6 +180,7 @@ const LoginPage = () => {
                       </span>
                     </h6>
                   </div>
+                </div>
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   box-sizing: border-box;
   padding: 0;
@@ -94,7 +94,6 @@
 .paraabty {
   margin: 0 0 50px 0;
   font-size: 23px;
-
 }
 .dtabx {
   background: #dfecf9;
@@ -103,26 +102,35 @@
   padding: 50px 0 45px 0;
 }
 
-.pintflnme{
+.pintflnme {
   font-weight: 600;
   font-size: 20px;
 }
-.cardsdn{
+.cardsdn {
   width: 100%;
   text-align: center;
   align-items: center;
   padding: 0 0 0 210px;
 }
-  
-  .new-background {
-    background-image: url("./img/Landing\ Page\ _\ Default.png");
-    background-size: cover;
-  
-  }
 
-  .navbar-collapse{
-    background-color: #ffffff;
+.new-background {
+  background-image: url("./img/Landing\ Page\ _\ Default.png");
+  background-size: cover;
+}
+
+.navbar-collapse {
+  background-color: #ffffff00;
+}
+.collapse {
+  background-color: #ffffff00;
+  border-radius: 10px;
+}
+.landing-set-res{
+  width: 85%;
+  margin: 0 auto;
+}
+@media screen and (max-width: 550px) {
+  .custom-text-LA {
+    font-size: 18px;
   }
-  .collapse{
-    background-color: #ffffff;
-  }
+}

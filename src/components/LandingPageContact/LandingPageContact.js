@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../LandingPage/Landing.css";
+import { Navbar, Nav, Button } from "react-bootstrap";
 import GAP_Image from "../HomePage/Img/GAP_BG.png";
 import "../SettingPage/SettingPage.css";
 import { Form } from "react-bootstrap";
@@ -19,101 +20,114 @@ function LandingPageContact() {
   //Contact Us
   const form = useRef();
 
-  const sendEmail = (e) => {
+  // const sendEmail = (e) => {
+  //   e.preventDefault();
+
+  //   emailjs
+  //     .sendForm("service_ujbarye", "template_vdnepgd", form.current, {
+  //       publicKey: "A7gPSfsx2Sr9vN779",
+  //     })
+  //     .then(
+  //       (result) => {
+  //         alert("Gmail Send Success!");
+  //       },
+  //       (error) => {
+  //         alert("Not Send");
+  //       }
+  //     );
+  // };
+
+  const sendEmail = async (e) => {
     e.preventDefault();
 
-    emailjs
-      .sendForm("service_ujbarye", "template_vdnepgd", form.current, {
-        publicKey: "A7gPSfsx2Sr9vN779",
-      })
-      .then(
-        (result) => {
-          alert("Gmail Send Success!");
-        },
-        (error) => {
-          alert("Not Send");
+    try {
+      const result = await emailjs.sendForm(
+        "service_ujbarye",
+        "template_vdnepgd",
+        form.current,
+        {
+          publicKey: "A7gPSfsx2Sr9vN779",
         }
       );
+
+      console.log(result); // Log the result for further inspection
+
+      alert("Gmail Send Success!");
+    } catch (error) {
+      console.error("Error sending email:", error);
+      alert("Email not sent. Please check the console for details.");
+    }
   };
 
   const clearForm = () => {
     form.current.reset();
   };
 
+  const [showNav, setShowNav] = useState(false);
+
   return (
     <div>
       <section className="">
         <div className="vh-100">
-          <div className="container">
-            <nav className="navbar navbar-light">
-              <a className="navbar-brand" href="/">
-                <img src={GAP_Image} height="90" alt="" />
-              </a>
+          <div className="">
+            <div className="container">
+              <Navbar expand="lg">
+                <Navbar.Brand href="/">
+                  <img src={GAP_Image} height="90" alt="" />
+                </Navbar.Brand>
 
-              <nav class=" navbar-expand-lg navbar-light bg-light">
-                <button
-                  class="navbar-toggler"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#navbarSupportedContent"
+                <Navbar.Toggle
                   aria-controls="navbarSupportedContent"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                >
-                  <span class="navbar-toggler-icon"></span>
-                </button>
+                  onClick={() => setShowNav(!showNav)}
+                />
 
-                <div
-                  class="collapse navbar-collapse"
+                <Navbar.Collapse
+                
                   id="navbarSupportedContent"
+                  className={`${showNav ? "show" : ""} navbar-class-left`}
                 >
-                  <ul class="navbar-nav mr-auto">
-                    <li class="">
-                      <a class="nav-link custom-nav-link  " href="/">
-                        Home
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        class="nav-link custom-nav-link "
-                        href="/landingPageAbout"
-                      >
-                        About
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        class="nav-link custom-nav-link "
-                        href="/landingPageContact"
-                      >
-                        Contact
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link custom-nav-link " href="/login">
-                        Login
-                      </a>
-                    </li>
-                  </ul>
-                  <button
+                  <Nav className="ml-auto">
+                    <Nav.Link href="/" className="nav-link custom-nav-link">
+                      Home
+                    </Nav.Link>
+                    <Nav.Link
+                      href="/landingPageAbout"
+                      className="nav-link custom-nav-link"
+                    >
+                      About
+                    </Nav.Link>
+                    <Nav.Link
+                      href="/landingPageContact"
+                      className="nav-link custom-nav-link"
+                    >
+                      Contact
+                    </Nav.Link>
+                    <Nav.Link
+                      href="/login"
+                      className="nav-link custom-nav-link"
+                    >
+                      Login
+                    </Nav.Link>
+                  </Nav>
+
+                  <Button
                     className="btn custom-button1 my-2 my-sm-3"
-                    type="submit"
                     onClick={() => {
                       window.location.href = "/register";
                     }}
                   >
                     Register
-                  </button>
-                  
-                </div>
-              </nav>
-            </nav>
+                  </Button>
+                </Navbar.Collapse>
+              </Navbar>
+            </div>
+            
           </div>
           <div className="">
             {/*Contact Us Section Start*/}
             <div className="d-flex justify-content-center">
-              <div className="">
-                <div className="confull newbroder">
+              <div className="confull-lan newbroder">
+                <div className="">
                   <h5 className="card-title fw-bold titlenewwrt">Contact Us</h5>
                   <p className="pareconus">
                     Any Questions or Remarks? Just write us a message!

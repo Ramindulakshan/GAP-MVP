@@ -109,6 +109,7 @@ function Prologin() {
             <div className="col-lg-6 overflow-auto">
               <br></br>
               <br></br>
+              <div className="responsive-border-log-reg">
               <h2 className="text-center mb-4 mt-2 ">Register</h2>
               <div className="row justify-content-center">
                 <div className="col-lg-9 sitewyey ">
@@ -323,55 +324,36 @@ function Prologin() {
                         </Modal.Title>
                         <div className="p-4">
                           <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Ut condimentum eu arcu vel tempus. Ut faucibus
-                            id velit vel porttitor. Duis eu porttitor sem. Nulla
-                            elit nulla, elementum vel hendrerit id, malesuada
-                            nec eros. Donec sed turpis odio. Suspendisse id
-                            turpis non eros ornare pellentesque. Proin tempus
-                            hendrerit leo sit amet mattis. Quisque sit amet
-                            placerat lacus. Cras eu feugiat mauris. Nam
-                            tincidunt augue aliquam, sagittis nunc et, maximus
-                            dolor. Sed vel lorem eget diam bibendum aliquet.
-                            Etiam a nisl sed massa malesuada fringilla. Nunc
-                            venenatis ut magna ac lacinia.
-                          </p>
-
-                          <p>
-                            Sed cursus aliquam nulla, vel egestas nunc euismod
-                            in. Etiam condimentum eu dui nec porta. Sed erat
-                            turpis, sodales id tristique ut, finibus eu elit.
-                            Nulla luctus orci vel libero euismod, eget
-                            ullamcorper elit iaculis. Praesent vitae efficitur
-                            dui, ac convallis nisl. Sed tempor posuere lectus,
-                            vitae tempus tortor faucibus et. Sed sagittis in
-                            elit vitae blandit. Ut id malesuada tellus. Nullam
-                            eu lobortis nunc. Praesent interdum porttitor augue,
-                            et mollis orci sollicitudin a. Sed interdum volutpat
-                            nisl, nec lobortis lacus mattis feugiat. Nulla
+                            By accessing or using the Generation ALPHA platform,
+                            you agree to comply with and be bound by these terms
+                            and conditions. Generation ALPHA provides mentoring,
+                            recruitment, and project-based learning services.
+                            Users must adhere to the guidelines and policies
+                            outlined in this document.
                           </p>
                           <p>
-                            Sed cursus aliquam nulla, vel egestas nunc euismod
-                            in. Etiam condimentum eu dui nec porta. Sed erat
-                            turpis, sodales id tristique ut, finibus eu elit.
-                            Nulla luctus orci vel libero euismod, eget
-                            ullamcorper elit iaculis. Praesent vitae efficitur
-                            dui, ac convallis nisl. Sed tempor posuere lectus,
-                            vitae tempus tortor faucibus et. Sed sagittis in
-                            elit vitae blandit. Ut id malesuada tellus. Nullam
-                            eu lobortis nunc. Praesent interdum porttitor augue,
-                            et mollis orci sollicitudin a. Sed interdum volutpat
-                            nisl, nec lobortis lacus mattis feugiat. Nulla Sed
-                            cursus aliquam nulla, vel egestas nunc euismod in.
-                            Etiam condimentum eu dui nec porta. Sed erat turpis,
-                            sodales id tristique ut, finibus eu elit. Nulla
-                            luctus orci vel libero euismod, eget ullamcorper
-                            elit iaculis. Praesent vitae efficitur dui, ac
-                            convallis nisl. Sed tempor posuere lectus, vitae
-                            tempus tortor faucibus et. Sed sagittis in elit
-                            vitae blandit. Ut id malesuada tellus. Nullam eu
-                            lobortis nunc. Praesent interdum porttitor augue, et
-                            mollis orci
+                            Membership is open to individuals interested in
+                            education, innovation, and entrepreneurship. Members
+                            must provide accurate information during
+                            registration.
+                          </p>
+                          <p>
+                            Generation ALPHA respects your privacy.Members are
+                            expected to uphold a high standard of conduct. Any
+                            violation may result in termination of
+                            membership.All content and materials on the platform
+                            are the intellectual property of Generation ALPHA.
+                            Unauthorized use is prohibited. Users are
+                            responsible for the security of their accounts.
+                            Report any unauthorized access promptly. Termination
+                          </p>
+                          <p>
+                            Generation ALPHA reserves the right to terminate or
+                            suspend any user account for violation of terms.
+                            Disclaimer and not liable for any damages or losses
+                            incurred through the use of its services. We may
+                            update these terms. Users will be notified, and
+                            continued use constitutes acceptance of the changes.
                           </p>
                         </div>
                         <div className="text-center">
@@ -458,6 +440,7 @@ function Prologin() {
                   </h6>
                   <br></br>
                 </div>
+              </div>
               </div>
             </div>
           </div>
