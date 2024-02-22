@@ -125,12 +125,31 @@
   background-color: #ffffff00;
   border-radius: 10px;
 }
-.landing-set-res{
+.landing-set-res {
   width: 85%;
   margin: 0 auto;
 }
 @media screen and (max-width: 550px) {
   .custom-text-LA {
     font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .cardsdn {
+    width: 100%;
+
+    padding: 0;
+  }
+  .cenclz {
+    padding: 0;
+  }
+  .paraabty {
+    margin: 0 0 10px 0;
+    font-size: 15px;
+    padding: 0 10px;
+  }
+  .dtabx {
+    padding: 10px 0 1px 0;
   }
 }

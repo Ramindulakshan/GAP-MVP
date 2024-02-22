@@ -275,6 +275,7 @@ function LandingPageAbout() {
                   </div>
                 </div>
               </div>
+           
             </div>
           </div>
         </div>
