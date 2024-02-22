@@ -129,7 +129,6 @@
   margin-left: 10px; /* Add some margin to separate text from the image */
 }
 
-
 .card-title2 {
   color: #000;
   font-family: Poppins;
@@ -314,7 +313,7 @@
   margin: 8px 0;
 }
 
-.svbtn{
+.svbtn {
   color: grey;
   width: 100px;
 }
@@ -375,7 +374,6 @@
 .text-section {
   margin-left: 10px; /* Add some margin to separate text from the image */
 }
-
 
 .card-body {
   flex: 1; /* Allow the text section to expand and fill the available space */
@@ -441,8 +439,8 @@
   color: #ffffff;
 }
 
-.spaceinterset{
-  margin:0px 5px;
+.spaceinterset {
+  margin: 0px 5px;
 }
 
 .custom-button2136o {
@@ -492,20 +490,20 @@
 .newcrddetyl {
   padding: 0 0 0 60px;
 }
-.btn-add-new{
-  background-color: #E6F6FF;
-  color: #2A2A72;
+.btn-add-new {
+  background-color: #e6f6ff;
+  color: #2a2a72;
   padding: 3px 8px;
   border-radius: 2px;
   border: 0;
   font-weight: bold;
   cursor: pointer;
 }
-.svbtn{
+.svbtn {
   color: grey;
   width: 100px;
 }
-.bordernew{
+.bordernew {
   padding: 10px;
   margin: 10px 0px;
   border: 1px solid rgba(128, 128, 128, 0.497);
@@ -560,5 +558,8 @@
     cursor: pointer;
     top: 35%;
     left: 95%;
-}
+  }
+  .addlinknew-btn {
+    margin: 10px 0;
+  }
 }
