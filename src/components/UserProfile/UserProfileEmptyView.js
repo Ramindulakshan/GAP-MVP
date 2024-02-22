@@ -421,7 +421,9 @@ function UserProfileEmptyView() {
         }
       )
       .then((response) => {
-        if (response.status === 200) {
+        if (response.data.response === 'error'){
+          alert("Photo not uploaded");
+        }else if (response.data.status === 'ok') {
           setAvatar(response.data.profilePicture);
           handleClose();
           alert("Photo uploaded successfully");
@@ -483,7 +485,7 @@ function UserProfileEmptyView() {
             ...prevState,
             fieldOfInterest: updatedFieldOfInterest,
           }));
-  
+          getUserDetails();
           alert("Interest Details Deleted successfully");
         } else {
           alert("Some Error Occured");
@@ -494,7 +496,6 @@ function UserProfileEmptyView() {
       });
   };
   
-
   const handleDeleteAcademic = async (id) => {
     await axios
       .delete(`${backEndURL}/api/deleteAcademic/${id}`, {
@@ -546,6 +547,33 @@ function UserProfileEmptyView() {
         console.error("Error deleting professional details:", error);
       });
   };
+
+  const handleDeleteProfilePic = async (e) => {
+    e.preventDefault();
+    if(selectedImage) {
+      axios.delete(`${backEndURL}/api/deleteProfilePicture`, {
+        headers: {
+          authorization: `${localStorage.getItem("jwtToken")}`,
+        },
+      })
+      .then((response) => {
+        if (response.data.status === 'ok') {
+          setSelectedImage(null);
+          alert("Profile Picture Deleted successfully");
+          handleClose5();
+        } else {
+          alert("Photo Delete Failed");
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting profile picture:", error);
+      });
+    }else {
+      alert("No Profile Picture to Delete");
+    }
+
+  
+  }
 
   useEffect(() => {
     axios
@@ -929,6 +957,7 @@ function UserProfileEmptyView() {
                                 style={{
                                   cursor: "pointer",
                                 }}
+                                o
                               >
                                 <IoSaveSharp
                                   className="svbtn"
@@ -946,6 +975,7 @@ function UserProfileEmptyView() {
                                 onClick={handleShow5}
                               >
                                 <svg
+
                                   xmlns="http://www.w3.org/2000/svg"
                                   width="24"
                                   height="27"
@@ -1045,6 +1075,9 @@ function UserProfileEmptyView() {
 
                                                   gap: "10px",
                                                 }}
+                                                onClick={
+                                                  handleClose5
+                                                }
                                               >
                                                 Cancel
                                               </button>
@@ -1068,6 +1101,7 @@ function UserProfileEmptyView() {
                                                   gap: "10px",
                                                   textAlign: "center",
                                                 }}
+                                                onClick={handleDeleteProfilePic}
                                               >
                                                 Delete
                                               </button>

@@ -171,7 +171,11 @@ function SettingPage() {
         }
       )
       .then((response) => {
-        if (response.data.status === "ok") {
+        if(response.data.status === "error") {
+          alert("Incorrect password");
+          handleClose4();
+
+        } else if (response.data.status === "ok") {
           localStorage.removeItem("jwtToken");
           localStorage.removeItem("firstName");
           localStorage.removeItem("lastName");
