@@ -16,6 +16,7 @@ import Modal from "react-bootstrap/Modal";
 import { Container } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import TakeABreak from "../HomePage/Img/Group 421.png";
+import { backEndURL } from "../../server";
 import axios from "axios";
 import moment from "moment/moment";
 import {
@@ -30,7 +31,6 @@ import { RxCountdownTimer } from "react-icons/rx";
 import { IoIosLogOut } from "react-icons/io";
 import { IoSaveSharp } from "react-icons/io5";
 import userPic from "../HomePage/Img/user.png";
-import { Navigate, useNavigate } from "react-router-dom";
 
 function UserProfileEmptyView() {
   const [userData, setUserData] = useState({
@@ -78,19 +78,21 @@ function UserProfileEmptyView() {
   const [companyName, setCompanyName] = useState("");
   const [locationType, setLocationType] = useState("");
   const [skills, setSkills] = useState("");
-  const [file, setFile] = useState(null);
+  const [avatar, setAvatar] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [linkedinLink, setLinkedinLink] = useState("");
   const [websiteLink, setWebsiteLink] = useState("");
   const [getInterest, setGetInterest] = useState("");
+  
+  const handleFileInputChange = (event) => {
+    const reader = new FileReader();
 
-  const navigate = useNavigate();
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setFile(file);
-    }
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setAvatar(reader.result);
+      }
+    };
+    reader.readAsDataURL(event.target.files[0]);
   };
 
   const handleLogout = () => {
@@ -162,9 +164,9 @@ function UserProfileEmptyView() {
   const handleShowLogout = () => setShowLogout(true);
 
   //calling to endpoint for get user details which already in the database
-  const getUserDetails = (e) => {
-    axios
-      .get("http://localhost:3001/api/getUser", {
+  const getUserDetails = async (e) => {
+    await axios
+      .get(`${backEndURL}/api/getUser`, {
         headers: {
           authorization: `${localStorage.getItem("jwtToken")}`,
         },
@@ -222,11 +224,11 @@ function UserProfileEmptyView() {
   };
 
   //calling to endpoint for saving personal details of the user
-  const handleSaveUserData = (e) => {
+  const handleSaveUserData = async (e) => {
     e.preventDefault();
-    axios
+    await axios
       .post(
-        "http://localhost:3001/api/personalDetails",
+        `${backEndURL}/api/personalDetails`,
         {
           title,
           address,
@@ -263,10 +265,10 @@ function UserProfileEmptyView() {
   };
 
   //calling to endpoint for saving academic details of the user
-  const SaveAcademicData = () => {
-    axios
+  const SaveAcademicData = async () => {
+    await axios
       .post(
-        "http://localhost:3001/api/academicDetails",
+        `${backEndURL}/api/academicDetails`,
         {
           institute,
           degree,
@@ -304,10 +306,10 @@ function UserProfileEmptyView() {
     SaveAcademicData();
   };
 
-  const SaveProfessionalData = () => {
-    axios
+  const SaveProfessionalData = async () => {
+    await axios
       .post(
-        "http://localhost:3001/api/professionalDetails",
+        `${backEndURL}/api/professionalDetails`,
         {
           position,
           empType,
@@ -350,11 +352,11 @@ function UserProfileEmptyView() {
     SaveProfessionalData();
   };
 
-  const handleSocialLinks = (e) => {
+  const handleSocialLinks = async (e) => {
     e.preventDefault();
-    axios
+    await axios
       .post(
-        "http://localhost:3001/api/socialMedia",
+        `${backEndURL}/api/socialMedia`,
         {
           websiteLink,
           linkedinLink,
@@ -382,49 +384,61 @@ function UserProfileEmptyView() {
   };
 
   const visitLinkedIn = () => {
-    if (userData.socialMedia && userData.socialMedia.linkedinLink) {
-      navigate(userData.socialMedia.linkedinLink);
-    }
+    const urlFromBackend = userData.socialMedia[0].linkedinLink;
+
+    // Ensure the URL starts with a protocol
+    const formattedUrl = urlFromBackend.startsWith("https")
+      ? urlFromBackend
+      : `https://${urlFromBackend}`;
+
+    // Navigate to the formatted URL
+    window.open(formattedUrl, "_blank");
   };
 
   const visitwebsiteLink = () => {
-    if (userData.socialMedia && userData.socialMedia.websiteLink) {
-      navigate(userData.socialMedia.websiteLink);
-    }
+    const urlFromBackend = userData.socialMedia[0].websiteLink;
+
+    // Ensure the URL starts with a protocol
+    const formattedUrl = urlFromBackend.startsWith("https")
+      ? urlFromBackend
+      : `https://${urlFromBackend}`;
+
+    // Navigate to the formatted URL
+    window.open(formattedUrl, "_blank");
   };
 
-  const handlePhotoUpload = (e) => {
+  const handlePhotoUpload = async (e) => {
     e.preventDefault();
-    const data = new FormData();
-    data.append("file", file);
-    if (file) {
-      axios
-        .post("http://localhost:3001/api/photoUpload", data, {
+
+    await axios
+      .post(
+        `${backEndURL}/api/photoUpload`,
+        { data: avatar },
+        {
           headers: {
             authorization: `${localStorage.getItem("jwtToken")}`,
           },
-        })
-        .then((response) => {
-          if (response.status === 200) {
-            handleClose();
-            alert("Photo uploaded successfully");
-          } else {
-            alert("Photo not uploaded");
-          }
-        })
-        .catch((error) => {
-          console.error("Error uploading photo:", error);
-        });
-    } else {
-      alert("Please select a photo to upload");
-    }
+        }
+      )
+      .then((response) => {
+        if (response.status === 200) {
+          setAvatar(response.data.profilePicture);
+          handleClose();
+          alert("Photo uploaded successfully");
+        } else {
+          alert("Photo not uploaded");
+        }
+      })
+      .catch((error) => {
+        console.error("Error uploading photo:", error);
+      });
   };
 
-  const handleInterest = (e) => {
+  const handleInterest = async (e) => {
     e.preventDefault();
-    axios
+    await axios
       .post(
-        "http://localhost:3001/api/fieldOfInterest",
+        `${backEndURL}/api/fieldOfInterest`,
         {
           interest: getInterest,
         },
@@ -449,15 +463,100 @@ function UserProfileEmptyView() {
       });
   };
 
+  const handleDeleteInterest = (id) => {
+    axios
+      .delete(`${backEndURL}/api/deleteInterest/${id}`, {
+        headers: {
+          authorization: `${localStorage.getItem("jwtToken")}`,
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+
+          // Filter out the deleted interest from userData.fieldOfInterest
+          const updatedFieldOfInterest = userData.fieldOfInterest.filter(
+            (item) => item.id !== id
+          );
+  
+          // Update the userData state to reflect the changes
+          setUserData((prevState) => ({
+            ...prevState,
+            fieldOfInterest: updatedFieldOfInterest,
+          }));
+  
+          alert("Interest Details Deleted successfully");
+        } else {
+          alert("Some Error Occured");
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting interest:", error);
+      });
+  };
+  
+
+  const handleDeleteAcademic = async (id) => {
+    await axios
+      .delete(`${backEndURL}/api/deleteAcademic/${id}`, {
+        headers: {
+          authorization: `${localStorage.getItem("jwtToken")}`,
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          setUserData((prevState) => ({
+            ...prevState,
+            academicDetails: prevState.academicDetails.filter(
+              (item) => item.id !== id
+            ),
+          }));
+          getUserDetails();
+          alert("Academic Details Deleted successfully");
+        } else {
+          alert("Some Error Occured");
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting academic:", error);
+      });
+  };
+
+  const handleDeleteProfessional = async (id) => {
+    await axios
+      .delete(`${backEndURL}/api/deleteProfessional/${id}`, {
+        headers: {
+          authorization: `${localStorage.getItem("jwtToken")}`,
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          setUserData((prevState) => ({
+            ...prevState,
+            professionalDetails: prevState.professionalDetails.filter(
+              (item) => item.id !== id
+            ),
+          }));
+          getUserDetails();
+          alert("Professional Details Deleted successfully");
+        } else {
+          alert("Some Error Occured");
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting professional details:", error);
+      });
+  };
+
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/getUserImage", {
+      .get(`${backEndURL}/api/getUserImage`, {
         headers: {
           authorization: `${localStorage.getItem("jwtToken")}`,
         },
       })
       .then((response) => {
         if (response.data.profilePicture) {
+          console.log(response.data.profilePicture);
           setSelectedImage(response.data.profilePicture);
         }
       })
@@ -691,7 +790,7 @@ function UserProfileEmptyView() {
                     src={
                       !selectedImage
                         ? userPic
-                        : `http://localhost:3001/uploads/` + selectedImage
+                        : selectedImage
                     }
                     roundedCircle
                     width="45"
@@ -714,7 +813,7 @@ function UserProfileEmptyView() {
                     src={
                       !selectedImage
                         ? userPic
-                        : `http://localhost:3001/uploads/` + selectedImage
+                        : selectedImage
                     }
                     rounded
                     alt="propick"
@@ -761,10 +860,10 @@ function UserProfileEmptyView() {
                             <br />
                             <div className="text-center"></div>
                             <br />
-                            {file ? (
+                            {avatar ? (
                               <div className="text-center">
                                 <Image
-                                  src={URL.createObjectURL(file)}
+                                  src={avatar}
                                   roundedCircle
                                   style={{
                                     width: "150px",
@@ -819,7 +918,7 @@ function UserProfileEmptyView() {
                                     type="file"
                                     accept="image/*"
                                     style={{ display: "none" }}
-                                    onChange={handleFileChange}
+                                    onChange={handleFileInputChange}
                                   />
                                   <p>Upload</p>
                                 </label>
@@ -1600,15 +1699,17 @@ function UserProfileEmptyView() {
                       userData.fieldOfInterest.map((detail, index) => {
                         return (
                           <div className="d-inline-block" key={index}>
-                            <p className="pbtn289 spaceinterset">{detail.interest}
-                            &nbsp;&nbsp;{" "}
+                            <p className="pbtn289 spaceinterset">
+                              {detail.interest}
+                              &nbsp;&nbsp;{" "}
                               <svg
-
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="11"
                                 height="11"
                                 viewBox="0 0 11 11"
                                 fill="none"
+                                onClick={() => handleDeleteInterest(detail._id)}
+                                style={{ cursor: "pointer" }}
                               >
                                 <path
                                   d="M0.77955 0.601815C0.958599 0.42282 1.20141 0.322266 1.45459 0.322266C1.70776 0.322266 1.95057 0.42282 2.12962 0.601815L5.50576 3.97796L8.8819 0.601815C9.06198 0.427893 9.30316 0.331655 9.55351 0.33383C9.80385 0.336006 10.0433 0.43642 10.2203 0.613446C10.3974 0.790472 10.4978 1.02995 10.5 1.28029C10.5021 1.53063 10.4059 1.77181 10.232 1.95189L6.85584 5.32803L10.232 8.70417C10.4059 8.88425 10.5021 9.12543 10.5 9.37577C10.4978 9.62611 10.3974 9.86559 10.2203 10.0426C10.0433 10.2196 9.80385 10.3201 9.55351 10.3222C9.30316 10.3244 9.06198 10.2282 8.8819 10.0542L5.50576 6.6781L2.12962 10.0542C1.94955 10.2282 1.70837 10.3244 1.45802 10.3222C1.20768 10.3201 0.968206 10.2196 0.791181 10.0426C0.614155 9.86559 0.51374 9.62611 0.511565 9.37577C0.509389 9.12543 0.605627 8.88425 0.77955 8.70417L4.15569 5.32803L0.77955 1.95189C0.600554 1.77284 0.5 1.53003 0.5 1.27685C0.5 1.02368 0.600554 0.780865 0.77955 0.601815Z"
@@ -1688,7 +1789,6 @@ function UserProfileEmptyView() {
                               boxShadow: "none", // Optional: Remove box-shadow
                             }}
                           />
-
                           <br></br>
 
                           <Form.Group as={Col} controlId="formGridZip">
@@ -1755,9 +1855,29 @@ function UserProfileEmptyView() {
                         userData.academicDetails.length > 0 ? (
                           userData.academicDetails.map((detail, index) => (
                             <div className="bordernew" key={index}>
-                              <h5 className="card-title2 fw-bold">
-                                {detail.institute}
-                              </h5>
+                              <div className="d-flex justify-content-between mt-4">
+                                <h5 className="card-title2 fw-bold">
+                                  {detail.institute}
+                                </h5>
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  id="academicQualificationDelete"
+                                  width="16"
+                                  height="18"
+                                  viewBox="0 0 16 18"
+                                  fill="none"
+                                  cursor="pointer"
+                                  onClick={() =>
+                                    handleDeleteAcademic(detail._id)
+                                  }
+                                >
+                                  <path
+                                    d="M3 18C2.45 18 1.979 17.804 1.587 17.412C1.195 17.02 0.999333 16.5493 1 16V3H0V1H5V0H11V1H16V3H15V16C15 16.55 14.804 17.021 14.412 17.413C14.02 17.805 13.5493 18.0007 13 18H3ZM13 3H3V16H13V3ZM5 14H7V5H5V14ZM9 14H11V5H9V14Z"
+                                    fill="black"
+                                    fill-opacity="0.5"
+                                  />
+                                </svg>
+                              </div>
                               <p className="card-para2">{detail.degree}</p>
                               <p className="card-para2">
                                 {moment(detail.startDate).format("YYYY/MM/DD")}{" "}
@@ -1944,9 +2064,31 @@ function UserProfileEmptyView() {
                         userData.professionalDetails.length > 0 ? (
                           userData.professionalDetails.map((detail, index) => (
                             <div className="bordernew" key={index}>
-                              <h5 className="card-title2 fw-bold">
-                                {detail.companyName}
-                              </h5>
+                              <div className="d-flex justify-content-between mt-4">
+                                <h5 className="card-title2 fw-bold">
+                                  {detail.companyName}
+                                </h5>
+                                <svg
+                                  className=""
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  id="academicQualificationDelete"
+                                  width="16"
+                                  height="18"
+                                  viewBox="0 0 16 18"
+                                  fill="none"
+                                  cursor="pointer"
+                                  onClick={() =>
+                                    handleDeleteProfessional(detail._id)
+                                  }
+                                >
+                                  <path
+                                    d="M3 18C2.45 18 1.979 17.804 1.587 17.412C1.195 17.02 0.999333 16.5493 1 16V3H0V1H5V0H11V1H16V3H15V16C15 16.55 14.804 17.021 14.412 17.413C14.02 17.805 13.5493 18.0007 13 18H3ZM13 3H3V16H13V3ZM5 14H7V5H5V14ZM9 14H11V5H9V14Z"
+                                    fill="black"
+                                    fill-opacity="0.5"
+                                  />
+                                </svg>
+                              </div>
+
                               <p className="card-para2">{detail.position}</p>
                               <p className="card-para2">
                                 {moment(detail.startDate).format("YYYY/MM/DD")}{" "}
