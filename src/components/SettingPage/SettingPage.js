@@ -19,6 +19,7 @@ import * as formik from "formik";
 import * as yup from "yup";
 import err from "./img/err.png";
 import userPic from "../HomePage/Img/user.png";
+import { backEndURL } from "../../server";
 import axios from "axios";
 
 import {
@@ -123,7 +124,7 @@ function SettingPage() {
 
     await axios
       .post(
-        "http://localhost:3001/api/changePassword",
+        `${backEndURL}/api/changePassword`,
         {
           currentPassword,
           newPassword,
@@ -159,7 +160,7 @@ function SettingPage() {
     e.preventDefault();
     await axios
       .post(
-        "http://localhost:3001/api/deleteAccount",
+        `${backEndURL}/api/deleteAccount`,
         {
           password: passwordToDelete,
         },
@@ -212,7 +213,7 @@ function SettingPage() {
   useEffect(() => {
     const getUserImage = () => {
       axios
-        .get("http://localhost:3001/api/getUserImage", {
+        .get(`${backEndURL}/api/getUserImage`, {
           headers: {
             authorization: `${localStorage.getItem("jwtToken")}`,
           },
@@ -435,11 +436,11 @@ function SettingPage() {
                     src={
                       !selectedImage
                         ? userPic
-                        : `http://localhost:3001/uploads/` + selectedImage
+                        : selectedImage
                     }
                     roundedCircle
                     style={{
-                      borderRadius: "100000px",
+                      borderRadius: "100px",
                     }}
                     width="45"
                     height="45"

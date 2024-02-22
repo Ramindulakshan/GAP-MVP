@@ -264,11 +264,11 @@ function UnderConstructionWeeklySchedulePage() {
                       src={
                         !selectedImage
                           ? userPic
-                          : `http://localhost:3001/uploads/` + selectedImage
+                          : selectedImage
                       }
                       roundedCircle
                       style={{
-                        borderRadius: "100000px",
+                        borderRadius: "100px",
                       }}
                       width="45"
                       height="45"
