@@ -4,6 +4,7 @@ import CountUp from "react-countup";
 import { Card } from "react-bootstrap";
 import CardGroup from "react-bootstrap/CardGroup";
 import GAP_Image from "../HomePage/Img/GAP_BG.png";
+import { backEndURL } from "../../server";
 import axios from "axios";
 import { Navbar, Nav, Button } from "react-bootstrap";
 const LandingPage = () => {
@@ -12,7 +13,7 @@ const LandingPage = () => {
   useEffect(() => {
     const fetchUserCount = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/members");
+        const response = await axios.get(`${backEndURL}/api/members`);
         setUserCount(response.data.members);
       } catch (error) {
         console.error("Error fetching user count: ", error);

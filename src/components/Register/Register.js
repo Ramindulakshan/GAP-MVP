@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Register_image from "./img/register.png";
-import Google_image from "./img/google.png";
 import tick from "./img/tick.png";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
@@ -10,6 +9,7 @@ import { InputGroup } from "react-bootstrap";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import "./register.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { backEndURL } from "../../server";
 import axios from "axios";
 
 function Prologin() {
@@ -61,7 +61,7 @@ function Prologin() {
     return password === confirmPassword;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
@@ -70,13 +70,14 @@ function Prologin() {
     setValidated(true);
     e.preventDefault();
 
-    axios
-      .post("http://localhost:3001/api/register", {
-        firstName: firstName,
-        lastName: lastName,
-        username: username,
-        email: email,
-        password: password,
+     await axios
+      .post(`${backEndURL}/api/register`, {
+        firstName,
+        lastName,
+        username,
+        email,
+        password,
+        confirmPassword
       })
       .then((response) => {
         if (response.data.status === "ok") {
@@ -85,7 +86,9 @@ function Prologin() {
           alert("Invalid Details. Please try again.");
         }
       })
-      .catch((error) => {});
+      .catch((error) => {
+        alert("Invalid Details. Please try again.");
+      });
   };
 
   return (
@@ -119,10 +122,11 @@ function Prologin() {
                       <Row className="">
                         <Form.Group
                           as={Col}
-                          controlId="validationCustomUsername"
+                          controlId="userFirstName"
                         >
                           <InputGroup hasValidation>
                             <Form.Control
+                              id="firstName"
                               type="Text"
                               placeholder="First Name"
                               style={{ textTransform: "none" }}
@@ -136,7 +140,7 @@ function Prologin() {
 
                         <Form.Group
                           as={Col}
-                          controlId="validationCustomUsername"
+                          controlId="userLastName"
                         >
                           <InputGroup hasValidation>
                             <Form.Control
@@ -154,7 +158,7 @@ function Prologin() {
 
                       <br></br>
 
-                      <Form.Group controlId="validationCustomUsername">
+                      <Form.Group controlId="userUserName">
                         <InputGroup hasValidation>
                           <Form.Control
                             type="text"
@@ -184,7 +188,7 @@ function Prologin() {
                         </InputGroup>
                       </Form.Group> */}
 
-                      <Form.Group controlId="validationCustomUsername">
+                      <Form.Group controlId="userEmail">
                         <InputGroup hasValidation>
                           <Form.Control
                             type="email"
@@ -216,7 +220,7 @@ function Prologin() {
 
                       <br></br>
 
-                      <Form.Group controlId="validationCustomUsername">
+                      <Form.Group controlId="userPassword">
                         <InputGroup hasValidation>
                           <Form.Control
                             size="medium"
@@ -245,7 +249,7 @@ function Prologin() {
 
                       <br></br>
 
-                      <Form.Group controlId="validationCustomUsername">
+                      <Form.Group controlId="userConfirmPassword">
                         <InputGroup hasValidation>
                           <Form.Control
                             size="medium"

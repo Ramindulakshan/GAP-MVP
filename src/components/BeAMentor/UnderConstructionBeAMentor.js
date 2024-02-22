@@ -25,6 +25,7 @@ import { RxCountdownTimer } from "react-icons/rx";
 import { IoIosLogOut } from "react-icons/io";
 import { Modal } from "react-bootstrap";
 import userPic from "../HomePage/Img/user.png";
+import { backEndURL } from "../../server";
 import axios from "axios";
 import TakeABreak from "../HomePage/Img/Group 421.png";
 
@@ -39,7 +40,7 @@ function UnderConstructionBeAMentor() {
   useEffect(() => {
     const getUserImage = () => {
       axios
-        .get("http://localhost:3001/api/getUserImage", {
+        .get(`${backEndURL}/api/getUserImage`, {
           headers: {
             authorization: `${localStorage.getItem("jwtToken")}`,
           },
@@ -263,11 +264,11 @@ function UnderConstructionBeAMentor() {
                       src={
                         !selectedImage
                           ? userPic
-                          : `http://localhost:3001/uploads/` + selectedImage
+                          : selectedImage
                       }
                       roundedCircle
                       style={{
-                        borderRadius: "100000px",
+                        borderRadius: "100px",
                       }}
                       width="45"
                       height="45"

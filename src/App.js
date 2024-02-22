@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -40,42 +39,21 @@ import WeeklySchedulePage from "./components/WeeklySchedulePage/WeeklySchedulePa
 import UnderConstructionWeeklySchedulePage from "./components/WeeklySchedulePage/UnderConstructionWeeklySchedulePage";
 import WeeklySchedulePageNotMenter from "./components/WeeklySchedulePageNotMenter/WeeklySchedulePageNotMenter";
 import HandleAuth from "./utils/HandleAuth";
-import Loader from "./components/WebLoader/Loader";
 
 const App = () => {
-  // loader state
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fakeDataFetch = () => {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2000); //add releted time
-    };
-
-    fakeDataFetch();
-  }, []);
-
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <React.Fragment>
       <Routes>
-        <Route>
+        <Route element={<HandleAuth />}>
           <Route path="/home" element={<HomePage />} />
           <Route path="/settings" element={<SettingPage />} />
           <Route path="/mentoringSession" element={<MentoringSessionPage />} />
           <Route path="/mentoringSession " element={<MentoringSessionPage />} />
           <Route path="/beAMentor" element={<BeAMentor />} />
-          <Route
-            path="/underConstructionBeAMentor"
-            element={<UnderConstructionBeAMentor />}
-          />
-          <Route
-            path="/userProfileEmptyView"
-            element={<UserProfileEmptyView />}
-          />
+          <Route path="/underConstructionBeAMentor" element={<UnderConstructionBeAMentor />} />
+          <Route path="/userProfileEmptyView" element={<UserProfileEmptyView />} />
         </Route>
+
         <Route path="/WeeklySchedulePage" element={<WeeklySchedulePage />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -83,6 +61,7 @@ const App = () => {
         <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/verifyE" element={<VerifyE />} />
         <Route path="/resetPassword" element={<ResetPassword />} />
+
         <Route path="/emailVerify" element={<EmailVerify />} />
         <Route path="/verifyMN" element={<VerifyMN />} />
         <Route path="/historyPage" element={<HistoryPage />} />
