@@ -329,6 +329,13 @@
   width: 100px;
 }
 
+.dlt-svg-new{
+  position: relative;
+  right: 20px;
+  top: 30px;
+   
+  }
+
 .custom-box {
   width: 411px;
   height: 183px;
