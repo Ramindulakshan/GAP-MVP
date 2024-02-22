@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import Homepage_image from "../HomePage/Img/homepage.png";
@@ -17,6 +16,7 @@ import TakeABreak from "../HomePage/Img/Group 421.png";
 import { FaSearch } from "react-icons/fa";
 import { FormControl } from "react-bootstrap";
 import { FaRegBell } from "react-icons/fa6";
+import { backEndURL } from "../../server";
 import {
   IoHomeOutline,
   IoPeopleOutline,
@@ -32,7 +32,7 @@ import axios from "axios";
 const HomePage = () => {
   // const user = userDetails.user; //google login
   const [firstName, setFirstName] = useState("");
-  const [selectedImage, setSelectedImage] = useState("");
+  const [profilePic, setProfilePic] = useState("");
   // const [show, setShow] = useState(true);
   // const handleShow = () => setShow(true);
   // const handleClose = () =>  setShow(false);
@@ -45,7 +45,7 @@ const HomePage = () => {
   useEffect(() => {
     const getUserImage = () => {
       axios
-        .get("http://localhost:3001/api/getUserImage", {
+        .get(`${backEndURL}/api/getUserImage`, {
           headers: {
             authorization: `${localStorage.getItem("jwtToken")}`,
           },
@@ -53,7 +53,7 @@ const HomePage = () => {
         .then((response) => {
           console.log(response);
           if (response.data.profilePicture) {
-            setSelectedImage(response.data.profilePicture);
+            setProfilePic(response.data.profilePicture);
           }
         })
         .catch((error) => {
@@ -289,9 +289,9 @@ const HomePage = () => {
                   &nbsp;&nbsp;
                   <img
                     src={
-                      !selectedImage
+                      !profilePic
                         ? userPic
-                        : `http://localhost:3001/uploads/` + selectedImage
+                        : profilePic
                     }
                     roundedCircle
                     width="45"

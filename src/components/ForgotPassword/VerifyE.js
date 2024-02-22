@@ -1,9 +1,9 @@
 import "../ForgotPassword/Verify.css";
-import VerifyEmail_image from "../ForgotPassword/Img/VerifyEmail.png";
 import Email_image from "../ForgotPassword/Img/email.png";
 import Register_image from "../Register/img/register.png";
-import React, { Component, ReactDOM } from "react";
+import { backEndURL } from "../../server";
 import axios from "axios";
+import React from "react";
 
 class VerifyE extends React.Component {
   constructor(props) {
@@ -39,7 +39,7 @@ class VerifyE extends React.Component {
         this.state.otp6,
     };
     await axios
-      .post("http://localhost:3001/api/resetPassword", data)
+      .post(`${backEndURL}/api/resetPassword`, data)
       .then((response) => {
         if (response.data.status === "success") {
           alert("Password Succesfully Reseted")
@@ -68,7 +68,7 @@ class VerifyE extends React.Component {
     }, 1000); // Update countdown every second
 
     await axios
-      .post("http://localhost:3001/api/forgotPassword", {
+      .post(`${backEndURL}/api/forgotPassword`, {
         email: localStorage.getItem("email"),
       })
       .then((response) => {

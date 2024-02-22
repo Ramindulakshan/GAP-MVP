@@ -4,6 +4,7 @@ import Lock_image from "../ForgotPassword/Img/lock.png";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { useState } from "react";
+import { backEndURL } from "../../server";
 import InputGroup from "react-bootstrap/InputGroup";
 
 function ForgotPassword() {
@@ -24,7 +25,7 @@ function ForgotPassword() {
       email: email,
     };
     await axios
-      .post("http://localhost:3001/api/forgotpassword", data)
+      .post(`${backEndURL}/api/forgotpassword`, data)
       .then((response) => {
         window.location.href = "/verifyE";
       })

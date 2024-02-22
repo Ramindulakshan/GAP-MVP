@@ -1,6 +1,5 @@
 import React from "react";
 import "../LoginPage/LoginPage.css";
-import Google_image from "../LoginPage/Img/google.png";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { useState } from "react";
@@ -8,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Register_image from "../Register/img/register.png";
 import InputGroup from "react-bootstrap/InputGroup";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
+import { backEndURL } from "../../server";
 
 const LoginPage = () => {
   const [username, setUserName] = useState("");
@@ -21,7 +21,7 @@ const LoginPage = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
@@ -30,8 +30,8 @@ const LoginPage = () => {
       setValidated(true);
     }
 
-    axios
-      .post("http://localhost:3001/api/login", {
+    await axios
+      .post(`${backEndURL}/api/login`, {
         username: username,
         password: password,
       })
@@ -47,13 +47,12 @@ const LoginPage = () => {
           alert("Invalid Username or Password");
         }
       })
-      .catch((error) => {
-      });
+      .catch((error) => {});
   };
 
-  const getUserName = () => {
-    axios
-      .get("http://localhost:3001/api/getUser", {
+  const getUserName = async () => {
+    await axios
+      .get(`${backEndURL}/api/getUser`, {
         headers: {
           authorization: `${localStorage.getItem("jwtToken")}`,
         },
