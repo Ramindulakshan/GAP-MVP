@@ -450,18 +450,16 @@ function SettingPage() {
                     height="45"
                     className="d-inline-block"
                     alt=" Profile Pic"
-                      onClick={() => {
-                        window.location.href = "/userProfileEmptyView";
-                      }}
+                    onClick={() => {
+                      window.location.href = "/userProfileEmptyView";
+                    }}
                   />
                 </div>
               </Navbar.Brand>
             </Navbar>
             <br></br>
             <br></br>
-            <div className="SettingPage-MainBox"
-      
-            >
+            <div className="SettingPage-MainBox">
               <div id="nav" className="nave">
                 <div>
                   <h5>
@@ -512,11 +510,10 @@ function SettingPage() {
                       <div id="About">
                         <div class="Cardsection">
                           <div className="maintopicset">
-                           
                             <h1 className="hedtpic">
                               Generation ALPHA Platform
                             </h1>
-                           
+
                             <p className="hedpar">
                               Generation ALPHA is a company dedicated to
                               providing a unique space for young adults to
@@ -803,7 +800,9 @@ function SettingPage() {
                           </div>
                           <div className="card">
                             <div className="d-flex justify-content-between margin-top-css-add">
-                              <h4 className="font-bold-setting">Terms & Conditions</h4>
+                              <h4 className="font-bold-setting">
+                                Terms & Conditions
+                              </h4>
                             </div>
                             <p className="responsive-TC-para">
                               By accessing or using the Generation ALPHA
@@ -836,7 +835,9 @@ function SettingPage() {
                           </div>
                           <div className="card ">
                             <div className="d-flex justify-content-between margin-top-css-add">
-                              <h4 className="font-bold-setting">Privacy Policy</h4>
+                              <h4 className="font-bold-setting">
+                                Privacy Policy
+                              </h4>
                             </div>
                             <p className="responsive-TC-para">
                               We collect personal information provided
@@ -896,7 +897,6 @@ function SettingPage() {
                       <div className="main-box" id="ChangePassword">
                         <div class="Cardsection">
                           <div className="card">
-                           
                             <h3 className="card-title fw-bold title-setting">
                               Change your password
                             </h3>
@@ -1002,7 +1002,6 @@ function SettingPage() {
                       <div className="main-box" id="DeleteAccount">
                         <div class="Cardsection">
                           <div className="card">
-                        
                             <h3 className="card-title fw-bold">
                               Are you sure you want to delete your account ?
                             </h3>
@@ -1011,266 +1010,262 @@ function SettingPage() {
                               progress
                             </p>
                             <br></br>
-                           
-                              <div className="mb-3">
-                                <p className="why">
-                                  Why do you want to delete your account ?
-                                </p>
-                                <Form.Check
-                                  type={"checkbox"}
-                                  id={""}
-                                  label={"Privacy Concern"}
-                                />
-                                <Form.Check
-                                  type={"checkbox"}
-                                  id={""}
-                                  label={"Personal matter"}
-                                />
-                                <Form.Check
-                                  type={"checkbox"}
-                                  id={""}
-                                  label={"No Longer Need the App"}
-                                />
-                                <Form.Check
-                                  type={"checkbox"}
-                                  id={""}
-                                  label={"Not satisfied with App Features"}
-                                />
-                                <Form.Check
-                                  type={"checkbox"}
-                                  id={""}
-                                  label={"Found a Better Alternative"}
-                                />
-                                <Form.Check
-                                  type={"checkbox"}
-                                  id={""}
-                                  label={"Other (Please Specify):"}
-                                />
-                              </div>
 
-                              <p href="acb" className="detailssetpack">
-                                When you delete your user account, please note
-                                that you will lose:
+                            <div className="mb-3">
+                              <p className="why">
+                                Why do you want to delete your account ?
                               </p>
-                              <ul>
-                                <li>Your progress.</li>
-                                <li>All collected coins and rewards.</li>
-                                <li>
-                                  Any stored data , including your profile
-                                  information and activity history.
-                                </li>
-                              </ul>
-                              <div className="btndletacc">
-                                {/*Delete Account Model Start */}
-                                <Modal
-                                  size="lg"
-                                  show={show2}
-                                  onHide={handleClose2}
-                                  aria-labelledby="example-custom-modal-styling-title"
-                                  centered
+                              <Form.Check
+                                type={"checkbox"}
+                                id={""}
+                                label={"Privacy Concern"}
+                              />
+                              <Form.Check
+                                type={"checkbox"}
+                                id={""}
+                                label={"Personal matter"}
+                              />
+                              <Form.Check
+                                type={"checkbox"}
+                                id={""}
+                                label={"No Longer Need the App"}
+                              />
+                              <Form.Check
+                                type={"checkbox"}
+                                id={""}
+                                label={"Not satisfied with App Features"}
+                              />
+                              <Form.Check
+                                type={"checkbox"}
+                                id={""}
+                                label={"Found a Better Alternative"}
+                              />
+                              <Form.Check
+                                type={"checkbox"}
+                                id={""}
+                                label={"Other (Please Specify):"}
+                              />
+                            </div>
+
+                            <p href="acb" className="detailssetpack">
+                              When you delete your user account, please note
+                              that you will lose:
+                            </p>
+                            <ul>
+                              <li>Your progress.</li>
+                              <li>All collected coins and rewards.</li>
+                              <li>
+                                Any stored data , including your profile
+                                information and activity history.
+                              </li>
+                            </ul>
+                            <div className="btndletacc">
+                              {/*Delete Account Model Start */}
+                              <Modal
+                                size="lg"
+                                show={show2}
+                                onHide={handleClose2}
+                                aria-labelledby="example-custom-modal-styling-title"
+                                centered
+                              >
+                                <Modal.Header closeButton></Modal.Header>
+                                <div
+                                  style={{
+                                    width: "95%",
+                                    height: "auto",
+                                    padding: "0px",
+                                    borderRadius: "5px",
+                                    margin: "0 0 50px 20px",
+                                  }}
                                 >
-                                  <Modal.Header closeButton></Modal.Header>
-                                  <div
-                                    style={{
-                                      width: "95%",
-                                      height: "auto",
-                                      padding: "0px",
-                                      borderRadius: "5px",
-                                      margin: "0 0 50px 20px",
+                                  <h5 className="dltactntpic">
+                                    Delete Account
+                                  </h5>
+                                  <p className="dltactntpicpara">
+                                    Are you sure you want to delete the account?
+                                    You will not be able to undo it.
+                                  </p>
+
+                                  <Formik
+                                    validationSchema={schema}
+                                    onSubmit={console.log}
+                                    initialValues={{
+                                      city: "",
                                     }}
                                   >
-                                    <h5 className="dltactntpic">
-                                      Delete Account
-                                    </h5>
-                                    <p className="dltactntpicpara">
-                                      Are you sure you want to delete the
-                                      account? You will not be able to undo it.
-                                    </p>
-
-                                    <Formik
-                                      validationSchema={schema}
-                                      onSubmit={console.log}
-                                      initialValues={{
-                                        city: "",
-                                      }}
-                                    >
-                                      {({
-                                        handleSubmit,
-                                        handleChange,
-                                        values,
-                                        errors,
-                                      }) => (
-                                        <Form
-                                          noValidate
-                                          onSubmit={handleSubmit}
-                                        >
-                                          <Row className="mb-3">
-                                            <Form.Group
-                                              as={Col}
-                                              md="6"
-                                              controlId="validationFormik03"
-                                            >
-                                              <Form.Label className="tipparat">
-                                                Please type your password to
-                                                confirm
-                                              </Form.Label>
-                                              <td className="tdlnoty1lewen">
-                                                {" "}
-                                                <Form.Control
-                                                  type="text"
-                                                  className="pwtinpt"
-                                                  name="password"
-                                                  value={values.password}
-                                                  onChange={handleChange}
-                                                  isInvalid={!!errors.password}
-                                                />
-                                                <Form.Control.Feedback type="invalid">
-                                                  {errors.password}
-                                                </Form.Control.Feedback>
-                                              </td>
-                                              <td className="tdlnoty1newr">
-                                                <Button
-                                                  type="submit "
-                                                  className="pwtbtncong"
-                                                >
-                                                  Confirm
-                                                </Button>
-                                              </td>
-                                            </Form.Group>
-                                          </Row>
-                                        </Form>
-                                      )}
-                                    </Formik>
-                                  </div>
-                                </Modal>
-                                {/*Delete Account Model End */}
-                                {/*Err Occurred Model Start */}
-                                <Modal
-                                  size="medium"
-                                  show={show3}
-                                  onHide={handleClose3}
-                                  aria-labelledby="contained-modal-title-vcenter"
-                                  centered
-                                >
-                                  <Modal.Body>
-                                    <div className="text-center">
-                                      <img
-                                        src={err}
-                                        alt="YourImage"
-                                        className="img-fluid img-fluid 
-                                        custom-image-ULock mx-auto d-block mb-1"
-                                      />
-                                      <h1 className="mb-4 errbtnclztpi">
-                                        An Error occurred
-                                      </h1>
-                                      <h3 className="mb-5 errbtnclzpara">
-                                        The password you entered is incorrect.
-                                        Please try again.
-                                      </h3>
-                                      <button
-                                        className="btn  custom-button-resetmew my-1 my-sm-3"
-                                        type="submit"
-                                      >
-                                        OK
-                                      </button>
-                                    </div>
-                                  </Modal.Body>
-                                </Modal>
-                                {/*Err Occurred Model End */}
-                                {/*Delete Model Start */}
-                                <Modal
-                                  size="medium"
-                                  show={show4}
-                                  onHide={handleClose4}
-                                  aria-labelledby="contained-modal-title-vcenter"
-                                  centered
-                                >
-                                  <Modal.Body>
-                                    <div className="text-center">
-                                      <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="98"
-                                        height="103"
-                                        viewBox="0 0 98 103"
-                                        fill="none"
-                                      >
-                                        <ellipse
-                                          cx="49"
-                                          cy="51.2889"
-                                          rx="49"
-                                          ry="51.2889"
-                                          fill="white"
-                                        />
-                                        <path
-                                          d="M96.5 51.2889C96.5 78.8519 75.1697 101.078 49 101.078C22.8303 101.078 1.5 78.8519 1.5 51.2889C1.5 23.726 22.8303 1.5 49 1.5C75.1697 1.5 96.5 23.726 96.5 51.2889Z"
-                                          stroke="#CF1010"
-                                          stroke-opacity="0.8"
-                                          stroke-width="3"
-                                        />
-                                        <path
-                                          d="M36.4601 74.1621C35.1171 74.1621 33.9671 73.664 33.0099 72.6678C32.0527 71.6716 31.575 70.4755 31.5766 69.0795V36.042H29.1349V30.9593H41.3435V28.418H55.9938V30.9593H68.2025V36.042H65.7607V69.0795C65.7607 70.4772 65.2822 71.6742 64.325 72.6704C63.3678 73.6666 62.2186 74.1638 60.8773 74.1621H36.4601ZM60.8773 36.042H36.4601V69.0795H60.8773V36.042ZM41.3435 63.9968H46.2269V41.1247H41.3435V63.9968ZM51.1104 63.9968H55.9938V41.1247H51.1104V63.9968Z"
-                                          fill="#CF1010"
-                                          fill-opacity="0.8"
-                                        />
-                                      </svg>
-                                      <h1 className="mb-4 mt-4 errbtnclztpi">
-                                        Delete Account
-                                      </h1>
-                                      <h3 className="mb-5 errbtnclzpara">
-                                        The password you entered has been
-                                        successfully confirmed, you can delete
-                                        your account
-                                      </h3>
-                                      <button
-                                        className="btn custom-button-resetmewdlete my-1 my-sm-3"
-                                        type="submit"
-                                        onClick={handleDeleteAccount}
-                                      >
-                                        Delete
-                                      </button>
-                                    </div>
-                                  </Modal.Body>
-                                </Modal>
-                                {/*Delete Model End */}
-                                <div className="text-center centinpt">
-                                  <InputGroup
-                                    className="mb-3"
-                                    style={{ width: "100%" }}
-                                  >
-                                    <Form.Control
-                                      size="medium"
-                                      type={showPassword3 ? "text" : "password"}
-                                      id="inputPassword"
-                                      style={{ textTransform: "none" }}
-                                      aria-describedby="passwordHelpBlock"
-                                      placeholder="Enter your password"
-                                      onChange={(e) =>
-                                        setPasswordToDelete(e.target.value)
-                                      }
-                                    />
-                                    <InputGroup.Text
-                                      id="passwordHelpBlock"
-                                      onClick={togglePasswordVisibility3}
-                                    >
-                                      {showPassword3 ? (
-                                        <HiOutlineEyeOff />
-                                      ) : (
-                                        <HiOutlineEye />
-                                      )}
-                                    </InputGroup.Text>
-                                  </InputGroup>
+                                    {({
+                                      handleSubmit,
+                                      handleChange,
+                                      values,
+                                      errors,
+                                    }) => (
+                                      <Form noValidate onSubmit={handleSubmit}>
+                                        <Row className="mb-3">
+                                          <Form.Group
+                                            as={Col}
+                                            md="6"
+                                            controlId="validationFormik03"
+                                          >
+                                            <Form.Label className="tipparat">
+                                              Please type your password to
+                                              confirm
+                                            </Form.Label>
+                                            <td className="tdlnoty1lewen">
+                                              {" "}
+                                              <Form.Control
+                                                type="text"
+                                                className="pwtinpt"
+                                                name="password"
+                                                value={values.password}
+                                                onChange={handleChange}
+                                                isInvalid={!!errors.password}
+                                              />
+                                              <Form.Control.Feedback type="invalid">
+                                                {errors.password}
+                                              </Form.Control.Feedback>
+                                            </td>
+                                            <td className="tdlnoty1newr">
+                                              <Button
+                                                type="submit "
+                                                className="pwtbtncong"
+                                              >
+                                                Confirm
+                                              </Button>
+                                            </td>
+                                          </Form.Group>
+                                        </Row>
+                                      </Form>
+                                    )}
+                                  </Formik>
                                 </div>
-                                
-                                <button
-                                  className="btndlt"
-                                  onChange={handleShow4}
-                                  onClick={handleShow4}
+                              </Modal>
+                              {/*Delete Account Model End */}
+                              {/*Err Occurred Model Start */}
+                              <Modal
+                                size="medium"
+                                show={show3}
+                                onHide={handleClose3}
+                                aria-labelledby="contained-modal-title-vcenter"
+                                centered
+                              >
+                                <Modal.Body>
+                                  <div className="text-center">
+                                    <img
+                                      src={err}
+                                      alt="YourImage"
+                                      className="img-fluid img-fluid 
+                                        custom-image-ULock mx-auto d-block mb-1"
+                                    />
+                                    <h1 className="mb-4 errbtnclztpi">
+                                      An Error occurred
+                                    </h1>
+                                    <h3 className="mb-5 errbtnclzpara">
+                                      The password you entered is incorrect.
+                                      Please try again.
+                                    </h3>
+                                    <button
+                                      className="btn  custom-button-resetmew my-1 my-sm-3"
+                                      type="submit"
+                                    >
+                                      OK
+                                    </button>
+                                  </div>
+                                </Modal.Body>
+                              </Modal>
+                              {/*Err Occurred Model End */}
+                              {/*Delete Model Start */}
+                              <Modal
+                                size="medium"
+                                show={show4}
+                                onHide={handleClose4}
+                                aria-labelledby="contained-modal-title-vcenter"
+                                centered
+                              >
+                                <Modal.Body>
+                                  <div className="text-center">
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      width="98"
+                                      height="103"
+                                      viewBox="0 0 98 103"
+                                      fill="none"
+                                    >
+                                      <ellipse
+                                        cx="49"
+                                        cy="51.2889"
+                                        rx="49"
+                                        ry="51.2889"
+                                        fill="white"
+                                      />
+                                      <path
+                                        d="M96.5 51.2889C96.5 78.8519 75.1697 101.078 49 101.078C22.8303 101.078 1.5 78.8519 1.5 51.2889C1.5 23.726 22.8303 1.5 49 1.5C75.1697 1.5 96.5 23.726 96.5 51.2889Z"
+                                        stroke="#CF1010"
+                                        stroke-opacity="0.8"
+                                        stroke-width="3"
+                                      />
+                                      <path
+                                        d="M36.4601 74.1621C35.1171 74.1621 33.9671 73.664 33.0099 72.6678C32.0527 71.6716 31.575 70.4755 31.5766 69.0795V36.042H29.1349V30.9593H41.3435V28.418H55.9938V30.9593H68.2025V36.042H65.7607V69.0795C65.7607 70.4772 65.2822 71.6742 64.325 72.6704C63.3678 73.6666 62.2186 74.1638 60.8773 74.1621H36.4601ZM60.8773 36.042H36.4601V69.0795H60.8773V36.042ZM41.3435 63.9968H46.2269V41.1247H41.3435V63.9968ZM51.1104 63.9968H55.9938V41.1247H51.1104V63.9968Z"
+                                        fill="#CF1010"
+                                        fill-opacity="0.8"
+                                      />
+                                    </svg>
+                                    <h1 className="mb-4 mt-4 errbtnclztpi">
+                                      Delete Account
+                                    </h1>
+                                    <h3 className="mb-5 errbtnclzpara">
+                                      The password you entered has been
+                                      successfully confirmed, you can delete
+                                      your account
+                                    </h3>
+                                    <button
+                                      className="btn custom-button-resetmewdlete my-1 my-sm-3"
+                                      type="submit"
+                                      onClick={handleDeleteAccount}
+                                    >
+                                      Delete
+                                    </button>
+                                  </div>
+                                </Modal.Body>
+                              </Modal>
+                              {/*Delete Model End */}
+                              <div className="text-center centinpt">
+                                <InputGroup
+                                  className="mb-3"
+                                  style={{ width: "100%" }}
                                 >
-                                  Delete Account
-                                </button>
+                                  <Form.Control
+                                    size="medium"
+                                    type={showPassword3 ? "text" : "password"}
+                                    id="inputPassword"
+                                    style={{ textTransform: "none" }}
+                                    aria-describedby="passwordHelpBlock"
+                                    placeholder="Enter your password"
+                                    onChange={(e) =>
+                                      setPasswordToDelete(e.target.value)
+                                    }
+                                  />
+                                  <InputGroup.Text
+                                    id="passwordHelpBlock"
+                                    onClick={togglePasswordVisibility3}
+                                  >
+                                    {showPassword3 ? (
+                                      <HiOutlineEyeOff />
+                                    ) : (
+                                      <HiOutlineEye />
+                                    )}
+                                  </InputGroup.Text>
+                                </InputGroup>
                               </div>
+
+                              <button
+                                className="btndlt"
+                                onChange={handleShow4}
+                                onClick={handleShow4}
+                              >
+                                Delete Account
+                              </button>
                             </div>
-                        
+                          </div>
                         </div>
                       </div>
                       {/*Delete Account Section End */}

@@ -17,51 +17,26 @@ function LandingPageContact() {
       setText(inputText);
     }
   };
-  //Contact Us
+  // //Contact Us
   const form = useRef();
 
-  // const sendEmail = (e) => {
-  //   e.preventDefault();
-
-  //   emailjs
-  //     .sendForm("service_ujbarye", "template_vdnepgd", form.current, {
-  //       publicKey: "A7gPSfsx2Sr9vN779",
-  //     })
-  //     .then(
-  //       (result) => {
-  //         alert("Gmail Send Success!");
-  //       },
-  //       (error) => {
-  //         alert("Not Send");
-  //       }
-  //     );
-  // };
-
-  const sendEmail = async (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
 
-    try {
-      const result = await emailjs.sendForm(
-        "service_ujbarye",
-        "template_vdnepgd",
-        form.current,
-        {
-          publicKey: "A7gPSfsx2Sr9vN779",
+    emailjs
+      .sendForm("service_ujbarye", "template_vdnepgd", form.current, {
+        publicKey: "A7gPSfsx2Sr9vN779",
+      })
+      .then(
+        (result) => {
+          alert("Gmail Send Success!");
+        },
+        (error) => {
+          alert("Not Send");
         }
       );
-
-      console.log(result); // Log the result for further inspection
-
-      alert("Gmail Send Success!");
-    } catch (error) {
-      console.error("Error sending email:", error);
-      alert("Email not sent. Please check the console for details.");
-    }
   };
 
-  const clearForm = () => {
-    form.current.reset();
-  };
 
   const [showNav, setShowNav] = useState(false);
 
@@ -82,7 +57,6 @@ function LandingPageContact() {
                 />
 
                 <Navbar.Collapse
-                
                   id="navbarSupportedContent"
                   className={`${showNav ? "show" : ""} navbar-class-left`}
                 >
@@ -121,7 +95,6 @@ function LandingPageContact() {
                 </Navbar.Collapse>
               </Navbar>
             </div>
-            
           </div>
           <div className="">
             {/*Contact Us Section Start*/}
@@ -192,9 +165,7 @@ function LandingPageContact() {
                         <div className="text-right">
                           <p>{text.length}/300</p>
                         </div>
-                        <button className="subbtnconus" onClick={clearForm}>
-                          Submit
-                        </button>
+                        <button className="subbtnconus">Submit</button>
                       </Form>
                       <br></br> <br></br> <br></br>
                     </div>
