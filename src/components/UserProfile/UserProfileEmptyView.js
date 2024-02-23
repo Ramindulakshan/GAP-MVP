@@ -604,184 +604,181 @@ function UserProfileEmptyView() {
   }
 
   return (
-    <div>
+    <div className="d-flex">
       <div className="container-fluid">
         <div className="row">
-          <div className="col-lg-3 vh-100">
-            <div className="d-flex align-items-center justify-content-center">
-              <div className="vh-100  ">
-                <div className="">
-                  <img
-                    src={GAP_Image}
-                    alt="logo"
-                    className="img-fluid custom-image-Gap"
-                  />
-                  <button onClick={nav_close} class="resclose">
-                    {" "}
-                    &times;
-                  </button>
-                </div>
-
-                <Tab.Container
-                  id="list-group-tabs-example"
-                  defaultActiveKey="#link1"
-                >
-                  <Row>
-                    <ListGroup>
-                      <ListGroup.Item
-                        action
-                        variant="light"
-                        className="list-group-item-custom"
-                        onClick={() => {
-                          window.location.href = "/home";
-                        }}
-
-                      >
-                        <IoHomeOutline
-                          style={{ fontSize: "18px", marginRight: "20px" }}
-                        />
-                        Home
-                      </ListGroup.Item>
-                      <br />
-                      <ListGroup.Item
-                        action
-                        variant="light"
-                        className="list-group-item-custom"
-                        // href="#link2"
-                        onClick={() => {
-                          window.location.href = "/underConstructionMentors";
-                        }}
-                      >
-                        <IoPeopleOutline
-                          style={{ fontSize: "18px", marginRight: "20px" }}
-                        />
-                        Mentors
-                      </ListGroup.Item>
-                      <br />
-                      <ListGroup.Item
-                        action
-                        variant="light"
-                        className="list-group-item-custom"
-                        onClick={() => {
-                          window.location.href =
-                            "/underConstructionMentorSession";
-                        }}
-                      >
-                        <TfiBookmarkAlt
-                          style={{ fontSize: "18px", marginRight: "20px" }}
-                        />
-                        Mentoring Session
-                      </ListGroup.Item>
-                      <br />
-                      <ListGroup.Item
-                        action
-                        variant="light"
-                        className="list-group-item-custom"
-                        onClick={() => {
-                          window.location.href = "/underConstructionBeAMentor";
-                        }}
-                      >
-                        <MdOutlinePeopleAlt
-                          style={{ fontSize: "18px", marginRight: "20px" }}
-                        />
-                        Be A Mentor
-                      </ListGroup.Item>
-                      <br />
-                      <ListGroup.Item
-                        action
-                        variant="light"
-                        className="list-group-item-custom"
-                        onClick={() => {
-                          window.location.href =
-                            "/underConstructionWeeklySchedulePage";
-                        }}
-                      >
-                        <IoCalendarOutline
-                          style={{ fontSize: "18px", marginRight: "20px" }}
-                        />
-                        Weekly Schedule
-                      </ListGroup.Item>
-                      <br />
-                      <ListGroup.Item
-                        action
-                        variant="light"
-                        className="list-group-item-custom"
-                        onClick={() => {
-                          window.location.href =
-                            "/underConstructionHistoryPage";
-                        }}
-                      >
-                        <RxCountdownTimer
-                          style={{ fontSize: "18px", marginRight: "20px" }}
-                        />
-                        Mentoring History
-                      </ListGroup.Item>
-                      <br />
-                      <ListGroup.Item
-                        action
-                        variant="light"
-                        className="list-group-item-custom"
-                        onClick={() => {
-                          window.location.href = "/settings";
-                        }}
-                      >
-                        <IoSettingsOutline
-                          style={{ fontSize: "18px", marginRight: "20px" }}
-                        />
-                        Settings
-                      </ListGroup.Item>
-                      <br />
-                      <br />
-                      <br />
-                      <ListGroup.Item
-                        onClick={handleShowLogout}
-                        action
-                        variant="light"
-                        className="list-group-item-custom"
-                      >
-                        <IoIosLogOut
-                          style={{ fontSize: "18px", marginRight: "20px" }}
-                        />
-                        Logout
-                      </ListGroup.Item>
-                      <br />
-                    </ListGroup>
-                  </Row>
-                </Tab.Container>
-                <Modal
-                  size="m"
-                  show={showLogout}
-                  onHide={handleCloseLogout}
-                  aria-labelledby="example-custom-modal-styling-title"
-                  centered
-                >
-                  <Modal.Body className="text-center mt-4">
-                    <img
-                      src={TakeABreak}
-                      alt="Tickimg"
-                      className="img-fluid mb-4"
-                      style={{ width: "100px", height: "100px" }}
-                    />
-
-                    <p className="pre ">Are You sure you want to logout?</p>
-
-                    <button
-                      className="btnlgouy1 custom-button-slot "
-                      onClick={handleLogout}
-                    >
-                      Yes
-                    </button>
-                    <button
-                      className="btnlgouy2 custom-button-slot "
-                      onClick={handleCloseLogout}
-                    >
-                      No
-                    </button>
-                  </Modal.Body>
-                </Modal>
+          <div className="nav-colum" id="mySidebar">
+            <div className="vh-100 ">
+              <div className="">
+                <img
+                  src={GAP_Image}
+                  alt="logo"
+                  className="img-fluid custom-image-Gap"
+                />
+                <button onClick={nav_close} class="resclose">
+                  {" "}
+                  &times;
+                </button>
               </div>
+              <Tab.Container
+                id="list-group-tabs-example"
+                defaultActiveKey="/underConstructionHome"
+              >
+                <Row>
+                  <ListGroup>
+                    <ListGroup.Item
+                      action
+                      variant="light"
+                      className="list-group-item-custom"
+                      onClick={() => {
+                        window.location.href = "/home";
+                      }}
+                      style={{ backgroundColor: "#DDDDFE", border: "0" }}
+                    >
+                      <IoHomeOutline
+                        style={{ fontSize: "18px", marginRight: "20px" }}
+                      />
+                      Home
+                    </ListGroup.Item>
+                    <br />
+                    <ListGroup.Item
+                      action
+                      variant="light"
+                      className="list-group-item-custom"
+                      // href="#link2"
+                      onClick={() => {
+                        window.location.href = "/underConstructionMentors";
+                      }}
+                    >
+                      <IoPeopleOutline
+                        style={{ fontSize: "18px", marginRight: "20px" }}
+                      />
+                      Mentors
+                    </ListGroup.Item>
+                    <br />
+                    <ListGroup.Item
+                      action
+                      variant="light"
+                      className="list-group-item-custom"
+                      onClick={() => {
+                        window.location.href =
+                          "/underConstructionMentorSession";
+                      }}
+                    >
+                      <TfiBookmarkAlt
+                        style={{ fontSize: "18px", marginRight: "20px" }}
+                      />
+                      Mentoring Session
+                    </ListGroup.Item>
+                    <br />
+                    <ListGroup.Item
+                      action
+                      variant="light"
+                      className="list-group-item-custom"
+                      onClick={() => {
+                        window.location.href = "/underConstructionBeAMentor";
+                      }}
+                    >
+                      <MdOutlinePeopleAlt
+                        style={{ fontSize: "18px", marginRight: "20px" }}
+                      />
+                      Be A Mentor
+                    </ListGroup.Item>
+                    <br />
+                    <ListGroup.Item
+                      action
+                      variant="light"
+                      className="list-group-item-custom"
+                      onClick={() => {
+                        window.location.href =
+                          "/underConstructionWeeklySchedulePage";
+                      }}
+                    >
+                      <IoCalendarOutline
+                        style={{ fontSize: "18px", marginRight: "20px" }}
+                      />
+                      Weekly Schedule
+                    </ListGroup.Item>
+                    <br />
+                    <ListGroup.Item
+                      action
+                      variant="light"
+                      className="list-group-item-custom"
+                      onClick={() => {
+                        window.location.href = "/underConstructionHistoryPage";
+                      }}
+                    >
+                      <RxCountdownTimer
+                        style={{ fontSize: "18px", marginRight: "20px" }}
+                      />
+                      Mentoring History
+                    </ListGroup.Item>
+                    <br />
+                    <ListGroup.Item
+                      action
+                      variant="light"
+                      className="list-group-item-custom"
+                      onClick={() => {
+                        window.location.href = "/settings";
+                      }}
+                    >
+                      <IoSettingsOutline
+                        style={{ fontSize: "18px", marginRight: "20px" }}
+                      />
+                      Settings
+                    </ListGroup.Item>
+                    <br />
+                    <br />
+                    <br />
+                    <ListGroup.Item
+                      onClick={handleShow}
+                      action
+                      variant="light"
+                      className="list-group-item-custom"
+                    >
+                      <IoIosLogOut
+                        style={{ fontSize: "18px", marginRight: "20px" }}
+                      />
+                      Logout
+                    </ListGroup.Item>
+                    <br />
+                  </ListGroup>
+                </Row>
+              </Tab.Container>
+              <Modal
+                size="m"
+                show={show}
+                onHide={handleClose}
+                aria-labelledby="example-custom-modal-styling-title"
+                centered
+              >
+                <Modal.Body className="text-center mt-4">
+                  <img
+                    src={TakeABreak}
+                    alt="Tickimg"
+                    className="img-fluid mb-4"
+                    style={{ width: "100px", height: "100px" }}
+                  />
+
+                  <p className="pre ">Are You sure you want to logout?</p>
+
+                  <button
+                    className="btnlgouy1 custom-button-slot "
+                    onClick={handleLogout}
+                  >
+                    Yes
+                  </button>
+                  <button
+                    className="btnlgouy2 custom-button-slot "
+                    onClick={handleClose}
+                  >
+                    No
+                  </button>
+                </Modal.Body>
+              </Modal>
             </div>
           </div>
+
           <div className="col-lg-9 vh-100 overflow-auto">
             <Navbar className="mt-3 justify-content-between">
               <Form className="mx-auto search-res-hide">
@@ -1218,7 +1215,7 @@ function UserProfileEmptyView() {
                           )}
                           &nbsp;&nbsp;
                           <svg
-                            href={userData.email}
+                            href={`mailto:${userData.email}`}
                             xmlns="http://www.w3.org/2000/svg"
                             width="30"
                             height="30"
@@ -1282,7 +1279,7 @@ function UserProfileEmptyView() {
                             </svg>
                           )}
                           &nbsp;&nbsp;
-                          <button className="btn-add-new" onClick={handleShow2}>
+                          <button className="btn-add-new addlinknew-btn" onClick={handleShow2}>
                             Add Links
                           </button>
                         </div>

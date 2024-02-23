@@ -525,14 +525,16 @@
 }
 .hedpar {
   color: rgba(0, 0, 0, 0.8);
-  text-align: center;
+  text-align: justify;
   font-family: Poppins;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: 129.688%; /* 20.75px */
 }
-
+.responsive-TC-para{
+  text-align: justify;
+}
 .maintopicset {
   padding: 30px 60px;
 }
