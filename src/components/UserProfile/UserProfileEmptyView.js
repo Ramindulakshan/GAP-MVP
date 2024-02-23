@@ -593,7 +593,7 @@ function UserProfileEmptyView() {
         console.error("Error fetching user image:", error);
       });
   }, [handlePhotoUpload]);
-  
+
   function nav_open() {
     document.getElementById("mySidebar").style.display = "block";
   }
@@ -605,7 +605,7 @@ function UserProfileEmptyView() {
     <div className="d-flex">
       <div className="container-fluid">
         <div className="row">
-        <div className="nav-colum" id="mySidebar">
+          <div className="nav-colum" id="mySidebar">
             <div className="vh-100 ">
               <div className="">
                 <img
@@ -1213,7 +1213,7 @@ function UserProfileEmptyView() {
                           )}
                           &nbsp;&nbsp;
                           <svg
-                            href={userData.email}
+                            href={`mailto:${userData.email}`}
                             xmlns="http://www.w3.org/2000/svg"
                             width="30"
                             height="30"
@@ -1277,7 +1277,7 @@ function UserProfileEmptyView() {
                             </svg>
                           )}
                           &nbsp;&nbsp;
-                          <button className="btn-add-new" onClick={handleShow2}>
+                          <button className="btn-add-new addlinknew-btn" onClick={handleShow2}>
                             Add Links
                           </button>
                         </div>
