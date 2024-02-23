@@ -410,6 +410,7 @@ function UserProfileEmptyView() {
 
   const handlePhotoUpload = async (e) => {
     e.preventDefault();
+    console.log("submitting.........")
 
     await axios
       .post(
@@ -422,14 +423,14 @@ function UserProfileEmptyView() {
         }
       )
       .then((response) => {
-        if (response.data.response === 'error'){
+        if (response.data.status === 'error'){
           alert("Photo not uploaded");
-        }else if (response.data.status === 'ok') {
+        }
+        
+        if (response.data.status === 'ok') {
           setAvatar(response.data.profilePicture);
           handleClose();
           alert("Photo uploaded successfully");
-        } else {
-          alert("Photo not uploaded");
         }
       })
       .catch((error) => {
@@ -585,7 +586,6 @@ function UserProfileEmptyView() {
       })
       .then((response) => {
         if (response.data.profilePicture) {
-          console.log(response.data.profilePicture);
           setSelectedImage(response.data.profilePicture);
         }
       })
@@ -594,6 +594,7 @@ function UserProfileEmptyView() {
       });
   }, [handlePhotoUpload]);
 
+
   function nav_open() {
     document.getElementById("mySidebar").style.display = "block";
   }
@@ -601,6 +602,7 @@ function UserProfileEmptyView() {
   function nav_close() {
     document.getElementById("mySidebar").style.display = "none";
   }
+
   return (
     <div className="d-flex">
       <div className="container-fluid">
