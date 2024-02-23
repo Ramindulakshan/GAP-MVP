@@ -84,7 +84,7 @@ function UserProfileEmptyView() {
   const [linkedinLink, setLinkedinLink] = useState("");
   const [websiteLink, setWebsiteLink] = useState("");
   const [getInterest, setGetInterest] = useState("");
-  
+
   const handleFileInputChange = (event) => {
     const reader = new FileReader();
 
@@ -410,7 +410,6 @@ function UserProfileEmptyView() {
 
   const handlePhotoUpload = async (e) => {
     e.preventDefault();
-    console.log("submitting.........")
 
     await axios
       .post(
@@ -423,11 +422,12 @@ function UserProfileEmptyView() {
         }
       )
       .then((response) => {
-        if (response.data.status === 'error'){
+        if (response.data.status === "error") {
+          console.log(response.data.error);
           alert("Photo not uploaded");
         }
-        
-        if (response.data.status === 'ok') {
+
+        if (response.data.status === "ok") {
           setAvatar(response.data.profilePicture);
           handleClose();
           alert("Photo uploaded successfully");
@@ -476,12 +476,11 @@ function UserProfileEmptyView() {
       })
       .then((response) => {
         if (response.status === 200) {
-
           // Filter out the deleted interest from userData.fieldOfInterest
           const updatedFieldOfInterest = userData.fieldOfInterest.filter(
             (item) => item.id !== id
           );
-  
+
           // Update the userData state to reflect the changes
           setUserData((prevState) => ({
             ...prevState,
@@ -497,7 +496,7 @@ function UserProfileEmptyView() {
         console.error("Error deleting interest:", error);
       });
   };
-  
+
   const handleDeleteAcademic = async (id) => {
     await axios
       .delete(`${backEndURL}/api/deleteAcademic/${id}`, {
@@ -552,30 +551,29 @@ function UserProfileEmptyView() {
 
   const handleDeleteProfilePic = async (e) => {
     e.preventDefault();
-    if(selectedImage) {
-      axios.delete(`${backEndURL}/api/deleteProfilePicture`, {
-        headers: {
-          authorization: `${localStorage.getItem("jwtToken")}`,
-        },
-      })
-      .then((response) => {
-        if (response.data.status === 'ok') {
-          setSelectedImage(null);
-          alert("Profile Picture Deleted successfully");
-          handleClose5();
-        } else {
-          alert("Photo Delete Failed");
-        }
-      })
-      .catch((error) => {
-        console.error("Error deleting profile picture:", error);
-      });
-    }else {
+    if (selectedImage) {
+      axios
+        .delete(`${backEndURL}/api/deleteProfilePicture`, {
+          headers: {
+            authorization: `${localStorage.getItem("jwtToken")}`,
+          },
+        })
+        .then((response) => {
+          if (response.data.status === "ok") {
+            setSelectedImage(null);
+            alert("Profile Picture Deleted successfully");
+            handleClose5();
+          } else {
+            alert("Photo Delete Failed");
+          }
+        })
+        .catch((error) => {
+          console.error("Error deleting profile picture:", error);
+        });
+    } else {
       alert("No Profile Picture to Delete");
     }
-
-  
-  }
+  };
 
   useEffect(() => {
     axios
@@ -593,7 +591,6 @@ function UserProfileEmptyView() {
         console.error("Error fetching user image:", error);
       });
   }, [handlePhotoUpload]);
-
 
   function nav_open() {
     document.getElementById("mySidebar").style.display = "block";
@@ -811,11 +808,7 @@ function UserProfileEmptyView() {
                   <FaRegBell className="bell-nav" />
                   &nbsp;&nbsp;
                   <img
-                    src={
-                      !selectedImage
-                        ? userPic
-                        : selectedImage
-                    }
+                    src={!selectedImage ? userPic : selectedImage}
                     roundedCircle
                     width="45"
                     height="45"
@@ -853,11 +846,7 @@ function UserProfileEmptyView() {
               <div class="carduprofl card">
                 <Col xs={5} md={3} className="mx-auto position-relative">
                   <img
-                    src={
-                      !selectedImage
-                        ? userPic
-                        : selectedImage
-                    }
+                    src={!selectedImage ? userPic : selectedImage}
                     rounded
                     alt="propick"
                     className="imgr"
@@ -990,7 +979,6 @@ function UserProfileEmptyView() {
                                 onClick={handleShow5}
                               >
                                 <svg
-
                                   xmlns="http://www.w3.org/2000/svg"
                                   width="24"
                                   height="27"
@@ -1090,9 +1078,7 @@ function UserProfileEmptyView() {
 
                                                   gap: "10px",
                                                 }}
-                                                onClick={
-                                                  handleClose5
-                                                }
+                                                onClick={handleClose5}
                                               >
                                                 Cancel
                                               </button>
@@ -1185,7 +1171,7 @@ function UserProfileEmptyView() {
                             </svg>
                           ) : (
                             <svg
-                              onClick={alert("Invalid link")}
+                              onClick={() => alert("Invalid link")}
                               xmlns="http://www.w3.org/2000/svg"
                               width="30"
                               height="30"
@@ -1214,26 +1200,51 @@ function UserProfileEmptyView() {
                             </svg>
                           )}
                           &nbsp;&nbsp;
-                          <svg
-                            href={`mailto:${userData.email}`}
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="30"
-                            height="30"
-                            viewBox="0 0 30 30"
-                            fill="none"
-                            cursor="pointer"
-                          >
-                            <rect
+                          {userData.email ? (
+                            <svg
+                              onClick={() => {
+                                window.location.href = `mailto:${userData.email}`;
+                              }}
+                              xmlns="http://www.w3.org/2000/svg"
                               width="30"
                               height="30"
-                              rx="5"
-                              fill="#E6F6FF"
-                            />
-                            <path
-                              d="M24 9.75C24 8.7875 23.19 8 22.2 8H7.8C6.81 8 6 8.7875 6 9.75V20.25C6 21.2125 6.81 22 7.8 22H22.2C23.19 22 24 21.2125 24 20.25V9.75ZM22.2 9.75L15 14.125L7.8 9.75H22.2ZM22.2 20.25H7.8V11.5L15 15.875L22.2 11.5V20.25Z"
-                              fill="#2A2A72"
-                            />
-                          </svg>
+                              viewBox="0 0 30 30"
+                              fill="none"
+                              cursor="pointer"
+                            >
+                              <rect
+                                width="30"
+                                height="30"
+                                rx="5"
+                                fill="#E6F6FF"
+                              />
+                              <path
+                                d="M24 9.75C24 8.7875 23.19 8 22.2 8H7.8C6.81 8 6 8.7875 6 9.75V20.25C6 21.2125 6.81 22 7.8 22H22.2C23.19 22 24 21.2125 24 20.25V9.75ZM22.2 9.75L15 14.125L7.8 9.75H22.2ZM22.2 20.25H7.8V11.5L15 15.875L22.2 11.5V20.25Z"
+                                fill="#2A2A72"
+                              />
+                            </svg>
+                          ) : (
+                            <svg
+                              onClick={() => alert("Invalid link")}
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="30"
+                              height="30"
+                              viewBox="0 0 30 30"
+                              fill="none"
+                              cursor="pointer"
+                            >
+                              <rect
+                                width="30"
+                                height="30"
+                                rx="5"
+                                fill="#E6F6FF"
+                              />
+                              <path
+                                d="M24 9.75C24 8.7875 23.19 8 22.2 8H7.8C6.81 8 6 8.7875 6 9.75V20.25C6 21.2125 6.81 22 7.8 22H22.2C23.19 22 24 21.2125 24 20.25V9.75ZM22.2 9.75L15 14.125L7.8 9.75H22.2ZM22.2 20.25H7.8V11.5L15 15.875L22.2 11.5V20.25Z"
+                                fill="#2A2A72"
+                              />
+                            </svg>
+                          )}
                           &nbsp;&nbsp;
                           {userData.socialMedia ? (
                             <svg
@@ -1258,7 +1269,7 @@ function UserProfileEmptyView() {
                             </svg>
                           ) : (
                             <svg
-                              onClick={alert("Invalid link")}
+                              onClick={() => alert("Invalid link")}
                               xmlns="http://www.w3.org/2000/svg"
                               width="30"
                               height="30"
@@ -1279,7 +1290,10 @@ function UserProfileEmptyView() {
                             </svg>
                           )}
                           &nbsp;&nbsp;
-                          <button className="btn-add-new addlinknew-btn" onClick={handleShow2}>
+                          <button
+                            className="btn-add-new addlinknew-btn"
+                            onClick={handleShow2}
+                          >
                             Add Links
                           </button>
                         </div>
