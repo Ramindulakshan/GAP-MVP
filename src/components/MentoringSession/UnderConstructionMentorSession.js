@@ -68,7 +68,7 @@ function UnderConstructionMentorSession() {
       <div className="container-fluid">
         <div className="row">
           <div className="nav-colum" id="mySidebar">
-            <div className="vh-100">
+            <div className="vh-100 navbk-res">
               <div className="">
                 <img
                   src={GAP_Image}
