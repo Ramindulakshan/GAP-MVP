@@ -246,7 +246,7 @@ function SettingPage() {
       <div className="container-fluid">
         <div className="row">
           <div className="nav-colum" id="mySidebar">
-            <div className="vh-100">
+            <div className="vh-100 navbk-res">
               <div className="">
                 <img
                   src={GAP_Image}
@@ -938,7 +938,7 @@ function SettingPage() {
                             <div className="passbox">
                               <InputGroup className="mb-3">
                                 <Form.Control
-                                  size="lg"
+                                  size="medium"
                                   value={currentPassword}
                                   type={showPassword3 ? "text" : "password"}
                                   id="inputPassword"
@@ -960,7 +960,7 @@ function SettingPage() {
                               </InputGroup>
                               <InputGroup className="mb-3">
                                 <Form.Control
-                                  size="lg"
+                                  size="medium"
                                   value={newPassword}
                                   type={showPassword ? "text" : "password"}
                                   id="inputPassword"
@@ -983,7 +983,7 @@ function SettingPage() {
 
                               <InputGroup className="mb-3">
                                 <Form.Control
-                                  size="lg"
+                                  size="medium"
                                   value={confirmPassword}
                                   type={showPassword2 ? "text" : "password"}
                                   id="inputConfirmPassword"
