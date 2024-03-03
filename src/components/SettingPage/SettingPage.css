@@ -917,4 +917,11 @@
     font-size: 15px;
     margin: 0;
   }
+  .custom-image-Gap{
+    max-height: 15vh;
+    max-width: 50%;
+    margin: auto;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+  }
 }

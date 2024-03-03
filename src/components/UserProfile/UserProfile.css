@@ -1,11 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-.custom-image-Gap {
-  max-height: 15vh;
-  max-width: 100%;
-  margin: auto;
-  margin-top: 2vh;
-  margin-bottom: 2vh;
-}
+
 * {
   font-family: Poppins;
 }
@@ -100,7 +94,7 @@
 .carduprofl {
   flex-direction: row;
   display: flex;
-  padding: 26px 30px 26px 29px;
+  /* padding: 26px 30px 26px 29px; */
   justify-content: center;
   align-items: center;
   border-radius: 10px 10px 10px 10px;
@@ -202,13 +196,13 @@
   font-weight: 600;
   line-height: 129.688%; /* 15.563px */
 }
-.custom-image-Gap {
+/* .custom-image-Gap {
   max-height: 15vh;
   max-width: 100%;
   margin: auto;
   margin-top: 2vh;
   margin-bottom: 2vh;
-}
+} */
 
 
 .list-group-item-custom:hover {
@@ -240,13 +234,25 @@
   margin-left: 7vh;
   color: #ffffff;
 } */
+.img-profile {
+  width: 250px;
+  height: 250px;
+  /* padding: 20px; */
+  border-radius: 0.7em;
+}
 .custom-S-text2 {
   font-size: 20px;
   font-weight: 500;
   margin-left: 7vh;
   color: #ffffff;
 }
-
+.myCustomCol-user {
+  width: 100%; 
+  max-width: 15rem; 
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
 .custom-button-Total {
   font-size: 24px;
   font-weight: 600;
@@ -303,10 +309,7 @@
   margin: 8px 0;
 }
 
-.svbtn {
-  color: grey;
-  width: 100px;
-}
+
 
 .dlt-svg-new{
   position: relative;
@@ -498,7 +501,7 @@
 }
 .svbtn {
   color: grey;
-  width: 100px;
+  font-size: 30px;
 }
 .bordernew {
   padding: 10px;

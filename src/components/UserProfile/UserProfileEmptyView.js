@@ -84,7 +84,7 @@ function UserProfileEmptyView() {
   const [linkedinLink, setLinkedinLink] = useState("");
   const [websiteLink, setWebsiteLink] = useState("");
   const [getInterest, setGetInterest] = useState("");
-  
+
   const handleFileInputChange = (event) => {
     const reader = new FileReader();
 
@@ -109,7 +109,7 @@ function UserProfileEmptyView() {
   };
 
   /*Photo Change Model*/
-  const [show, setShow] = useState(false);
+  const [showPhoto, setShowPhoto] = useState(false);
 
   /*Social Media Model Start*/
   const [show2, setShow2] = useState(false);
@@ -134,8 +134,8 @@ function UserProfileEmptyView() {
   const [showLogout, setShowLogout] = useState(false);
 
   /*Photo Change Model*/
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClosePhoto = () => setShowPhoto(false);
+  const handleShowPhoto = () => setShowPhoto(true);
 
   /*Social Media Model Start*/
   const handleClose2 = () => setShow2(false);
@@ -410,7 +410,7 @@ function UserProfileEmptyView() {
 
   const handlePhotoUpload = async (e) => {
     e.preventDefault();
-    console.log("submitting.........")
+    console.log("submitting.........");
 
     await axios
       .post(
@@ -423,13 +423,13 @@ function UserProfileEmptyView() {
         }
       )
       .then((response) => {
-        if (response.data.status === 'error'){
+        if (response.data.status === "error") {
           alert("Photo not uploaded");
         }
-        
-        if (response.data.status === 'ok') {
+
+        if (response.data.status === "ok") {
           setAvatar(response.data.profilePicture);
-          handleClose();
+          handleClosePhoto();
           alert("Photo uploaded successfully");
         }
       })
@@ -476,12 +476,11 @@ function UserProfileEmptyView() {
       })
       .then((response) => {
         if (response.status === 200) {
-
           // Filter out the deleted interest from userData.fieldOfInterest
           const updatedFieldOfInterest = userData.fieldOfInterest.filter(
             (item) => item.id !== id
           );
-  
+
           // Update the userData state to reflect the changes
           setUserData((prevState) => ({
             ...prevState,
@@ -497,7 +496,7 @@ function UserProfileEmptyView() {
         console.error("Error deleting interest:", error);
       });
   };
-  
+
   const handleDeleteAcademic = async (id) => {
     await axios
       .delete(`${backEndURL}/api/deleteAcademic/${id}`, {
@@ -552,30 +551,29 @@ function UserProfileEmptyView() {
 
   const handleDeleteProfilePic = async (e) => {
     e.preventDefault();
-    if(selectedImage) {
-      axios.delete(`${backEndURL}/api/deleteProfilePicture`, {
-        headers: {
-          authorization: `${localStorage.getItem("jwtToken")}`,
-        },
-      })
-      .then((response) => {
-        if (response.data.status === 'ok') {
-          setSelectedImage(null);
-          alert("Profile Picture Deleted successfully");
-          handleClose5();
-        } else {
-          alert("Photo Delete Failed");
-        }
-      })
-      .catch((error) => {
-        console.error("Error deleting profile picture:", error);
-      });
-    }else {
+    if (selectedImage) {
+      axios
+        .delete(`${backEndURL}/api/deleteProfilePicture`, {
+          headers: {
+            authorization: `${localStorage.getItem("jwtToken")}`,
+          },
+        })
+        .then((response) => {
+          if (response.data.status === "ok") {
+            setSelectedImage(null);
+            alert("Profile Picture Deleted successfully");
+            handleClose5();
+          } else {
+            alert("Photo Delete Failed");
+          }
+        })
+        .catch((error) => {
+          console.error("Error deleting profile picture:", error);
+        });
+    } else {
       alert("No Profile Picture to Delete");
     }
-
-  
-  }
+  };
 
   useEffect(() => {
     axios
@@ -594,7 +592,6 @@ function UserProfileEmptyView() {
       });
   }, [handlePhotoUpload]);
 
-
   function nav_open() {
     document.getElementById("mySidebar").style.display = "block";
   }
@@ -602,13 +599,18 @@ function UserProfileEmptyView() {
   function nav_close() {
     document.getElementById("mySidebar").style.display = "none";
   }
-
+  function close_sidebar_on_click() {
+    if (window.innerWidth <= 768) {
+      // Check if the window width is less than or equal to 768 (adjust this value based on your design)
+      nav_close();
+    }
+  }
   return (
     <div className="d-flex">
       <div className="container-fluid">
         <div className="row">
           <div className="nav-colum" id="mySidebar">
-            <div className="vh-100 ">
+            <div className="vh-100 navbk-res">
               <div className="">
                 <img
                   src={GAP_Image}
@@ -632,6 +634,7 @@ function UserProfileEmptyView() {
                       className="list-group-item-custom"
                       onClick={() => {
                         window.location.href = "/home";
+                        close_sidebar_on_click();
                       }}
                       style={{ backgroundColor: "#DDDDFE", border: "0" }}
                     >
@@ -731,7 +734,7 @@ function UserProfileEmptyView() {
                     <br />
                     <br />
                     <ListGroup.Item
-                      onClick={handleShow}
+                      onClick={handleShowLogout}
                       action
                       variant="light"
                       className="list-group-item-custom"
@@ -747,8 +750,8 @@ function UserProfileEmptyView() {
               </Tab.Container>
               <Modal
                 size="m"
-                show={show}
-                onHide={handleClose}
+                show={showLogout}
+                onHide={handleCloseLogout}
                 aria-labelledby="example-custom-modal-styling-title"
                 centered
               >
@@ -770,7 +773,7 @@ function UserProfileEmptyView() {
                   </button>
                   <button
                     className="btnlgouy2 custom-button-slot "
-                    onClick={handleClose}
+                    onClick={handleCloseLogout}
                   >
                     No
                   </button>
@@ -811,11 +814,7 @@ function UserProfileEmptyView() {
                   <FaRegBell className="bell-nav" />
                   &nbsp;&nbsp;
                   <img
-                    src={
-                      !selectedImage
-                        ? userPic
-                        : selectedImage
-                    }
+                    src={!selectedImage ? userPic : selectedImage}
                     roundedCircle
                     width="45"
                     height="45"
@@ -851,31 +850,19 @@ function UserProfileEmptyView() {
             <br></br>
             <div>
               <div class="carduprofl card">
-                <Col xs={5} md={3} className="mx-auto position-relative">
+                <div className="myCustomCol-user">
                   <img
-                    src={
-                      !selectedImage
-                        ? userPic
-                        : selectedImage
-                    }
+                    src={!selectedImage ? userPic : selectedImage}
                     rounded
                     alt="propick"
-                    className="imgr"
-                    style={{
-                      borderRadius: "100000px",
-                    }}
+                    className="img-profile"
+                    onClick={handleShowPhoto}
                   />
-                  <Image
-                    src={pen}
-                    rounded
-                    className="position-absolute m-2 cursor-pointer penclzee"
-                    onClick={handleShow}
-                  />
-                </Col>
+                </div>
                 {/*Photo Change Model Start*/}
                 <Modal
-                  show={show}
-                  onHide={handleClose}
+                  show={showPhoto}
+                  onHide={handleClosePhoto}
                   aria-labelledby="example-custom-modal-styling-title"
                 >
                   <Modal.Header closeButton></Modal.Header>
@@ -899,18 +886,14 @@ function UserProfileEmptyView() {
                               width: "100%",
                             }}
                           >
-                            <div className="text-center"></div>
-                            <br />
-                            <div className="text-center"></div>
-                            <br />
                             {avatar ? (
                               <div className="text-center">
                                 <Image
                                   src={avatar}
                                   roundedCircle
                                   style={{
-                                    width: "150px",
-                                    height: "150px",
+                                    width: "250px",
+                                    height: "250px",
                                     objectFit: "cover",
                                   }}
                                 />
@@ -921,15 +904,14 @@ function UserProfileEmptyView() {
                                   src={userPic}
                                   roundedCircle
                                   style={{
-                                    width: "150px",
-                                    height: "150px",
+                                    width: "250px",
+                                    height: "250px",
                                     objectFit: "cover",
                                   }}
                                 />
                               </div>
                             )}
 
-                            <br />
                             <hr />
                             <Row>
                               <Col
@@ -990,7 +972,6 @@ function UserProfileEmptyView() {
                                 onClick={handleShow5}
                               >
                                 <svg
-
                                   xmlns="http://www.w3.org/2000/svg"
                                   width="24"
                                   height="27"
@@ -1090,9 +1071,7 @@ function UserProfileEmptyView() {
 
                                                   gap: "10px",
                                                 }}
-                                                onClick={
-                                                  handleClose5
-                                                }
+                                                onClick={handleClose5}
                                               >
                                                 Cancel
                                               </button>
@@ -1279,7 +1258,10 @@ function UserProfileEmptyView() {
                             </svg>
                           )}
                           &nbsp;&nbsp;
-                          <button className="btn-add-new addlinknew-btn" onClick={handleShow2}>
+                          <button
+                            className="btn-add-new addlinknew-btn"
+                            onClick={handleShow2}
+                          >
                             Add Links
                           </button>
                         </div>
@@ -1837,6 +1819,7 @@ function UserProfileEmptyView() {
                               borderRadius: "0", // Optional: Set border-radius to 0 if needed
                               boxShadow: "none", // Optional: Remove box-shadow
                             }}
+                            required
                           />
                           <br></br>
 
@@ -1908,6 +1891,7 @@ function UserProfileEmptyView() {
                                 <h5 className="card-title2 fw-bold">
                                   {detail.institute}
                                 </h5>
+
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   id="academicQualificationDelete"
@@ -2117,6 +2101,21 @@ function UserProfileEmptyView() {
                                 <h5 className="card-title2 fw-bold">
                                   {detail.companyName}
                                 </h5>
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="15"
+                                  height="16"
+                                  viewBox="0 0 15 16"
+                                  fill="none"
+                                  cursor="pointer"
+                                >
+                                  <path
+                                    d="M9.21542 5.51696L9.98198 6.28352L2.433 13.8325H1.66644V13.0659L9.21542 5.51696ZM12.215 0.500977C12.0067 0.500977 11.7901 0.584299 11.6318 0.74261L10.107 2.2674L13.2315 5.39198L14.7563 3.86719C14.8336 3.7901 14.8949 3.69854 14.9367 3.59774C14.9785 3.49695 15 3.38889 15 3.27977C15 3.17064 14.9785 3.06259 14.9367 2.96179C14.8949 2.86099 14.8336 2.76943 14.7563 2.69235L12.8066 0.74261C12.64 0.575966 12.4316 0.500977 12.215 0.500977ZM9.21542 3.15895L0 12.3744V15.4989H3.12458L12.34 6.28352L9.21542 3.15895Z"
+                                    fill="black"
+                                    fill-opacity="0.5"
+                                  />
+                                </svg>
+                                &nbsp;&nbsp;
                                 <svg
                                   className=""
                                   xmlns="http://www.w3.org/2000/svg"

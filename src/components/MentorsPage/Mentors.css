@@ -2,13 +2,13 @@
   padding: 0;
   border: 0;
 }
-.custom-image-Gap {
+/* .custom-image-Gap {
   max-height: 15vh;
   max-width: 100%;
   margin: auto;
   margin-top: 2vh;
   margin-bottom: 2vh;
-}
+} */
 
 
 .list-group-item-custom:hover {
