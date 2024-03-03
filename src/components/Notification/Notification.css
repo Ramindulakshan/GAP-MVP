@@ -13,13 +13,13 @@
   scroll-behavior: smooth;
 }
 
-.custom-image-Gap {
+/* .custom-image-Gap {
   max-height: 15vh;
   max-width: 100%;
   margin: auto;
   margin-top: 2vh;
   margin-bottom: 2vh;
-}
+} */
 #nav-noty {
   padding: 10px 0 0 50px;
   font-size: 30px;
