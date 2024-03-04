@@ -143,12 +143,12 @@
 .View-more {
   padding-right: 3vh;
 }
-
+/* 
 .card {
   margin: 20px 30px;
   border: 1px solid gainsboro;
   padding: 10px 20px;
-}
+} */
 .pbtn {
   border-radius: 5px;
   padding: 2px 8px;
@@ -450,11 +450,11 @@
   padding: 0 0px 10px 0px;
 
 }
-.card {
+/* .card {
   margin: 20px 30px;
   
   padding: 10px;
-}
+} */
 .text-section {
   margin-left: 0px;
 }

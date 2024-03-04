@@ -153,11 +153,11 @@
   padding-right: 3vh;
 }
 
-.card {
+/* .card {
   margin: 20px 30px;
   border: 1px solid gainsboro;
   padding: 10px 20px;
-}
+} */
 .pbtn {
   border-radius: 5px;
   padding: 2px 8px;
@@ -793,6 +793,13 @@
   }
   .nvtpicnew {
     margin: 0;
+  }
+  .custom-image-Gap{
+    max-height: 15vh;
+    max-width: 50%;
+    margin: auto;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
   }
 }
 @media (max-width: 600px) {
