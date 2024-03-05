@@ -12,7 +12,12 @@ import { Form, FormControl } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 import Card from "react-bootstrap/Card";
 import img1 from "../HomePage/Img/1.png";
-import { IoHomeOutline, IoPeopleOutline, IoCalendarOutline, IoSettingsOutline } from "react-icons/io5";
+import {
+  IoHomeOutline,
+  IoPeopleOutline,
+  IoCalendarOutline,
+  IoSettingsOutline,
+} from "react-icons/io5";
 import { TfiBookmarkAlt } from "react-icons/tfi";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { RxCountdownTimer } from "react-icons/rx";
@@ -23,11 +28,10 @@ import userPic from "../HomePage/Img/user.png";
 import { backEndURL } from "../../server";
 import axios from "axios";
 
-
 function UnderConstructionHistoryPage() {
   /*LogOut Model*/
   const [show, setShow] = useState(false);
-  const [selectedImage, setSelectedImage] = useState("")
+  const [selectedImage, setSelectedImage] = useState("");
   /*LogOut Model*/
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -56,25 +60,27 @@ function UnderConstructionHistoryPage() {
   function nav_open() {
     document.getElementById("mySidebar").style.display = "block";
   }
-  
+
   function nav_close() {
     document.getElementById("mySidebar").style.display = "none";
   }
 
-  
   return (
     <div className="d-flex">
       <div className="container-fluid">
         <div className="row">
-        <div  className="nav-colum" id="mySidebar">
-            <div className="vh-100">
+          <div className="nav-colum" id="mySidebar">
+            <div className="vh-100 navbk-res">
               <div className="">
                 <img
                   src={GAP_Image}
                   alt="logo"
                   className="img-fluid custom-image-Gap"
                 />
-                                 <button onClick={nav_close} class="resclose"> &times;</button>
+                <button onClick={nav_close} class="resclose">
+                  {" "}
+                  &times;
+                </button>
               </div>
               <Tab.Container
                 id="list-group-tabs-example"
@@ -169,7 +175,7 @@ function UnderConstructionHistoryPage() {
                       Mentoring History
                     </ListGroup.Item>
                     <br />
-                   
+
                     <ListGroup.Item
                       action
                       variant="light"
@@ -193,7 +199,6 @@ function UnderConstructionHistoryPage() {
                       className="list-group-item-custom"
                     >
                       <IoIosLogOut
-                    
                         style={{ fontSize: "18px", marginRight: "20px" }}
                       />
                       Logout
@@ -265,14 +270,10 @@ function UnderConstructionHistoryPage() {
                   />{" "}
                   &nbsp;&nbsp;
                   <div className="ml-auto d-flex align-items-center">
-                  <FaRegBell className="bell-nav" />
+                    <FaRegBell className="bell-nav" />
                     &nbsp;&nbsp;
                     <img
-                      src={
-                        !selectedImage
-                          ? userPic
-                          : selectedImage
-                      }
+                      src={!selectedImage ? userPic : selectedImage}
                       roundedCircle
                       style={{
                         borderRadius: "100px",
@@ -285,13 +286,13 @@ function UnderConstructionHistoryPage() {
                         window.location.href = "/userProfileEmptyView";
                       }}
                     />
-                       {/* Toggle Button for Mobile View */}
-                  <button
-                    className="mobile-toggle-btn togelbtn"
-                    onClick={nav_open}
-                  >
-                    ☰
-                  </button>
+                    {/* Toggle Button for Mobile View */}
+                    <button
+                      className="mobile-toggle-btn togelbtn"
+                      onClick={nav_open}
+                    >
+                      ☰
+                    </button>
                   </div>
                 </Navbar.Brand>
               </Navbar>

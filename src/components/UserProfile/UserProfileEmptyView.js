@@ -487,6 +487,7 @@ function UserProfileEmptyView() {
             (item) => item.id !== id
           );
 
+
           // Update the userData state to reflect the changes
           setUserData((prevState) => ({
             ...prevState,
@@ -502,6 +503,7 @@ function UserProfileEmptyView() {
         console.error("Error deleting interest:", error);
       });
   };
+
 
   const handleDeleteAcademic = async (id) => {
     await axios
@@ -613,13 +615,19 @@ function UserProfileEmptyView() {
   function nav_close() {
     document.getElementById("mySidebar").style.display = "none";
   }
+  function close_sidebar_on_click() {
+    if (window.innerWidth <= 768) {
+      // Check if the window width is less than or equal to 768 (adjust this value based on your design)
+      nav_close();
+    }
+  }
 
   return (
     <div className="d-flex">
       <div className="container-fluid">
         <div className="row">
           <div className="nav-colum" id="mySidebar">
-            <div className="vh-100 ">
+            <div className="vh-100 navbk-res">
               <div className="">
                 <img
                   src={GAP_Image}
@@ -643,6 +651,7 @@ function UserProfileEmptyView() {
                       className="list-group-item-custom"
                       onClick={() => {
                         window.location.href = "/home";
+                        close_sidebar_on_click();
                       }}
                       style={{ backgroundColor: "#DDDDFE", border: "0" }}
                     >
@@ -858,7 +867,7 @@ function UserProfileEmptyView() {
             <br></br>
             <div>
               <div class="carduprofl card">
-                <Col xs={5} md={3} className="mx-auto position-relative">
+                <div className="myCustomCol-user">
                   <img
                     src={!selectedImage ? userPic : selectedImage}
                     rounded
@@ -874,8 +883,7 @@ function UserProfileEmptyView() {
                     className="position-absolute m-2 cursor-pointer penclzee"
                     onClick={handleShowPhoto}
                   /> */}
-                  
-                </Col>
+                </div>
                 {/*Photo Change Model Start*/}
                 <Modal
                   show={showPhotoModel}
@@ -903,18 +911,14 @@ function UserProfileEmptyView() {
                               width: "100%",
                             }}
                           >
-                            <div className="text-center"></div>
-                            <br />
-                            <div className="text-center"></div>
-                            <br />
                             {avatar ? (
                               <div className="text-center">
                                 <Image
                                   src={URL.createObjectURL(avatar)}
                                   roundedCircle
                                   style={{
-                                    width: "150px",
-                                    height: "150px",
+                                    width: "250px",
+                                    height: "250px",
                                     objectFit: "cover",
                                   }}
                                 />
@@ -925,15 +929,14 @@ function UserProfileEmptyView() {
                                   src={userPic}
                                   roundedCircle
                                   style={{
-                                    width: "150px",
-                                    height: "150px",
+                                    width: "250px",
+                                    height: "250px",
                                     objectFit: "cover",
                                   }}
                                 />
                               </div>
                             )}
 
-                            <br />
                             <hr />
                             <Row>
                               <Col
@@ -1770,8 +1773,8 @@ function UserProfileEmptyView() {
                 </div>
 
                 <br></br>
-                <div className="container mt-3">
-                  <div className="d-inline-block">
+                <div className="container mt-3 bordernew">
+                  <div className="d-inline-block ">
                     {userData.fieldOfInterest &&
                     userData.fieldOfInterest.length > 0 ? (
                       userData.fieldOfInterest.map((detail, index) => {
@@ -1866,6 +1869,7 @@ function UserProfileEmptyView() {
                               borderRadius: "0", // Optional: Set border-radius to 0 if needed
                               boxShadow: "none", // Optional: Remove box-shadow
                             }}
+                            required
                           />
                           <br></br>
 
@@ -1926,41 +1930,66 @@ function UserProfileEmptyView() {
                 </div>
 
                 <div class="carduprofl cardnew card" style={{ border: "0" }}>
-                  <div class="card-body ">
+                  <div class="card-body new-res-width">
                     <div class="text-section ">
                       <div>
                         {userData.academicDetails &&
                         userData.academicDetails.length > 0 ? (
                           userData.academicDetails.map((detail, index) => (
                             <div className="bordernew" key={index}>
-                              <div className="d-flex justify-content-between mt-4">
+                              <div className="d-flex mt-4">
                                 <h5 className="card-title2 fw-bold">
                                   {detail.institute}
                                 </h5>
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  id="academicQualificationDelete"
-                                  width="16"
-                                  height="18"
-                                  viewBox="0 0 16 18"
-                                  fill="none"
-                                  cursor="pointer"
-                                  onClick={() =>
-                                    handleDeleteAcademic(detail._id)
-                                  }
-                                >
-                                  <path
-                                    d="M3 18C2.45 18 1.979 17.804 1.587 17.412C1.195 17.02 0.999333 16.5493 1 16V3H0V1H5V0H11V1H16V3H15V16C15 16.55 14.804 17.021 14.412 17.413C14.02 17.805 13.5493 18.0007 13 18H3ZM13 3H3V16H13V3ZM5 14H7V5H5V14ZM9 14H11V5H9V14Z"
-                                    fill="black"
-                                    fill-opacity="0.5"
-                                  />
-                                </svg>
                               </div>
                               <p className="card-para2">{detail.degree}</p>
                               <p className="card-para2">
                                 {moment(detail.startDate).format("YYYY/MM/DD")}{" "}
                                 - {moment(detail.endDate).format("YYYY/MM/DD")}
                               </p>
+
+                              <div class="row mt-6">
+                                <div class="col-4">
+                                  <div class="position-absolute top-0 end-0 new-icon-set-pdn">
+                                    <div class="box d-flex align-items-center">
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="15"
+                                        height="16"
+                                        viewBox="0 0 15 16"
+                                        fill="none"
+                                        cursor="pointer"
+                                      >
+                                        <path
+                                          d="M9.21542 5.51696L9.98198 6.28352L2.433 13.8325H1.66644V13.0659L9.21542 5.51696ZM12.215 0.500977C12.0067 0.500977 11.7901 0.584299 11.6318 0.74261L10.107 2.2674L13.2315 5.39198L14.7563 3.86719C14.8336 3.7901 14.8949 3.69854 14.9367 3.59774C14.9785 3.49695 15 3.38889 15 3.27977C15 3.17064 14.9785 3.06259 14.9367 2.96179C14.8949 2.86099 14.8336 2.76943 14.7563 2.69235L12.8066 0.74261C12.64 0.575966 12.4316 0.500977 12.215 0.500977ZM9.21542 3.15895L0 12.3744V15.4989H3.12458L12.34 6.28352L9.21542 3.15895Z"
+                                          fill="black"
+                                          fill-opacity="0.5"
+                                        />
+                                      </svg>
+                                      &nbsp;&nbsp;
+                                      <p className="ptnpara ms-2 mb-0">
+                                        <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          width="16"
+                                          height="18"
+                                          viewBox="0 0 16 18"
+                                          fill="none"
+                                          cursor="pointer"
+                                          onClick={() =>
+                                            handleDeleteAcademic(detail._id)
+                                          }
+                                        >
+                                          <path
+                                            d="M3 18C2.45 18 1.979 17.804 1.587 17.412C1.195 17.02 0.999333 16.5493 1 16V3H0V1H5V0H11V1H16V3H15V16C15 16.55 14.804 17.021 14.412 17.413C14.02 17.805 13.5493 18.0007 13 18H3ZM13 3H3V16H13V3ZM5 14H7V5H5V14ZM9 14H11V5H9V14Z"
+                                            fill="black"
+                                            fill-opacity="0.5"
+                                          />
+                                        </svg>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
                           ))
                         ) : (
@@ -2135,36 +2164,17 @@ function UserProfileEmptyView() {
                   {/*Professional Experience  Model End*/}
                 </div>
                 <div class="carduprofl cardnew card" style={{ border: "0" }}>
-                  <div class="card-body">
+                  <div class="card-body new-res-width">
                     <div class="text-section">
-                      <div>
+                      <div className="bordernew">
                         {userData.professionalDetails &&
                         userData.professionalDetails.length > 0 ? (
                           userData.professionalDetails.map((detail, index) => (
-                            <div className="bordernew" key={index}>
+                            <div key={index}>
                               <div className="d-flex justify-content-between mt-4">
                                 <h5 className="card-title2 fw-bold">
                                   {detail.companyName}
                                 </h5>
-                                <svg
-                                  className=""
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  id="academicQualificationDelete"
-                                  width="16"
-                                  height="18"
-                                  viewBox="0 0 16 18"
-                                  fill="none"
-                                  cursor="pointer"
-                                  onClick={() =>
-                                    handleDeleteProfessional(detail._id)
-                                  }
-                                >
-                                  <path
-                                    d="M3 18C2.45 18 1.979 17.804 1.587 17.412C1.195 17.02 0.999333 16.5493 1 16V3H0V1H5V0H11V1H16V3H15V16C15 16.55 14.804 17.021 14.412 17.413C14.02 17.805 13.5493 18.0007 13 18H3ZM13 3H3V16H13V3ZM5 14H7V5H5V14ZM9 14H11V5H9V14Z"
-                                    fill="black"
-                                    fill-opacity="0.5"
-                                  />
-                                </svg>
                               </div>
 
                               <p className="card-para2">{detail.position}</p>
@@ -2172,6 +2182,48 @@ function UserProfileEmptyView() {
                                 {moment(detail.startDate).format("YYYY/MM/DD")}{" "}
                                 - {moment(detail.endDate).format("YYYY/MM/DD")}
                               </p>
+                              <div class="row mt-6">
+                                <div class="col-4">
+                                  <div class="position-absolute top-0 end-0 new-icon-set-pdn">
+                                    <div class="box d-flex align-items-center">
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="15"
+                                        height="16"
+                                        viewBox="0 0 15 16"
+                                        fill="none"
+                                        cursor="pointer"
+                                      >
+                                        <path
+                                          d="M9.21542 5.51696L9.98198 6.28352L2.433 13.8325H1.66644V13.0659L9.21542 5.51696ZM12.215 0.500977C12.0067 0.500977 11.7901 0.584299 11.6318 0.74261L10.107 2.2674L13.2315 5.39198L14.7563 3.86719C14.8336 3.7901 14.8949 3.69854 14.9367 3.59774C14.9785 3.49695 15 3.38889 15 3.27977C15 3.17064 14.9785 3.06259 14.9367 2.96179C14.8949 2.86099 14.8336 2.76943 14.7563 2.69235L12.8066 0.74261C12.64 0.575966 12.4316 0.500977 12.215 0.500977ZM9.21542 3.15895L0 12.3744V15.4989H3.12458L12.34 6.28352L9.21542 3.15895Z"
+                                          fill="black"
+                                          fill-opacity="0.5"
+                                        />
+                                      </svg>
+                                      &nbsp;&nbsp;
+                                      <p className="ptnpara ms-2 mb-0">
+                                        <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          width="16"
+                                          height="18"
+                                          viewBox="0 0 16 18"
+                                          fill="none"
+                                          cursor="pointer"
+                                          onClick={() =>
+                                            handleDeleteProfessional(detail._id)
+                                          }
+                                        >
+                                          <path
+                                            d="M3 18C2.45 18 1.979 17.804 1.587 17.412C1.195 17.02 0.999333 16.5493 1 16V3H0V1H5V0H11V1H16V3H15V16C15 16.55 14.804 17.021 14.412 17.413C14.02 17.805 13.5493 18.0007 13 18H3ZM13 3H3V16H13V3ZM5 14H7V5H5V14ZM9 14H11V5H9V14Z"
+                                            fill="black"
+                                            fill-opacity="0.5"
+                                          />
+                                        </svg>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
                           ))
                         ) : (

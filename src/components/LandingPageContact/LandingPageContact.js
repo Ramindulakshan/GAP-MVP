@@ -39,7 +39,6 @@ function LandingPageContact() {
       );
   };
 
-
   const [showNav, setShowNav] = useState(false);
 
   return (
@@ -199,7 +198,9 @@ function LandingPageContact() {
                       </svg>
                     </div>
                     <p className="desbtn">Phone</p>
-                    <p className="desbtn">076 7090757</p>
+                    <p className="desbtn">
+                      <a href="tel:0767090757">076 7090757</a>
+                    </p>
                   </div>
                 </div>
                 <div className="col-sm-5 col-md-5 col-lg-5 text-center">
@@ -219,9 +220,11 @@ function LandingPageContact() {
                         />
                       </svg>
                     </div>
-                    <p className="desbtn"> &nbsp;&nbsp;Email</p>
+                    <p className="desbtn"> &nbsp;Email</p>
                     <p className="desbtn">
-                      &nbsp;&nbsp;generationalpha2025@gmail.com
+                      <a href="mailto:generationalpha2025@gmail.com">
+                      &nbsp;generationalpha2025@gmail.com
+                      </a>
                     </p>
                   </div>
                 </div>

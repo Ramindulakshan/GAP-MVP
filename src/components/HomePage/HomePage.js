@@ -99,13 +99,18 @@ const HomePage = () => {
   function nav_close() {
     document.getElementById("mySidebar").style.display = "none";
   }
-
+  function close_sidebar_on_click() {
+    if (window.innerWidth <= 768) {
+      // Check if the window width is less than or equal to 768 (adjust this value based on your design)
+      nav_close();
+    }
+  }
   return (
     <div className="d-flex">
       <div className="container-fluid">
         <div className="row">
           <div className="nav-colum" id="mySidebar">
-            <div className="vh-100 ">
+            <div className="vh-100 navbk-res">
               <div className="">
                 <img
                   src={GAP_Image}
@@ -129,6 +134,7 @@ const HomePage = () => {
                       className="list-group-item-custom"
                       onClick={() => {
                         window.location.href = "/home";
+                        close_sidebar_on_click();
                       }}
                       style={{ backgroundColor: "#DDDDFE", border: "0" }}
                     >

@@ -69,12 +69,7 @@
   border-radius: 10px;
   margin: 0 0 50px 20px;
 }
-.list-group-item-custom {
-  background-color: rgb(255, 255, 255);
-  color: #00000080;
-  width: 45vh;
-  border: 0;
-}
+
 .list-group-item-custom:hover {
   background-color: #2a2a721a;
   color: #2a2a72;
@@ -158,11 +153,11 @@
   padding-right: 3vh;
 }
 
-.card {
+/* .card {
   margin: 20px 30px;
   border: 1px solid gainsboro;
   padding: 10px 20px;
-}
+} */
 .pbtn {
   border-radius: 5px;
   padding: 2px 8px;
@@ -799,6 +794,13 @@
   .nvtpicnew {
     margin: 0;
   }
+  .custom-image-Gap{
+    max-height: 15vh;
+    max-width: 50%;
+    margin: auto;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+  }
 }
 @media (max-width: 600px) {
   .nvtpicnew {
@@ -921,5 +923,12 @@
     font-family: Poppins;
     font-size: 15px;
     margin: 0;
+  }
+  .custom-image-Gap{
+    max-height: 15vh;
+    max-width: 50%;
+    margin: auto;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
   }
 }

@@ -171,10 +171,9 @@ function SettingPage() {
         }
       )
       .then((response) => {
-        if(response.data.status === "error") {
+        if (response.data.status === "error") {
           alert("Incorrect password");
           handleClose4();
-
         } else if (response.data.status === "ok") {
           localStorage.removeItem("jwtToken");
           localStorage.removeItem("firstName");
@@ -242,13 +241,18 @@ function SettingPage() {
   function nav_close() {
     document.getElementById("mySidebar").style.display = "none";
   }
-
+  function close_sidebar_on_click() {
+    if (window.innerWidth <= 768) {
+      // Check if the window width is less than or equal to 768 (adjust this value based on your design)
+      nav_close();
+    }
+  }
   return (
     <div>
       <div className="container-fluid">
         <div className="row">
           <div className="nav-colum" id="mySidebar">
-            <div className="vh-100">
+            <div className="vh-100 navbk-res">
               <div className="">
                 <img
                   src={GAP_Image}
@@ -272,6 +276,7 @@ function SettingPage() {
                       className="list-group-item-custom"
                       onClick={() => {
                         window.location.href = "/home";
+                        close_sidebar_on_click();
                       }}
                     >
                       <IoHomeOutline
@@ -450,11 +455,7 @@ function SettingPage() {
                   <FaRegBell className="bell-nav" />
                   &nbsp;&nbsp;
                   <img
-                    src={
-                      !selectedImage
-                        ? userPic
-                        : selectedImage
-                    }
+                    src={!selectedImage ? userPic : selectedImage}
                     roundedCircle
                     style={{
                       borderRadius: "100px",
@@ -585,7 +586,9 @@ function SettingPage() {
                                       </svg>
                                     </div>
                                     <p className="desbtn">Phone</p>
-                                    <p className="desbtn">076 7090757</p>
+                                    <p className="desbtn">
+                                      <a href="tel:0767090757">076 7090757</a>
+                                    </p>
                                   </div>
                                 </div>
                                 <div className="col-sm-4 col-md-2 col-lg-5 text-center">
@@ -940,7 +943,7 @@ function SettingPage() {
                             <div className="passbox">
                               <InputGroup className="mb-3">
                                 <Form.Control
-                                  size="lg"
+                                  size="medium"
                                   value={currentPassword}
                                   type={showPassword3 ? "text" : "password"}
                                   id="inputPassword"
@@ -962,7 +965,7 @@ function SettingPage() {
                               </InputGroup>
                               <InputGroup className="mb-3">
                                 <Form.Control
-                                  size="lg"
+                                  size="medium"
                                   value={newPassword}
                                   type={showPassword ? "text" : "password"}
                                   id="inputPassword"
@@ -985,7 +988,7 @@ function SettingPage() {
 
                               <InputGroup className="mb-3">
                                 <Form.Control
-                                  size="lg"
+                                  size="medium"
                                   value={confirmPassword}
                                   type={showPassword2 ? "text" : "password"}
                                   id="inputConfirmPassword"
