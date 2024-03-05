@@ -62,34 +62,43 @@ function Prologin() {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
+      setValidated(true);
+      return;
     }
-    setValidated(true);
-    e.preventDefault();
-
-     await axios
-      .post(`${backEndURL}/api/register`, {
+  
+    try {
+      const response = await axios.post(`${backEndURL}/api/register`, {
         firstName,
         lastName,
         username,
         email,
         password,
         confirmPassword
-      })
-      .then((response) => {
-        if (response.data.status === "ok") {
-          handleShow2();
-        } else if (response.data.status === "error") {
-          alert("Invalid Details. Please try again.");
-        }
-      })
-      .catch((error) => {
-        alert("Invalid Details. Please try again.");
       });
+  
+      if (response.data.status === "ok") {
+        handleShow2();
+      } else if (response.data.error) {
+        if (response.data.error === "Email or username already registered") {
+          alert("Email or Username Already in Use");
+        } else if (response.data.error === "Invalid email format") {
+          alert("Invalid email format");
+        } else if(response.data.error === "Invalid password format"){
+          alert("Invalid Password format");
+        }else if (response.data.error === "Passwords do not match") {
+          alert("Passwords do not match");
+        } else {
+          alert("An unknown error occurred. Please try again.");
+        }
+      }
+    } catch (error) {
+      alert("An error occurred while processing your request. Please try again later.");
+    }
   };
+  
 
   return (
     <div>
