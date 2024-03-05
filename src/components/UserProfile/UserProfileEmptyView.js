@@ -85,15 +85,22 @@ function UserProfileEmptyView() {
   const [websiteLink, setWebsiteLink] = useState("");
   const [getInterest, setGetInterest] = useState("");
 
-  const handleFileInputChange = (event) => {
-    const reader = new FileReader();
+  // const handleFileInputChange = (event) => {
+  //   const reader = new FileReader();
 
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setAvatar(reader.result);
-      }
-    };
-    reader.readAsDataURL(event.target.files[0]);
+  //   reader.onload = () => {
+  //     if (reader.readyState === 2) {
+  //       setAvatar(reader.result);
+  //     }
+  //   };
+  //   reader.readAsDataURL(event.target.files[0]);
+  // };
+
+  const handleFileInputChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setAvatar(file);
+    }
   };
 
   const handleLogout = () => {
@@ -104,11 +111,14 @@ function UserProfileEmptyView() {
     localStorage.removeItem("firstName");
     localStorage.removeItem("lastName");
     localStorage.removeItem("email");
-    handleCloseLogout();
+    handleClose();
     window.location.href = "/login";
   };
 
   /*Photo Change Model*/
+  const [showPhotoModel, setShowPhotoModel] = useState(false);
+
+  //logout model
   const [show, setShow] = useState(false);
 
   /*Social Media Model Start*/
@@ -131,11 +141,9 @@ function UserProfileEmptyView() {
   /*professional experience Model */
   const [show7, setShow7] = useState(false);
 
-  const [showLogout, setShowLogout] = useState(false);
-
   /*Photo Change Model*/
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClosePhoto = () => setShowPhotoModel(false);
+  const handleShowPhoto = () => setShowPhotoModel(true);
 
   /*Social Media Model Start*/
   const handleClose2 = () => setShow2(false);
@@ -161,8 +169,9 @@ function UserProfileEmptyView() {
   const handleCloseadd = () => setShowadd(false);
   const handleShowadd = () => setShowadd(true);
 
-  const handleCloseLogout = () => setShowLogout(false);
-  const handleShowLogout = () => setShowLogout(true);
+  //logout model
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   //calling to endpoint for get user details which already in the database
   const getUserDetails = async (e) => {
@@ -408,34 +417,31 @@ function UserProfileEmptyView() {
     window.open(formattedUrl, "_blank");
   };
 
-  const handlePhotoUpload = async (e) => {
+  const handlePhotoUpload = (e) => {
     e.preventDefault();
-
-    await axios
-      .post(
-        `${backEndURL}/api/photoUpload`,
-        { data: avatar },
-        {
+    const data = new FormData();
+    data.append("file", avatar);
+    if (avatar) {
+      axios
+        .post(`${backEndURL}/api/photoUpload`, data, {
           headers: {
             authorization: `${localStorage.getItem("jwtToken")}`,
           },
-        }
-      )
-      .then((response) => {
-        if (response.data.status === "error") {
-          console.log(response.data.error);
-          alert("Photo not uploaded");
-        }
-
-        if (response.data.status === "ok") {
-          setAvatar(response.data.profilePicture);
-          handleClose();
-          alert("Photo uploaded successfully");
-        }
-      })
-      .catch((error) => {
-        console.error("Error uploading photo:", error);
-      });
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            handleClosePhoto();
+            alert("Photo uploaded successfully");
+          } else {
+            alert("Photo not uploaded");
+          }
+        })
+        .catch((error) => {
+          console.error("Error uploading photo:", error);
+        });
+    } else {
+      alert("Please select a photo to upload");
+    }
   };
 
   const handleInterest = async (e) => {
@@ -563,8 +569,14 @@ function UserProfileEmptyView() {
             setSelectedImage(null);
             alert("Profile Picture Deleted successfully");
             handleClose5();
-          } else {
-            alert("Photo Delete Failed");
+          } else if(response.data.error === 'No photo found for the user'){
+            handleClose5();
+            alert("No Photo to Delete");
+            
+          }else if(response.data.error === 'Failed to delete photo'){
+            alert("Failed to delete photo");
+          }else {
+            alert("Delete Failed. Some Error Occured");
           }
         })
         .catch((error) => {
@@ -584,7 +596,9 @@ function UserProfileEmptyView() {
       })
       .then((response) => {
         if (response.data.profilePicture) {
-          setSelectedImage(response.data.profilePicture);
+          console.log(response.data.profilePicture)
+          const profilePicture =  `${backEndURL}/${response.data.profilePicture}`;
+          setSelectedImage(profilePicture);
         }
       })
       .catch((error) => {
@@ -813,7 +827,7 @@ function UserProfileEmptyView() {
                     width="45"
                     height="45"
                     style={{
-                      borderRadius: "100000px",
+                      borderRadius: "100px",
                     }}
                     className="d-inline-block"
                     alt="React Bootstrap logo"
@@ -851,20 +865,21 @@ function UserProfileEmptyView() {
                     alt="propick"
                     className="imgr"
                     style={{
-                      borderRadius: "100000px",
+                      borderRadius: "100px",
                     }}
                   />
-                  <Image
+                  {/* <Image
                     src={pen}
                     rounded
                     className="position-absolute m-2 cursor-pointer penclzee"
-                    onClick={handleShow}
-                  />
+                    onClick={handleShowPhoto}
+                  /> */}
+                  
                 </Col>
                 {/*Photo Change Model Start*/}
                 <Modal
-                  show={show}
-                  onHide={handleClose}
+                  show={showPhotoModel}
+                  onHide={handleClosePhoto}
                   aria-labelledby="example-custom-modal-styling-title"
                 >
                   <Modal.Header closeButton></Modal.Header>
@@ -895,7 +910,7 @@ function UserProfileEmptyView() {
                             {avatar ? (
                               <div className="text-center">
                                 <Image
-                                  src={avatar}
+                                  src={URL.createObjectURL(avatar)}
                                   roundedCircle
                                   style={{
                                     width: "150px",
