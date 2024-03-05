@@ -85,15 +85,22 @@ function UserProfileEmptyView() {
   const [websiteLink, setWebsiteLink] = useState("");
   const [getInterest, setGetInterest] = useState("");
 
-  const handleFileInputChange = (event) => {
-    const reader = new FileReader();
+  // const handleFileInputChange = (event) => {
+  //   const reader = new FileReader();
 
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setAvatar(reader.result);
-      }
-    };
-    reader.readAsDataURL(event.target.files[0]);
+  //   reader.onload = () => {
+  //     if (reader.readyState === 2) {
+  //       setAvatar(reader.result);
+  //     }
+  //   };
+  //   reader.readAsDataURL(event.target.files[0]);
+  // };
+
+  const handleFileInputChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setAvatar(file);
+    }
   };
 
   const handleLogout = () => {
@@ -104,12 +111,15 @@ function UserProfileEmptyView() {
     localStorage.removeItem("firstName");
     localStorage.removeItem("lastName");
     localStorage.removeItem("email");
-    handleCloseLogout();
+    handleClose();
     window.location.href = "/login";
   };
 
   /*Photo Change Model*/
-  const [showPhoto, setShowPhoto] = useState(false);
+  const [showPhotoModel, setShowPhotoModel] = useState(false);
+
+  //logout model
+  const [show, setShow] = useState(false);
 
   /*Social Media Model Start*/
   const [show2, setShow2] = useState(false);
@@ -131,11 +141,9 @@ function UserProfileEmptyView() {
   /*professional experience Model */
   const [show7, setShow7] = useState(false);
 
-  const [showLogout, setShowLogout] = useState(false);
-
   /*Photo Change Model*/
-  const handleClosePhoto = () => setShowPhoto(false);
-  const handleShowPhoto = () => setShowPhoto(true);
+  const handleClosePhoto = () => setShowPhotoModel(false);
+  const handleShowPhoto = () => setShowPhotoModel(true);
 
   /*Social Media Model Start*/
   const handleClose2 = () => setShow2(false);
@@ -161,8 +169,9 @@ function UserProfileEmptyView() {
   const handleCloseadd = () => setShowadd(false);
   const handleShowadd = () => setShowadd(true);
 
-  const handleCloseLogout = () => setShowLogout(false);
-  const handleShowLogout = () => setShowLogout(true);
+  //logout model
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   //calling to endpoint for get user details which already in the database
   const getUserDetails = async (e) => {
@@ -408,34 +417,31 @@ function UserProfileEmptyView() {
     window.open(formattedUrl, "_blank");
   };
 
-  const handlePhotoUpload = async (e) => {
+  const handlePhotoUpload = (e) => {
     e.preventDefault();
-    console.log("submitting.........");
-
-    await axios
-      .post(
-        `${backEndURL}/api/photoUpload`,
-        { data: avatar },
-        {
+    const data = new FormData();
+    data.append("file", avatar);
+    if (avatar) {
+      axios
+        .post(`${backEndURL}/api/photoUpload`, data, {
           headers: {
             authorization: `${localStorage.getItem("jwtToken")}`,
           },
-        }
-      )
-      .then((response) => {
-        if (response.data.status === "error") {
-          alert("Photo not uploaded");
-        }
-
-        if (response.data.status === "ok") {
-          setAvatar(response.data.profilePicture);
-          handleClosePhoto();
-          alert("Photo uploaded successfully");
-        }
-      })
-      .catch((error) => {
-        console.error("Error uploading photo:", error);
-      });
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            handleClosePhoto();
+            alert("Photo uploaded successfully");
+          } else {
+            alert("Photo not uploaded");
+          }
+        })
+        .catch((error) => {
+          console.error("Error uploading photo:", error);
+        });
+    } else {
+      alert("Please select a photo to upload");
+    }
   };
 
   const handleInterest = async (e) => {
@@ -481,6 +487,7 @@ function UserProfileEmptyView() {
             (item) => item.id !== id
           );
 
+
           // Update the userData state to reflect the changes
           setUserData((prevState) => ({
             ...prevState,
@@ -496,6 +503,7 @@ function UserProfileEmptyView() {
         console.error("Error deleting interest:", error);
       });
   };
+
 
   const handleDeleteAcademic = async (id) => {
     await axios
@@ -563,8 +571,14 @@ function UserProfileEmptyView() {
             setSelectedImage(null);
             alert("Profile Picture Deleted successfully");
             handleClose5();
-          } else {
-            alert("Photo Delete Failed");
+          } else if(response.data.error === 'No photo found for the user'){
+            handleClose5();
+            alert("No Photo to Delete");
+            
+          }else if(response.data.error === 'Failed to delete photo'){
+            alert("Failed to delete photo");
+          }else {
+            alert("Delete Failed. Some Error Occured");
           }
         })
         .catch((error) => {
@@ -584,7 +598,9 @@ function UserProfileEmptyView() {
       })
       .then((response) => {
         if (response.data.profilePicture) {
-          setSelectedImage(response.data.profilePicture);
+          console.log(response.data.profilePicture)
+          const profilePicture =  `${backEndURL}/${response.data.profilePicture}`;
+          setSelectedImage(profilePicture);
         }
       })
       .catch((error) => {
@@ -605,6 +621,7 @@ function UserProfileEmptyView() {
       nav_close();
     }
   }
+
   return (
     <div className="d-flex">
       <div className="container-fluid">
@@ -734,7 +751,7 @@ function UserProfileEmptyView() {
                     <br />
                     <br />
                     <ListGroup.Item
-                      onClick={handleShowLogout}
+                      onClick={handleShow}
                       action
                       variant="light"
                       className="list-group-item-custom"
@@ -750,8 +767,8 @@ function UserProfileEmptyView() {
               </Tab.Container>
               <Modal
                 size="m"
-                show={showLogout}
-                onHide={handleCloseLogout}
+                show={show}
+                onHide={handleClose}
                 aria-labelledby="example-custom-modal-styling-title"
                 centered
               >
@@ -773,7 +790,7 @@ function UserProfileEmptyView() {
                   </button>
                   <button
                     className="btnlgouy2 custom-button-slot "
-                    onClick={handleCloseLogout}
+                    onClick={handleClose}
                   >
                     No
                   </button>
@@ -819,7 +836,7 @@ function UserProfileEmptyView() {
                     width="45"
                     height="45"
                     style={{
-                      borderRadius: "100000px",
+                      borderRadius: "100px",
                     }}
                     className="d-inline-block"
                     alt="React Bootstrap logo"
@@ -855,13 +872,21 @@ function UserProfileEmptyView() {
                     src={!selectedImage ? userPic : selectedImage}
                     rounded
                     alt="propick"
-                    className="img-profile"
-                    onClick={handleShowPhoto}
+                    className="imgr"
+                    style={{
+                      borderRadius: "100px",
+                    }}
                   />
+                  {/* <Image
+                    src={pen}
+                    rounded
+                    className="position-absolute m-2 cursor-pointer penclzee"
+                    onClick={handleShowPhoto}
+                  /> */}
                 </div>
                 {/*Photo Change Model Start*/}
                 <Modal
-                  show={showPhoto}
+                  show={showPhotoModel}
                   onHide={handleClosePhoto}
                   aria-labelledby="example-custom-modal-styling-title"
                 >
@@ -889,7 +914,7 @@ function UserProfileEmptyView() {
                             {avatar ? (
                               <div className="text-center">
                                 <Image
-                                  src={avatar}
+                                  src={URL.createObjectURL(avatar)}
                                   roundedCircle
                                   style={{
                                     width: "250px",
@@ -1164,7 +1189,7 @@ function UserProfileEmptyView() {
                             </svg>
                           ) : (
                             <svg
-                              onClick={alert("Invalid link")}
+                              onClick={() => alert("Invalid link")}
                               xmlns="http://www.w3.org/2000/svg"
                               width="30"
                               height="30"
@@ -1193,26 +1218,51 @@ function UserProfileEmptyView() {
                             </svg>
                           )}
                           &nbsp;&nbsp;
-                          <svg
-                            href={`mailto:${userData.email}`}
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="30"
-                            height="30"
-                            viewBox="0 0 30 30"
-                            fill="none"
-                            cursor="pointer"
-                          >
-                            <rect
+                          {userData.email ? (
+                            <svg
+                              onClick={() => {
+                                window.location.href = `mailto:${userData.email}`;
+                              }}
+                              xmlns="http://www.w3.org/2000/svg"
                               width="30"
                               height="30"
-                              rx="5"
-                              fill="#E6F6FF"
-                            />
-                            <path
-                              d="M24 9.75C24 8.7875 23.19 8 22.2 8H7.8C6.81 8 6 8.7875 6 9.75V20.25C6 21.2125 6.81 22 7.8 22H22.2C23.19 22 24 21.2125 24 20.25V9.75ZM22.2 9.75L15 14.125L7.8 9.75H22.2ZM22.2 20.25H7.8V11.5L15 15.875L22.2 11.5V20.25Z"
-                              fill="#2A2A72"
-                            />
-                          </svg>
+                              viewBox="0 0 30 30"
+                              fill="none"
+                              cursor="pointer"
+                            >
+                              <rect
+                                width="30"
+                                height="30"
+                                rx="5"
+                                fill="#E6F6FF"
+                              />
+                              <path
+                                d="M24 9.75C24 8.7875 23.19 8 22.2 8H7.8C6.81 8 6 8.7875 6 9.75V20.25C6 21.2125 6.81 22 7.8 22H22.2C23.19 22 24 21.2125 24 20.25V9.75ZM22.2 9.75L15 14.125L7.8 9.75H22.2ZM22.2 20.25H7.8V11.5L15 15.875L22.2 11.5V20.25Z"
+                                fill="#2A2A72"
+                              />
+                            </svg>
+                          ) : (
+                            <svg
+                              onClick={() => alert("Invalid link")}
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="30"
+                              height="30"
+                              viewBox="0 0 30 30"
+                              fill="none"
+                              cursor="pointer"
+                            >
+                              <rect
+                                width="30"
+                                height="30"
+                                rx="5"
+                                fill="#E6F6FF"
+                              />
+                              <path
+                                d="M24 9.75C24 8.7875 23.19 8 22.2 8H7.8C6.81 8 6 8.7875 6 9.75V20.25C6 21.2125 6.81 22 7.8 22H22.2C23.19 22 24 21.2125 24 20.25V9.75ZM22.2 9.75L15 14.125L7.8 9.75H22.2ZM22.2 20.25H7.8V11.5L15 15.875L22.2 11.5V20.25Z"
+                                fill="#2A2A72"
+                              />
+                            </svg>
+                          )}
                           &nbsp;&nbsp;
                           {userData.socialMedia ? (
                             <svg
@@ -1237,7 +1287,7 @@ function UserProfileEmptyView() {
                             </svg>
                           ) : (
                             <svg
-                              onClick={alert("Invalid link")}
+                              onClick={() => alert("Invalid link")}
                               xmlns="http://www.w3.org/2000/svg"
                               width="30"
                               height="30"

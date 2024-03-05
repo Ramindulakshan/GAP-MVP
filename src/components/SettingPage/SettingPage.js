@@ -223,7 +223,9 @@ function SettingPage() {
         })
         .then((response) => {
           if (response.data.profilePicture) {
-            setSelectedImage(response.data.profilePicture);
+            
+            const profilePicture =  `${backEndURL}/${response.data.profilePicture}`;
+            setSelectedImage(profilePicture);
           }
         })
         .catch((error) => {
