@@ -53,7 +53,8 @@ const HomePage = () => {
         .then((response) => {
           console.log(response);
           if (response.data.profilePicture) {
-            setProfilePic(response.data.profilePicture);
+            const profilePicture =  `${backEndURL}/${response.data.profilePicture}`;
+            setProfilePic(profilePicture);
           }
         })
         .catch((error) => {

@@ -27,6 +27,7 @@ import { Modal } from "react-bootstrap";
 import TakeABreak from "../HomePage/Img/Group 421.png";
 import userPic from "../HomePage/Img/user.png";
 import axios from "axios";
+import { backEndURL } from "../../server";
 
 function UnderConstructionWeeklySchedulePage() {
   /*LogOut Model*/
@@ -39,7 +40,7 @@ function UnderConstructionWeeklySchedulePage() {
   useEffect(() => {
     const getUserImage = () => {
       axios
-        .get("http://localhost:3001/api/getUserImage", {
+        .get(`${backEndURL}/api/getUserImage`, {
           headers: {
             authorization: `${localStorage.getItem("jwtToken")}`,
           },
@@ -47,7 +48,8 @@ function UnderConstructionWeeklySchedulePage() {
         .then((response) => {
           console.log(response);
           if (response.data.profilePicture) {
-            setSelectedImage(response.data.profilePicture);
+            const profilePicture =  `${backEndURL}/${response.data.profilePicture}`;
+            setSelectedImage(profilePicture);
           }
         })
         .catch((error) => {
