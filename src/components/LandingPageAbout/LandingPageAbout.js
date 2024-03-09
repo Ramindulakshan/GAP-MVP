@@ -81,18 +81,20 @@ function LandingPageAbout() {
               connects the cooperate world with the student community.
             </p>
           </div>
-          <div className="dtabx">
+          <div className="dtabx " >
+              
             <h5 className="card-title fw-bold titlabt2 mb-4">Meet the team </h5>
             <div className="cardsdn">
               <div className="container">
                 <div className="row">
-                  <div className="col-sm-2 col-md-2 col-lg-2 text-center">
-                    <div className="pbtn2oo">
+                  <div className="col-sm-2 col-md-2 col-lg-2 text-center fadeInUp">
+                    <div className="pbtn2oo ">
                       <img
                         src={pro1}
                         alt="logo"
                         className="img-fluid custom-image-Gap rounded-circle"
                         style={{
+                          animationDelay: "0.5s" ,
                           width: "100px",
                           height: "100px",
                           objectFit: "cover",
@@ -103,13 +105,14 @@ function LandingPageAbout() {
                     <p className="mb-0 ">(Director/Advisor)</p>
                   </div>
 
-                  <div className="col-sm-4 col-md-4 col-lg-2 text-center">
+                  <div className="col-sm-4 col-md-4 col-lg-2 text-center fadeInUp">
                     <div className="pbtn2oo">
                       <img
                         src={pro2}
                         alt="logo"
                         className="img-fluid custom-image-Gap rounded-circle"
                         style={{
+                          
                           width: "100px",
                           height: "100px",
                           objectFit: "cover",
@@ -120,7 +123,7 @@ function LandingPageAbout() {
                     <p className="mb-0 ">(Founder)</p>
                   </div>
 
-                  <div className="col-sm-4 col-md-4 col-lg-2 text-center">
+                  <div className="col-sm-4 col-md-4 col-lg-2 text-center fadeInUp">
                     <div className="pbtn2oo">
                       <img
                         src={pro3}
@@ -136,7 +139,7 @@ function LandingPageAbout() {
                     <p className="mb-0 pintflnme">Chathushkee Amuwatta</p>
                     <p className="mb-0 ">(Senior Project Manager)</p>
                   </div>
-                  <div className="col-sm-4 col-md-4 col-lg-2 text-center">
+                  <div className="col-sm-4 col-md-4 col-lg-2 text-center fadeInUp">
                     <div className="pbtn2oo">
                       <img
                         src={pro4}
@@ -152,7 +155,7 @@ function LandingPageAbout() {
                     <p className="mb-0 pintflnme">Isuru Udana</p>
                     <p className="mb-0 ">(Project Manager)</p>
                   </div>
-                  <div className="col-sm-4 col-md-4 col-lg-2 text-center">
+                  <div className="col-sm-4 col-md-4 col-lg-2 text-center fadeInUp">
                     <div className="pbtn2oo">
                       <img
                         src={pro5}
@@ -176,7 +179,7 @@ function LandingPageAbout() {
             <div className="">
               <div className="container">
                 <div className="row">
-                  <div className="col-sm-4 col-md-4 col-lg-2 text-center">
+                  <div className="col-sm-4 col-md-4 col-lg-2 text-center fadeInUp">
                     <div className="pbtn2oo">
                       <img
                         src={pro6}
@@ -192,7 +195,7 @@ function LandingPageAbout() {
                     <p className="mb-0 pintflnme">Irani Aanjana</p>
                     <p className="">(UI/UX Designer)</p>
                   </div>
-                  <div className="col-sm-4 col-md-4 col-lg-2 text-center">
+                  <div className="col-sm-4 col-md-4 col-lg-2 text-center fadeInUp">
                     <div className="pbtn2oo">
                       <img
                         src={pro7}
@@ -209,7 +212,7 @@ function LandingPageAbout() {
                     <p className="mb-0 ">(Frontend Developer)</p>
                   </div>
 
-                  <div className="col-sm-4 col-md-4 col-lg-2 text-center">
+                  <div className="col-sm-4 col-md-4 col-lg-2 text-center fadeInUp">
                     <div className="pbtn2oo">
                       <img
                         src={pro8}
@@ -225,7 +228,7 @@ function LandingPageAbout() {
                     <p className="mb-0 pintflnme">Dilshan Priyawansha</p>
                     <p className="mb-0 ">(Frontend Developer)</p>
                   </div>
-                  <div className="col-sm-4 col-md-4 col-lg-2 text-center">
+                  <div className="col-sm-4 col-md-4 col-lg-2 text-center fadeInUp">
                     <div className="pbtn2oo">
                       <img
                         src={pro9}
@@ -241,7 +244,7 @@ function LandingPageAbout() {
                     <p className="mb-0 pintflnme">Yasindu Sanjeewa</p>
                     <p className="mb-0 ">(Backend Developer)</p>
                   </div>
-                  <div className="col-sm-4 col-md-4 col-lg-2 text-center">
+                  <div className="col-sm-4 col-md-4 col-lg-2 text-center fadeInUp">
                     <div className="pbtn2oo">
                       <img
                         src={pro10}
@@ -257,7 +260,7 @@ function LandingPageAbout() {
                     <p className="mb-0 pintflnme">Gaurawa Bandara</p>
                     <p className="mb-0 ">(Backend Developer)</p>
                   </div>
-                  <div className="col-sm-4 col-md-4 col-lg-2 text-center">
+                  <div className="col-sm-4 col-md-4 col-lg-2 text-center fadeInUp">
                     <div className="pbtn2oo">
                       <img
                         src={pro11}

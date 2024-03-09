@@ -80,7 +80,7 @@ const LoginPage = () => {
         <div className="container-fluid container-fluidreg">
           <div className="">
             <br></br> <br></br> <br></br>
-            <div className="row bxbxsetlog">
+            <div className="row bxbxsetlog fadeInUp">
               <div className="col-lg-5  custom-bglog  align-items-center justify-content-center">
                 <div className=" text-center">
                   <img

@@ -836,9 +836,7 @@ function UserProfileEmptyView() {
                     roundedCircle
                     width="45"
                     height="45"
-                    style={{
-                      borderRadius: "100px",
-                    }}
+                   
                     className="d-inline-block"
                     alt="React Bootstrap logo"
                   />
@@ -874,9 +872,7 @@ function UserProfileEmptyView() {
                     rounded
                     alt="propick"
                     className="imgr"
-                    style={{
-                      borderRadius: "100px",
-                    }}
+                   
                   />
                   {/* <Image
                     src={pen}
