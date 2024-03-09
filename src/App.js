@@ -39,19 +39,28 @@ import WeeklySchedulePage from "./components/WeeklySchedulePage/WeeklySchedulePa
 import UnderConstructionWeeklySchedulePage from "./components/WeeklySchedulePage/UnderConstructionWeeklySchedulePage";
 import WeeklySchedulePageNotMenter from "./components/WeeklySchedulePageNotMenter/WeeklySchedulePageNotMenter";
 import HandleAuth from "./utils/HandleAuth";
+import DeleteAccount from "./components/SettingPage/DeleteAccount";
+import ContactUs from "./components/SettingPage/ContactUs";
+import ChangePassword from "./components/SettingPage/ChangePassword";
 
 const App = () => {
   return (
     <React.Fragment>
       <Routes>
-        <Route >
+        <Route>
           <Route path="/home" element={<HomePage />} />
           <Route path="/settings" element={<SettingPage />} />
           <Route path="/mentoringSession" element={<MentoringSessionPage />} />
           <Route path="/mentoringSession " element={<MentoringSessionPage />} />
           <Route path="/beAMentor" element={<BeAMentor />} />
-          <Route path="/underConstructionBeAMentor" element={<UnderConstructionBeAMentor />} />
-          <Route path="/userProfileEmptyView" element={<UserProfileEmptyView />} />
+          <Route
+            path="/underConstructionBeAMentor"
+            element={<UnderConstructionBeAMentor />}
+          />
+          <Route
+            path="/userProfileEmptyView"
+            element={<UserProfileEmptyView />}
+          />
         </Route>
 
         <Route path="/WeeklySchedulePage" element={<WeeklySchedulePage />} />
@@ -111,6 +120,9 @@ const App = () => {
           path="/weeklySchedulePageNotMenter"
           element={<WeeklySchedulePageNotMenter />}
         />
+        <Route path="/settingDeleteAccount" element={<DeleteAccount />} />
+        <Route path="/settingContactUs" element={<ContactUs />} />
+        <Route path="/changePass" element={<ChangePassword />} />
       </Routes>
     </React.Fragment>
   );

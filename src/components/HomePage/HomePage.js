@@ -99,12 +99,6 @@ const HomePage = () => {
   function nav_close() {
     document.getElementById("mySidebar").style.display = "none";
   }
-  function close_sidebar_on_click() {
-    if (window.innerWidth <= 768) {
-      // Check if the window width is less than or equal to 768 (adjust this value based on your design)
-      nav_close();
-    }
-  }
   return (
     <div className="d-flex">
       <div className="container-fluid">
@@ -134,7 +128,7 @@ const HomePage = () => {
                       className="list-group-item-custom"
                       onClick={() => {
                         window.location.href = "/home";
-                        close_sidebar_on_click();
+                        
                       }}
                       style={{ backgroundColor: "#DDDDFE", border: "0" }}
                     >
@@ -354,7 +348,7 @@ const HomePage = () => {
                 />
               </div>
             </Form>
-            <div className="custom-Point">
+            <div className="custom-Point fadeInUp">
               <div className="home-bx-one">
                 <h4 className="custom-S-text1 mt-3">Hi {firstName}!!</h4>
                 {/* {user ? <h4>Hi {firstName}!!</h4> : <h4>Hi {firstName}!!</h4>} */}{" "}
@@ -383,7 +377,7 @@ const HomePage = () => {
                 />
               </div>
             </div>
-            <div className="d-flex justify-content-between mt-4">
+            <div className="d-flex justify-content-between mt-4 fadeInUp">
               <h4>Recommended Mentors</h4>
               <div>
                 <h6
@@ -398,7 +392,7 @@ const HomePage = () => {
               </div>
             </div>
 
-            <div className="">
+            <div className="fadeInUp">
               <Card style={{ marginRight: "20px", borderRadius: "10px" }}>
                 <div className="text-center">
                   <div>

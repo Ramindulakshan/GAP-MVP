@@ -32,14 +32,7 @@
   user-select: none;
 
 }
-::-webkit-scrollbar {
-  width: 0px;
 
-}
-
-::-webkit-scrollbar-track {
-  background-color: #ffffff;
-}
 
 .shdw::before {
   content: "";
@@ -52,13 +45,13 @@
   z-index: 1;
 }
 
-.Cardsection {
+/* .Cardsection {
   height: 100%;
   width: 67vw;
   padding: 0 0px 30px 0px;
   position: relative;
   background-attachment: fixed;
-}
+} */
 
 .Cardsectionnwt {
   height: 100%;

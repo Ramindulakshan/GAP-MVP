@@ -99,7 +99,7 @@ function LandingPageContact() {
           </div>
           <div className="">
             {/*Contact Us Section Start*/}
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center fadeInUp">
               <div className="confull-lan newbroder">
                 <div className="">
                   <h5 className="card-title fw-bold titlenewwrt">Contact Us</h5>
