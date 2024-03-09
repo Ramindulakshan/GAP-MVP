@@ -25,8 +25,6 @@ const LandingPage = () => {
 
   const [showSidebar, setShowSidebar] = useState(false);
 
-
-
   return (
     <>
       <section className="new-background">
@@ -79,7 +77,10 @@ const LandingPage = () => {
             </Navbar>
           </div>
           <div className="landing-set-res">
-            <div>
+            <div
+              className="fadeInUp"
+              style={{animationDelay: "0.3s" }}
+            >
               <h1 className="custom-text-LA text-center mb-4 mt-3">
                 Explore The World And Discover <br /> Your Potential
               </h1>
@@ -91,8 +92,8 @@ const LandingPage = () => {
             </div>
             <CardGroup className="d-flex justify-content-center flex-wrap">
               <Card
-                className="m-3 text-center"
-                style={{ backgroundColor: "#DCDDF9" }}
+                className="m-3 text-center fadeInUp"
+                style={{ backgroundColor: "#DCDDF9", animationDelay: "0.5s" }}
               >
                 <Card.Body>
                   <Card.Text>
@@ -106,8 +107,8 @@ const LandingPage = () => {
                 </Card.Body>
               </Card>
               <Card
-                className="m-3 text-center"
-                style={{ backgroundColor: "#DCDDF9" }}
+                className="m-3 text-center fadeInUp"
+                style={{ backgroundColor: "#DCDDF9", animationDelay: "0.5s" }}
               >
                 <Card.Body>
                   <Card.Text>
@@ -126,8 +127,8 @@ const LandingPage = () => {
                 </Card.Body>
               </Card>
               <Card
-                className="m-3 text-center"
-                style={{ backgroundColor: "#DCDDF9" }}
+                className="m-3 text-center fadeInUp"
+                style={{ backgroundColor: "#DCDDF9", animationDelay: "0.5s" }}
               >
                 <Card.Body>
                   <Card.Text>

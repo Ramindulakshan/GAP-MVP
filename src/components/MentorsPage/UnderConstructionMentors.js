@@ -321,7 +321,7 @@ function UnderConstructionMentors() {
               <br></br>
               <br></br>
               <div
-                className="main-box"
+                className="main-box fadeInUp"
                 style={{
                   border: "2px solid #63636380",
                   width: "100%",

@@ -533,6 +533,7 @@ padding: 30px 30px 0 0;
   .card {
     flex-direction: column;
     display: flex;
+    margin: 10px;
     padding: 10px;
     justify-content: center;
     align-items: center;

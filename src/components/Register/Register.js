@@ -104,7 +104,7 @@ function Prologin() {
     <div>
       <section className="newwitchg">
         <div className="container-fluid container-fluidreg">
-          <div className="row bxbxset">
+          <div className="row bxbxset fadeInUp">
             <div className="col-lg-5 custom-bgregit align-items-center justify-content-center">
               <div className="text-center">
                 <img
