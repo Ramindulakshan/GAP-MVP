@@ -32,8 +32,8 @@ const LoginPage = () => {
 
     await axios
       .post(`${backEndURL}/api/login`, {
-        username: username,
-        password: password,
+        username,
+        password,
       })
       .then((response) => {
         if (response.data.status === "ok") {
@@ -105,7 +105,7 @@ const LoginPage = () => {
                           <InputGroup hasValidation>
                             <Form.Control
                               type="text"
-                              placeholder="Username"
+                              placeholder="Username or Email"
                               style={{ textTransform: "none" }}
                               aria-describedby="inputGroupPrepend"
                               required
