@@ -58,7 +58,7 @@ const App = () => {
             element={<UnderConstructionBeAMentor />}
           />
           <Route
-            path="/userProfileEmptyView"
+            path="/userProfile"
             element={<UserProfileEmptyView />}
           />
         </Route>

@@ -322,7 +322,7 @@ const HomePage = () => {
                     className="d-inline-block"
                     alt="React Bootstrap logo"
                     onClick={() => {
-                      window.location.href = "/userProfileEmptyView";
+                      window.location.href = "/userProfile";
                     }}
                   />
                   {/* Toggle Button for Mobile View */}

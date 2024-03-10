@@ -465,7 +465,7 @@ function ContactUs() {
                     className="d-inline-block"
                     alt=" Profile Pic"
                     onClick={() => {
-                      window.location.href = "/userProfileEmptyView";
+                      window.location.href = "/userProfile";
                     }}
                   />
                   {/* Toggle Button for Mobile View */}
