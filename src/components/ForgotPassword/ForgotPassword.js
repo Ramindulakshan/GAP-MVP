@@ -4,7 +4,7 @@ import Lock_image from "../ForgotPassword/Img/lock.png";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { useState } from "react";
-import { backEndURL } from "../../server";
+import { backEndURL } from "../../backendUrl";
 import InputGroup from "react-bootstrap/InputGroup";
 
 function ForgotPassword() {

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Register_image from "../Register/img/register.png";
 import InputGroup from "react-bootstrap/InputGroup";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
-import { backEndURL } from "../../server";
+import { backEndURL } from "../../backendUrl";
 
 const LoginPage = () => {
   const [username, setUserName] = useState("");
