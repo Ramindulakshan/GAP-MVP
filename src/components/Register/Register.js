@@ -9,7 +9,7 @@ import { InputGroup } from "react-bootstrap";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import "./register.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { backEndURL } from "../../server";
+import { backEndURL } from "../../backendUrl";
 import axios from "axios";
 
 function Prologin() {

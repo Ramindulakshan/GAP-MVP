@@ -19,7 +19,7 @@ import * as formik from "formik";
 import * as yup from "yup";
 import err from "./img/err.png";
 import userPic from "../HomePage/Img/user.png";
-import { backEndURL } from "../../server";
+import { backEndURL } from "../../backendUrl";
 import axios from "axios";
 
 import {
@@ -465,7 +465,7 @@ function ChangePassword() {
                     className="d-inline-block"
                     alt=" Profile Pic"
                     onClick={() => {
-                      window.location.href = "/userProfileEmptyView";
+                      window.location.href = "/userProfile";
                     }}
                   />
                   {/* Toggle Button for Mobile View */}

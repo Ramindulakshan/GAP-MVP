@@ -26,7 +26,7 @@ import { IoIosLogOut } from "react-icons/io";
 import { Modal } from "react-bootstrap";
 import userPic from "../HomePage/Img/user.png";
 import TakeABreak from "../HomePage/Img/Group 421.png";
-import { backEndURL } from "../../server";
+import { backEndURL } from "../../backendUrl";
 import axios from "axios";
 
 function UnderConstructionMentorSession() {
@@ -284,7 +284,7 @@ function UnderConstructionMentorSession() {
                       className="d-inline-block"
                       alt=" Profile Pic"
                       onClick={() => {
-                        window.location.href = "/userProfileEmptyView";
+                        window.location.href = "/userProfile";
                       }}
                     />
                        {/* Toggle Button for Mobile View */}

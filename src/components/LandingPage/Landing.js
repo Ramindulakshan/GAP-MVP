@@ -4,7 +4,7 @@ import CountUp from "react-countup";
 import { Card } from "react-bootstrap";
 import CardGroup from "react-bootstrap/CardGroup";
 import GAP_Image from "../HomePage/Img/GAP_BG.png";
-import { backEndURL } from "../../server";
+import { backEndURL } from "../../backendUrl";
 import axios from "axios";
 import { Navbar, Nav, Button } from "react-bootstrap";
 const LandingPage = () => {

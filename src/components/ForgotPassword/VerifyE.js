@@ -1,7 +1,7 @@
 import "../ForgotPassword/Verify.css";
 import Email_image from "../ForgotPassword/Img/email.png";
 import Register_image from "../Register/img/register.png";
-import { backEndURL } from "../../server";
+import { backEndURL } from "../../backendUrl";
 import axios from "axios";
 import React from "react";
 

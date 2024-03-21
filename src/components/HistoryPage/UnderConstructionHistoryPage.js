@@ -25,7 +25,7 @@ import { IoIosLogOut } from "react-icons/io";
 import { Modal } from "react-bootstrap";
 import TakeABreak from "../HomePage/Img/Group 421.png";
 import userPic from "../HomePage/Img/user.png";
-import { backEndURL } from "../../server";
+import { backEndURL } from "../../backendUrl";
 import axios from "axios";
 
 function UnderConstructionHistoryPage() {
@@ -283,7 +283,7 @@ function UnderConstructionHistoryPage() {
                       className="d-inline-block"
                       alt=" Profile Pic"
                       onClick={() => {
-                        window.location.href = "/userProfileEmptyView";
+                        window.location.href = "/userProfile";
                       }}
                     />
                     {/* Toggle Button for Mobile View */}

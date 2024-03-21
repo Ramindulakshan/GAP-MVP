@@ -16,7 +16,7 @@ import Modal from "react-bootstrap/Modal";
 import { Container } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import TakeABreak from "../HomePage/Img/Group 421.png";
-import { backEndURL } from "../../server";
+import { backEndURL } from "../../backendUrl";
 import axios from "axios";
 import { FaRegBell } from "react-icons/fa6";
 import moment from "moment/moment";
@@ -32,6 +32,7 @@ import { RxCountdownTimer } from "react-icons/rx";
 import { IoIosLogOut } from "react-icons/io";
 import { IoSaveSharp } from "react-icons/io5";
 import userPic from "../HomePage/Img/user.png";
+import UserDataModal from "../../utils/UserDataModal";
 
 function UserProfileEmptyView() {
   const [userData, setUserData] = useState({
@@ -84,6 +85,25 @@ function UserProfileEmptyView() {
   const [linkedinLink, setLinkedinLink] = useState("");
   const [websiteLink, setWebsiteLink] = useState("");
   const [getInterest, setGetInterest] = useState("");
+
+  const academicFormFields = [
+    { label: 'Institute*', placeholder: 'Add institute name', value: institute, onChange: setInstitute, type: 'text' },
+    { label: 'Degree / Course*', placeholder: 'Add degree / course name', value: degree, onChange: setDegree, type: 'text' },
+    { label: 'Start Date*', placeholder: 'Start date', value: startDate, onChange: setStartDate, type: 'date' },
+    { label: 'End Date (or expected)*', placeholder: 'End date', value: endDate, onChange: setEndDate, type: 'date' },
+    { label: 'Grade', placeholder: 'Add grade', value: grade, onChange: setGrade, type: 'text' },
+  ];
+
+  const professionalFormFields = [
+    { label: 'Position*', placeholder: 'Add position', value: position, onChange: setPosition, type: 'text' },
+    { label: 'Employment Type', placeholder: 'Select employment type', value: empType, onChange: setEmpType, type: 'select', options: ['Select employment type', 'Full time', 'Part time', 'Internship', 'Freelance', 'Contract'] },
+    { label: 'Company Name*', placeholder: 'Add company name', value: companyName, onChange: setCompanyName, type: 'text' },
+    { label: 'Location Type', placeholder: 'Select location type', value: locationType, onChange: setLocationType, type: 'select', options: ['Select location type', 'Onsite', 'Hybrid', 'Remote'] },
+    { label: 'Start Date*', placeholder: 'Start date', value: startDate, onChange: setStartDate, type: 'date' },
+    { label: 'End Date (or expected)*', placeholder: 'End date', value: endDate, onChange: setEndDate, type: 'date' },
+    { label: 'Skills', placeholder: 'Add skills', value: skills, onChange: setSkills, type: 'text' },
+  ]
+
 
   // const handleFileInputChange = (event) => {
   //   const reader = new FileReader();
@@ -150,11 +170,29 @@ function UserProfileEmptyView() {
   const handleShow2 = () => setShow2(true);
 
   /*Edit personal details Model*/
-  const handleClose3 = () => setShow3(false);
+  const handleClose3 = () => {
+    setShow3(false);
+    setTitle("");
+    setAddress("");
+    setTelephone("");
+    setGender("");
+    setBirthday("");
+    setDescription("");
+    setPortfolioLink("");
+
+  }
   const handleShow3 = () => setShow3(true);
 
   /*Academic qualification Model*/
-  const handleClose4 = () => setShow4(false);
+  const handleClose4 = () => {
+    setShow4(false);
+    setInstitute("");
+    setDegree("");
+    setStartDate("");
+    setEndDate("");
+    setGrade("");
+
+  }
   const handleShow4 = () => setShow4(true);
 
   /*Delete Model */
@@ -836,7 +874,6 @@ function UserProfileEmptyView() {
                     roundedCircle
                     width="45"
                     height="45"
-                   
                     className="d-inline-block"
                     alt="React Bootstrap logo"
                   />
@@ -872,7 +909,6 @@ function UserProfileEmptyView() {
                     rounded
                     alt="propick"
                     className="imgr"
-                   
                   />
                   {/* <Image
                     src={pen}
@@ -1827,102 +1863,16 @@ function UserProfileEmptyView() {
                     </svg>
                   </h6>
                   {/*Academic qualification Model Start*/}
-                  <Modal
+
+                  <UserDataModal
                     show={show4}
-                    onHide={handleClose4}
-                    aria-labelledby="example-custom-modal-styling-title"
-                  >
-                    <Modal.Header closeButton></Modal.Header>
+                    handleClose={handleClose4}
+                    handleSave={handleAcademicData}
+                    title="Academic Qualification"
+                    subTitle="Add New Academic Qualification"
+                    formFields={academicFormFields}
+                  />
 
-                    <Modal.Body>
-                      <Modal.Title
-                        id="example-custom-modal-styling-title"
-                        className="text-center"
-                      >
-                        <h1>Academic Qualification</h1>
-                        <p>Add New Academic Qualification</p>
-                      </Modal.Title>
-                      <div className="p-7">
-                        <Container className="mt-2">
-                          <Form.Label>Institute* </Form.Label>
-                          <Form.Control
-                            value={institute}
-                            onChange={(e) => setInstitute(e.target.value)}
-                            placeholder="add institute name"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-                          <br></br>
-                          <Form.Label>Degree / Course* </Form.Label>
-                          <Form.Control
-                            value={degree}
-                            onChange={(e) => setDegree(e.target.value)}
-                            placeholder="add degree / course name"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                            required
-                          />
-                          <br></br>
-
-                          <Form.Group as={Col} controlId="formGridZip">
-                            <Form.Label>Start date*</Form.Label>
-                            <Form.Control
-                              value={startDate}
-                              onChange={(e) => setStartDate(e.target.value)}
-                              type="date"
-                              style={{
-                                border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                boxShadow: "none", // Optional: Remove box-shadow
-                              }}
-                            />
-                          </Form.Group>
-                          <br></br>
-                          <Form.Group as={Col} controlId="formGridZip">
-                            <Form.Label>End date (or expected)*</Form.Label>
-                            <Form.Control
-                              value={endDate}
-                              onChange={(e) => setEndDate(e.target.value)}
-                              type="date"
-                              style={{
-                                border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                boxShadow: "none", // Optional: Remove box-shadow
-                              }}
-                            />
-                          </Form.Group>
-                          <br></br>
-                          <Form.Label>Grade</Form.Label>
-                          <Form.Control
-                            value={grade}
-                            onChange={(e) => setGrade(e.target.value)}
-                            placeholder="add grade"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-                          <br></br>
-                        </Container>
-                      </div>
-                      <div className="text-center">
-                        <button
-                          className="btn  custom-button-reset my-1 my-sm-3 t"
-                          type="submit"
-                          onClick={handleAcademicData}
-                        >
-                          Save
-                        </button>
-                      </div>
-                    </Modal.Body>
-                  </Modal>
                   {/*Academic qualification Model End*/}
                 </div>
 
@@ -2027,142 +1977,16 @@ function UserProfileEmptyView() {
                     </svg>
                   </h6>
                   {/*Professional Experience  Model Start*/}
-                  <Modal
+                  <UserDataModal
                     show={show7}
-                    onHide={handleClose7}
-                    aria-labelledby="example-custom-modal-styling-title"
-                  >
-                    <Modal.Header closeButton></Modal.Header>
+                    handleClose={handleClose7}
+                    handleSave={handleProfessionalData}
+                    title="Professional Experience"
+                    subTitle="Add New Professional Experience"
+                    formFields={professionalFormFields}
+                  
+                  />
 
-                    <Modal.Body>
-                      <Modal.Title
-                        id="example-custom-modal-styling-title"
-                        className="text-center"
-                      >
-                        <h1>Professional Experience </h1>
-
-                        <p>Add New Professional Experience </p>
-                      </Modal.Title>
-                      <div className="p-7">
-                        <Container className="mt-2">
-                          <Form.Label>position* </Form.Label>
-                          <Form.Control
-                            value={position}
-                            onChange={(e) => setPosition(e.target.value)}
-                            placeholder="add position"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-                          <br></br>
-
-                          <Form.Label>Employment type*</Form.Label>
-                          <Form.Select
-                            value={empType}
-                            onChange={(e) => setEmpType(e.target.value)}
-                            placeholder="Select employment type"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          >
-                            <option>Select employment type</option>
-                            <option>Full time</option>
-                            <option>Part time</option>
-                            <option>Internship</option>
-                            <option>Freelance</option>
-                            <option>Contract</option>
-                          </Form.Select>
-
-                          <br></br>
-                          <Form.Label>Company name* </Form.Label>
-                          <Form.Control
-                            value={companyName}
-                            onChange={(e) => setCompanyName(e.target.value)}
-                            placeholder="add Company name"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-
-                          <br></br>
-                          <Form.Label>Location type* </Form.Label>
-                          <Form.Select
-                            value={locationType}
-                            onChange={(e) => setLocationType(e.target.value)}
-                            placeholder="select location type"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          >
-                            <option>select location type</option>
-                            <option>Onsite</option>
-                            <option>Hybrid</option>
-                            <option>Remote</option>
-                          </Form.Select>
-
-                          <br></br>
-                          <Form.Label>Start date*</Form.Label>
-                          <Form.Control
-                            value={startDate}
-                            onChange={(e) => setStartDate(e.target.value)}
-                            placeholder="Start date of degree"
-                            type="date"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-
-                          <br></br>
-                          <Form.Group as={Col} controlId="formGridZip">
-                            <Form.Label>End date(or expected)</Form.Label>
-                            <Form.Control
-                              value={endDate}
-                              onChange={(e) => setEndDate(e.target.value)}
-                              type="date"
-                              style={{
-                                border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                boxShadow: "none", // Optional: Remove box-shadow
-                              }}
-                            />
-                          </Form.Group>
-                          <br></br>
-                          <Form.Label>Skills</Form.Label>
-                          <Form.Control
-                            value={skills}
-                            onChange={(e) => setSkills(e.target.value)}
-                            placeholder="describe about skills gathered"
-                            style={{
-                              border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                              borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                              boxShadow: "none", // Optional: Remove box-shadow
-                            }}
-                          />
-
-                          <br></br>
-                        </Container>
-                      </div>
-                      <div className="text-center">
-                        <button
-                          className="btn  custom-button-reset my-1 my-sm-3 t"
-                          type="submit"
-                          onClick={handleProfessionalData}
-                        >
-                          Save
-                        </button>
-                      </div>
-                    </Modal.Body>
-                  </Modal>
                   {/*Professional Experience  Model End*/}
                 </div>
                 <div class="carduprofl cardnew card" style={{ border: "0" }}>
@@ -2172,7 +1996,7 @@ function UserProfileEmptyView() {
                         {userData.professionalDetails &&
                         userData.professionalDetails.length > 0 ? (
                           userData.professionalDetails.map((detail, index) => (
-                            <div className='bordernew' key={index}>
+                            <div className="bordernew" key={index}>
                               <div
                                 className="d-flex justify-content-between mt-4"
                                 style={{ justifyContent: "space-between" }}

@@ -16,7 +16,7 @@ import TakeABreak from "../HomePage/Img/Group 421.png";
 import { FaSearch } from "react-icons/fa";
 import { FormControl } from "react-bootstrap";
 import { FaRegBell } from "react-icons/fa6";
-import { backEndURL } from "../../server";
+import { backEndURL } from "../../backendUrl";
 import {
   IoHomeOutline,
   IoPeopleOutline,
@@ -322,7 +322,7 @@ const HomePage = () => {
                     className="d-inline-block"
                     alt="React Bootstrap logo"
                     onClick={() => {
-                      window.location.href = "/userProfileEmptyView";
+                      window.location.href = "/userProfile";
                     }}
                   />
                   {/* Toggle Button for Mobile View */}
