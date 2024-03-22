@@ -124,7 +124,7 @@ function SettingPage() {
 
     await axios
       .post(
-        `${backEndURL}/api/changePassword`,
+        `${backEndURL}/changePassword`,
         {
           currentPassword,
           newPassword,
@@ -160,7 +160,7 @@ function SettingPage() {
     e.preventDefault();
     await axios
       .post(
-        `${backEndURL}/api/deleteAccount`,
+        `${backEndURL}/deleteAccount`,
         {
           password: passwordToDelete,
         },
@@ -216,7 +216,7 @@ function SettingPage() {
   useEffect(() => {
     const getUserImage = () => {
       axios
-        .get(`${backEndURL}/api/getUserImage`, {
+        .get(`${backEndURL}/getUserImage`, {
           headers: {
             authorization: `${localStorage.getItem("jwtToken")}`,
           },

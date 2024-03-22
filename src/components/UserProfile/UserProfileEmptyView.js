@@ -104,6 +104,14 @@ function UserProfileEmptyView() {
     { label: 'Skills', placeholder: 'Add skills', value: skills, onChange: setSkills, type: 'text' },
   ]
 
+  const editAcademicFormFields = [
+    { label: 'Institute*', placeholder: 'Add institute name', value: userData.academicDetails.institute, onChange: setInstitute, type: 'text' },
+    { label: 'Degree / Course*', placeholder: 'Add degree / course name', value: userData.academicDetails.degree, onChange: setDegree, type: 'text' },
+    { label: 'Start Date*', placeholder: 'Start date', value: userData.academicDetails.startDate, onChange: setStartDate, type: 'date' },
+    { label: 'End Date (or expected)*', placeholder: 'End date', value: userData.academicDetails.endDate, onChange: setEndDate, type: 'date' },
+    { label: 'Grade', placeholder: 'Add grade', value: userData.academicDetails.grade, onChange: setGrade, type: 'text' },
+  ]
+
 
   // const handleFileInputChange = (event) => {
   //   const reader = new FileReader();
@@ -161,6 +169,8 @@ function UserProfileEmptyView() {
   /*professional experience Model */
   const [show7, setShow7] = useState(false);
 
+  const [showEditAcademicModal, setShowEditAcademicModal] = useState(false);
+
   /*Photo Change Model*/
   const handleClosePhoto = () => setShowPhotoModel(false);
   const handleShowPhoto = () => setShowPhotoModel(true);
@@ -191,7 +201,6 @@ function UserProfileEmptyView() {
     setStartDate("");
     setEndDate("");
     setGrade("");
-
   }
   const handleShow4 = () => setShow4(true);
 
@@ -211,10 +220,13 @@ function UserProfileEmptyView() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const handleCloseEditAcademicModal = () => setShowEditAcademicModal(false);
+  const handleShowEditAcademicModal = () => setShowEditAcademicModal(true);
+
   //calling to endpoint for get user details which already in the database
   const getUserDetails = async (e) => {
     await axios
-      .get(`${backEndURL}/api/getUser`, {
+      .get(`${backEndURL}/getUser`, {
         headers: {
           authorization: `${localStorage.getItem("jwtToken")}`,
         },
@@ -276,7 +288,7 @@ function UserProfileEmptyView() {
     e.preventDefault();
     await axios
       .post(
-        `${backEndURL}/api/personalDetails`,
+        `${backEndURL}/personalDetails`,
         {
           title,
           address,
@@ -316,7 +328,7 @@ function UserProfileEmptyView() {
   const SaveAcademicData = async () => {
     await axios
       .post(
-        `${backEndURL}/api/academicDetails`,
+        `${backEndURL}/academicDetails`,
         {
           institute,
           degree,
@@ -357,7 +369,7 @@ function UserProfileEmptyView() {
   const SaveProfessionalData = async () => {
     await axios
       .post(
-        `${backEndURL}/api/professionalDetails`,
+        `${backEndURL}/professionalDetails`,
         {
           position,
           empType,
@@ -404,7 +416,7 @@ function UserProfileEmptyView() {
     e.preventDefault();
     await axios
       .post(
-        `${backEndURL}/api/socialMedia`,
+        `${backEndURL}/socialMedia`,
         {
           websiteLink,
           linkedinLink,
@@ -461,7 +473,7 @@ function UserProfileEmptyView() {
     data.append("file", avatar);
     if (avatar) {
       axios
-        .post(`${backEndURL}/api/photoUpload`, data, {
+        .post(`${backEndURL}/photoUpload`, data, {
           headers: {
             authorization: `${localStorage.getItem("jwtToken")}`,
           },
@@ -486,7 +498,7 @@ function UserProfileEmptyView() {
     e.preventDefault();
     await axios
       .post(
-        `${backEndURL}/api/fieldOfInterest`,
+        `${backEndURL}/fieldOfInterest`,
         {
           interest: getInterest,
         },
@@ -513,7 +525,7 @@ function UserProfileEmptyView() {
 
   const handleDeleteInterest = (id) => {
     axios
-      .delete(`${backEndURL}/api/deleteInterest/${id}`, {
+      .delete(`${backEndURL}/deleteInterest/${id}`, {
         headers: {
           authorization: `${localStorage.getItem("jwtToken")}`,
         },
@@ -547,7 +559,7 @@ function UserProfileEmptyView() {
 
   const handleDeleteAcademic = async (id) => {
     await axios
-      .delete(`${backEndURL}/api/deleteAcademic/${id}`, {
+      .delete(`${backEndURL}/deleteAcademic/${id}`, {
         headers: {
           authorization: `${localStorage.getItem("jwtToken")}`,
         },
@@ -573,7 +585,7 @@ function UserProfileEmptyView() {
 
   const handleDeleteProfessional = async (id) => {
     await axios
-      .delete(`${backEndURL}/api/deleteProfessional/${id}`, {
+      .delete(`${backEndURL}/deleteProfessional/${id}`, {
         headers: {
           authorization: `${localStorage.getItem("jwtToken")}`,
         },
@@ -601,7 +613,7 @@ function UserProfileEmptyView() {
     e.preventDefault();
     if (selectedImage) {
       axios
-        .delete(`${backEndURL}/api/deleteProfilePicture`, {
+        .delete(`${backEndURL}/deleteProfilePicture`, {
           headers: {
             authorization: `${localStorage.getItem("jwtToken")}`,
           },
@@ -630,7 +642,7 @@ function UserProfileEmptyView() {
 
   useEffect(() => {
     axios
-      .get(`${backEndURL}/api/getUserImage`, {
+      .get(`${backEndURL}/getUserImage`, {
         headers: {
           authorization: `${localStorage.getItem("jwtToken")}`,
         },
@@ -646,6 +658,14 @@ function UserProfileEmptyView() {
         console.error("Error fetching user image:", error);
       });
   }, [handlePhotoUpload]);
+
+  const openToEditAcademicDetails = () => {
+    handleShowEditAcademicModal();
+    getUserDetails();
+    console.log(userData.academicDetails);
+
+
+  }
 
   function nav_open() {
     document.getElementById("mySidebar").style.display = "block";
@@ -909,6 +929,9 @@ function UserProfileEmptyView() {
                     rounded
                     alt="propick"
                     className="imgr"
+                    onClick={handleShowPhoto}
+                    style={{ cursor: "pointer" }}
+
                   />
                   {/* <Image
                     src={pen}
@@ -1873,6 +1896,15 @@ function UserProfileEmptyView() {
                     formFields={academicFormFields}
                   />
 
+                  <UserDataModal
+                  show={showEditAcademicModal}
+                  handleClose={handleCloseEditAcademicModal}
+                  handleSave={handleAcademicData}
+                  title="Academic Qualification"
+                  subTitle="Edit Academic Qualification"
+                  formFields={editAcademicFormFields}
+                   />
+
                   {/*Academic qualification Model End*/}
                 </div>
 
@@ -1894,11 +1926,13 @@ function UserProfileEmptyView() {
                                 <div>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="15"
-                                    height="16"
+                                    id="academicQualificationEdit"
+                                    width="16"
+                                    height="18"
                                     viewBox="0 0 15 16"
                                     fill="none"
                                     cursor="pointer"
+                                    onClick={openToEditAcademicDetails}
                                   >
                                     <path
                                       d="M9.21542 5.51696L9.98198 6.28352L2.433 13.8325H1.66644V13.0659L9.21542 5.51696ZM12.215 0.500977C12.0067 0.500977 11.7901 0.584299 11.6318 0.74261L10.107 2.2674L13.2315 5.39198L14.7563 3.86719C14.8336 3.7901 14.8949 3.69854 14.9367 3.59774C14.9785 3.49695 15 3.38889 15 3.27977C15 3.17064 14.9785 3.06259 14.9367 2.96179C14.8949 2.86099 14.8336 2.76943 14.7563 2.69235L12.8066 0.74261C12.64 0.575966 12.4316 0.500977 12.215 0.500977ZM9.21542 3.15895L0 12.3744V15.4989H3.12458L12.34 6.28352L9.21542 3.15895Z"

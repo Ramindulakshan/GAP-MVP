@@ -39,7 +39,7 @@ class VerifyE extends React.Component {
         this.state.otp6,
     };
     await axios
-      .post(`${backEndURL}/api/resetPassword`, data)
+      .post(`${backEndURL}/resetPassword`, data)
       .then((response) => {
         if (response.data.status === "success") {
           alert("Password Succesfully Reseted")
@@ -68,7 +68,7 @@ class VerifyE extends React.Component {
     }, 1000); // Update countdown every second
 
     await axios
-      .post(`${backEndURL}/api/forgotPassword`, {
+      .post(`${backEndURL}/forgotPassword`, {
         email: localStorage.getItem("email"),
       })
       .then((response) => {

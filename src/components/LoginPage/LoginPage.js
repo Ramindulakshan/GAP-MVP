@@ -31,7 +31,7 @@ const LoginPage = () => {
     }
 
     await axios
-      .post(`${backEndURL}/api/login`, {
+      .post(`${backEndURL}/login`, {
         username,
         password,
       })
@@ -52,7 +52,7 @@ const LoginPage = () => {
 
   const getUserName = async () => {
     await axios
-      .get(`${backEndURL}/api/getUser`, {
+      .get(`${backEndURL}/getUser`, {
         headers: {
           authorization: `${localStorage.getItem("jwtToken")}`,
         },

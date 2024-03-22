@@ -13,7 +13,7 @@ const LandingPage = () => {
   useEffect(() => {
     const fetchUserCount = async () => {
       try {
-        const response = await axios.get(`${backEndURL}/api/members`);
+        const response = await axios.get(`${backEndURL}/members`);
         setUserCount(response.data.members);
       } catch (error) {
         console.error("Error fetching user count: ", error);
