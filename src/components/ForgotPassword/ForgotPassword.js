@@ -25,7 +25,7 @@ function ForgotPassword() {
       email: email,
     };
     await axios
-      .post(`${backEndURL}/api/forgotpassword`, data)
+      .post(`${backEndURL}/forgotpassword`, data)
       .then((response) => {
         window.location.href = "/verifyE";
       })

@@ -70,7 +70,7 @@ function Prologin() {
     }
   
     try {
-      const response = await axios.post(`${backEndURL}/api/register`, {
+      const response = await axios.post(`${backEndURL}/register`, {
         firstName,
         lastName,
         username,

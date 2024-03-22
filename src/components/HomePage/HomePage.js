@@ -45,7 +45,7 @@ const HomePage = () => {
   useEffect(() => {
     const getUserImage = () => {
       axios
-        .get(`${backEndURL}/api/getUserImage`, {
+        .get(`${backEndURL}/getUserImage`, {
           headers: {
             authorization: `${localStorage.getItem("jwtToken")}`,
           },
