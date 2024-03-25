@@ -53,7 +53,8 @@ const HomePage = () => {
         .then((response) => {
           console.log(response);
           if (response.data.profilePicture) {
-            const profilePicture =  `${backEndURL}/${response.data.profilePicture}`;
+            const modifiedBackEndURL = backEndURL.replace('/api', '');
+            const profilePicture =  `${modifiedBackEndURL}/${response.data.profilePicture}`;
             setProfilePic(profilePicture);
           }
         })

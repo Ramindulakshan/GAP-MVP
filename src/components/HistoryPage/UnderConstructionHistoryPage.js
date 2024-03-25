@@ -46,8 +46,9 @@ function UnderConstructionHistoryPage() {
         })
         .then((response) => {
           if (response.data.profilePicture) {
-            
-            const profilePicture =  `${backEndURL}/${response.data.profilePicture}`;
+            console.log("response.data.profilePicture", response.data.profilePicture);
+            const modifiedBackEndURL = backEndURL.replace('/api', '');
+            const profilePicture =  `${modifiedBackEndURL}/${response.data.profilePicture}`;
             setSelectedImage(profilePicture);
           }
         })
@@ -57,6 +58,7 @@ function UnderConstructionHistoryPage() {
     };
     getUserImage();
   });
+
   function nav_open() {
     document.getElementById("mySidebar").style.display = "block";
   }
