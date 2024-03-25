@@ -482,7 +482,10 @@ function UserProfileEmptyView() {
           if (response.status === 200) {
             handleClosePhoto();
             alert("Photo uploaded successfully");
-          } else {
+          } else if (response.data.error === "Payload too large") {
+            alert("File too large. Please upload a file less than 5MB in size");
+          }
+          else {
             alert("Photo not uploaded");
           }
         })
@@ -1035,14 +1038,15 @@ function UserProfileEmptyView() {
                               <Col
                                 xs={8}
                                 className="text-center"
-                                style={{
-                                  cursor: "pointer",
-                                }}
+                                
                                 o
                               >
                                 <IoSaveSharp
                                   className="svbtn"
                                   onClick={handlePhotoUpload}
+                                  style={{
+                                    cursor: "pointer",
+                                  }}
                                 />
 
                                 <p>Save</p>
