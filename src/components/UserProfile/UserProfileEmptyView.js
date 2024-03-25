@@ -649,8 +649,8 @@ function UserProfileEmptyView() {
       })
       .then((response) => {
         if (response.data.profilePicture) {
-          console.log(response.data.profilePicture);
-          const profilePicture = `${backEndURL}/${response.data.profilePicture}`;
+          const modifiedBackEndURL = backEndURL.replace('/api', '');
+          const profilePicture = `${modifiedBackEndURL}/${response.data.profilePicture}`;
           setSelectedImage(profilePicture);
         }
       })
@@ -896,6 +896,9 @@ function UserProfileEmptyView() {
                     height="45"
                     className="d-inline-block"
                     alt="React Bootstrap logo"
+                    style={
+                      {borderRadius: "100px",}
+                    }
                   />
                   <button
                     className="mobile-toggle-btn togelbtn"
@@ -930,7 +933,7 @@ function UserProfileEmptyView() {
                     alt="propick"
                     className="imgr"
                     onClick={handleShowPhoto}
-                    style={{ cursor: "pointer" }}
+                    style={{  borderRadius: "100px", cursor: "pointer" }}
 
                   />
                   {/* <Image
