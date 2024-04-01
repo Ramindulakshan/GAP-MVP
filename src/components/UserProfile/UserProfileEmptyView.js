@@ -86,6 +86,19 @@ function UserProfileEmptyView() {
   const [websiteLink, setWebsiteLink] = useState("");
   const [getInterest, setGetInterest] = useState("");
 
+
+  const aboutFields = [
+    
+    { label: 'About', placeholder: 'Add grade', value: grade, onChange: setGrade, type: 'text' },
+  ];
+
+  const editAboutFields = [
+    { label: 'Institute*', placeholder: 'Add institute name', value: userData.academicDetails.institute, onChange: setInstitute, type: 'text' },
+    { label: 'Degree / Course*', placeholder: 'Add degree / course name', value: userData.academicDetails.degree, onChange: setDegree, type: 'text' },
+    { label: 'Start Date*', placeholder: 'Start date', value: userData.academicDetails.startDate, onChange: setStartDate, type: 'date' },
+    { label: 'End Date (or expected)*', placeholder: 'End date', value: userData.academicDetails.endDate, onChange: setEndDate, type: 'date' },
+    { label: 'Grade', placeholder: 'Add grade', value: userData.academicDetails.grade, onChange: setGrade, type: 'text' },
+  ]
   const academicFormFields = [
     { label: 'Institute*', placeholder: 'Add institute name', value: institute, onChange: setInstitute, type: 'text' },
     { label: 'Degree / Course*', placeholder: 'Add degree / course name', value: degree, onChange: setDegree, type: 'text' },
@@ -132,15 +145,13 @@ function UserProfileEmptyView() {
   };
 
   const handleLogout = () => {
-    // if (user) {
-    //   logout();   //google login
-    // }
+  
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("firstName");
     localStorage.removeItem("lastName");
     localStorage.removeItem("email");
     handleClose();
-    window.location.href = "/login";
+    window.location.href = "/";
   };
 
   /*Photo Change Model*/
@@ -157,6 +168,8 @@ function UserProfileEmptyView() {
 
   /*Academic qualification Model*/
   const [show4, setShow4] = useState(false);
+  /*about Model*/
+  const [show6, setShow6] = useState(false);
 
   /*Delete Model */
   const [show5, setShow5] = useState(false);
@@ -1760,6 +1773,48 @@ function UserProfileEmptyView() {
               </div>
 
               <div class="cardfu">
+              <div className="d-flex justify-content-between mt-4">
+                  <h4>About</h4>
+
+                  <h6 className="View-more">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="15"
+                      height="15"
+                      viewBox="0 0 15 15"
+                      fill="none"
+                      cursor="pointer"
+                      onClick={handleShow4}
+                    >
+                      <path
+                        d="M15 8.4375H8.4375V15H6.5625V8.4375H0V6.5625H6.5625V0H8.4375V6.5625H15V8.4375Z"
+                        fill="black"
+                        fill-opacity="0.5"
+                      />
+                    </svg>
+                  </h6>
+                  {/*Academic qualification Model Start*/}
+
+                  <UserDataModal
+                    show={show6}
+                    handleClose={handleClose4}
+                    handleSave={handleAcademicData}
+                    title="Academic Qualification"
+                    subTitle="Add New Academic Qualification"
+                    formFields={aboutFields}
+                  />
+
+                  <UserDataModal
+                  show={showEditAcademicModal}
+                  handleClose={handleCloseEditAcademicModal}
+                  handleSave={handleAcademicData}
+                  title="Academic Qualification"
+                  subTitle="Edit Academic Qualification"
+                  formFields={editAboutFields}
+                   />
+
+                  {/*Academic qualification Model End*/}
+                </div>
                 <div className="d-flex justify-content-between mt-4">
                   <h4>Fields of interest</h4>
 
