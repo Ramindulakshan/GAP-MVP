@@ -142,7 +142,7 @@ const LandingPage = () => {
                 </Card.Body>
               </Card>
             </CardGroup>
-            <div className="text-center mt-3">
+            <div className="text-center mt-3 fadeInUp">
               <button
                 className="btn btn-lan-btn custom-button-reset2"
                 type="button"
