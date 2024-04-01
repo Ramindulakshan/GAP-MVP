@@ -86,45 +86,189 @@ function UserProfileEmptyView() {
   const [websiteLink, setWebsiteLink] = useState("");
   const [getInterest, setGetInterest] = useState("");
 
-
   const aboutFields = [
-    
-    { label: 'About', placeholder: 'Add grade', value: grade, onChange: setGrade, type: 'text' },
+    {
+      label: "About",
+      placeholder: "Add grade",
+      value: grade,
+      onChange: setGrade,
+      type: "text",
+    },
   ];
 
   const editAboutFields = [
-    { label: 'Institute*', placeholder: 'Add institute name', value: userData.academicDetails.institute, onChange: setInstitute, type: 'text' },
-    { label: 'Degree / Course*', placeholder: 'Add degree / course name', value: userData.academicDetails.degree, onChange: setDegree, type: 'text' },
-    { label: 'Start Date*', placeholder: 'Start date', value: userData.academicDetails.startDate, onChange: setStartDate, type: 'date' },
-    { label: 'End Date (or expected)*', placeholder: 'End date', value: userData.academicDetails.endDate, onChange: setEndDate, type: 'date' },
-    { label: 'Grade', placeholder: 'Add grade', value: userData.academicDetails.grade, onChange: setGrade, type: 'text' },
-  ]
+    {
+      label: "Institute*",
+      placeholder: "Add institute name",
+      value: userData.academicDetails.institute,
+      onChange: setInstitute,
+      type: "text",
+    },
+    {
+      label: "Degree / Course*",
+      placeholder: "Add degree / course name",
+      value: userData.academicDetails.degree,
+      onChange: setDegree,
+      type: "text",
+    },
+    {
+      label: "Start Date*",
+      placeholder: "Start date",
+      value: userData.academicDetails.startDate,
+      onChange: setStartDate,
+      type: "date",
+    },
+    {
+      label: "End Date (or expected)*",
+      placeholder: "End date",
+      value: userData.academicDetails.endDate,
+      onChange: setEndDate,
+      type: "date",
+    },
+    {
+      label: "Grade",
+      placeholder: "Add grade",
+      value: userData.academicDetails.grade,
+      onChange: setGrade,
+      type: "text",
+    },
+  ];
   const academicFormFields = [
-    { label: 'Institute*', placeholder: 'Add institute name', value: institute, onChange: setInstitute, type: 'text' },
-    { label: 'Degree / Course*', placeholder: 'Add degree / course name', value: degree, onChange: setDegree, type: 'text' },
-    { label: 'Start Date*', placeholder: 'Start date', value: startDate, onChange: setStartDate, type: 'date' },
-    { label: 'End Date (or expected)*', placeholder: 'End date', value: endDate, onChange: setEndDate, type: 'date' },
-    { label: 'Grade', placeholder: 'Add grade', value: grade, onChange: setGrade, type: 'text' },
+    {
+      label: "Institute*",
+      placeholder: "Add institute name",
+      value: institute,
+      onChange: setInstitute,
+      type: "text",
+    },
+    {
+      label: "Degree / Course*",
+      placeholder: "Add degree / course name",
+      value: degree,
+      onChange: setDegree,
+      type: "text",
+    },
+    {
+      label: "Start Date*",
+      placeholder: "Start date",
+      value: startDate,
+      onChange: setStartDate,
+      type: "date",
+    },
+    {
+      label: "End Date (or expected)*",
+      placeholder: "End date",
+      value: endDate,
+      onChange: setEndDate,
+      type: "date",
+    },
+    {
+      label: "Grade",
+      placeholder: "Add grade",
+      value: grade,
+      onChange: setGrade,
+      type: "text",
+    },
   ];
 
   const professionalFormFields = [
-    { label: 'Position*', placeholder: 'Add position', value: position, onChange: setPosition, type: 'text' },
-    { label: 'Employment Type', placeholder: 'Select employment type', value: empType, onChange: setEmpType, type: 'select', options: ['Select employment type', 'Full time', 'Part time', 'Internship', 'Freelance', 'Contract'] },
-    { label: 'Company Name*', placeholder: 'Add company name', value: companyName, onChange: setCompanyName, type: 'text' },
-    { label: 'Location Type', placeholder: 'Select location type', value: locationType, onChange: setLocationType, type: 'select', options: ['Select location type', 'Onsite', 'Hybrid', 'Remote'] },
-    { label: 'Start Date*', placeholder: 'Start date', value: startDate, onChange: setStartDate, type: 'date' },
-    { label: 'End Date (or expected)*', placeholder: 'End date', value: endDate, onChange: setEndDate, type: 'date' },
-    { label: 'Skills', placeholder: 'Add skills', value: skills, onChange: setSkills, type: 'text' },
-  ]
+    {
+      label: "Position*",
+      placeholder: "Add position",
+      value: position,
+      onChange: setPosition,
+      type: "text",
+    },
+    {
+      label: "Employment Type",
+      placeholder: "Select employment type",
+      value: empType,
+      onChange: setEmpType,
+      type: "select",
+      options: [
+        "Select employment type",
+        "Full time",
+        "Part time",
+        "Internship",
+        "Freelance",
+        "Contract",
+      ],
+    },
+    {
+      label: "Company Name*",
+      placeholder: "Add company name",
+      value: companyName,
+      onChange: setCompanyName,
+      type: "text",
+    },
+    {
+      label: "Location Type",
+      placeholder: "Select location type",
+      value: locationType,
+      onChange: setLocationType,
+      type: "select",
+      options: ["Select location type", "Onsite", "Hybrid", "Remote"],
+    },
+    {
+      label: "Start Date*",
+      placeholder: "Start date",
+      value: startDate,
+      onChange: setStartDate,
+      type: "date",
+    },
+    {
+      label: "End Date (or expected)*",
+      placeholder: "End date",
+      value: endDate,
+      onChange: setEndDate,
+      type: "date",
+    },
+    {
+      label: "Skills",
+      placeholder: "Add skills",
+      value: skills,
+      onChange: setSkills,
+      type: "text",
+    },
+  ];
 
   const editAcademicFormFields = [
-    { label: 'Institute*', placeholder: 'Add institute name', value: userData.academicDetails.institute, onChange: setInstitute, type: 'text' },
-    { label: 'Degree / Course*', placeholder: 'Add degree / course name', value: userData.academicDetails.degree, onChange: setDegree, type: 'text' },
-    { label: 'Start Date*', placeholder: 'Start date', value: userData.academicDetails.startDate, onChange: setStartDate, type: 'date' },
-    { label: 'End Date (or expected)*', placeholder: 'End date', value: userData.academicDetails.endDate, onChange: setEndDate, type: 'date' },
-    { label: 'Grade', placeholder: 'Add grade', value: userData.academicDetails.grade, onChange: setGrade, type: 'text' },
-  ]
-
+    {
+      label: "Institute*",
+      placeholder: "Add institute name",
+      value: userData.academicDetails.institute,
+      onChange: setInstitute,
+      type: "text",
+    },
+    {
+      label: "Degree / Course*",
+      placeholder: "Add degree / course name",
+      value: userData.academicDetails.degree,
+      onChange: setDegree,
+      type: "text",
+    },
+    {
+      label: "Start Date*",
+      placeholder: "Start date",
+      value: userData.academicDetails.startDate,
+      onChange: setStartDate,
+      type: "date",
+    },
+    {
+      label: "End Date (or expected)*",
+      placeholder: "End date",
+      value: userData.academicDetails.endDate,
+      onChange: setEndDate,
+      type: "date",
+    },
+    {
+      label: "Grade",
+      placeholder: "Add grade",
+      value: userData.academicDetails.grade,
+      onChange: setGrade,
+      type: "text",
+    },
+  ];
 
   // const handleFileInputChange = (event) => {
   //   const reader = new FileReader();
@@ -145,7 +289,6 @@ function UserProfileEmptyView() {
   };
 
   const handleLogout = () => {
-  
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("firstName");
     localStorage.removeItem("lastName");
@@ -169,7 +312,7 @@ function UserProfileEmptyView() {
   /*Academic qualification Model*/
   const [show4, setShow4] = useState(false);
   /*about Model*/
-  const [show6, setShow6] = useState(false);
+  const [showabout, setShowabout] = useState(false);
 
   /*Delete Model */
   const [show5, setShow5] = useState(false);
@@ -188,6 +331,10 @@ function UserProfileEmptyView() {
   const handleClosePhoto = () => setShowPhotoModel(false);
   const handleShowPhoto = () => setShowPhotoModel(true);
 
+  /*Photo Change Model*/
+  const handleCloseabout = () => setShowabout(false);
+  const handleShowabout = () => setShowabout(true);
+
   /*Social Media Model Start*/
   const handleClose2 = () => setShow2(false);
   const handleShow2 = () => setShow2(true);
@@ -202,8 +349,7 @@ function UserProfileEmptyView() {
     setBirthday("");
     setDescription("");
     setPortfolioLink("");
-
-  }
+  };
   const handleShow3 = () => setShow3(true);
 
   /*Academic qualification Model*/
@@ -214,7 +360,7 @@ function UserProfileEmptyView() {
     setStartDate("");
     setEndDate("");
     setGrade("");
-  }
+  };
   const handleShow4 = () => setShow4(true);
 
   /*Delete Model */
@@ -497,8 +643,7 @@ function UserProfileEmptyView() {
             alert("Photo uploaded successfully");
           } else if (response.data.error === "Payload too large") {
             alert("File too large. Please upload a file less than 5MB in size");
-          }
-          else {
+          } else {
             alert("Photo not uploaded");
           }
         })
@@ -665,7 +810,7 @@ function UserProfileEmptyView() {
       })
       .then((response) => {
         if (response.data.profilePicture) {
-          const modifiedBackEndURL = backEndURL.replace('/api', '');
+          const modifiedBackEndURL = backEndURL.replace("/api", "");
           const profilePicture = `${modifiedBackEndURL}/${response.data.profilePicture}`;
           setSelectedImage(profilePicture);
         }
@@ -679,9 +824,7 @@ function UserProfileEmptyView() {
     handleShowEditAcademicModal();
     getUserDetails();
     console.log(userData.academicDetails);
-
-
-  }
+  };
 
   function nav_open() {
     document.getElementById("mySidebar").style.display = "block";
@@ -696,6 +839,17 @@ function UserProfileEmptyView() {
       nav_close();
     }
   }
+
+  //About Us Word Counter Function
+  const [textabout, setTextAbout] = useState("");
+
+  const handleChangeAbout = (e) => {
+    const inputText = e.target.value;
+    // Limit the input to 300 characters
+    if (inputText.length <= 150) {
+      setTextAbout(inputText);
+    }
+  };
 
   return (
     <div className="d-flex">
@@ -912,9 +1066,7 @@ function UserProfileEmptyView() {
                     height="45"
                     className="d-inline-block"
                     alt="React Bootstrap logo"
-                    style={
-                      {borderRadius: "100px",}
-                    }
+                    style={{ borderRadius: "100px" }}
                   />
                   <button
                     className="mobile-toggle-btn togelbtn"
@@ -949,8 +1101,7 @@ function UserProfileEmptyView() {
                     alt="propick"
                     className="imgr"
                     onClick={handleShowPhoto}
-                    style={{  borderRadius: "100px", cursor: "pointer" }}
-
+                    style={{ borderRadius: "100px", cursor: "pointer" }}
                   />
                   {/* <Image
                     src={pen}
@@ -1048,12 +1199,7 @@ function UserProfileEmptyView() {
                                   <p>Upload</p>
                                 </label>
                               </Col>
-                              <Col
-                                xs={8}
-                                className="text-center"
-                                
-                                o
-                              >
+                              <Col xs={8} className="text-center" o>
                                 <IoSaveSharp
                                   className="svbtn"
                                   onClick={handlePhotoUpload}
@@ -1773,7 +1919,7 @@ function UserProfileEmptyView() {
               </div>
 
               <div class="cardfu">
-              <div className="d-flex justify-content-between mt-4">
+                <div className="d-flex justify-content-between mt-4">
                   <h4>About</h4>
 
                   <h6 className="View-more">
@@ -1784,7 +1930,7 @@ function UserProfileEmptyView() {
                       viewBox="0 0 15 15"
                       fill="none"
                       cursor="pointer"
-                      onClick={handleShow4}
+                      onClick={handleShowabout}
                     >
                       <path
                         d="M15 8.4375H8.4375V15H6.5625V8.4375H0V6.5625H6.5625V0H8.4375V6.5625H15V8.4375Z"
@@ -1793,28 +1939,68 @@ function UserProfileEmptyView() {
                       />
                     </svg>
                   </h6>
-                  {/*Academic qualification Model Start*/}
 
-                  <UserDataModal
-                    show={show6}
-                    handleClose={handleClose4}
-                    handleSave={handleAcademicData}
-                    title="Academic Qualification"
-                    subTitle="Add New Academic Qualification"
-                    formFields={aboutFields}
-                  />
+                  {/*about Model Start*/}
+                  <Modal
+                    size="lg"
+                    show={showabout}
+                    onHide={handleCloseabout}
+                    aria-labelledby="example-custom-modal-styling-title"
+                  >
+                    <Modal.Header closeButton></Modal.Header>
 
-                  <UserDataModal
-                  show={showEditAcademicModal}
-                  handleClose={handleCloseEditAcademicModal}
-                  handleSave={handleAcademicData}
-                  title="Academic Qualification"
-                  subTitle="Edit Academic Qualification"
-                  formFields={editAboutFields}
-                   />
+                    <Modal.Body>
+                      <div class="cardm">
+                        <h1 className="text-center">About</h1>
+                        <br></br>
+                        <Form className="mx-auto">
+                          <Form.Group controlId="exampleForm.ControlTextarea1">
+                            <Form.Label className="lblcous">
+                              Type Here..
+                            </Form.Label>
+                            <Form.Control
+                              as="textarea"
+                              rows={5}
+                              className="form-control"
+                              style={{ resize: "none" }}
+                              value={textabout}
+                              onChange={handleChangeAbout}
+                              required={"required"}
+                              name="message"
+                            />
+                          </Form.Group>
 
-                  {/*Academic qualification Model End*/}
+                          <div className="text-right">
+                            <p>{textabout.length}/150</p>
+                          </div>
+                        </Form>
+                        <br></br>
+                        <div className="ms-md-auto d-md-flex align-items-end">
+                          <div className="box d-flex align-items-end">
+                            <p className="ptnparak ms-2 mb-0 align-items-end">
+                              <button
+                                className="custom-button218 custom-button-reset my-1 my-sm-3 t"
+                                type="submit"
+                                onClick={handleCloseabout}
+                              >
+                                Cancel
+                              </button>
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                              <button
+                                className="custom-button2136o custom-button-reset my-1 my-sm-3 t"
+                                type="submit"
+                              >
+                                Add
+                              </button>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </Modal.Body>
+                  </Modal>
+                  {/*about Model End*/}
                 </div>
+                <hr></hr>
                 <div className="d-flex justify-content-between mt-4">
                   <h4>Fields of interest</h4>
 
@@ -1836,7 +2022,7 @@ function UserProfileEmptyView() {
                     </svg>
                   </h6>
 
-                  {/*Academic qualification Model Start*/}
+                  {/*Fields of interest Model Start*/}
                   <Modal
                     size="lg"
                     show={showadd}
@@ -1886,11 +2072,31 @@ function UserProfileEmptyView() {
                       </div>
                     </Modal.Body>
                   </Modal>
-
-                  {/*Academic qualification Model End*/}
+                  {/*Fields of interest Model End*/}
                 </div>
-
                 <br></br>
+
+                {/*Academic qualification Model Start*/}
+
+                <UserDataModal
+                  show={show4}
+                  handleClose={handleClose4}
+                  handleSave={handleAcademicData}
+                  title="Academic Qualification"
+                  subTitle="Add New Academic Qualification"
+                  formFields={aboutFields}
+                />
+
+                <UserDataModal
+                  show={showEditAcademicModal}
+                  handleClose={handleCloseEditAcademicModal}
+                  handleSave={handleAcademicData}
+                  title="Academic Qualification"
+                  subTitle="Edit Academic Qualification"
+                  formFields={editAboutFields}
+                />
+
+                {/*Academic qualification Model End*/}
                 <div className="container mt-3">
                   <div className="d-inline-block ">
                     {userData.fieldOfInterest &&
@@ -1959,13 +2165,13 @@ function UserProfileEmptyView() {
                   />
 
                   <UserDataModal
-                  show={showEditAcademicModal}
-                  handleClose={handleCloseEditAcademicModal}
-                  handleSave={handleAcademicData}
-                  title="Academic Qualification"
-                  subTitle="Edit Academic Qualification"
-                  formFields={editAcademicFormFields}
-                   />
+                    show={showEditAcademicModal}
+                    handleClose={handleCloseEditAcademicModal}
+                    handleSave={handleAcademicData}
+                    title="Academic Qualification"
+                    subTitle="Edit Academic Qualification"
+                    formFields={editAcademicFormFields}
+                  />
 
                   {/*Academic qualification Model End*/}
                 </div>
@@ -2080,7 +2286,6 @@ function UserProfileEmptyView() {
                     title="Professional Experience"
                     subTitle="Add New Professional Experience"
                     formFields={professionalFormFields}
-                  
                   />
 
                   {/*Professional Experience  Model End*/}

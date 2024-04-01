@@ -223,9 +223,12 @@ function SettingPage() {
         })
         .then((response) => {
           if (response.data.profilePicture) {
-            console.log("response.data.profilePicture", response.data.profilePicture);
-            const modifiedBackEndURL = backEndURL.replace('/api', '');
-            const profilePicture =  `${modifiedBackEndURL}/${response.data.profilePicture}`;
+            console.log(
+              "response.data.profilePicture",
+              response.data.profilePicture
+            );
+            const modifiedBackEndURL = backEndURL.replace("/api", "");
+            const profilePicture = `${modifiedBackEndURL}/${response.data.profilePicture}`;
             setSelectedImage(profilePicture);
           }
         })
@@ -236,7 +239,6 @@ function SettingPage() {
     getUserImage();
   });
 
-  
   function nav_open() {
     document.getElementById("mySidebar").style.display = "block";
   }
@@ -504,8 +506,7 @@ function SettingPage() {
                       href="#About"
                       className="navtpic333 nvtpicnew nvtpicnewabout"
                       onClick={() => {
-                        window.location.href =
-                          "/settings";
+                        window.location.href = "/settings";
                       }}
                     >
                       About Us
@@ -514,8 +515,7 @@ function SettingPage() {
                       href="#d"
                       className="navtpic333 nvtpicnew "
                       onClick={() => {
-                        window.location.href =
-                          "/changePass";
+                        window.location.href = "/changePass";
                       }}
                     >
                       Change Password
@@ -524,8 +524,7 @@ function SettingPage() {
                       href="#DeleteAccount"
                       className="navtpic333 nvtpicnew"
                       onClick={() => {
-                        window.location.href =
-                          "/settingDeleteAccount";
+                        window.location.href = "/settingDeleteAccount";
                       }}
                     >
                       Delete Account
@@ -534,8 +533,7 @@ function SettingPage() {
                       href="#ContactUs"
                       className="navtpic333 nvtpicnew"
                       onClick={() => {
-                        window.location.href =
-                          "/settingContactUs";
+                        window.location.href = "/settingContactUs";
                       }}
                     >
                       Contact Us
