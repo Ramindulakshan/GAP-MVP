@@ -40,7 +40,7 @@ function UserProfileEmptyView() {
     lastName: "",
     email: "",
     title: "",
-    academicDetails: [{}],
+    academicDetails: [],
     professionalDetails: [],
     socialMedia: [],
     fieldOfInterest: [],
@@ -87,31 +87,202 @@ function UserProfileEmptyView() {
   const [getInterest, setGetInterest] = useState("");
 
   const academicFormFields = [
-    { label: 'Institute*', placeholder: 'Add institute name', value: institute, onChange: setInstitute, type: 'text' },
-    { label: 'Degree / Course*', placeholder: 'Add degree / course name', value: degree, onChange: setDegree, type: 'text' },
-    { label: 'Start Date*', placeholder: 'Start date', value: startDate, onChange: setStartDate, type: 'date' },
-    { label: 'End Date (or expected)*', placeholder: 'End date', value: endDate, onChange: setEndDate, type: 'date' },
-    { label: 'Grade', placeholder: 'Add grade', value: grade, onChange: setGrade, type: 'text' },
+    {
+      label: "Institute*",
+      placeholder: "Add institute name",
+      value: institute,
+      onChange: setInstitute,
+      type: "text",
+    },
+    {
+      label: "Degree / Course*",
+      placeholder: "Add degree / course name",
+      value: degree,
+      onChange: setDegree,
+      type: "text",
+    },
+    {
+      label: "Start Date*",
+      placeholder: "Start date",
+      value: startDate,
+      onChange: setStartDate,
+      type: "date",
+    },
+    {
+      label: "End Date (or expected)*",
+      placeholder: "End date",
+      value: endDate,
+      onChange: setEndDate,
+      type: "date",
+    },
+    {
+      label: "Grade",
+      placeholder: "Add grade",
+      value: grade,
+      onChange: setGrade,
+      type: "text",
+    },
   ];
 
   const professionalFormFields = [
-    { label: 'Position*', placeholder: 'Add position', value: position, onChange: setPosition, type: 'text' },
-    { label: 'Employment Type', placeholder: 'Select employment type', value: empType, onChange: setEmpType, type: 'select', options: ['Select employment type', 'Full time', 'Part time', 'Internship', 'Freelance', 'Contract'] },
-    { label: 'Company Name*', placeholder: 'Add company name', value: companyName, onChange: setCompanyName, type: 'text' },
-    { label: 'Location Type', placeholder: 'Select location type', value: locationType, onChange: setLocationType, type: 'select', options: ['Select location type', 'Onsite', 'Hybrid', 'Remote'] },
-    { label: 'Start Date*', placeholder: 'Start date', value: startDate, onChange: setStartDate, type: 'date' },
-    { label: 'End Date (or expected)*', placeholder: 'End date', value: endDate, onChange: setEndDate, type: 'date' },
-    { label: 'Skills', placeholder: 'Add skills', value: skills, onChange: setSkills, type: 'text' },
-  ]
+    {
+      label: "Position*",
+      placeholder: "Add position",
+      value: position,
+      onChange: setPosition,
+      type: "text",
+    },
+    {
+      label: "Employment Type",
+      placeholder: "Select employment type",
+      value: empType,
+      onChange: setEmpType,
+      type: "select",
+      options: [
+        "Select employment type",
+        "Full time",
+        "Part time",
+        "Internship",
+        "Freelance",
+        "Contract",
+      ],
+    },
+    {
+      label: "Company Name*",
+      placeholder: "Add company name",
+      value: companyName,
+      onChange: setCompanyName,
+      type: "text",
+    },
+    {
+      label: "Location Type",
+      placeholder: "Select location type",
+      value: locationType,
+      onChange: setLocationType,
+      type: "select",
+      options: ["Select location type", "Onsite", "Hybrid", "Remote"],
+    },
+    {
+      label: "Start Date*",
+      placeholder: "Start date",
+      value: startDate,
+      onChange: setStartDate,
+      type: "date",
+    },
+    {
+      label: "End Date (or expected)*",
+      placeholder: "End date",
+      value: endDate,
+      onChange: setEndDate,
+      type: "date",
+    },
+    {
+      label: "Skills",
+      placeholder: "Add skills",
+      value: skills,
+      onChange: setSkills,
+      type: "text",
+    },
+  ];
 
   const editAcademicFormFields = [
-    { label: 'Institute*', placeholder: 'Add institute name', value: userData.academicDetails.institute, onChange: setInstitute, type: 'text' },
-    { label: 'Degree / Course*', placeholder: 'Add degree / course name', value: userData.academicDetails.degree, onChange: setDegree, type: 'text' },
-    { label: 'Start Date*', placeholder: 'Start date', value: userData.academicDetails.startDate, onChange: setStartDate, type: 'date' },
-    { label: 'End Date (or expected)*', placeholder: 'End date', value: userData.academicDetails.endDate, onChange: setEndDate, type: 'date' },
-    { label: 'Grade', placeholder: 'Add grade', value: userData.academicDetails.grade, onChange: setGrade, type: 'text' },
-  ]
+    {
+      label: "Institute*",
+      placeholder: "Add institute name",
+      value: institute,
+      onChange: setInstitute,
+      type: "text",
+    },
+    {
+      label: "Degree / Course*",
+      placeholder: "Add degree / course name",
+      value: degree,
+      onChange: setDegree,
+      type: "text",
+    },
+    {
+      label: "Start Date*",
+      placeholder: "Start date",
+      value: startDate,
+      onChange: setStartDate,
+      type: "date",
+    },
+    {
+      label: "End Date (or expected)*",
+      placeholder: "End date",
+      value: endDate,
+      onChange: setEndDate,
+      type: "date",
+    },
+    {
+      label: "Grade",
+      placeholder: "Add grade",
+      value: grade,
+      onChange: setGrade,
+      type: "text",
+    },
+  ];
 
+  const editProfessionalFormFields = [
+    {
+      label: "Position*",
+      placeholder: "Add position",
+      value: position,
+      onChange: setPosition,
+      type: "text",
+    },
+    {
+      label: "Employment Type",
+      placeholder: "Select employment type",
+      value: empType,
+      onChange: setEmpType,
+      type: "select",
+      options: [
+        "Select employment type",
+        "Full time",
+        "Part time",
+        "Internship",
+        "Freelance",
+        "Contract",
+      ],
+    },
+    {
+      label: "Company Name*",
+      placeholder: "Add company name",
+      value: companyName,
+      onChange: setCompanyName,
+      type: "text",
+    },
+    {
+      label: "Location Type",
+      placeholder: "Select location type",
+      value: locationType,
+      onChange: setLocationType,
+      type: "select",
+      options: ["Select location type", "Onsite", "Hybrid", "Remote"],
+    },
+    {
+      label: "Start Date*",
+      placeholder: "Start date",
+      value: startDate,
+      onChange: setStartDate,
+      type: "date",
+    },
+    {
+      label: "End Date (or expected)*",
+      placeholder: "End date",
+      value: endDate,
+      onChange: setEndDate,
+      type: "date",
+    },
+    {
+      label: "Skills",
+      placeholder: "Add skills",
+      value: skills,
+      onChange: setSkills,
+      type: "text",
+    },
+  ];
 
   // const handleFileInputChange = (event) => {
   //   const reader = new FileReader();
@@ -169,8 +340,11 @@ function UserProfileEmptyView() {
   /*professional experience Model */
   const [show7, setShow7] = useState(false);
 
+  //model open for edit academic details
   const [showEditAcademicModal, setShowEditAcademicModal] = useState(false);
 
+  //model open for edit professional details
+  const [showEditProfessionalModal, setShowEditProfessionalModal] = useState(false);
   /*Photo Change Model*/
   const handleClosePhoto = () => setShowPhotoModel(false);
   const handleShowPhoto = () => setShowPhotoModel(true);
@@ -189,8 +363,7 @@ function UserProfileEmptyView() {
     setBirthday("");
     setDescription("");
     setPortfolioLink("");
-
-  }
+  };
   const handleShow3 = () => setShow3(true);
 
   /*Academic qualification Model*/
@@ -201,8 +374,13 @@ function UserProfileEmptyView() {
     setStartDate("");
     setEndDate("");
     setGrade("");
-  }
-  const handleShow4 = () => setShow4(true);
+  };
+
+  //get academic details for edit
+
+  const handleShow4 = () => {
+    setShow4(true);
+  };
 
   /*Delete Model */
   const handleClose5 = () => setShow5(false);
@@ -211,6 +389,7 @@ function UserProfileEmptyView() {
   /*professional experience Model */
   const handleClose7 = () => setShow7(false);
   const handleShow7 = () => setShow7(true);
+
 
   /*Fields experience Model */
   const handleCloseadd = () => setShowadd(false);
@@ -222,6 +401,9 @@ function UserProfileEmptyView() {
 
   const handleCloseEditAcademicModal = () => setShowEditAcademicModal(false);
   const handleShowEditAcademicModal = () => setShowEditAcademicModal(true);
+
+  const handleCloseEditProfessionalModal = () => setShowEditProfessionalModal(false);
+  const handleShowEditProfessionalModal = () => setShowEditProfessionalModal(true);
 
   //calling to endpoint for get user details which already in the database
   const getUserDetails = async (e) => {
@@ -361,8 +543,43 @@ function UserProfileEmptyView() {
       });
   };
 
+  const SaveEditedAcademicData = async (id) => {
+    await axios
+      .post(
+        `${backEndURL}/editedAcademicDetails/${id}`,
+        {
+          institute,
+          degree,
+          startDate,
+          endDate,
+          grade,
+        },
+        {
+          headers: {
+            authorization: `${localStorage.getItem("jwtToken")}`,
+          },
+        }
+      )
+      .then((response) => {
+        if (response.status === 200) {
+          setInstitute("");
+          setDegree("");
+          setStartDate("");
+          setEndDate("");
+          setGrade("");
+          handleCloseEditAcademicModal();
+          alert("Academic details saved successfully");
+          getUserDetails();
+        } else {
+          alert("Academic details not saved");
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating academic data:", error);
+      });
+  };
+
   const handleAcademicData = (e) => {
-    e.preventDefault();
     SaveAcademicData();
   };
 
@@ -407,8 +624,49 @@ function UserProfileEmptyView() {
       });
   };
 
+  const SaveEditedProfessionalData = async (id) => {
+    await axios
+      .post(
+        `${backEndURL}/professionalDetails/${id}`,
+        {
+          position,
+          empType,
+          companyName,
+          locationType,
+          startDate,
+          endDate,
+          skills,
+        },
+        {
+          headers: {
+            authorization: `${localStorage.getItem("jwtToken")}`,
+          },
+        }
+      )
+      .then((response) => {
+        if (response.status === 200) {
+          setPosition("");
+          setEmpType("");
+          setCompanyName("");
+          setLocationType("");
+          setStartDate("");
+          setEndDate("");
+          setSkills("");
+          handleClose7();
+          alert("Professional details saved successfully");
+
+          getUserDetails();
+        } else {
+          alert("Professional details not saved");
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating Professional data:", error);
+      });
+  };
+
   const handleProfessionalData = (e) => {
-    e.preventDefault();
+
     SaveProfessionalData();
   };
 
@@ -484,8 +742,7 @@ function UserProfileEmptyView() {
             alert("Photo uploaded successfully");
           } else if (response.data.error === "Payload too large") {
             alert("File too large. Please upload a file less than 5MB in size");
-          }
-          else {
+          } else {
             alert("Photo not uploaded");
           }
         })
@@ -555,10 +812,6 @@ function UserProfileEmptyView() {
         console.error("Error deleting interest:", error);
       });
   };
-
-  // const handleEditAcademic = (id) => {
-  //   handleShow4();
-  // };
 
   const handleDeleteAcademic = async (id) => {
     await axios
@@ -652,7 +905,7 @@ function UserProfileEmptyView() {
       })
       .then((response) => {
         if (response.data.profilePicture) {
-          const modifiedBackEndURL = backEndURL.replace('/api', '');
+          const modifiedBackEndURL = backEndURL.replace("/api", "");
           const profilePicture = `${modifiedBackEndURL}/${response.data.profilePicture}`;
           setSelectedImage(profilePicture);
         }
@@ -662,13 +915,58 @@ function UserProfileEmptyView() {
       });
   }, [handlePhotoUpload]);
 
-  const openToEditAcademicDetails = () => {
-    handleShowEditAcademicModal();
-    getUserDetails();
-    console.log(userData.academicDetails);
+  const openToEditAcademicDetails = (id) => {
 
+    axios
+      .get(`${backEndURL}/getAcademicDetails/${id}`,{
+        headers: {
+          authorization: `${localStorage.getItem("jwtToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log("response", response);
+        if (response.status === 200) {
+          const { institute, degree, startDate, endDate, grade } = response.data.academic;
+          setInstitute(institute);
+          setDegree(degree);
+          setStartDate(startDate);
+          setEndDate(endDate);
+          setGrade(grade);
+          handleShowEditAcademicModal();
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching academic details:", error);
+      });
+  };
 
-  }
+  const openToEditProfessionalDetails = (id) => {
+
+    axios
+      .get(`${backEndURL}/getProfessionalDetails/${id}`, {
+        headers: {
+          authorization: `${localStorage.getItem("jwtToken")}`,
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          const { position, empType, companyName, locationType, startDate, endDate, skills } = response.data.professional;
+          setPosition(position);
+          setEmpType(empType);
+          setCompanyName(companyName);
+          setLocationType(locationType);
+          setStartDate(startDate);
+          setEndDate(endDate);
+          setSkills(skills);
+          handleShowEditProfessionalModal();
+        } else {
+          alert("Professional details not saved");
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating Professional data:", error);
+      });
+  };
 
   function nav_open() {
     document.getElementById("mySidebar").style.display = "block";
@@ -899,9 +1197,7 @@ function UserProfileEmptyView() {
                     height="45"
                     className="d-inline-block"
                     alt="React Bootstrap logo"
-                    style={
-                      {borderRadius: "100px",}
-                    }
+                    style={{ borderRadius: "100px" }}
                   />
                   <button
                     className="mobile-toggle-btn togelbtn"
@@ -936,8 +1232,7 @@ function UserProfileEmptyView() {
                     alt="propick"
                     className="imgr"
                     onClick={handleShowPhoto}
-                    style={{  borderRadius: "100px", cursor: "pointer" }}
-
+                    style={{ borderRadius: "100px", cursor: "pointer" }}
                   />
                   {/* <Image
                     src={pen}
@@ -1035,12 +1330,7 @@ function UserProfileEmptyView() {
                                   <p>Upload</p>
                                 </label>
                               </Col>
-                              <Col
-                                xs={8}
-                                className="text-center"
-                                
-                                o
-                              >
+                              <Col xs={8} className="text-center" o>
                                 <IoSaveSharp
                                   className="svbtn"
                                   onClick={handlePhotoUpload}
@@ -1904,13 +2194,13 @@ function UserProfileEmptyView() {
                   />
 
                   <UserDataModal
-                  show={showEditAcademicModal}
-                  handleClose={handleCloseEditAcademicModal}
-                  handleSave={handleAcademicData}
-                  title="Academic Qualification"
-                  subTitle="Edit Academic Qualification"
-                  formFields={editAcademicFormFields}
-                   />
+                    show={showEditAcademicModal}
+                    handleClose={handleCloseEditAcademicModal}
+                    handleSave={SaveEditedAcademicData}
+                    title="Academic Qualification"
+                    subTitle="Edit Academic Qualification"
+                    formFields={editAcademicFormFields}
+                  />
 
                   {/*Academic qualification Model End*/}
                 </div>
@@ -1939,7 +2229,9 @@ function UserProfileEmptyView() {
                                     viewBox="0 0 15 16"
                                     fill="none"
                                     cursor="pointer"
-                                    onClick={openToEditAcademicDetails}
+                                    onClick={() =>
+                                      openToEditAcademicDetails(detail._id)
+                                    }
                                   >
                                     <path
                                       d="M9.21542 5.51696L9.98198 6.28352L2.433 13.8325H1.66644V13.0659L9.21542 5.51696ZM12.215 0.500977C12.0067 0.500977 11.7901 0.584299 11.6318 0.74261L10.107 2.2674L13.2315 5.39198L14.7563 3.86719C14.8336 3.7901 14.8949 3.69854 14.9367 3.59774C14.9785 3.49695 15 3.38889 15 3.27977C15 3.17064 14.9785 3.06259 14.9367 2.96179C14.8949 2.86099 14.8336 2.76943 14.7563 2.69235L12.8066 0.74261C12.64 0.575966 12.4316 0.500977 12.215 0.500977ZM9.21542 3.15895L0 12.3744V15.4989H3.12458L12.34 6.28352L9.21542 3.15895Z"
@@ -2025,8 +2317,18 @@ function UserProfileEmptyView() {
                     title="Professional Experience"
                     subTitle="Add New Professional Experience"
                     formFields={professionalFormFields}
-                  
                   />
+
+                  <UserDataModal
+                    show={showEditProfessionalModal}
+                    handleClose={handleCloseEditProfessionalModal}
+                    handleSave={SaveEditedProfessionalData}
+                    title="Professional Experience"
+                    subTitle="Edit Professional Experience"
+                    formFields={editProfessionalFormFields}
+                  />
+
+
 
                   {/*Professional Experience  Model End*/}
                 </div>
@@ -2053,6 +2355,9 @@ function UserProfileEmptyView() {
                                     viewBox="0 0 15 16"
                                     fill="none"
                                     cursor="pointer"
+                                    onClick={() =>
+                                      openToEditProfessionalDetails(detail._id)
+                                    }
                                   >
                                     <path
                                       d="M9.21542 5.51696L9.98198 6.28352L2.433 13.8325H1.66644V13.0659L9.21542 5.51696ZM12.215 0.500977C12.0067 0.500977 11.7901 0.584299 11.6318 0.74261L10.107 2.2674L13.2315 5.39198L14.7563 3.86719C14.8336 3.7901 14.8949 3.69854 14.9367 3.59774C14.9785 3.49695 15 3.38889 15 3.27977C15 3.17064 14.9785 3.06259 14.9367 2.96179C14.8949 2.86099 14.8336 2.76943 14.7563 2.69235L12.8066 0.74261C12.64 0.575966 12.4316 0.500977 12.215 0.500977ZM9.21542 3.15895L0 12.3744V15.4989H3.12458L12.34 6.28352L9.21542 3.15895Z"
