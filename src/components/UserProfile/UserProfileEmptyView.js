@@ -86,6 +86,53 @@ function UserProfileEmptyView() {
   const [websiteLink, setWebsiteLink] = useState("");
   const [getInterest, setGetInterest] = useState("");
 
+  const aboutFields = [
+    {
+      label: "About",
+      placeholder: "Add grade",
+      value: grade,
+      onChange: setGrade,
+      type: "text",
+    },
+  ];
+
+  const editAboutFields = [
+    {
+      label: "Institute*",
+      placeholder: "Add institute name",
+      value: userData.academicDetails.institute,
+      onChange: setInstitute,
+      type: "text",
+    },
+    {
+      label: "Degree / Course*",
+      placeholder: "Add degree / course name",
+      value: userData.academicDetails.degree,
+      onChange: setDegree,
+      type: "text",
+    },
+    {
+      label: "Start Date*",
+      placeholder: "Start date",
+      value: userData.academicDetails.startDate,
+      onChange: setStartDate,
+      type: "date",
+    },
+    {
+      label: "End Date (or expected)*",
+      placeholder: "End date",
+      value: userData.academicDetails.endDate,
+      onChange: setEndDate,
+      type: "date",
+    },
+    {
+      label: "Grade",
+      placeholder: "Add grade",
+      value: userData.academicDetails.grade,
+      onChange: setGrade,
+      type: "text",
+    },
+  ];
   const academicFormFields = [
     {
       label: "Institute*",
@@ -303,15 +350,12 @@ function UserProfileEmptyView() {
   };
 
   const handleLogout = () => {
-    // if (user) {
-    //   logout();   //google login
-    // }
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("firstName");
     localStorage.removeItem("lastName");
     localStorage.removeItem("email");
     handleClose();
-    window.location.href = "/login";
+    window.location.href = "/";
   };
 
   /*Photo Change Model*/
@@ -328,6 +372,8 @@ function UserProfileEmptyView() {
 
   /*Academic qualification Model*/
   const [show4, setShow4] = useState(false);
+  /*about Model*/
+  const [showabout, setShowabout] = useState(false);
 
   /*Delete Model */
   const [show5, setShow5] = useState(false);
@@ -348,6 +394,10 @@ function UserProfileEmptyView() {
   /*Photo Change Model*/
   const handleClosePhoto = () => setShowPhotoModel(false);
   const handleShowPhoto = () => setShowPhotoModel(true);
+
+  /*Photo Change Model*/
+  const handleCloseabout = () => setShowabout(false);
+  const handleShowabout = () => setShowabout(true);
 
   /*Social Media Model Start*/
   const handleClose2 = () => setShow2(false);
@@ -982,6 +1032,17 @@ function UserProfileEmptyView() {
     }
   }
 
+  //About Us Word Counter Function
+  const [textabout, setTextAbout] = useState("");
+
+  const handleChangeAbout = (e) => {
+    const inputText = e.target.value;
+    // Limit the input to 300 characters
+    if (inputText.length <= 150) {
+      setTextAbout(inputText);
+    }
+  };
+
   return (
     <div className="d-flex">
       <div className="container-fluid">
@@ -1330,7 +1391,7 @@ function UserProfileEmptyView() {
                                   <p>Upload</p>
                                 </label>
                               </Col>
-                              <Col xs={8} className="text-center" o>
+                              <Col xs={8} className="text-center">
                                 <IoSaveSharp
                                   className="svbtn"
                                   onClick={handlePhotoUpload}
@@ -1669,245 +1730,7 @@ function UserProfileEmptyView() {
                           </button>
                         </div>
 
-                        <div class="position-absolute bottom-0 end-0 p-3">
-                          <div
-                            class="box d-flex align-items-center"
-                            onClick={handleGetUserDetails}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              cursor="pointer"
-                            >
-                              <path
-                                d="M7 17.0134L11.413 16.9984L21.045 7.45839C21.423 7.08039 21.631 6.57839 21.631 6.04439C21.631 5.51039 21.423 5.00839 21.045 4.63039L19.459 3.04439C18.703 2.28839 17.384 2.29239 16.634 3.04139L7 12.5834V17.0134ZM18.045 4.45839L19.634 6.04139L18.037 7.62339L16.451 6.03839L18.045 4.45839ZM9 13.4174L15.03 7.44439L16.616 9.03039L10.587 15.0014L9 15.0064V13.4174Z"
-                                fill="#2A2A72"
-                              />
-                              <path
-                                d="M5 21H19C20.103 21 21 20.103 21 19V10.332L19 12.332V19H8.158C8.132 19 8.105 19.01 8.079 19.01C8.046 19.01 8.013 19.001 7.979 19H5V5H11.847L13.847 3H5C3.897 3 3 3.897 3 5V19C3 20.103 3.897 21 5 21Z"
-                                fill="#2A2A72"
-                              />
-                            </svg>
-                            <p
-                              className="ptnpara ms-2 mb-0"
-                              style={{ cursor: "pointer" }}
-                            >
-                              Edit Profile
-                            </p>
-                          </div>
-                          {/*Edit personal details Model Start*/}
-                          <Modal
-                            show={show3}
-                            onHide={handleClose3}
-                            aria-labelledby="example-custom-modal-styling-title"
-                          >
-                            <Modal.Header closeButton></Modal.Header>
-
-                            <Modal.Body>
-                              <Modal.Title
-                                id="example-custom-modal-styling-title"
-                                className="text-center"
-                              >
-                                <h1>Edit personal details</h1>
-                                <br></br>
-                              </Modal.Title>
-                              <div className="p-7">
-                                <Container className="mt-2">
-                                  <Row className="mb-3">
-                                    <Form.Group
-                                      as={Col}
-                                      controlId="formGridState"
-                                    >
-                                      <Form.Label>Title*</Form.Label>
-                                      <Form.Select
-                                        value={title}
-                                        onChange={(e) =>
-                                          setTitle(e.target.value)
-                                        }
-                                        placeholder="Choose..."
-                                        style={{
-                                          border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                          borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                          boxShadow: "none", // Optional: Remove box-shadow
-                                          textTransform: "none",
-                                        }}
-                                      >
-                                        <option>Mr</option>
-                                        <option>Mrs</option>
-                                        <option>Miss</option>
-                                      </Form.Select>
-                                    </Form.Group>
-
-                                    <Form.Group
-                                      as={Col}
-                                      controlId="formGridCity"
-                                    >
-                                      <Form.Label>First name</Form.Label>
-                                      <Form.Control
-                                        disabled
-                                        value={userData.firstName}
-                                        placeholder="First Name"
-                                        style={{
-                                          border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                          borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                          boxShadow: "none", // Optional: Remove box-shadow
-                                          textTransform: "none",
-                                        }}
-                                      />
-                                    </Form.Group>
-
-                                    <Form.Group
-                                      as={Col}
-                                      controlId="formGridZip"
-                                    >
-                                      <Form.Label>Last name</Form.Label>
-                                      <Form.Control
-                                        disabled
-                                        value={userData.lastName}
-                                        placeholder="Last Name"
-                                        style={{
-                                          border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                          borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                          boxShadow: "none", // Optional: Remove box-shadow
-                                          textTransform: "none",
-                                        }}
-                                      />
-                                    </Form.Group>
-                                  </Row>
-
-                                  <Form.Label>Email </Form.Label>
-                                  <Form.Control
-                                    disabled
-                                    value={userData.email}
-                                    placeholder="Email"
-                                    style={{
-                                      border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                      borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                      boxShadow: "none", // Optional: Remove box-shadow
-                                      textTransform: "none",
-                                    }}
-                                  />
-                                  <br></br>
-                                  <Form.Label>Address </Form.Label>
-                                  <Form.Control
-                                    value={address}
-                                    onChange={(e) => setAddress(e.target.value)}
-                                    placeholder="Enter Your Address"
-                                    style={{
-                                      border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                      borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                      boxShadow: "none", // Optional: Remove box-shadow
-                                      textTransform: "none",
-                                    }}
-                                  />
-                                  <br></br>
-                                  <Form.Label>Telephone Number </Form.Label>
-                                  <Form.Control
-                                    value={telephone}
-                                    onChange={(e) =>
-                                      setTelephone(e.target.value)
-                                    }
-                                    placeholder="Enter Your Phone Number"
-                                    style={{
-                                      border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                      borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                      boxShadow: "none", // Optional: Remove box-shadow
-                                      textTransform: "none",
-                                    }}
-                                  />
-                                  <br></br>
-                                  <Row className="mb-3">
-                                    <Form.Group
-                                      as={Col}
-                                      controlId="formGridState"
-                                    >
-                                      <Form.Label>Gender</Form.Label>
-                                      <Form.Select
-                                        value={gender}
-                                        onChange={(e) =>
-                                          setGender(e.target.value)
-                                        }
-                                        placeholder="Choose..."
-                                        style={{
-                                          border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                          borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                          boxShadow: "none", // Optional: Remove box-shadow
-                                          textTransform: "none",
-                                        }}
-                                      >
-                                        <option>Male</option>
-                                        <option>Female</option>
-                                      </Form.Select>
-                                    </Form.Group>
-
-                                    <Form.Group
-                                      as={Col}
-                                      controlId="formGridZip"
-                                    >
-                                      <Form.Label>Birthday</Form.Label>
-                                      <Form.Control
-                                        onChange={(e) =>
-                                          setBirthday(e.target.value)
-                                        }
-                                        placeholder="Enter Your Birthday"
-                                        value={birthday}
-                                        type="date"
-                                        style={{
-                                          border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                          borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                          boxShadow: "none", // Optional: Remove box-shadow
-                                        }}
-                                      />
-                                    </Form.Group>
-                                  </Row>
-
-                                  <Form.Label>Description*</Form.Label>
-                                  <Form.Control
-                                    value={description}
-                                    onChange={(e) =>
-                                      setDescription(e.target.value)
-                                    }
-                                    placeholder="write a small description about yourself"
-                                    style={{
-                                      border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                      borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                      boxShadow: "none", // Optional: Remove box-shadow
-                                      textTransform: "none",
-                                    }}
-                                  />
-                                  <br></br>
-                                  <Form.Label>Project Portfolio </Form.Label>
-                                  <Form.Control
-                                    value={portfolioLink}
-                                    onChange={(e) =>
-                                      setPortfolioLink(e.target.value)
-                                    }
-                                    placeholder="google drive link"
-                                    style={{
-                                      border: "0 0 1px 0 solid #ced4da", // Set the bottom border style
-                                      borderRadius: "0", // Optional: Set border-radius to 0 if needed
-                                      boxShadow: "none", // Optional: Remove box-shadow
-                                      textTransform: "none",
-                                    }}
-                                  />
-                                </Container>
-                              </div>
-                              <div className="text-center">
-                                <button
-                                  className="btn  custom-button-reset my-1 my-sm-3 t"
-                                  type="submit"
-                                  onClick={handleSaveUserData}
-                                >
-                                  Save
-                                </button>
-                              </div>
-                            </Modal.Body>
-                          </Modal>
-                          {/*Edit personal details Model End*/}
-                        </div>
+                        
                       </div>
                     </div>
                     {/*Social Media Model Start*/}
@@ -2051,6 +1874,88 @@ function UserProfileEmptyView() {
 
               <div class="cardfu">
                 <div className="d-flex justify-content-between mt-4">
+                  <h4>About</h4>
+
+                  <h6 className="View-more">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="15"
+                      height="15"
+                      viewBox="0 0 15 15"
+                      fill="none"
+                      cursor="pointer"
+                      onClick={handleShowabout}
+                    >
+                      <path
+                        d="M15 8.4375H8.4375V15H6.5625V8.4375H0V6.5625H6.5625V0H8.4375V6.5625H15V8.4375Z"
+                        fill="black"
+                        fill-opacity="0.5"
+                      />
+                    </svg>
+                  </h6>
+
+                  {/*about Model Start*/}
+                  <Modal
+                    size="lg"
+                    show={showabout}
+                    onHide={handleCloseabout}
+                    aria-labelledby="example-custom-modal-styling-title"
+                  >
+                    <Modal.Header closeButton></Modal.Header>
+
+                    <Modal.Body>
+                      <div class="cardm">
+                        <h1 className="text-center">About</h1>
+                        <br></br>
+                        <Form className="mx-auto">
+                          <Form.Group controlId="exampleForm.ControlTextarea1">
+                            <Form.Label className="lblcous">
+                              Type Here..
+                            </Form.Label>
+                            <Form.Control
+                              as="textarea"
+                              rows={5}
+                              className="form-control"
+                              style={{ resize: "none" }}
+                              value={textabout}
+                              onChange={handleChangeAbout}
+                              required={"required"}
+                              name="message"
+                            />
+                          </Form.Group>
+
+                          <div className="text-right">
+                            <p>{textabout.length}/150</p>
+                          </div>
+                        </Form>
+                        <br></br>
+                        <div className="ms-md-auto d-md-flex align-items-end">
+                          <div className="box d-flex align-items-end">
+                            <p className="ptnparak ms-2 mb-0 align-items-end">
+                              <button
+                                className="custom-button218 custom-button-reset my-1 my-sm-3 t"
+                                type="submit"
+                                onClick={handleCloseabout}
+                              >
+                                Cancel
+                              </button>
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                              <button
+                                className="custom-button2136o custom-button-reset my-1 my-sm-3 t"
+                                type="submit"
+                              >
+                                Add
+                              </button>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </Modal.Body>
+                  </Modal>
+                  {/*about Model End*/}
+                </div>
+                <hr></hr>
+                <div className="d-flex justify-content-between mt-4">
                   <h4>Fields of interest</h4>
 
                   <h6 className="View-more">
@@ -2071,7 +1976,7 @@ function UserProfileEmptyView() {
                     </svg>
                   </h6>
 
-                  {/*Academic qualification Model Start*/}
+                  {/*Fields of interest Model Start*/}
                   <Modal
                     size="lg"
                     show={showadd}
@@ -2121,11 +2026,31 @@ function UserProfileEmptyView() {
                       </div>
                     </Modal.Body>
                   </Modal>
-
-                  {/*Academic qualification Model End*/}
+                  {/*Fields of interest Model End*/}
                 </div>
-
                 <br></br>
+
+                {/*Academic qualification Model Start*/}
+
+                <UserDataModal
+                  show={show4}
+                  handleClose={handleClose4}
+                  handleSave={handleAcademicData}
+                  title="Academic Qualification"
+                  subTitle="Add New Academic Qualification"
+                  formFields={aboutFields}
+                />
+
+                <UserDataModal
+                  show={showEditAcademicModal}
+                  handleClose={handleCloseEditAcademicModal}
+                  handleSave={handleAcademicData}
+                  title="Academic Qualification"
+                  subTitle="Edit Academic Qualification"
+                  formFields={editAboutFields}
+                />
+
+                {/*Academic qualification Model End*/}
                 <div className="container mt-3">
                   <div className="d-inline-block ">
                     {userData.fieldOfInterest &&
