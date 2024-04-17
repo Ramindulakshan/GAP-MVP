@@ -42,13 +42,13 @@ import HandleAuth from "./utils/HandleAuth";
 import DeleteAccount from "./components/SettingPage/DeleteAccount";
 import ContactUs from "./components/SettingPage/ContactUs";
 import ChangePassword from "./components/SettingPage/ChangePassword";
+import MentorReview from "./components/BeAMentor/MentorReview";
 
 const App = () => {
   return (
     <React.Fragment>
       <Routes>
-      <Route >
-        {/* <Route element={<HandleAuth />}> */}
+        <Route element={<HandleAuth />}>
           <Route path="/home" element={<HomePage />} />
           <Route path="/settings" element={<SettingPage />} />
           <Route path="/mentoringSession" element={<MentoringSessionPage />} />
@@ -124,6 +124,7 @@ const App = () => {
         <Route path="/settingDeleteAccount" element={<DeleteAccount />} />
         <Route path="/settingContactUs" element={<ContactUs />} />
         <Route path="/changePass" element={<ChangePassword />} />
+        <Route path="/applyMentorReview/:userId" element={<MentorReview />} />
       </Routes>
     </React.Fragment>
   );
