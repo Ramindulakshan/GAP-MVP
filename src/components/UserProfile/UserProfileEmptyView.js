@@ -1,38 +1,21 @@
 import { React, useState, useEffect } from "react";
 import "./UserProfile.css";
-import Navbar from "react-bootstrap/Navbar";
-import GAP_Image from "./img/GAP_BG.png";
-import Level from "./img/level.png";
-import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
-import Tab from "react-bootstrap/Tab";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, FormControl } from "react-bootstrap";
-import { FaSearch } from "react-icons/fa";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
-import pen from "./img/pen.png";
 import Modal from "react-bootstrap/Modal";
 import { Container } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
-import TakeABreak from "../HomePage/Img/Group 421.png";
 import { backEndURL } from "../../backendUrl";
 import axios from "axios";
-import { FaRegBell } from "react-icons/fa6";
 import moment from "moment/moment";
-import {
-  IoHomeOutline,
-  IoPeopleOutline,
-  IoCalendarOutline,
-  IoSettingsOutline,
-} from "react-icons/io5";
-import { TfiBookmarkAlt } from "react-icons/tfi";
-import { MdOutlinePeopleAlt } from "react-icons/md";
-import { RxCountdownTimer } from "react-icons/rx";
-import { IoIosLogOut } from "react-icons/io";
 import { IoSaveSharp } from "react-icons/io5";
 import userPic from "../HomePage/Img/user.png";
 import UserDataModal from "../../utils/UserDataModal";
+import SideBar from "../SideBar/SideBar";
+import NavBar from "../NavBar/NavBar";
 
 function UserProfileEmptyView() {
   const [userData, setUserData] = useState({
@@ -390,7 +373,8 @@ function UserProfileEmptyView() {
   const [showEditAcademicModal, setShowEditAcademicModal] = useState(false);
 
   //model open for edit professional details
-  const [showEditProfessionalModal, setShowEditProfessionalModal] = useState(false);
+  const [showEditProfessionalModal, setShowEditProfessionalModal] =
+    useState(false);
   /*Photo Change Model*/
   const handleClosePhoto = () => setShowPhotoModel(false);
   const handleShowPhoto = () => setShowPhotoModel(true);
@@ -440,7 +424,6 @@ function UserProfileEmptyView() {
   const handleClose7 = () => setShow7(false);
   const handleShow7 = () => setShow7(true);
 
-
   /*Fields experience Model */
   const handleCloseadd = () => setShowadd(false);
   const handleShowadd = () => setShowadd(true);
@@ -452,8 +435,10 @@ function UserProfileEmptyView() {
   const handleCloseEditAcademicModal = () => setShowEditAcademicModal(false);
   const handleShowEditAcademicModal = () => setShowEditAcademicModal(true);
 
-  const handleCloseEditProfessionalModal = () => setShowEditProfessionalModal(false);
-  const handleShowEditProfessionalModal = () => setShowEditProfessionalModal(true);
+  const handleCloseEditProfessionalModal = () =>
+    setShowEditProfessionalModal(false);
+  const handleShowEditProfessionalModal = () =>
+    setShowEditProfessionalModal(true);
 
   //calling to endpoint for get user details which already in the database
   const getUserDetails = async (e) => {
@@ -716,7 +701,6 @@ function UserProfileEmptyView() {
   };
 
   const handleProfessionalData = (e) => {
-
     SaveProfessionalData();
   };
 
@@ -966,9 +950,8 @@ function UserProfileEmptyView() {
   }, [handlePhotoUpload]);
 
   const openToEditAcademicDetails = (id) => {
-
     axios
-      .get(`${backEndURL}/getAcademicDetails/${id}`,{
+      .get(`${backEndURL}/getAcademicDetails/${id}`, {
         headers: {
           authorization: `${localStorage.getItem("jwtToken")}`,
         },
@@ -976,7 +959,8 @@ function UserProfileEmptyView() {
       .then((response) => {
         console.log("response", response);
         if (response.status === 200) {
-          const { institute, degree, startDate, endDate, grade } = response.data.academic;
+          const { institute, degree, startDate, endDate, grade } =
+            response.data.academic;
           setInstitute(institute);
           setDegree(degree);
           setStartDate(startDate);
@@ -991,7 +975,6 @@ function UserProfileEmptyView() {
   };
 
   const openToEditProfessionalDetails = (id) => {
-
     axios
       .get(`${backEndURL}/getProfessionalDetails/${id}`, {
         headers: {
@@ -1000,7 +983,15 @@ function UserProfileEmptyView() {
       })
       .then((response) => {
         if (response.status === 200) {
-          const { position, empType, companyName, locationType, startDate, endDate, skills } = response.data.professional;
+          const {
+            position,
+            empType,
+            companyName,
+            locationType,
+            startDate,
+            endDate,
+            skills,
+          } = response.data.professional;
           setPosition(position);
           setEmpType(empType);
           setCompanyName(companyName);
@@ -1018,20 +1009,6 @@ function UserProfileEmptyView() {
       });
   };
 
-  function nav_open() {
-    document.getElementById("mySidebar").style.display = "block";
-  }
-
-  function nav_close() {
-    document.getElementById("mySidebar").style.display = "none";
-  }
-  function close_sidebar_on_click() {
-    if (window.innerWidth <= 768) {
-      // Check if the window width is less than or equal to 768 (adjust this value based on your design)
-      nav_close();
-    }
-  }
-
   //About Us Word Counter Function
   const [textabout, setTextAbout] = useState("");
 
@@ -1048,240 +1025,10 @@ function UserProfileEmptyView() {
       <div className="container-fluid">
         <div className="row">
           <div className="nav-colum" id="mySidebar">
-            <div className="vh-100 navbk-res">
-              <div className="">
-                <img
-                  src={GAP_Image}
-                  alt="logo"
-                  className="img-fluid custom-image-Gap"
-                />
-                <button onClick={nav_close} class="resclose">
-                  {" "}
-                  &times;
-                </button>
-              </div>
-              <Tab.Container
-                id="list-group-tabs-example"
-                defaultActiveKey="/underConstructionHome"
-              >
-                <Row>
-                  <ListGroup>
-                    <ListGroup.Item
-                      action
-                      variant="light"
-                      className="list-group-item-custom"
-                      onClick={() => {
-                        window.location.href = "/home";
-                        close_sidebar_on_click();
-                      }}
-                      style={{ backgroundColor: "#DDDDFE", border: "0" }}
-                    >
-                      <IoHomeOutline
-                        style={{ fontSize: "18px", marginRight: "20px" }}
-                      />
-                      Home
-                    </ListGroup.Item>
-                    <br />
-                    <ListGroup.Item
-                      action
-                      variant="light"
-                      className="list-group-item-custom"
-                      // href="#link2"
-                      onClick={() => {
-                        window.location.href = "/underConstructionMentors";
-                      }}
-                    >
-                      <IoPeopleOutline
-                        style={{ fontSize: "18px", marginRight: "20px" }}
-                      />
-                      Mentors
-                    </ListGroup.Item>
-                    <br />
-                    <ListGroup.Item
-                      action
-                      variant="light"
-                      className="list-group-item-custom"
-                      onClick={() => {
-                        window.location.href =
-                          "/underConstructionMentorSession";
-                      }}
-                    >
-                      <TfiBookmarkAlt
-                        style={{ fontSize: "18px", marginRight: "20px" }}
-                      />
-                      Mentoring Session
-                    </ListGroup.Item>
-                    <br />
-                    <ListGroup.Item
-                      action
-                      variant="light"
-                      className="list-group-item-custom"
-                      onClick={() => {
-                        window.location.href = "/underConstructionBeAMentor";
-                      }}
-                    >
-                      <MdOutlinePeopleAlt
-                        style={{ fontSize: "18px", marginRight: "20px" }}
-                      />
-                      Be A Mentor
-                    </ListGroup.Item>
-                    <br />
-                    <ListGroup.Item
-                      action
-                      variant="light"
-                      className="list-group-item-custom"
-                      onClick={() => {
-                        window.location.href =
-                          "/underConstructionWeeklySchedulePage";
-                      }}
-                    >
-                      <IoCalendarOutline
-                        style={{ fontSize: "18px", marginRight: "20px" }}
-                      />
-                      Weekly Schedule
-                    </ListGroup.Item>
-                    <br />
-                    <ListGroup.Item
-                      action
-                      variant="light"
-                      className="list-group-item-custom"
-                      onClick={() => {
-                        window.location.href = "/underConstructionHistoryPage";
-                      }}
-                    >
-                      <RxCountdownTimer
-                        style={{ fontSize: "18px", marginRight: "20px" }}
-                      />
-                      Mentoring History
-                    </ListGroup.Item>
-                    <br />
-                    <ListGroup.Item
-                      action
-                      variant="light"
-                      className="list-group-item-custom"
-                      onClick={() => {
-                        window.location.href = "/settings";
-                      }}
-                    >
-                      <IoSettingsOutline
-                        style={{ fontSize: "18px", marginRight: "20px" }}
-                      />
-                      Settings
-                    </ListGroup.Item>
-                    <br />
-                    <br />
-                    <br />
-                    <ListGroup.Item
-                      onClick={handleShow}
-                      action
-                      variant="light"
-                      className="list-group-item-custom"
-                    >
-                      <IoIosLogOut
-                        style={{ fontSize: "18px", marginRight: "20px" }}
-                      />
-                      Logout
-                    </ListGroup.Item>
-                    <br />
-                  </ListGroup>
-                </Row>
-              </Tab.Container>
-              <Modal
-                size="m"
-                show={show}
-                onHide={handleClose}
-                aria-labelledby="example-custom-modal-styling-title"
-                centered
-              >
-                <Modal.Body className="text-center mt-4">
-                  <img
-                    src={TakeABreak}
-                    alt="Tickimg"
-                    className="img-fluid mb-4"
-                    style={{ width: "100px", height: "100px" }}
-                  />
-
-                  <p className="pre ">Are You sure you want to logout?</p>
-
-                  <button
-                    className="btnlgouy1 custom-button-slot "
-                    onClick={handleLogout}
-                  >
-                    Yes
-                  </button>
-                  <button
-                    className="btnlgouy2 custom-button-slot "
-                    onClick={handleClose}
-                  >
-                    No
-                  </button>
-                </Modal.Body>
-              </Modal>
-            </div>
+            <SideBar />
           </div>
-
           <div className="col-lg-9 vh-100 overflow-auto">
-            <Navbar className="mt-3 justify-content-between">
-              <Form className="mx-auto search-res-hide">
-                <div className="position-relative">
-                  <FormControl
-                    type="text"
-                    placeholder="Find A Mentor"
-                    className="w-100"
-                  />
-                  <FaSearch
-                    className="position-absolute top-50 translate-middle-y text-muted"
-                    style={{ right: "15px" }}
-                  />
-                </div>
-              </Form>
-              <Navbar.Brand
-                href="#"
-                className="d-flex align-items-center"
-                style={{ marginLeft: "auto" }}
-              >
-                <img
-                  src={Level}
-                  width="60"
-                  height="40"
-                  className="d-inline-block "
-                  alt="React Bootstrap logo"
-                />{" "}
-                &nbsp;&nbsp;
-                <div className="ml-auto d-flex align-items-center">
-                  <FaRegBell className="bell-nav" />
-                  &nbsp;&nbsp;
-                  <img
-                    src={!selectedImage ? userPic : selectedImage}
-                    roundedCircle
-                    width="45"
-                    height="45"
-                    className="d-inline-block"
-                    alt="React Bootstrap logo"
-                    style={{ borderRadius: "100px" }}
-                  />
-                  <button
-                    className="mobile-toggle-btn togelbtn"
-                    onClick={nav_open}
-                  >
-                    ☰
-                  </button>
-                </div>
-              </Navbar.Brand>
-            </Navbar>
-            <Form className="mx-auto search-res-dis">
-              <div className="position-relative">
-                <FormControl
-                  type="text"
-                  placeholder="Find A Mentor"
-                  className="w-100"
-                />
-                <FaSearch
-                  className="position-absolute top-50 translate-middle-y text-muted"
-                  style={{ right: "15px" }}
-                />
-              </div>
-            </Form>
+            <NavBar />
             <br></br>
             <br></br>
             <div>
@@ -1729,8 +1476,6 @@ function UserProfileEmptyView() {
                             Add Links
                           </button>
                         </div>
-
-                        
                       </div>
                     </div>
                     {/*Social Media Model Start*/}
@@ -2252,8 +1997,6 @@ function UserProfileEmptyView() {
                     subTitle="Edit Professional Experience"
                     formFields={editProfessionalFormFields}
                   />
-
-
 
                   {/*Professional Experience  Model End*/}
                 </div>
