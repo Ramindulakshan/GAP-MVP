@@ -87,7 +87,7 @@ function Prologin() {
         } else if (response.data.error === "Invalid email format") {
           alert("Invalid email format");
         } else if(response.data.error === "Invalid password format"){
-          alert("Invalid Password format");
+          alert("Password Should Contain Atleast 8 Characters, 1 Uppercase, 1 Lowercase");
         }else if (response.data.error === "Passwords do not match") {
           alert("Passwords do not match");
         } else {
