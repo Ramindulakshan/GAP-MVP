@@ -27,11 +27,9 @@ function NavBar() {
           },
         })
         .then((response) => {
-          console.log(response);
           if (response.data.profilePicture) {
-            const modifiedBackEndURL = backEndURL.replace("/api", "");
-            const profilePicture = `${modifiedBackEndURL}/${response.data.profilePicture}`;
-            setProfilePic(profilePicture);
+            const image = require(`../../../src/profilePics/${response.data.profilePicture}`);
+            setProfilePic(image);
           }
         })
         .catch((error) => {

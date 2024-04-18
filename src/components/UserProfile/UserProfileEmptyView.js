@@ -68,6 +68,7 @@ function UserProfileEmptyView() {
   const [linkedinLink, setLinkedinLink] = useState("");
   const [websiteLink, setWebsiteLink] = useState("");
   const [getInterest, setGetInterest] = useState("");
+  const [about, setAbout] = useState("");
 
   const aboutFields = [
     {
@@ -788,6 +789,54 @@ function UserProfileEmptyView() {
     }
   };
 
+  const getAbout = (e) => {
+    axios
+      .get(`${backEndURL}/getAbout`, {
+        headers: {
+          authorization: `${localStorage.getItem("jwtToken")}`,
+        },
+      })
+      .then((response) => {
+        if (response.data.status === "ok") {
+          setAbout(response.data.about);
+        } else {
+          alert("About Added Failed");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching about:", error);
+        alert("Some Error Occured");
+      });
+  };
+
+  const handleAbout = async (e) => {
+    e.preventDefault();
+    await axios
+      .post(
+        `${backEndURL}/about`,
+        {
+          about: textAbout,
+        },
+        {
+          headers: {
+            authorization: `${localStorage.getItem("jwtToken")}`,
+          },
+        }
+      )
+      .then((response) => {
+        if (response.data.status === "ok") {
+          setShowabout(false);
+          getAbout();
+          alert("About Details Added successfully");
+        } else {
+          alert("About Added Failed");
+        }
+      })
+      .catch((error) => {
+        console.error("Error add about:", error);
+      });
+  };
+
   const handleInterest = async (e) => {
     e.preventDefault();
     await axios
@@ -939,9 +988,8 @@ function UserProfileEmptyView() {
       })
       .then((response) => {
         if (response.data.profilePicture) {
-          const modifiedBackEndURL = backEndURL.replace("/api", "");
-          const profilePicture = `${modifiedBackEndURL}/${response.data.profilePicture}`;
-          setSelectedImage(profilePicture);
+          const image = require(`../../../src/profilePics/${response.data.profilePicture}`);
+          setSelectedImage(image);
         }
       })
       .catch((error) => {
@@ -957,7 +1005,6 @@ function UserProfileEmptyView() {
         },
       })
       .then((response) => {
-        console.log("response", response);
         if (response.status === 200) {
           const { institute, degree, startDate, endDate, grade } =
             response.data.academic;
@@ -1010,7 +1057,7 @@ function UserProfileEmptyView() {
   };
 
   //About Us Word Counter Function
-  const [textabout, setTextAbout] = useState("");
+  const [textAbout, setTextAbout] = useState("");
 
   const handleChangeAbout = (e) => {
     const inputText = e.target.value;
@@ -1662,7 +1709,6 @@ function UserProfileEmptyView() {
                               rows={5}
                               className="form-control"
                               style={{ resize: "none" }}
-                              value={textabout}
                               onChange={handleChangeAbout}
                               required={"required"}
                               name="message"
@@ -1670,7 +1716,7 @@ function UserProfileEmptyView() {
                           </Form.Group>
 
                           <div className="text-right">
-                            <p>{textabout.length}/150</p>
+                            <p>{textAbout.length}/150</p>
                           </div>
                         </Form>
                         <br></br>
@@ -1687,7 +1733,8 @@ function UserProfileEmptyView() {
                               &nbsp;&nbsp;&nbsp;&nbsp;
                               <button
                                 className="custom-button2136o custom-button-reset my-1 my-sm-3 t"
-                                type="submit"
+                                type="button"
+                                onClick={handleAbout}
                               >
                                 Add
                               </button>
@@ -1699,6 +1746,15 @@ function UserProfileEmptyView() {
                   </Modal>
                   {/*about Model End*/}
                 </div>
+                {about && about.length > 0 ? (
+                  <div className="container mt-3 bordernew">
+                    <div className="d-inline-block ">
+                      <p className="card-para2">{about}</p>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="card-para2">No academic details available</p>
+                )}
                 <hr></hr>
                 <div className="d-flex justify-content-between mt-4">
                   <h4>Fields of interest</h4>
