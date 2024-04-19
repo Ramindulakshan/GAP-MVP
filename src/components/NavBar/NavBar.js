@@ -28,8 +28,9 @@ function NavBar() {
         })
         .then((response) => {
           if (response.data.profilePicture) {
-            const image = require(`../../../src/profilePics/${response.data.profilePicture}`);
-            setProfilePic(image);
+            const profilePicture = `http://89.116.34.229:3001/${response.data.profilePicture}`;
+      
+            setProfilePic(profilePicture);
           }
         })
         .catch((error) => {
