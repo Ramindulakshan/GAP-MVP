@@ -27,10 +27,9 @@ function NavBar() {
           },
         })
         .then((response) => {
-          console.log(response);
           if (response.data.profilePicture) {
-            const modifiedBackEndURL = backEndURL.replace("/api", "");
-            const profilePicture = `${modifiedBackEndURL}/${response.data.profilePicture}`;
+            const profilePicture = `http://89.116.34.229/${response.data.profilePicture}`;
+      
             setProfilePic(profilePicture);
           }
         })
