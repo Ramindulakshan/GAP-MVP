@@ -29,7 +29,7 @@ function NavBar() {
         .then((response) => {
           if (response.data.profilePicture) {
             const profilePicture = `http://89.116.34.229:3001/${response.data.profilePicture}`;
-      
+
             setProfilePic(profilePicture);
           }
         })
@@ -39,8 +39,6 @@ function NavBar() {
     };
     getUserImage();
   });
-
-
 
   function nav_open() {
     document.getElementById("mySidebar").style.display = "block";
