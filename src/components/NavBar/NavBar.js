@@ -7,7 +7,7 @@ import userPic from "../HomePage/Img/user.png";
 import { FaSearch } from "react-icons/fa";
 import { FormControl } from "react-bootstrap";
 import { FaRegBell } from "react-icons/fa6";
-import { backEndURL } from "../../backendUrl";
+import { backEndURL, imageURL } from "../../backendUrl";
 import axios from "axios";
 function NavBar() {
   const [firstName, setFirstName] = useState("");
@@ -28,9 +28,11 @@ function NavBar() {
         })
         .then((response) => {
           if (response.data.profilePicture) {
-            const profilePicture = `http://89.116.34.229:3001/${response.data.profilePicture}`;
+            const profilePicture = `${imageURL}/${response.data.profilePicture}`;
 
             setProfilePic(profilePicture);
+          } else if (response.data.profilePicture === null) {
+            setProfilePic(null);
           }
         })
         .catch((error) => {
