@@ -8,7 +8,7 @@ import Image from "react-bootstrap/Image";
 import Modal from "react-bootstrap/Modal";
 import { Container } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
-import { backEndURL } from "../../backendUrl";
+import { backEndURL, imageURL } from "../../backendUrl";
 import axios from "axios";
 import moment from "moment/moment";
 import { IoSaveSharp } from "react-icons/io5";
@@ -960,6 +960,7 @@ function UserProfileEmptyView() {
         .then((response) => {
           if (response.data.status === "ok") {
             setSelectedImage(null);
+            setAvatar(null);
             alert("Profile Picture Deleted successfully");
             handleClose5();
           } else if (response.data.error === "No photo found for the user") {
@@ -988,8 +989,8 @@ function UserProfileEmptyView() {
       })
       .then((response) => {
         if (response.data.profilePicture) {
-          const profilePicture = `http://89.116.34.229:3001/${response.data.profilePicture}`;
-
+          const profilePicture = `${imageURL}/${response.data.profilePicture}`;
+        
           setSelectedImage(profilePicture);
         }
       })
