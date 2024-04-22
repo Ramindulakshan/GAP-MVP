@@ -190,7 +190,7 @@
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-top: var(--bs-gutter-y);
 }
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1250px) {
   .search-res-dis {
     display: block;
   }
