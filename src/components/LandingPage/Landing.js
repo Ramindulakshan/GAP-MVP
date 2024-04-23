@@ -9,17 +9,31 @@ import axios from "axios";
 import { Navbar, Nav, Button } from "react-bootstrap";
 const LandingPage = () => {
   const [userCount, setUserCount] = useState(0);
+  const [mentorCount, setMentorCount] = useState(0);  
+
+  const fetchUserCount = async () => {
+    try {
+      const response = await axios.get(`${backEndURL}/members`);
+      setUserCount(response.data.members);
+    } catch (error) {
+      console.error("Error fetching user count: ", error);
+    }
+  };
+
+  const fetchMentorCount = async () => {
+    try {
+      const response = await axios.get(`${backEndURL}/mentors`);
+      setMentorCount(response.data.mentors);
+    } catch (error) {
+      console.error("Error fetching mentor count: ", error);
+    }
+  
+  }
 
   useEffect(() => {
-    const fetchUserCount = async () => {
-      try {
-        const response = await axios.get(`${backEndURL}/members`);
-        setUserCount(response.data.members);
-      } catch (error) {
-        console.error("Error fetching user count: ", error);
-      }
-    };
+    fetchMentorCount();
     fetchUserCount();
+
   }, []);
   const [showNav, setShowNav] = useState(false);
 
@@ -98,7 +112,7 @@ const LandingPage = () => {
                 <Card.Body>
                   <Card.Text>
                     <h1>
-                      <CountUp start={0} end={0} duration={4} delay={0} />
+                      <CountUp start={0} end={mentorCount} duration={2} delay={0} />
                     </h1>
                   </Card.Text>
                   <Card.Title style={{ color: "#2A2A72", fontSize: "24px" }}>
