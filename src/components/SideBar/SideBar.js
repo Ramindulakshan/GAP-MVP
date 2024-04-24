@@ -6,7 +6,6 @@ import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
 import { Modal } from "react-bootstrap";
 import TakeABreak from "../HomePage/Img/Group 421.png";
-
 import {
   IoHomeOutline,
   IoPeopleOutline,
@@ -90,7 +89,7 @@ function SideBar() {
                 className="list-group-item-custom"
                 // href="#link2"
                 onClick={() => {
-                  window.location.href = "/underConstructionMentors";
+                  window.location.href = "/mentors";
                 }}
               >
                 <IoPeopleOutline
@@ -104,7 +103,7 @@ function SideBar() {
                 variant="light"
                 className="list-group-item-custom"
                 onClick={() => {
-                  window.location.href = "/underConstructionMentorSession";
+                  window.location.href = "/mentoringSession";
                 }}
               >
                 <TfiBookmarkAlt
@@ -118,7 +117,7 @@ function SideBar() {
                 variant="light"
                 className="list-group-item-custom"
                 onClick={() => {
-                  window.location.href = "/underConstructionBeAMentor";
+                  window.location.href = "/beAMentor";
                 }}
               >
                 <MdOutlinePeopleAlt
@@ -132,7 +131,7 @@ function SideBar() {
                 variant="light"
                 className="list-group-item-custom"
                 onClick={() => {
-                  window.location.href = "/underConstructionWeeklySchedulePage";
+                  window.location.href = "/WeeklySchedulePage";
                 }}
               >
                 <IoCalendarOutline
@@ -146,7 +145,7 @@ function SideBar() {
                 variant="light"
                 className="list-group-item-custom"
                 onClick={() => {
-                  window.location.href = "/underConstructionHistoryPage";
+                  window.location.href = "/historyPage";
                 }}
               >
                 <RxCountdownTimer
