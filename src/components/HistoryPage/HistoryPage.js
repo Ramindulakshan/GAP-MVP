@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./HistoryPage.css";
 import SideBar from "../SideBar/SideBar";
 import NavBar from "../NavBar/NavBar";
@@ -9,7 +9,6 @@ import pro4 from "./img/pro4.png";
 import pro5 from "./img/1pro.png";
 import { BsStarFill, BsStar } from "react-icons/bs";
 import { Modal } from "react-bootstrap";
-import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
 function HistoryPage() {
@@ -38,7 +37,18 @@ function HistoryPage() {
     orange: "#FFBA5A",
     grey: "#a9a9a9",
   };
-
+  useEffect(() => {
+    const navbar = document.getElementById("mySidebar");
+    const screenWidth = window.innerWidth;
+  
+    // Check if the screen width is less than 1250px (responsive view)
+    if (screenWidth < 1250) {
+      navbar.style.display = "none"; // Hide navbar in responsive view
+    } else {
+      navbar.style.display = "block"; // Show navbar in desktop view
+    }
+  }, []); // Empty dependency array ensures the effect runs only once on component mount
+  
   return (
     <div className="d-flex">
       <div className="container-fluid">

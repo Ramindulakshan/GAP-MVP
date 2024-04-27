@@ -43,6 +43,8 @@ import DeleteAccount from "./components/SettingPage/DeleteAccount";
 import ContactUs from "./components/SettingPage/ContactUs";
 import ChangePassword from "./components/SettingPage/ChangePassword";
 import MentorReview from "./components/BeAMentor/MentorReview";
+import ReceviedMentroingSession from "./components/MentoringSession/ReceviedMentroingSession";
+import ScheduledMentoringSessions from "./components/MentoringSession/ScheduledMentoringSessions";
 
 const App = () => {
   return (
@@ -120,6 +122,8 @@ const App = () => {
         <Route path="/settingContactUs" element={<ContactUs />} />
         <Route path="/changePass" element={<ChangePassword />} />
         <Route path="/applyMentorReview" element={<MentorReview />} />
+        <Route path="/receviedmentor" element={<ReceviedMentroingSession />} />
+        <Route path="/schduldmentor" element={<ScheduledMentoringSessions />} />
       </Routes>
     </React.Fragment>
   );
