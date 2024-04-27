@@ -1,15 +1,22 @@
-import React from "react";
+import React, {useEffect } from "react";
 import "./Mentors.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Col from "react-bootstrap/Col";
-import { BsStarFill, BsStar } from "react-icons/bs";
-import prolog from "./img/pro1.png";
-import pro2 from "./img/pro2.png";
-import pro3 from "./img/pro3.png";
-import pro4 from "./img/pro4.png";
 import SideBar from "../SideBar/SideBar";
 import NavBar from "../NavBar/NavBar";
+import MentorsDetailsBox from "./Components/MentorsDetailsBox";
 function Mentors() {
+  useEffect(() => {
+    const navbar = document.getElementById("mySidebar");
+    const screenWidth = window.innerWidth;
+
+    // Check if the screen width is less than 1250px (responsive view)
+    if (screenWidth < 1250) {
+      navbar.style.display = "none"; // Hide navbar in responsive view
+    } else {
+      navbar.style.display = "block"; // Show navbar in desktop view
+    }
+  }, []); // Empty dependency array ensures the effect runs only once on component mount
+
   return (
     <div className="d-flex">
       <div className="container-fluid">
@@ -40,7 +47,6 @@ function Mentors() {
                     <button
                       style={{
                         border: "2px solid #63636380",
-
                         padding: "10px 20px",
                         borderRadius: "20px",
                       }}
@@ -62,204 +68,8 @@ function Mentors() {
                     </button>
                   </div>
                 </div>
-
-                <div className="card">
-                  <div className="d-md-flex">
-                    {/* Left Column for Image */}
-                    <Col xs={12} md={2} className="mx-auto">
-                      <img src={prolog} rounded alt="propic" className="imgr" />
-                    </Col>
-
-                    {/* Right Column for Other Details */}
-                    <div className="card-body d-md-flex">
-                      <div className="text-section">
-                        <h5 className="card-title fw-bold">
-                          Mr. Julius Aguirre
-                        </h5>
-                        <p className="card-para">
-                          Senior Software Engineer at Innovation Lanka
-                          <br />
-                          <div className="d-inline-block">
-                            <BsStarFill className="text-warning" />
-                            <BsStarFill className="text-warning" />
-                            <BsStarFill className="text-warning" />
-                            <BsStarFill className="text-warning" />
-                            <BsStar className="text-warning" />
-                          </div>
-                        </p>
-                        <div className="container mt-3">
-                          <div className="d-inline-block">
-                            <button className="pbtn">IT</button>
-                            &nbsp;&nbsp;
-                            <button className="pbtn">Programming</button>
-                            &nbsp;&nbsp;
-                            <button className="pbtn">Technology</button>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Edit Profile Section */}
-                      <div className="ms-md-auto d-md-flex align-items-end">
-                        <div className="box d-flex align-items-center">
-                          <p className="ptnpara ms-2 mb-0">
-                            <button
-                              className="custom-button21 custom-button-reset my-1 my-sm-3 t"
-                              type="submit"
-                            >
-                              Request
-                            </button>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="d-md-flex">
-                    {/* Left Column for Image */}
-                    <Col xs={12} md={2} className="mx-auto">
-                      <img src={pro2} rounded alt="propic" className="imgr" />
-                    </Col>
-
-                    {/* Right Column for Other Details */}
-                    <div className="card-body d-md-flex">
-                      <div className="text-section">
-                        <h5 className="card-title fw-bold">Sasha Fernando</h5>
-                        <p className="card-para">
-                          Senior Software Engineer at Innovation Lanka
-                          <br />
-                          <div className="d-inline-block">
-                            <BsStarFill className="text-warning" />
-                            <BsStarFill className="text-warning" />
-                            <BsStarFill className="text-warning" />
-                            <BsStarFill className="text-warning" />
-                            <BsStar className="text-warning" />
-                          </div>
-                        </p>
-                        <div className="container mt-3">
-                          <div className="d-inline-block">
-                            <button className="pbtn">IT</button>
-                            &nbsp;&nbsp;
-                            <button className="pbtn">Programming</button>
-                            &nbsp;&nbsp;
-                            <button className="pbtn">Technology</button>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Edit Profile Section */}
-                      <div className="ms-md-auto d-md-flex align-items-end">
-                        <div className="box d-flex align-items-center">
-                          <p className="ptnpara ms-2 mb-0">
-                            <button
-                              className="custom-button21 custom-button-reset my-1 my-sm-3 t"
-                              type="submit"
-                            >
-                              Request
-                            </button>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="d-md-flex">
-                    {/* Left Column for Image */}
-                    <Col xs={12} md={2} className="mx-auto">
-                      <img src={pro3} rounded alt="propic" className="imgr" />
-                    </Col>
-
-                    {/* Right Column for Other Details */}
-                    <div className="card-body d-md-flex">
-                      <div className="text-section">
-                        <h5 className="card-title fw-bold">Amanda Silva</h5>
-                        <p className="card-para">
-                          Senior Software Engineer at Innovation Lanka
-                          <br />
-                          <div className="d-inline-block">
-                            <BsStarFill className="text-warning" />
-                            <BsStarFill className="text-warning" />
-                            <BsStarFill className="text-warning" />
-                            <BsStarFill className="text-warning" />
-                            <BsStar className="text-warning" />
-                          </div>
-                        </p>
-                        <div className="container mt-3">
-                          <div className="d-inline-block">
-                            <button className="pbtn">IT</button>
-                            &nbsp;&nbsp;
-                            <button className="pbtn">Programming</button>
-                            &nbsp;&nbsp;
-                            <button className="pbtn">Technology</button>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Edit Profile Section */}
-                      <div className="ms-md-auto d-md-flex align-items-end">
-                        <div className="box d-flex align-items-center">
-                          <p className="ptnpara ms-2 mb-0">
-                            <button
-                              className="custom-button21 custom-button-reset my-1 my-sm-3 t"
-                              type="submit"
-                            >
-                              Request
-                            </button>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="d-md-flex">
-                    {/* Left Column for Image */}
-                    <Col xs={12} md={2} className="mx-auto">
-                      <img src={pro4} rounded alt="propic" className="imgr" />
-                    </Col>
-
-                    {/* Right Column for Other Details */}
-                    <div className="card-body d-md-flex">
-                      <div className="text-section">
-                        <h5 className="card-title fw-bold">Jerome Williams</h5>
-                        <p className="card-para">
-                          Senior Software Engineer at Innovation Lanka
-                          <br />
-                          <div className="d-inline-block">
-                            <BsStarFill className="text-warning" />
-                            <BsStarFill className="text-warning" />
-                            <BsStarFill className="text-warning" />
-                            <BsStarFill className="text-warning" />
-                            <BsStar className="text-warning" />
-                          </div>
-                        </p>
-                        <div className="container mt-3">
-                          <div className="d-inline-block">
-                            <button className="pbtn">IT</button>
-                            &nbsp;&nbsp;
-                            <button className="pbtn">Programming</button>
-                            &nbsp;&nbsp;
-                            <button className="pbtn">Technology</button>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Edit Profile Section */}
-                      <div className="ms-md-auto d-md-flex align-items-end">
-                        <div className="box d-flex align-items-center">
-                          <p className="ptnpara ms-2 mb-0">
-                            <button
-                              className="custom-button21 custom-button-reset my-1 my-sm-3 t"
-                              type="submit"
-                            >
-                              Request
-                            </button>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div className="ment_box_card">
+                  <MentorsDetailsBox />
                 </div>
               </div>
             </div>

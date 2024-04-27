@@ -10,10 +10,20 @@ import NavBar from "../NavBar/NavBar";
 const HomePage = () => {
   // const user = userDetails.user; //google login
   const [firstName, setFirstName] = useState("");
+
   useEffect(() => {
     const storedFirstName = localStorage.getItem("firstName");
     setFirstName(storedFirstName);
-  });
+    const navbar = document.getElementById("mySidebar");
+    const screenWidth = window.innerWidth;
+
+    // Check if the screen width is less than 1250px (responsive view)
+    if (screenWidth < 1250) {
+      navbar.style.display = "none"; // Hide navbar in responsive view
+    } else {
+      navbar.style.display = "block"; // Show navbar in desktop view
+    }
+  }, []); // Empty dependency array ensures the effect runs only once on component mount
 
   return (
     <div className="d-flex">
