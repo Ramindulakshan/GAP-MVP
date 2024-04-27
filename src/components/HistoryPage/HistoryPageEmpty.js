@@ -1,15 +1,8 @@
 import React from "react";
 import "./HistoryPage.css";
-import Navbar from "react-bootstrap/Navbar";
-import GAP_Image from "./img/GAP_BG.png";
-import Student_Image from "./img/Student.png";
-import Level from "./img/level.png";
-import ListGroup from "react-bootstrap/ListGroup";
-import Row from "react-bootstrap/Row";
-import Tab from "react-bootstrap/Tab";
+
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Form, FormControl } from "react-bootstrap";
-import { FaSearch } from "react-icons/fa";
+
 import Bxlg from "./img/bxlg.png";
 import SideBar from "../SideBar/SideBar";
 import NavBar from "../NavBar/NavBar";
@@ -47,6 +40,7 @@ function HistoryPageEmpty() {
                   </h5>
                 </div>
               </div>
+              
               <div>
                 <div className="col-lg-12 vh-100 overflow-auto">
                   <div>

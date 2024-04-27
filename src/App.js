@@ -45,6 +45,7 @@ import ChangePassword from "./components/SettingPage/ChangePassword";
 import MentorReview from "./components/BeAMentor/MentorReview";
 import ReceviedMentroingSession from "./components/MentoringSession/ReceviedMentroingSession";
 import ScheduledMentoringSessions from "./components/MentoringSession/ScheduledMentoringSessions";
+import ConductedHistory from "./components/HistoryPage/ConductedHistory";
 
 const App = () => {
   return (
@@ -124,6 +125,7 @@ const App = () => {
         <Route path="/applyMentorReview" element={<MentorReview />} />
         <Route path="/receviedmentor" element={<ReceviedMentroingSession />} />
         <Route path="/schduldmentor" element={<ScheduledMentoringSessions />} />
+        <Route path="/conducted" element={<ConductedHistory />} />
       </Routes>
     </React.Fragment>
   );
