@@ -8,17 +8,16 @@ const MentorReview = () => {
 
   // Unified function to handle both accept and reject operations
   const handleMentorDecision = (decision) => {
-    axios
-      .post(`${backEndURL}/mentor/${decision}/${userId}`, {
-        decision: decision,
-      })
-      .then((response) => {
-        console.log(response.data.message);
-        console.log(`Mentor ${decision}`);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    axios.post(`${backEndURL}/mentor/${decision}/${userId}`, {
+      decision: decision
+    })
+    .then((response) => {
+      alert(response.data.message);
+      console.log(`Mentor ${decision}`);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
 
   return (
