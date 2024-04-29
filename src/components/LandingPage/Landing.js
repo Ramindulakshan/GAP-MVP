@@ -112,7 +112,7 @@ const LandingPage = () => {
                 <Card.Body>
                   <Card.Text>
                     <h1>
-                      <CountUp start={0} end={mentorCount} duration={2} delay={0} />
+                      <CountUp start={0} end={mentorCount} duration={0.4} delay={0} />
                     </h1>
                   </Card.Text>
                   <Card.Title style={{ color: "#2A2A72", fontSize: "24px" }}>
