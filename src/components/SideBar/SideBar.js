@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../HomePage/Home.css";
 import GAP_Image from "../HomePage/Img/GAP_BG.png";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -6,7 +6,6 @@ import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
 import { Modal } from "react-bootstrap";
 import TakeABreak from "../HomePage/Img/Group 421.png";
-
 import {
   IoHomeOutline,
   IoPeopleOutline,
@@ -18,29 +17,44 @@ import { MdOutlinePeopleAlt } from "react-icons/md";
 import { RxCountdownTimer } from "react-icons/rx";
 import { IoIosLogOut } from "react-icons/io";
 function SideBar() {
-  /*LogOut Model*/
   const [show, setShow] = useState(false);
-  /*LogOut Model*/
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const [showSidebar, setShowSidebar] = useState(false);
-
-  const toggleSidebar = () => {
-    setShowSidebar(!showSidebar);
-  };
-
-  function nav_open() {
-    document.getElementById("mySidebar").style.display = "block";
+  function nav_close(url) {
+    document.getElementById("mySidebar");
+    window.location.href = url; // Navigate to the specified URL
   }
-
-  function nav_close() {
+  function nav_closeside() {
     document.getElementById("mySidebar").style.display = "none";
   }
+
+  function checkNavbarDisplay() {
+    const currentPage = window.location.pathname;
+    const navbar = document.getElementById("mySidebar");
+
+    // List of pages where navbar should be hidden
+    const pagesToHideNavbar = [
+      "/home",
+      "/mentors",
+      "/beAMentor",
+      "/mentoringSession",
+      "/WeeklySchedulePage",
+      "/historyPage",
+      "/settings",
+    ];
+
+    // Check if the current page is not in the list of pages to hide the navbar
+    if (!pagesToHideNavbar.includes(currentPage)) {
+      navbar.style.display = "block";
+    }
+
+  }
+
+  useEffect(() => {
+    checkNavbarDisplay();
+  }, []);
+
   const handleLogout = () => {
-    // if (user) {
-    //   logout();   //google login
-    // }
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("firstName");
     localStorage.removeItem("lastName");
@@ -51,15 +65,14 @@ function SideBar() {
 
   return (
     <div>
-      <div className="vh-100 navbk-res">
+      <div id="mySidebar" className="vh-100 navbk-res">
         <div className="">
           <img
             src={GAP_Image}
             alt="logo"
             className="img-fluid custom-image-Gap"
           />
-          <button onClick={nav_close} class="resclose">
-            {" "}
+          <button onClick={nav_closeside} class="resclose">
             &times;
           </button>
         </div>
@@ -74,9 +87,9 @@ function SideBar() {
                 variant="light"
                 className="list-group-item-custom"
                 onClick={() => {
-                  window.location.href = "/home";
+                  nav_close("/home"); // Navigate to the "/home" page
                 }}
-                style={{ backgroundColor: "#DDDDFE", border: "0" }}
+          
               >
                 <IoHomeOutline
                   style={{ fontSize: "18px", marginRight: "20px" }}
@@ -88,9 +101,8 @@ function SideBar() {
                 action
                 variant="light"
                 className="list-group-item-custom"
-                // href="#link2"
                 onClick={() => {
-                  window.location.href = "/underConstructionMentors";
+                  nav_close("/mentors");
                 }}
               >
                 <IoPeopleOutline
@@ -104,7 +116,7 @@ function SideBar() {
                 variant="light"
                 className="list-group-item-custom"
                 onClick={() => {
-                  window.location.href = "/underConstructionMentorSession";
+                  nav_close("/mentoringSession");
                 }}
               >
                 <TfiBookmarkAlt
@@ -118,7 +130,7 @@ function SideBar() {
                 variant="light"
                 className="list-group-item-custom"
                 onClick={() => {
-                  window.location.href = "/underConstructionBeAMentor";
+                  nav_close("/beAMentor");
                 }}
               >
                 <MdOutlinePeopleAlt
@@ -132,7 +144,7 @@ function SideBar() {
                 variant="light"
                 className="list-group-item-custom"
                 onClick={() => {
-                  window.location.href = "/underConstructionWeeklySchedulePage";
+                  nav_close("/WeeklySchedulePage");
                 }}
               >
                 <IoCalendarOutline
@@ -146,7 +158,7 @@ function SideBar() {
                 variant="light"
                 className="list-group-item-custom"
                 onClick={() => {
-                  window.location.href = "/underConstructionHistoryPage";
+                  nav_close("/historyPage");
                 }}
               >
                 <RxCountdownTimer
@@ -160,7 +172,7 @@ function SideBar() {
                 variant="light"
                 className="list-group-item-custom"
                 onClick={() => {
-                  window.location.href = "/settings";
+                  nav_close("/settings");
                 }}
               >
                 <IoSettingsOutline

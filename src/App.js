@@ -43,25 +43,24 @@ import DeleteAccount from "./components/SettingPage/DeleteAccount";
 import ContactUs from "./components/SettingPage/ContactUs";
 import ChangePassword from "./components/SettingPage/ChangePassword";
 import MentorReview from "./components/BeAMentor/MentorReview";
+import ReceviedMentroingSession from "./components/MentoringSession/ReceviedMentroingSession";
+import ScheduledMentoringSessions from "./components/MentoringSession/ScheduledMentoringSessions";
+import ConductedHistory from "./components/HistoryPage/ConductedHistory";
 
 const App = () => {
   return (
     <React.Fragment>
       <Routes>
-        <Route >
+        <Route>
           <Route path="/home" element={<HomePage />} />
           <Route path="/settings" element={<SettingPage />} />
           <Route path="/mentoringSession" element={<MentoringSessionPage />} />
-          <Route path="/mentoringSession " element={<MentoringSessionPage />} />
           <Route path="/beAMentor" element={<BeAMentor />} />
           <Route
             path="/underConstructionBeAMentor"
             element={<UnderConstructionBeAMentor />}
           />
-          <Route
-            path="/userProfile"
-            element={<UserProfileEmptyView />}
-          />
+          <Route path="/userProfile" element={<UserProfileEmptyView />} />
         </Route>
 
         <Route path="/WeeklySchedulePage" element={<WeeklySchedulePage />} />
@@ -71,7 +70,6 @@ const App = () => {
         <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/verifyE" element={<VerifyE />} />
         <Route path="/resetPassword" element={<ResetPassword />} />
-
         <Route path="/emailVerify" element={<EmailVerify />} />
         <Route path="/verifyMN" element={<VerifyMN />} />
         <Route path="/historyPage" element={<HistoryPage />} />
@@ -124,7 +122,10 @@ const App = () => {
         <Route path="/settingDeleteAccount" element={<DeleteAccount />} />
         <Route path="/settingContactUs" element={<ContactUs />} />
         <Route path="/changePass" element={<ChangePassword />} />
-        <Route path="/applyMentorReview/:userId" element={<MentorReview />} />
+        <Route path="/applyMentorReview" element={<MentorReview />} />
+        <Route path="/receviedmentor" element={<ReceviedMentroingSession />} />
+        <Route path="/schduldmentor" element={<ScheduledMentoringSessions />} />
+        <Route path="/conducted" element={<ConductedHistory />} />
       </Routes>
     </React.Fragment>
   );

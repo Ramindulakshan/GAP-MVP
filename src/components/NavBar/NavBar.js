@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import "../HomePage/Home.css";
+import "./nav.css";
 import Level from "../SettingPage/img/level.png";
 import userPic from "../HomePage/Img/user.png";
 import { FaSearch } from "react-icons/fa";
@@ -52,19 +53,14 @@ function NavBar() {
   return (
     <div>
       <Navbar className="mt-3 justify-content-between">
-        <Form className="mx-auto search-res-hide">
-          <div className="position-relative">
-            <FormControl
-              type="text"
-              placeholder="Find A Mentor"
-              className="w-100"
-            />
-            <FaSearch
-              className="position-absolute top-50 translate-middle-y text-muted"
-              style={{ right: "15px" }}
-            />
-          </div>
-        </Form>
+        <div className="search_box">
+          <input
+            type="text"
+            className="search_box_new_nav"
+            placeholder="Find A Mentor..."
+          />
+          <button className="serch_brn">Search</button>
+        </div>
         <Navbar.Brand
           href="#"
           className="d-flex align-items-center"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SettingPage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form } from "react-bootstrap";
@@ -78,6 +78,18 @@ function ChangePassword() {
         console.error(error);
       });
   };
+  useEffect(() => {
+    const navbar = document.getElementById("mySidebar");
+    const screenWidth = window.innerWidth;
+  
+    // Check if the screen width is less than 1250px (responsive view)
+    if (screenWidth < 1250) {
+      navbar.style.display = "none"; // Hide navbar in responsive view
+    } else {
+      navbar.style.display = "block"; // Show navbar in desktop view
+    }
+  }, []); // Empty dependency array ensures the effect runs only once on component mount
+  
 
   return (
     <div>
