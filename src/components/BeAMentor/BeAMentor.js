@@ -4,7 +4,7 @@ import "../BeAMentor/BeAMentor.css";
 import SideBar from "../SideBar/SideBar";
 import NavBar from "../NavBar/NavBar";
 import Col from "react-bootstrap/Col";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import Select from "react-dropdown-select";
@@ -48,7 +48,18 @@ function BeAMentor() {
   /*LogOut Model*/
   const handleClose2 = () => setShow2(false);
   const handleShow2 = () => setShow2(true);
-
+  useEffect(() => {
+    const navbar = document.getElementById("mySidebar");
+    const screenWidth = window.innerWidth;
+  
+    // Check if the screen width is less than 1250px (responsive view)
+    if (screenWidth < 1250) {
+      navbar.style.display = "none"; // Hide navbar in responsive view
+    } else {
+      navbar.style.display = "block"; // Show navbar in desktop view
+    }
+  }, []); // Empty dependency array ensures the effect runs only once on component mount
+  
   return (
     <div className="d-flex">
       <div className="container-fluid">

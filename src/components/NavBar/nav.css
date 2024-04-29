@@ -1,0 +1,24 @@
+.search_box_new_nav{
+    border: 2px solid #2a2a72;
+    border-radius: 3px;
+    padding: 4px 10px;
+    width: 450px;
+    font-size: 20px;
+}
+.search_box{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    gap: 25px;
+}
+.serch_brn{
+    border:2px solid #2a2a72;
+    font-size: 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 4px 10px;
+    color: white;
+    background-color: #2a2a72;
+
+}

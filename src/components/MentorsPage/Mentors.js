@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Mentors.css";
@@ -29,6 +30,26 @@ function Mentors() {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
+
+import React, {useEffect } from "react";
+import "./Mentors.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import SideBar from "../SideBar/SideBar";
+import NavBar from "../NavBar/NavBar";
+import MentorsDetailsBox from "./Components/MentorsDetailsBox";
+function Mentors() {
+  useEffect(() => {
+    const navbar = document.getElementById("mySidebar");
+    const screenWidth = window.innerWidth;
+
+    // Check if the screen width is less than 1250px (responsive view)
+    if (screenWidth < 1250) {
+      navbar.style.display = "none"; // Hide navbar in responsive view
+    } else {
+      navbar.style.display = "block"; // Show navbar in desktop view
+    }
+  }, []); // Empty dependency array ensures the effect runs only once on component mount
+
 
   return (
     <div className="d-flex">
@@ -81,6 +102,7 @@ function Mentors() {
                     </button>
                   </div>
                 </div>
+
                 {mentors &&
                   mentors.map(
                     (
@@ -148,6 +170,11 @@ function Mentors() {
                       </div>
                     )
                   )}
+
+                <div className="ment_box_card">
+                  <MentorsDetailsBox />
+                </div>
+
               </div>
             </div>
           </div>
