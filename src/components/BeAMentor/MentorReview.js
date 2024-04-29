@@ -11,7 +11,7 @@ const MentorReview = () => {
       decision: decision
     })
     .then((response) => {
-      console.log(response.data.message);
+      alert(response.data.message);
       console.log(`Mentor ${decision}`);
     })
     .catch((error) => {
