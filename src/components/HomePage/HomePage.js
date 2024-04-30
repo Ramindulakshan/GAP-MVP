@@ -3,13 +3,20 @@ import Card from "react-bootstrap/Card";
 import Homepage_image from "../HomePage/Img/homepage.png";
 import "../HomePage/Home.css";
 import Level from "../SettingPage/img/level.png";
+import userPic from "../HomePage/Img/user.png";
 import img1 from "../HomePage/Img/1.png";
 import SideBar from "../SideBar/SideBar";
 import NavBar from "../NavBar/NavBar";
+import { backEndURL, imageURL } from "../../backendUrl";
+import axios from "axios";
+import { CardGroup } from "react-bootstrap";
 
 const HomePage = () => {
   // const user = userDetails.user; //google login
   const [firstName, setFirstName] = useState("");
+  const [recentMentors, setRecentMentor] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const storedFirstName = localStorage.getItem("firstName");
@@ -24,6 +31,22 @@ const HomePage = () => {
       navbar.style.display = "block"; // Show navbar in desktop view
     }
   }, []); // Empty dependency array ensures the effect runs only once on component mount
+
+  useEffect(() => {
+    const fetchMentors = async () => {
+      try {
+        const response = await axios.get(`${backEndURL}/recntMentors`);
+        setRecentMentor(response.data.mentors);
+        console.log(response.data.mentors);
+        setLoading(false);
+      } catch (error) {
+        setError("Error fetching data");
+        setLoading(false);
+      }
+    };
+
+    fetchMentors();
+  }, []);
 
   return (
     <div className="d-flex">
@@ -70,7 +93,7 @@ const HomePage = () => {
                   className="View-more"
                   style={{ cursor: "pointer", color: "blue" }}
                   onClick={() => {
-                    window.location.href = "/underConstructionMentors";
+                    window.location.href = "/mentors";
                   }}
                 >
                   <u>View More</u>
@@ -78,21 +101,50 @@ const HomePage = () => {
               </div>
             </div>
 
-            <div className="fadeInUp">
-              <Card style={{ marginRight: "20px", borderRadius: "10px" }}>
-                <div className="text-center">
-                  <div>
-                    <img src={img1} alt="YourImage" className="conimg" />
+            {
+              recentMentors && recentMentors.length > 0 ? (
+                recentMentors.map((mentor) => (
+                  <div className="fadeInUp">
+                    <CardGroup style={{ marginTop: "5px" }}>
+                      <Card style={{ marginRight: "20px", borderRadius: "10px" }}>
+                        <Card.Img variant="top" src={mentor.profilePicture
+                                  ? `${imageURL}/${mentor.profilePicture}`
+                                  : userPic} />
+                        <Card.Body
+                          style={{
+                            backgroundColor: "#474040cc",
+                            borderRadius: "10px",
+                          }}
+                        >
+                          <Card.Title style={{ color: "#ffffff" }}>
+                            {mentor.firstName} {mentor.lastName}
+                          </Card.Title>
+                          <Card.Text style={{ color: "#ffffff" }}>
+                            {mentor.professionalDetails?.position}
+                            <br />
+                            <br />
+                            <div className="text-center">
+                              <button
+                                className="btn custom-mentor my-1 my-sm-3 "
+                                type="submit"
+                              >
+                                Request
+                              </button>
+                            </div>
+                          </Card.Text>
+                        </Card.Body>
+                      </Card>
+                    </CardGroup>
                   </div>
-                  <div>
-                    <h2 className="contpik"> Page Under construction</h2>
-                    <p className="conpret">
-                      To make things perfect we need some time to build.
-                    </p>
-                  </div>
+                ))
+              
+              ) : (
+                <div className="fadeInUp">
+                  <p> No Mentors </p>
+
                 </div>
-              </Card>
-            </div>
+              )
+            }
             <br></br>
           </div>
         </div>
