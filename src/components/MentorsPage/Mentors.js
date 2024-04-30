@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Mentors.css";
@@ -7,6 +6,11 @@ import Col from "react-bootstrap/Col";
 import { BsStarFill, BsStar } from "react-icons/bs";
 import SideBar from "../SideBar/SideBar";
 import NavBar from "../NavBar/NavBar";
+import userPic from "../HomePage/Img/user.png";
+import "./Mentors.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import MentorsDetailsBox from "./Components/MentorsDetailsBox";
+import { backEndURL, imageURL } from "../../backendUrl";
 
 function Mentors() {
   const [mentors, setMentors] = useState([]);
@@ -16,8 +20,9 @@ function Mentors() {
   useEffect(() => {
     const fetchMentors = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/mentors");
+        const response = await axios.get(`${backEndURL}/mentorDetails`);
         setMentors(response.data.mentors);
+        console.log(response.data.mentors);
         setLoading(false);
       } catch (error) {
         setError("Error fetching data");
@@ -28,16 +33,9 @@ function Mentors() {
     fetchMentors();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  //if (loading) return <div>Loading...</div>;
+  //if (error) return <div>Error: {error}</div>;
 
-import React, {useEffect } from "react";
-import "./Mentors.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import SideBar from "../SideBar/SideBar";
-import NavBar from "../NavBar/NavBar";
-import MentorsDetailsBox from "./Components/MentorsDetailsBox";
-function Mentors() {
   useEffect(() => {
     const navbar = document.getElementById("mySidebar");
     const screenWidth = window.innerWidth;
@@ -49,7 +47,6 @@ function Mentors() {
       navbar.style.display = "block"; // Show navbar in desktop view
     }
   }, []); // Empty dependency array ensures the effect runs only once on component mount
-
 
   return (
     <div className="d-flex">
@@ -114,7 +111,11 @@ function Mentors() {
                           {/* Left Column for Image */}
                           <Col xs={12} md={2} className="mx-auto">
                             <img
-                              src={mentor.image}
+                              src={
+                                mentor.profilePicture
+                                  ? `${imageURL}/${mentor.profilePicture}`
+                                  : userPic
+                              }
                               alt="propic"
                               className="imgr"
                             />
@@ -171,10 +172,9 @@ function Mentors() {
                     )
                   )}
 
-                <div className="ment_box_card">
+                {/*<div className="ment_box_card">
                   <MentorsDetailsBox />
-                </div>
-
+                </div>*/}
               </div>
             </div>
           </div>
