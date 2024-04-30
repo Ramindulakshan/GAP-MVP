@@ -129,7 +129,10 @@ function Mentors() {
                                 {mentor.firstName} {mentor.lastName}
                               </h5>
                               <p className="card-para">
-                                {mentor.jobTitle}
+                                {
+                                  mentor.professionalDetails ? `${mentor.professionalDetails?.position} at ${mentor.professionalDetails?.companyName}` : " "
+                                }
+                                
                                 <br />
                                 <div className="d-inline-block">
                                   <BsStarFill className="text-warning" />
