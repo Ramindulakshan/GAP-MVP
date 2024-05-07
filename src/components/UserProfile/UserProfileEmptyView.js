@@ -117,6 +117,7 @@ function UserProfileEmptyView() {
       type: "text",
     },
   ];
+
   const academicFormFields = [
     {
       label: "Institute*",
@@ -1000,6 +1001,9 @@ function UserProfileEmptyView() {
   }, [handlePhotoUpload]);
 
   const openToEditAcademicDetails = (id) => {
+
+    localStorage.setItem("academicDetailId", id);
+
     axios
       .get(`${backEndURL}/getAcademicDetails/${id}`, {
         headers: {
@@ -1008,7 +1012,7 @@ function UserProfileEmptyView() {
       })
       .then((response) => {
         if (response.status === 200) {
-          const { institute, degree, startDate, endDate, grade } =
+          const { institute, degree, startDate, endDate, grade, } =
             response.data.academic;
           setInstitute(institute);
           setDegree(degree);
@@ -1852,8 +1856,8 @@ function UserProfileEmptyView() {
                   subTitle="Edit Academic Qualification"
                   formFields={editAboutFields}
                 />
-
                 {/*Academic qualification Model End*/}
+
                 <div className="container mt-3">
                   <div className="d-inline-block ">
                     {userData.fieldOfInterest &&
@@ -1924,7 +1928,7 @@ function UserProfileEmptyView() {
                   <UserDataModal
                     show={showEditAcademicModal}
                     handleClose={handleCloseEditAcademicModal}
-                    handleSave={SaveEditedAcademicData}
+                    handleSave={() => SaveEditedAcademicData(localStorage.getItem("academicDetailId"))}
                     title="Academic Qualification"
                     subTitle="Edit Academic Qualification"
                     formFields={editAcademicFormFields}
