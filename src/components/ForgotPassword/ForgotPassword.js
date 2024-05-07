@@ -25,11 +25,17 @@ function ForgotPassword() {
       email: email,
     };
     await axios
-      .post(`${backEndURL}/forgotpassword`, data)
+      .post(`${backEndURL}/forgotPassword`, data)
       .then((response) => {
-        window.location.href = "/verifyE";
+        if(response.data.error === "No User Found"){
+          alert("Email not found");
+        } else if(response.status === 201){
+          alert("OTP sent successfully");
+          window.location.href = "/verifyE";
+        }
       })
       .catch((err) => {
+        console.log(err);
       });
   };
 
