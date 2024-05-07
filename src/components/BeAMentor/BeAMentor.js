@@ -51,7 +51,7 @@ function BeAMentor() {
   useEffect(() => {
     const navbar = document.getElementById("mySidebar");
     const screenWidth = window.innerWidth;
-  
+
     // Check if the screen width is less than 1250px (responsive view)
     if (screenWidth < 1250) {
       navbar.style.display = "none"; // Hide navbar in responsive view
@@ -59,7 +59,7 @@ function BeAMentor() {
       navbar.style.display = "block"; // Show navbar in desktop view
     }
   }, []); // Empty dependency array ensures the effect runs only once on component mount
-  
+
   return (
     <div className="d-flex">
       <div className="container-fluid">
@@ -148,16 +148,10 @@ function BeAMentor() {
                         ></label>
                       </div>
                     </form>
-
-                    {switchValue && (
-                      <div>
-                        <p>New Model Content</p>
-                      </div>
-                    )}
                   </div>
                 </div>
 
-                <div className="custom-container2 m-3">
+                {/* <div className="custom-container2 m-3">
                   <div className="mb-1">
                     <h4 className="custom-text">
                       Add Your Preferred Mentoring Fields*
@@ -178,102 +172,25 @@ function BeAMentor() {
                       </Col>
                     </Form>
                   </div>
+                </div> */}
+                <div  className="custom-container2 m-3">
+                  <button
+                    className="btn custom-button-slot "
+                    onClick={handleShow2}
+                  >
+                    Application
+                  </button>
                 </div>
-
                 <div className="d-flex justify-content-between mt-4 m-3 custom-container">
                   <h4 className="custom-text">Set Your Weekly Schedule</h4>
                   <button
                     className="btn custom-button-slot "
-                    onClick={handleShow2}
+                  
                   >
                     Time Slot
                   </button>
                 </div>
 
-                {/* Be A Mentor Page | Take a break pop up message */}
-                {/* <Modal
-                            size="m"
-                            show={show}
-                            onHide={handleClose}
-                            aria-labelledby="example-custom-modal-styling-title"
-                            centered
-                        >
-                            <Modal.Body className="text-center mt-4">
-
-                                <img
-                                    src={TakeABreak}
-                                    alt="Tickimg"
-                                    className="img-fluid mb-4"
-                                    style={{ width: "100px", height: "100px" }}
-                                />
-
-                                <p className="mt-4 mb-4 p-2">
-                                    Are you sure you want to take a Break from being a mentor ?
-                                </p>
-
-                                <button className='btn custom-button-slot p-2 m-2' onClick={handleClose}>NO</button>
-                                <button className='btn custom-button-slot p-2 ' onClick={handleClose}>YES</button>
-                            </Modal.Body>
-                            
-                        </Modal> */}
-
-                {/* Be A Mentor Page |  error message                     */}
-                {/* <Modal
-                            size="m"
-                            show={show}
-                            onHide={handleClose}
-                            aria-labelledby="example-custom-modal-styling-title"
-                            centered
-                        >
-                            
-
-                            <Modal.Body  className="text-center mt-4">
-                        
-                                <img
-                                  src={Error}
-                                    alt="Tickimg"
-                                    className="img-fluid mb-4"
-                                    style={{ width: "100px", height: "100px" }}
-                                /> 
-                               
-                                <h4 className="mb-2 p-2">An Error Occurred</h4>
-                             
-                                <p className="mt-4 mb-4 p-2">
-                                Since you have already scheduled weekly time slots, we can't let you take a break
-                                </p>
-
-                               
-                            </Modal.Body>
-                        </Modal> */}
-
-                {/* Be a mentor Page | admin approval waiting popup */}
-                {/* <Modal
-                            size="m"
-                            show={show}
-                            onHide={handleClose}
-                            aria-labelledby="example-custom-modal-styling-title"
-                            centered
-                        >
-                            <Modal.Header closeButton></Modal.Header>
-
-                            <Modal.Body  className="text-center">
-                                <img
-                                  src={ReqSuccess}
-                                    alt="Tickimg"
-                                    className="img-fluid mb-4"
-                                    style={{ width: "100px", height: "100px" }}
-                                /> 
-                            
-                                <h4 className="mb-2 p-2">Your request has been successfully sent. Please wait for approval from the admin.</h4>
-                       
-                                <p className="mt-4 mb-4 p-2">
-                                We will notify you once it is done
-                                </p>
-                              
-                            </Modal.Body>
-                        </Modal> */}
-
-                {/* submit your mentorship application */}
                 <Modal
                   size="lg"
                   show={show2}
