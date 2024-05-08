@@ -173,22 +173,19 @@ function BeAMentor() {
                     </Form>
                   </div>
                 </div> */}
-                <div  className="custom-container2 m-3">
-                  <button
-                    className="btn custom-button-slot "
-                    onClick={handleShow2}
-                  >
-                    Application
-                  </button>
+                <div className="custom-container2 m-3">
+                  <div className="brncon">
+                    <button
+                      className="btn custom-button-slot  withsetbtn"
+                      onClick={handleShow2}
+                    >
+                      Application
+                    </button>
+                  </div>
                 </div>
                 <div className="d-flex justify-content-between mt-4 m-3 custom-container">
                   <h4 className="custom-text">Set Your Weekly Schedule</h4>
-                  <button
-                    className="btn custom-button-slot "
-                  
-                  >
-                    Time Slot
-                  </button>
+                  <button className="btn custom-button-slot ">Time Slot</button>
                 </div>
 
                 <Modal

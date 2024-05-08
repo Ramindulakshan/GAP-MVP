@@ -115,7 +115,15 @@
   width: 98%;
   background: linear-gradient(to bottom, #025d92, #0a68ac, #0085d1);
 }
-.hlword{
+.hlword {
   font-size: 25px;
   font-weight: bold;
+}
+.brncon {
+  text-align: center;
+}
+.withsetbtn {
+  font-size: 20px;
+  font-weight: bold;
+  width: 450px;
 }
