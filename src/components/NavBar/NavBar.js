@@ -86,21 +86,22 @@ function NavBar() {
     <div>
       <Navbar className="mt-3">
         <div className="">
-        <div className="serchbox_brode ">
-          <div className="search_box">
-            <input
-              className="serchbarnew"
-              type="text"
-              placeholder="Find A Mentor... "
-              value={searchQuery}
-              onChange={handleSearch}
-            />
+          <div className="serchbox_brode ">
+            <div className="search_box">
+              <input
+                className="serchbarnew"
+                type="text"
+                required
+                placeholder="Find A Mentor... "
+                value={searchQuery}
+                onChange={handleSearch}
+              />
 
-            <IoMdSearch className="serchio" onClick={handleSearch} />
+              <IoMdSearch className="serchio"  />
+            </div>
           </div>
         </div>
-        </div>
-      
+
         <Navbar.Brand
           href="#"
           className="d-flex align-items-center"
@@ -135,21 +136,21 @@ function NavBar() {
         </Navbar.Brand>
       </Navbar>
       <div className="">
-      {showDropdown && (
-        <div className="box_drop fadeInUp">
-          {mentorsList.map((mentor, index) => (
-            <p
-            className="itm_deop"
-              key={index}
-              onClick={() =>
-                handleSelectMentor(`${mentor.firstName} ${mentor.lastName}`)
-              }
-            >
-              {mentor.firstName} {mentor.lastName}
-            </p>
-          ))}
-        </div>
-      )}
+        {showDropdown && (
+          <div className="box_drop fadeInUp">
+            {mentorsList.map((mentor, index) => (
+              <p
+                className="itm_deop"
+                key={index}
+                onClick={() =>
+                  handleSelectMentor(`${mentor.firstName} ${mentor.lastName}`)
+                }
+              >
+                {mentor.firstName} {mentor.lastName}
+              </p>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
