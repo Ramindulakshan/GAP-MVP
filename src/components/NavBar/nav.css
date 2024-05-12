@@ -22,3 +22,11 @@
     background-color: #2a2a72;
 
 }
+.box_drop{
+    border: 1px solid #2a2a7248;
+    padding: 15px;
+    position: absolute;
+    width: 350px;
+    z-index: 8888888;
+    background-color: white;
+}

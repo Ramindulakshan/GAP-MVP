@@ -130,17 +130,17 @@ function NavBar() {
         </Navbar.Brand>
       </Navbar>
       {showDropdown && (
-        <ul className="mentor-dropdown">
+        <div className="box_drop">
           {mentorsList.map((mentor, index) => (
-            <li
+            <p
               key={index}
               className={highlightedName === mentor.firstName ? "highlight" : ""}
               onClick={() => handleSelectMentor(`${mentor.firstName} ${mentor.lastName}`)}
             >
               {mentor.firstName} {mentor.lastName}
-            </li>
+            </p>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
