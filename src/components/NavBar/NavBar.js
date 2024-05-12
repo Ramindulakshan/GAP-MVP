@@ -46,7 +46,7 @@ function NavBar() {
   useEffect(() => {
     const fetchMentors = async () => {
       try {
-        const response = await axios.get(`${backEndURL}/mentors`);
+        const response = await axios.get(`${backEndURL}/mentorDetails`);
         setMentorsList(response.data.mentors);
         setOriginalMentorsList(response.data.mentors);
       } catch (error) {
