@@ -5,6 +5,7 @@ import { backEndURL, imageURL } from "../../backendUrl";
 import Level from "../SettingPage/img/level.png";
 import userPic from "../HomePage/Img/user.png";
 import { FaRegBell } from "react-icons/fa";
+import { IoMdSearch } from "react-icons/io";
 import "../HomePage/Home.css";
 import "./nav.css";
 
@@ -68,7 +69,7 @@ function NavBar() {
       );
       setHighlightedName(query);
       setMentorsList(filteredMentors);
-      setShowDropdown(true); 
+      setShowDropdown(true);
     } else {
       setHighlightedName("");
       setMentorsList(originalMentorsList);
@@ -83,19 +84,23 @@ function NavBar() {
 
   return (
     <div>
-      <Navbar className="mt-3 justify-content-between">
-        <div className="search_box">
-          <input
-            type="text"
-            className="search_box_new_nav"
-            placeholder="Find A Mentor..."
-            value={searchQuery}
-            onChange={handleSearch}
-          />
-          <button className="serch_brn" onClick={handleSearch}>
-            Search
-          </button>
+      <Navbar className="mt-3">
+        <div className="serchcen">
+        <div className="serchbox_brode ">
+          <div className="search_box">
+            <input
+              className="serchbarnew"
+              type="text"
+              placeholder="Find A Mentor... "
+              value={searchQuery}
+              onChange={handleSearch}
+            />
+
+            <IoMdSearch className="serchio" onClick={handleSearch} />
+          </div>
         </div>
+        </div>
+      
         <Navbar.Brand
           href="#"
           className="d-flex align-items-center"
@@ -129,19 +134,23 @@ function NavBar() {
           </div>
         </Navbar.Brand>
       </Navbar>
+      <div className="box_drop_details">
       {showDropdown && (
-        <ul className="mentor-dropdown">
+        <div className="box_drop fadeInUp">
           {mentorsList.map((mentor, index) => (
-            <li
+            <p
+            className="itm_deop"
               key={index}
-              className={highlightedName === mentor.firstName ? "highlight" : ""}
-              onClick={() => handleSelectMentor(`${mentor.firstName} ${mentor.lastName}`)}
+              onClick={() =>
+                handleSelectMentor(`${mentor.firstName} ${mentor.lastName}`)
+              }
             >
               {mentor.firstName} {mentor.lastName}
-            </li>
+            </p>
           ))}
-        </ul>
+        </div>
       )}
+      </div>
     </div>
   );
 }

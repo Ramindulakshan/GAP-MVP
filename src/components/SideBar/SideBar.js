@@ -80,7 +80,7 @@ function SideBar() {
           id="list-group-tabs-example"
           defaultActiveKey="/underConstructionHome"
         >
-          <Row>
+          <Row className="item_set_sibr">
             <ListGroup>
               <ListGroup.Item
                 action
