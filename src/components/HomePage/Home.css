@@ -235,7 +235,13 @@
   font-weight: bold;
   font-size: 22px;
 }
+.item_set_sibr{
+  margin-left: 25px;
+}
 @media screen and (max-width: 1250px) {
+  .item_set_sibr{
+    margin-left: 0;
+  }
   .search-res-dis {
     display: block;
   }
