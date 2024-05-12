@@ -85,7 +85,7 @@ function NavBar() {
   return (
     <div>
       <Navbar className="mt-3">
-        <div className="serchcen">
+        <div className="">
         <div className="serchbox_brode ">
           <div className="search_box">
             <input
@@ -134,7 +134,7 @@ function NavBar() {
           </div>
         </Navbar.Brand>
       </Navbar>
-      <div className="box_drop_details">
+      <div className="">
       {showDropdown && (
         <div className="box_drop fadeInUp">
           {mentorsList.map((mentor, index) => (
