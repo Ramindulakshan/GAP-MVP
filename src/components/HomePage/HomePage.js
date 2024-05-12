@@ -35,7 +35,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchMentors = async () => {
       try {
-        const response = await axios.get(`${backEndURL}/recntMentors`);
+        const response = await axios.get(`${backEndURL}/recentMentors`);
         setRecentMentor(response.data.mentors);
         console.log(response.data.mentors);
         setLoading(false);
