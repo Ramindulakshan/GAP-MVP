@@ -1,66 +1,107 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "react-bootstrap/Navbar";
-import Form from "react-bootstrap/Form";
-import "../HomePage/Home.css";
-import "./nav.css";
+import axios from "axios";
+import { backEndURL, imageURL } from "../../backendUrl";
 import Level from "../SettingPage/img/level.png";
 import userPic from "../HomePage/Img/user.png";
-import { FaSearch } from "react-icons/fa";
-import { FormControl } from "react-bootstrap";
-import { FaRegBell } from "react-icons/fa6";
-import { backEndURL, imageURL } from "../../backendUrl";
-import axios from "axios";
+import { FaRegBell } from "react-icons/fa";
+import { IoMdSearch } from "react-icons/io";
+import "../HomePage/Home.css";
+import "./nav.css";
+
 function NavBar() {
   const [firstName, setFirstName] = useState("");
   const [profilePic, setProfilePic] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [mentorsList, setMentorsList] = useState([]);
+  const [originalMentorsList, setOriginalMentorsList] = useState([]);
+  const [highlightedName, setHighlightedName] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
     const storedFirstName = localStorage.getItem("firstName");
     setFirstName(storedFirstName);
-  });
+  }, []);
 
   useEffect(() => {
-    const getUserImage = () => {
-      axios
-        .get(`${backEndURL}/getUserImage`, {
+    const getUserImage = async () => {
+      try {
+        const response = await axios.get(`${backEndURL}/getUserImage`, {
           headers: {
             authorization: `${localStorage.getItem("jwtToken")}`,
           },
-        })
-        .then((response) => {
-          if (response.data.profilePicture) {
-            const profilePicture = `${imageURL}/${response.data.profilePicture}`;
-
-            setProfilePic(profilePicture);
-          } else if (response.data.profilePicture === null) {
-            setProfilePic(null);
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching user image:", error);
         });
+        if (response.data.profilePicture) {
+          const profilePicture = `${imageURL}/${response.data.profilePicture}`;
+          setProfilePic(profilePicture);
+        } else {
+          setProfilePic(null);
+        }
+      } catch (error) {
+        console.error("Error fetching user image:", error);
+      }
     };
     getUserImage();
-  });
+  }, []);
 
-  function nav_open() {
-    document.getElementById("mySidebar").style.display = "block";
-  }
+  useEffect(() => {
+    const fetchMentors = async () => {
+      try {
+        const response = await axios.get(`${backEndURL}/mentorDetails`);
+        setMentorsList(response.data.mentors);
+        setOriginalMentorsList(response.data.mentors);
+      } catch (error) {
+        console.error("Error fetching mentors:", error);
+      }
+    };
+    fetchMentors();
+  }, []);
 
-  function nav_close() {
-    document.getElementById("mySidebar").style.display = "none";
-  }
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    if (query.trim() !== "") {
+      const filteredMentors = originalMentorsList.filter(
+        (mentor) =>
+          mentor.firstName.toLowerCase().includes(query) ||
+          mentor.lastName.toLowerCase().includes(query)
+      );
+      setHighlightedName(query);
+      setMentorsList(filteredMentors);
+      setShowDropdown(true);
+    } else {
+      setHighlightedName("");
+      setMentorsList(originalMentorsList);
+      setShowDropdown(false);
+    }
+  };
+
+  const handleSelectMentor = (mentorName) => {
+    setSearchQuery(mentorName);
+    setShowDropdown(false);
+  };
+
   return (
     <div>
-      <Navbar className="mt-3 justify-content-between">
-        <div className="search_box">
-          <input
-            type="text"
-            className="search_box_new_nav"
-            placeholder="Find A Mentor..."
-          />
-          <button className="serch_brn">Search</button>
+      <Navbar className="mt-3">
+        <div className="">
+          <div className="serchbox_brode ">
+            <div className="search_box">
+              <input
+                className="serchbarnew"
+                type="text"
+                required
+                placeholder="Find A Mentor... "
+                value={searchQuery}
+                onChange={handleSearch}
+              />
+
+              <IoMdSearch className="serchio"  />
+            </div>
+          </div>
         </div>
+
         <Navbar.Brand
           href="#"
           className="d-flex align-items-center"
@@ -91,26 +132,26 @@ function NavBar() {
                 window.location.href = "/userProfile";
               }}
             />
-            {/* Toggle Button for Mobile View */}
-            <button className="mobile-toggle-btn togelbtn" onClick={nav_open}>
-              ☰
-            </button>
           </div>
         </Navbar.Brand>
       </Navbar>
-      <Form className="mx-auto search-res-dis">
-        <div className="position-relative">
-          <FormControl
-            type="text"
-            placeholder="Find A Mentor"
-            className="w-100"
-          />
-          <FaSearch
-            className="position-absolute top-50 translate-middle-y text-muted"
-            style={{ right: "15px" }}
-          />
-        </div>
-      </Form>
+      <div className="">
+        {showDropdown && (
+          <div className="box_drop fadeInUp">
+            {mentorsList.map((mentor, index) => (
+              <p
+                className="itm_deop"
+                key={index}
+                onClick={() =>
+                  handleSelectMentor(`${mentor.firstName} ${mentor.lastName}`)
+                }
+              >
+                {mentor.firstName} {mentor.lastName}
+              </p>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

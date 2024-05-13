@@ -35,7 +35,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchMentors = async () => {
       try {
-        const response = await axios.get(`${backEndURL}/recntMentors`);
+        const response = await axios.get(`${backEndURL}/recentMentors`);
         setRecentMentor(response.data.mentors);
         console.log(response.data.mentors);
         setLoading(false);
@@ -100,51 +100,45 @@ const HomePage = () => {
                 </h6>
               </div>
             </div>
-
-            {
-              recentMentors && recentMentors.length > 0 ? (
+            <div className="card_list_home_metro">
+              {recentMentors && recentMentors.length > 0 ? (
                 recentMentors.map((mentor) => (
-                  <div className="fadeInUp">
-                    <CardGroup style={{ marginTop: "5px" }}>
-                      <Card style={{ marginRight: "20px", borderRadius: "10px" }}>
-                        <Card.Img variant="top" src={mentor.profilePicture
-                                  ? `${imageURL}/${mentor.profilePicture}`
-                                  : userPic} />
-                        <Card.Body
-                          style={{
-                            backgroundColor: "#474040cc",
-                            borderRadius: "10px",
-                          }}
-                        >
-                          <Card.Title style={{ color: "#ffffff" }}>
+                  <div className="mentro_card_home fadeInUp">
+                    <div>
+                      <div>
+                        <img
+                          alt="imguser"
+                          className="img_home_bk"
+                          variant="top"
+                          src={
+                            mentor.profilePicture
+                              ? `${imageURL}/${mentor.profilePicture}`
+                              : userPic
+                          }
+                        />
+                        <div className="div_data_full_home">
+                          <div className="name_lble">
                             {mentor.firstName} {mentor.lastName}
-                          </Card.Title>
-                          <Card.Text style={{ color: "#ffffff" }}>
+                          </div>
+                          <div className="position_lble">
                             {mentor.professionalDetails?.position}
-                            <br />
-                            <br />
-                            <div className="text-center">
-                              <button
-                                className="btn custom-mentor my-1 my-sm-3 "
-                                type="submit"
-                              >
-                                Request
-                              </button>
+                           
+                            <div>
+                              <button className="req_btn_crd" type="submit">Request</button>
                             </div>
-                          </Card.Text>
-                        </Card.Body>
-                      </Card>
-                    </CardGroup>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 ))
-              
               ) : (
                 <div className="fadeInUp">
                   <p> No Mentors </p>
-
                 </div>
-              )
-            }
+              )}
+            </div>
+
             <br></br>
           </div>
         </div>

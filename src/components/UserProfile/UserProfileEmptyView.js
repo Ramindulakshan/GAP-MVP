@@ -327,22 +327,23 @@ function UserProfileEmptyView() {
   //   reader.readAsDataURL(event.target.files[0]);
   // };
 
+  // const handleFileInputChange = (event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     setAvatar(file);
+  //   }
+  // };
   const handleFileInputChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setAvatar(file);
+    const file = event.target.files[0]; // Get the selected file
+
+    if (file && file.size > 1024 * 1024) {
+      // If selected image exceeds 1MB, show alert
+      alert("Please upload an image less than 1MB in size.");
+      return;
     }
-  };
 
-  const handleLogout = () => {
-    localStorage.removeItem("jwtToken");
-    localStorage.removeItem("firstName");
-    localStorage.removeItem("lastName");
-    localStorage.removeItem("email");
-    handleClose();
-    window.location.href = "/";
+    setAvatar(file); // Set the selected file as the avatar
   };
-
   /*Photo Change Model*/
   const [showPhotoModel, setShowPhotoModel] = useState(false);
 
@@ -991,7 +992,7 @@ function UserProfileEmptyView() {
       .then((response) => {
         if (response.data.profilePicture) {
           const profilePicture = `${imageURL}/${response.data.profilePicture}`;
-        
+
           setSelectedImage(profilePicture);
         }
       })
@@ -1001,7 +1002,6 @@ function UserProfileEmptyView() {
   }, [handlePhotoUpload]);
 
   const openToEditAcademicDetails = (id) => {
-
     localStorage.setItem("academicDetailId", id);
 
     axios
@@ -1012,7 +1012,7 @@ function UserProfileEmptyView() {
       })
       .then((response) => {
         if (response.status === 200) {
-          const { institute, degree, startDate, endDate, grade, } =
+          const { institute, degree, startDate, endDate, grade } =
             response.data.academic;
           setInstitute(institute);
           setDegree(degree);
@@ -1093,9 +1093,17 @@ function UserProfileEmptyView() {
                     rounded
                     alt="propick"
                     className="imgr"
-                    onClick={handleShowPhoto}
+                    onClick={() => handleShowPhoto(selectedImage)}
                     style={{ borderRadius: "100px", cursor: "pointer" }}
                   />
+                  {/* <img
+                    src={!selectedImage ? userPic : selectedImage}
+                    rounded
+                    alt="propick"
+                    className="imgr"
+                    onClick={handleShowPhoto}
+                    style={{ borderRadius: "100px", cursor: "pointer" }}
+                  /> */}
                   {/* <Image
                     src={pen}
                     rounded
@@ -1929,7 +1937,11 @@ function UserProfileEmptyView() {
                   <UserDataModal
                     show={showEditAcademicModal}
                     handleClose={handleCloseEditAcademicModal}
-                    handleSave={() => SaveEditedAcademicData(localStorage.getItem("academicDetailId"))}
+                    handleSave={() =>
+                      SaveEditedAcademicData(
+                        localStorage.getItem("academicDetailId")
+                      )
+                    }
                     title="Academic Qualification"
                     subTitle="Edit Academic Qualification"
                     formFields={editAcademicFormFields}
