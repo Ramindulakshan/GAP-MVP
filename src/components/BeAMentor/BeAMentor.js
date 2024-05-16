@@ -8,6 +8,7 @@ import React, { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import Select from "react-dropdown-select";
+import axios from "axios";
 
 function BeAMentor() {
   const [text, setText] = useState("");
@@ -38,6 +39,7 @@ function BeAMentor() {
   ];
 
   const [switchValue, setSwitchValue] = useState(false);
+  const [isMentor, setIsMentor] = useState(null);
 
   const handleSwitchChange = () => {
     setSwitchValue(!switchValue);
@@ -58,7 +60,29 @@ function BeAMentor() {
     } else {
       navbar.style.display = "block"; // Show navbar in desktop view
     }
+
+
+    // Function to check if the user is a mentor
+    const checkIfMentor = async () => {
+      try {
+        const response = await axios.get("/api/mentor/checkMentorStatus");
+        if (response.data.status === "ok") {
+          setIsMentor(response.data.isMentor);
+        }
+      } catch (error) {
+        console.error("Error checking mentor status:", error);
+        setIsMentor(false);
+      }
+    };
+  
+    checkIfMentor();
+
+
+
   }, []); // Empty dependency array ensures the effect runs only once on component mount
+
+
+
 
   return (
     <div className="d-flex">
@@ -127,6 +151,22 @@ function BeAMentor() {
                     Will Increase Accordingly.
                   </h4>
                 </div>
+                {isMentor === true && (
+                  <div className="alert alert-info mt-3">
+                    You are already a mentor.
+                  </div>
+                )}
+                {isMentor === false && (
+                  <div className="alert alert-warning mt-3">
+                    You are not a mentor yet. Apply now to become one!
+                  </div>
+                )}
+                {isMentor === null && (
+                  <div className="alert alert-info mt-3">
+                    Loading mentor status...
+                  </div>
+                )}
+
                 <div className="d-flex justify-content-between mt-5 m-3 custom-container">
                   <h4 className="custom-text">Be a mentor</h4>
                   <div>
