@@ -51,7 +51,7 @@ const App = () => {
   return (
     <React.Fragment>
       <Routes>
-        <Route>
+        <Route element={<HandleAuth />}>
           <Route path="/home" element={<HomePage />} />
           <Route path="/settings" element={<SettingPage />} />
           <Route path="/mentoringSession" element={<MentoringSessionPage />} />

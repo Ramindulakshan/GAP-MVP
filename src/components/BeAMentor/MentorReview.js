@@ -8,28 +8,28 @@ const MentorReview = () => {
 
   // Unified function to handle both accept and reject operations
   const handleMentorDecision = (decision) => {
-    axios.post(`${backEndURL}/mentor/${decision}/${userId}`, {
-      decision: decision
-    })
-    .then((response) => {
-      alert(response.data.message);
-      console.log(`Mentor ${decision}`);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    axios
+      .post(`${backEndURL}/mentor/${decision}/${userId}`, {
+        decision: decision,
+      })
+      .then((response) => {
+        console.log(`Mentor ${decision}`);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
     <div>
       <div className="acept_box_mentro">
         <div>
-          <h1 className="name_topic">Request Management Center</h1>
+          <h1 className="name_topic">Mentor Application Management Center</h1>
           <div className="box_btn_mentor">
             <div className="btn_box_ful_con">
               <img src={Photo} alt="img" className="img_request_acetp" />
-<br></br>
-<h1 className="hlword">Heloo World</h1>
+              <br></br>
+              <h1 className="hlword">Choose a option</h1>
               <button
                 className="btn_acept_mentor"
                 onClick={() => handleMentorDecision("approved")}

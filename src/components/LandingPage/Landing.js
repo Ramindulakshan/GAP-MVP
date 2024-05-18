@@ -15,7 +15,6 @@ const LandingPage = () => {
     try {
       const response = await axios.get(`${backEndURL}/members`);
       setUserCount(response.data.members);
-      console.log("hiiiii")
     } catch (error) {
       console.error("Error fetching user count: ", error);
     }

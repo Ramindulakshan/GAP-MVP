@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Modal from "react-bootstrap/Modal";
+import Google_image from "./img/google.png";
 import { InputGroup } from "react-bootstrap";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import "./register.css";
@@ -98,8 +99,14 @@ function Prologin() {
       alert("An error occurred while processing your request. Please try again later.");
     }
   };
-  
 
+  const googleAuth = () => {
+    window.open(
+      "http://localhost:3001/auth/google/callback",
+      "_self"
+    );
+  } //google login
+  
   return (
     <div>
       <section className="newwitchg">
@@ -429,12 +436,12 @@ function Prologin() {
                     </Modal>
                   </div>
 
-                  {/* {       <div class="text-center mb-2">
+                  {       <div class="text-center mb-2">
                     <h4 className="mb-2 ore">Or, Register with</h4>
                     <div className="Icon">
-                      <img src={Google_image} alt="Imag1" />
+                      <img src={Google_image} alt="Google Image" onClick={googleAuth}/>
                     </div>
-                  </div>} */}
+                  </div>}
                   <br></br>
                   <h6 className="custom-text-AR ore">
                     Already have an account?{" "}

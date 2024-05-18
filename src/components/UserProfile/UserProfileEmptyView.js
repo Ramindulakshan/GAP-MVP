@@ -1028,6 +1028,7 @@ function UserProfileEmptyView() {
   };
 
   const openToEditProfessionalDetails = (id) => {
+    localStorage.setItem("professionalDetailId", id);
     axios
       .get(`${backEndURL}/getProfessionalDetails/${id}`, {
         headers: {
@@ -1981,16 +1982,6 @@ function UserProfileEmptyView() {
                                       d="M9.21542 5.51696L9.98198 6.28352L2.433 13.8325H1.66644V13.0659L9.21542 5.51696ZM12.215 0.500977C12.0067 0.500977 11.7901 0.584299 11.6318 0.74261L10.107 2.2674L13.2315 5.39198L14.7563 3.86719C14.8336 3.7901 14.8949 3.69854 14.9367 3.59774C14.9785 3.49695 15 3.38889 15 3.27977C15 3.17064 14.9785 3.06259 14.9367 2.96179C14.8949 2.86099 14.8336 2.76943 14.7563 2.69235L12.8066 0.74261C12.64 0.575966 12.4316 0.500977 12.215 0.500977ZM9.21542 3.15895L0 12.3744V15.4989H3.12458L12.34 6.28352L9.21542 3.15895Z"
                                       fill="black"
                                       fill-opacity="0.5"
-                                      // onClick={() =>
-                                      //   handleEditAcademic(
-                                      //     detail._id,
-                                      //     detail.institute,
-                                      //     detail.degree,
-                                      //     detail.startDate,
-                                      //     detail.endDate,
-                                      //     detail.grade
-                                      //   )
-                                      // }
                                     />
                                   </svg>
                                   &nbsp;&nbsp;
@@ -2066,7 +2057,7 @@ function UserProfileEmptyView() {
                   <UserDataModal
                     show={showEditProfessionalModal}
                     handleClose={handleCloseEditProfessionalModal}
-                    handleSave={SaveEditedProfessionalData}
+                    handleSave={SaveEditedProfessionalData(localStorage.getItem("professionalDetailId"))}
                     title="Professional Experience"
                     subTitle="Edit Professional Experience"
                     formFields={editProfessionalFormFields}
