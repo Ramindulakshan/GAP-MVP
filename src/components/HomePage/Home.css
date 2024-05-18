@@ -191,32 +191,41 @@
   margin-top: var(--bs-gutter-y);
 }
 
-.mentro_card_home {
-  width: 300px;
+/* .mentro_card_home {
+  width: 250px;
   border-radius: 4px;
   padding: 10px;
   border: 2px solid #2a2a72;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Adjust the values as needed */
-}
 
+.div_data_full_home{
+  position: relative;
+  background-color: #00000095;
+  bottom:134px;
+  color: white;
+  border-radius: 15px;
+  padding: 8px 15px;
+}
 .img_home_bk {
-  width: 100%;
-  height: 300px;
+  width: 300px;
+  height: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  object-fit: cover;
 }
 .req_btn_crd {
-  background-color: white;
+  background-color: transparent;
   font-size: 20px;
   font-weight: bold;
-  color: #2a2a72;
+  color: white;
   width: 100%;
   margin: 8px 0;
   padding: 3px 0;
   cursor: pointer;
   border-radius: 4px;
-  border: 2px solid #2a2a72;
+  border: 2px solid white;
 }
 .req_btn_crd:hover {
-  background-color: #2a2a72;
   color: white;
 }
 .card_list_home_metro {
@@ -224,7 +233,7 @@
   align-items: center;
   flex-wrap: wrap;
   margin: 25px 0 0 0;
-  gap: 25px;
+  gap: 5px;
   justify-content: space-between;
 }
 .name_lble {
@@ -232,14 +241,15 @@
   font-size: 25px;
 }
 .position_lble {
-  font-weight: bold;
-  font-size: 22px;
+  color:#D0EDFF;
+  font-weight: 500;
+  font-size: 17px;
 }
-.item_set_sibr{
+.item_set_sibr {
   margin-left: 25px;
 }
 @media screen and (max-width: 1250px) {
-  .item_set_sibr{
+  .item_set_sibr {
     margin-left: 0;
   }
   .search-res-dis {

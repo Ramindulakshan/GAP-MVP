@@ -207,12 +207,16 @@ function BeAMentor() {
                             <Form.Label>Years Of Experience *</Form.Label>
                             <Form.Select>
                               <option>Years</option>
-                              <option>0</option>
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                           
+                              <option>2020</option>
+                              <option>2021</option>
+                              <option>2022</option>
+                              <option>2023</option>
+                              <option>2024</option>
+                              <option>2025</option>
+                              <option>2026</option>
+                              <option>2027</option>
+                             
                             </Form.Select>
                           </div>
 
@@ -226,6 +230,13 @@ function BeAMentor() {
                               <option>3</option>
                               <option>4</option>
                               <option>5</option>
+                              <option>6</option>
+                              <option>7</option>
+                              <option>8</option>
+                              <option>9</option>
+                              <option>10</option>
+                              <option>11</option>
+                              <option>12</option>
                             </Form.Select>
                           </div>
                         </div>
@@ -244,36 +255,63 @@ function BeAMentor() {
                             placeholder="Username"
                           />
                         </InputGroup>
-                        <Form.Label>Select Major Expertise *</Form.Label>
-                        <Select
+                        <Form.Label>Major Expertise *</Form.Label>
+                        <Form.Group controlId="Major Expertise">
+                        <InputGroup hasValidation>
+                          <Form.Control
+                            type="text"
+                            placeholder="Major Expertise"
+                            style={{ textTransform: "none" }}
+                            aria-describedby="inputGroupPrepend"
+                            required
+                            // onChange={(e) => setUserName(e.target.value)}
+                          />
+                          <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
+                        </InputGroup>
+                      </Form.Group>
+
+                        {/* <Select
                           name="select"
                           options={options1}
                           labelField="id"
                           valueField="name"
                           multi
-                        ></Select>
+                        ></Select> */}
 
                         <Form.Label className="mt-3">
-                          Select Tools Which You Are Expert *
+                          Which You Are Expert *
                         </Form.Label>
-                        <Select
-                          name="Select"
-                          options={options2}
-                          labelField="id"
-                          valueField="name"
-                          multi
-                        ></Select>
+                        <Form.Group controlId="Expert Are">
+                        <InputGroup hasValidation>
+                          <Form.Control
+                            type="text"
+                            placeholder="Expert Are"
+                            style={{ textTransform: "none" }}
+                            aria-describedby="inputGroupPrepend"
+                            required
+                            // onChange={(e) => setUserName(e.target.value)}
+                          />
+                          <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
+                        </InputGroup>
+                      </Form.Group>
 
                         <Form.Label className="mt-3">
-                          Select Skill Which You Have Gathered *
+                          
+                          Skill Which You Have Gathered *
                         </Form.Label>
-                        <Select
-                          name="Select"
-                          options={options3}
-                          labelField="id"
-                          valueField="name"
-                          multi
-                        ></Select>
+                        <Form.Group controlId="Skills">
+                        <InputGroup hasValidation>
+                          <Form.Control
+                            type="text"
+                            placeholder="Skills"
+                            style={{ textTransform: "none" }}
+                            aria-describedby="inputGroupPrepend"
+                            required
+                            // onChange={(e) => setUserName(e.target.value)}
+                          />
+                          <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
+                        </InputGroup>
+                      </Form.Group>
 
                         <Form.Group
                           className="mt-3 mb-3"

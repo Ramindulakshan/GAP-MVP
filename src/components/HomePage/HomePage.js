@@ -121,7 +121,7 @@ const HomePage = () => {
                             {mentor.firstName} {mentor.lastName}
                           </div>
                           <div className="position_lble">
-                            {mentor.professionalDetails?.position}
+                            bbbbbbbbbb bbbbbb{mentor.professionalDetails?.position}
                            
                             <div>
                               <button className="req_btn_crd" type="submit">Request</button>

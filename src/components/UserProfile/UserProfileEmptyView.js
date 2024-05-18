@@ -335,15 +335,15 @@ function UserProfileEmptyView() {
   // };
   const handleFileInputChange = (event) => {
     const file = event.target.files[0]; // Get the selected file
-
-    if (file && file.size > 1024 * 1024) {
-      // If selected image exceeds 1MB, show alert
-      alert("Please upload an image less than 1MB in size.");
+  
+    if (file && file.size > 2 * 1024 * 1024) {
+      // If selected image exceeds 2MB, show alert
+      alert("Please upload an image less than 2MB in size.");
       return;
     }
-
+  
     setAvatar(file); // Set the selected file as the avatar
-  };
+  };  
   /*Photo Change Model*/
   const [showPhotoModel, setShowPhotoModel] = useState(false);
 
