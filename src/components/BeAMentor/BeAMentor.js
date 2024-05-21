@@ -9,6 +9,7 @@ import { Modal } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import Select from "react-dropdown-select";
 import axios from "axios";
+import { backEndURL } from "../../backendUrl";
 
 function BeAMentor() {
   const [text, setText] = useState("");
@@ -20,6 +21,7 @@ function BeAMentor() {
       setText(inputValue);
     }
   };
+
   const options1 = [
     { id: "Time Management", name: 1 },
     { id: "Content Writing", name: 2 },
@@ -50,6 +52,7 @@ function BeAMentor() {
   /*LogOut Model*/
   const handleClose2 = () => setShow2(false);
   const handleShow2 = () => setShow2(true);
+
   useEffect(() => {
     const navbar = document.getElementById("mySidebar");
     const screenWidth = window.innerWidth;
@@ -61,11 +64,10 @@ function BeAMentor() {
       navbar.style.display = "block"; // Show navbar in desktop view
     }
 
-
     // Function to check if the user is a mentor
     const checkIfMentor = async () => {
       try {
-        const response = await axios.get("/api/mentor/checkMentorStatus");
+        const response = await axios.get(`${backEndURL}/checkMentorStatus`);
         if (response.data.status === "ok") {
           setIsMentor(response.data.isMentor);
         }
@@ -74,15 +76,9 @@ function BeAMentor() {
         setIsMentor(false);
       }
     };
-  
+
     checkIfMentor();
-
-
-
   }, []); // Empty dependency array ensures the effect runs only once on component mount
-
-
-
 
   return (
     <div className="d-flex">
@@ -98,11 +94,11 @@ function BeAMentor() {
               <br></br>
               <br></br>
               <div className="custom-container2 mt-3">
-                <div className="d-flex justify-content-between  ">
+                <div className="d-flex justify-content-between">
                   <h4 className="m-3">Start Earning By Being A Mentor</h4>
                 </div>
                 <div className="col-lg-12 custom-Point2 d-flex mt-4 m-3">
-                  <dic className="col-lg-3 mt-5">
+                  <div className="col-lg-3 mt-5">
                     <button
                       className="btn custom-button-Total2 my-1 my-sm-3"
                       type="submit"
@@ -110,8 +106,8 @@ function BeAMentor() {
                       30 Minutes
                     </button>
                     <h4 className="custom-text-price">x.00 /=</h4>
-                  </dic>
-                  <dic className="col-lg-3 mt-5">
+                  </div>
+                  <div className="col-lg-3 mt-5">
                     <button
                       className="btn custom-button-Total2 my-1 my-sm-3"
                       type="submit"
@@ -119,17 +115,16 @@ function BeAMentor() {
                       45 Minutes
                     </button>
                     <h4 className="custom-text-price">Y.00 /=</h4>
-                  </dic>
-                  <dic className="col-lg-3 mt-5">
+                  </div>
+                  <div className="col-lg-3 mt-5">
                     <button
                       className="btn custom-button-Total2 my-1 my-sm-3"
                       type="submit"
                     >
-                      {" "}
-                      1 Hour{" "}
+                      1 Hour
                     </button>
                     <h4 className="custom-text-price2">Z.00 /=</h4>
-                  </dic>
+                  </div>
                   <div className="col-lg-3">
                     <img
                       src={Homepage_image}
@@ -179,8 +174,9 @@ function BeAMentor() {
                           type="checkbox"
                           id="custom-switch"
                           className="custom-switch-input"
-                          checked={switchValue}
+                          checked={isMentor ? switchValue : false}
                           onChange={handleSwitchChange}
+                          disabled={isMentor === true || isMentor === null}
                         />
                         <label
                           htmlFor="custom-switch"
@@ -191,32 +187,10 @@ function BeAMentor() {
                   </div>
                 </div>
 
-                {/* <div className="custom-container2 m-3">
-                  <div className="mb-1">
-                    <h4 className="custom-text">
-                      Add Your Preferred Mentoring Fields*
-                    </h4>
-                  </div>
-                  <br />
-                  <br />
-
-                  <div className="mb-3">
-                    <Form>
-                      <Col xs="auto">
-                        <Form.Control
-                          type="text"
-                          placeholder="Preferred mentoring fields"
-                          className="mr-sm-3 custom-form-control"
-                          style={{ width: "95%" }}
-                        />
-                      </Col>
-                    </Form>
-                  </div>
-                </div> */}
                 <div className="custom-container2 m-3">
                   <div className="brncon">
                     <button
-                      className="btn custom-button-slot  withsetbtn"
+                      className="btn custom-button-slot withsetbtn"
                       onClick={handleShow2}
                     >
                       Application
@@ -225,7 +199,7 @@ function BeAMentor() {
                 </div>
                 <div className="d-flex justify-content-between mt-4 m-3 custom-container">
                   <h4 className="custom-text">Set Your Weekly Schedule</h4>
-                  <button className="btn custom-button-slot ">Time Slot</button>
+                  <button className="btn custom-button-slot">Time Slot</button>
                 </div>
 
                 <Modal
@@ -242,8 +216,8 @@ function BeAMentor() {
                       </h1>
 
                       <Form>
-                        <div class="row">
-                          <div class="col-md-6">
+                        <div className="row">
+                          <div className="col-md-6">
                             <Form.Label>Years Of Experience *</Form.Label>
                             <Form.Select>
                               <option>Years</option>
@@ -256,7 +230,7 @@ function BeAMentor() {
                             </Form.Select>
                           </div>
 
-                          <div class="col-md-6">
+                          <div className="col-md-6">
                             <Form.Label>.</Form.Label>
                             <Form.Select>
                               <option>Months</option>
