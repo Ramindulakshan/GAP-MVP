@@ -81,7 +81,9 @@ function NavBar() {
     setSearchQuery(mentorName);
     setShowDropdown(false);
   };
-
+  function nav_open() {
+    document.getElementById("mySidebar").style.display = "block";
+  }
   return (
     <div>
       <Navbar className="mt-3">
@@ -133,6 +135,9 @@ function NavBar() {
               }}
             />
           </div>
+          <button className="mobile-toggle-btn togelbtn" onClick={nav_open}>
+              ☰
+            </button>
         </Navbar.Brand>
       </Navbar>
       <div className="">
