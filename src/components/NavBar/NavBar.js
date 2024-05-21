@@ -81,7 +81,9 @@ function NavBar() {
     setSearchQuery(mentorName);
     setShowDropdown(false);
   };
-
+  function nav_open() {
+    document.getElementById("mySidebar").style.display = "block";
+  }
   return (
     <div>
       <Navbar className="mt-3">
@@ -97,7 +99,7 @@ function NavBar() {
                 onChange={handleSearch}
               />
 
-              <IoMdSearch className="serchio"  />
+              <IoMdSearch className="serchio" />
             </div>
           </div>
         </div>
@@ -133,8 +135,26 @@ function NavBar() {
               }}
             />
           </div>
+          <button className="mobile-toggle-btn togelbtn" onClick={nav_open}>
+            ☰
+          </button>
         </Navbar.Brand>
       </Navbar>
+     {/*Navbar Temporary Add */}
+      <div className="serchbox_brode_tem ">
+        <div className="search_box">
+          <input
+            className="serchbarnew"
+            type="text"
+            required
+            placeholder="Find A Mentor... "
+            value={searchQuery}
+            onChange={handleSearch}
+          />
+
+          <IoMdSearch className="serchio" />
+        </div>
+      </div>
       <div className="">
         {showDropdown && (
           <div className="box_drop fadeInUp">

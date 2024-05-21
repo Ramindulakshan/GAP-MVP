@@ -9,7 +9,7 @@
 .list-group-item-custom {
   background-color: rgb(255, 255, 255);
   color: #00000080;
-  width: 45vh;
+  width: 100%;
   border-color: #ffffff80;
 }
 .list-group-item-custom:hover {
@@ -252,7 +252,9 @@
   .item_set_sibr {
     margin-left: 0;
   }
+  
   .search-res-dis {
+
     display: block;
   }
   .search-res-hide {

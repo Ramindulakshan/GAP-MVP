@@ -50,12 +50,7 @@
   position: relative;
   background-attachment: fixed;
 } */
-.list-group-item-custom {
-  background-color: rgb(255, 255, 255);
-  color: #00000080;
-  width: 45vh;
-  border: 0;
-}
+
 .list-group-item-custom:hover {
   background-color: #2a2a721a;
   color: #2a2a72;
