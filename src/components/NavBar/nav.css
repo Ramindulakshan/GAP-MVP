@@ -68,12 +68,27 @@
   font-weight: 500;
   font-size: 18px;
   margin: 0;
-  padding: 8px ;
+  padding: 8px;
   cursor: pointer;
   width: 100%;
 }
 .itm_deop:hover {
-    border-radius: 3px;
-    font-weight: bold;
+  border-radius: 3px;
+  font-weight: bold;
   background-color: #2a2a7227;
+}
+.serchbox_brode_tem{
+  display: none;
+}
+@media screen and (max-width: 650px) {
+  .serchbox_brode_tem {
+    border: 1px solid #2a2a72;
+    padding: 4px 15px;
+    border-radius: 80px;
+    width: 100%;
+    display: block;
+  }
+  .serchbox_brode{
+    display: none;
+  }
 }
