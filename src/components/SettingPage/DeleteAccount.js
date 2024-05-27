@@ -15,7 +15,7 @@ import { backEndURL } from "../../backendUrl";
 import axios from "axios";
 import NavBar from "../NavBar/NavBar";
 import SideBar from "../SideBar/SideBar";
-
+import {useEffect } from "react";
 function DeleteAccount() {
   const { Formik } = formik;
 
@@ -79,6 +79,18 @@ function DeleteAccount() {
         console.error(error);
       });
   };
+  useEffect(() => {
+    const navbar = document.getElementById("mySidebar");
+    const screenWidth = window.innerWidth;
+  
+    // Check if the screen width is less than 1250px (responsive view)
+    if (screenWidth < 1250) {
+      navbar.style.display = "none"; // Hide navbar in responsive view
+    } else {
+      navbar.style.display = "block"; // Show navbar in desktop view
+    }
+  }, []); // Empty dependency array ensures the effect runs only once on component mount
+  
   return (
     <div>
       <div className="container-fluid">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Mentors.css";
 import Navbar from "react-bootstrap/Navbar";
 import GAP_Image from "./img/GAP_BG.png";
@@ -18,6 +18,18 @@ import pro3 from "./img/pro3.png";
 import pro4 from "./img/pro4.png";
 
 function Mentors() {
+  useEffect(() => {
+    const navbar = document.getElementById("mySidebar");
+    const screenWidth = window.innerWidth;
+  
+    // Check if the screen width is less than 1250px (responsive view)
+    if (screenWidth < 1250) {
+      navbar.style.display = "none"; // Hide navbar in responsive view
+    } else {
+      navbar.style.display = "block"; // Show navbar in desktop view
+    }
+  }, []); // Empty dependency array ensures the effect runs only once on component mount
+  
   return (
     <div>
       <div className="container-fluid">

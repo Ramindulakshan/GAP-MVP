@@ -76,7 +76,7 @@ function SideBar() {
                 onClick={() => {
                   window.location.href = "/home";
                 }}
-                style={{ backgroundColor: "#DDDDFE", border: "0" }}
+            
               >
                 <IoHomeOutline
                   style={{ fontSize: "18px", marginRight: "20px" }}

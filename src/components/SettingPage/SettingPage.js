@@ -2,8 +2,21 @@ import React from "react";
 import "./SettingPage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "../NavBar/NavBar";
+import {useEffect } from "react";
 import SideBar from "../SideBar/SideBar";
 function SettingPage() {
+  useEffect(() => {
+    const navbar = document.getElementById("mySidebar");
+    const screenWidth = window.innerWidth;
+  
+    // Check if the screen width is less than 1250px (responsive view)
+    if (screenWidth < 1250) {
+      navbar.style.display = "none"; // Hide navbar in responsive view
+    } else {
+      navbar.style.display = "block"; // Show navbar in desktop view
+    }
+  }, []); // Empty dependency array ensures the effect runs only once on component mount
+  
   return (
     <div>
       <div className="container-fluid">
