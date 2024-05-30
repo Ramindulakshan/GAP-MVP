@@ -7,12 +7,17 @@ import Col from "react-bootstrap/Col";
 import React, { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
-import Select from "react-dropdown-select";
 import axios from "axios";
 import { backEndURL } from "../../backendUrl";
 
 function BeAMentor() {
   const [text, setText] = useState("");
+  const [inUsername, setInUsername] = useState("");
+  const [expertise, setExpertise] = useState("");
+  const [tools, setTools] = useState("");
+  const [skills, setSkills] = useState("");
+  const [years, setYears] = useState("");
+  const [months, setMonths] = useState("");
   const maxCharacters = 250;
 
   const handleTextChange = (event) => {
@@ -66,19 +71,56 @@ function BeAMentor() {
 
     // Function to check if the user is a mentor
     const checkIfMentor = async () => {
-      try {
-        const response = await axios.get(`${backEndURL}/checkMentorStatus`);
-        if (response.data.status === "ok") {
-          setIsMentor(response.data.isMentor);
-        }
-      } catch (error) {
-        console.error("Error checking mentor status:", error);
+      // try {
+      //   const response = await axios.get(`${backEndURL}/checkMentorStatus`);
+      //   if (response.data.isMentor === true) {
+      //     setIsMentor(true);
+      //   } else if (response.data.isMentor === false) {
+      //     setIsMentor(false);
+      //   }
+      // } catch (error) {
+      //   console.error("Error checking mentor status:", error);
+      //   setIsMentor(false);
+      // }
+      const decision = localStorage.getItem("mentorDecision");
+
+      if(decision === 'approved'){
+        setIsMentor(true);
+      } else{
         setIsMentor(false);
       }
     };
 
     checkIfMentor();
   }, []); // Empty dependency array ensures the effect runs only once on component mount
+
+  const handleMentorApplication = async () => {
+
+    try {
+      const response = await axios.post(`${backEndURL}/applyMentor`, {
+        yearsOfExp: years + months ,
+        inUsername: inUsername,
+        expertise: expertise,
+        tools: tools,
+        skills: skills,
+        introduction: text,
+      },
+      {
+        headers: {
+          authorization: `${localStorage.getItem("jwtToken")}`,
+        },
+      });
+      if (response.data.status === "ok") {
+        alert("Mentor application submitted successfully to Review" );
+        handleClose2();
+      } else {
+        alert(" Application submission failed. Please try again later");
+      }
+    } catch (error) {
+      console.error("Error submitting mentor application:", error);
+      alert("Error submitting mentor application");
+    }
+  };
 
   return (
     <div className="d-flex">
@@ -151,14 +193,14 @@ function BeAMentor() {
                     You are already a mentor.
                   </div>
                 )}
-                {isMentor === false && (
+                {isMentor === null && (
                   <div className="alert alert-warning mt-3">
                     You are not a mentor yet. Apply now to become one!
                   </div>
                 )}
-                {isMentor === null && (
+                {isMentor === false && (
                   <div className="alert alert-info mt-3">
-                    Loading mentor status...
+                    Unfortunately, you are not approved to be a mentor.
                   </div>
                 )}
 
@@ -174,9 +216,9 @@ function BeAMentor() {
                           type="checkbox"
                           id="custom-switch"
                           className="custom-switch-input"
-                          checked={isMentor ? switchValue : false}
+                          checked={isMentor === true}
                           onChange={handleSwitchChange}
-                          disabled={isMentor === true || isMentor === null}
+                          disabled={isMentor === false || isMentor === null}
                         />
                         <label
                           htmlFor="custom-switch"
@@ -192,6 +234,7 @@ function BeAMentor() {
                     <button
                       className="btn custom-button-slot withsetbtn"
                       onClick={handleShow2}
+                      disabled={isMentor === true}
                     >
                       Application
                     </button>
@@ -199,7 +242,12 @@ function BeAMentor() {
                 </div>
                 <div className="d-flex justify-content-between mt-4 m-3 custom-container">
                   <h4 className="custom-text">Set Your Weekly Schedule</h4>
-                  <button className="btn custom-button-slot">Time Slot</button>
+                  <button
+                    className="btn custom-button-slot"
+                    disabled={isMentor === false || isMentor === null}
+                  >
+                    Time Slot
+                  </button>
                 </div>
 
                 <Modal
@@ -219,26 +267,27 @@ function BeAMentor() {
                         <div className="row">
                           <div className="col-md-6">
                             <Form.Label>Years Of Experience *</Form.Label>
-                            <Form.Select>
+                            <Form.Select
+                              onChange={(e) =>
+                                setYears(e.target.value)
+                              }
+                            >
                               <option>Years</option>
-                           
-                              <option>2020</option>
-                              <option>2021</option>
-                              <option>2022</option>
-                              <option>2023</option>
-                              <option>2024</option>
-                              <option>2025</option>
-                              <option>2026</option>
-                              <option>2027</option>
-                             
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                              <option>5+</option>
                             </Form.Select>
                           </div>
 
                           <div className="col-md-6">
-                            <Form.Label>.</Form.Label>
-                            <Form.Select>
+                            <Form.Label>Months</Form.Label>
+                            <Form.Select
+                              onChange={(e) => setMonths(e.target.value)}
+                            >
                               <option>Months</option>
-                              <option>0</option>
                               <option>1</option>
                               <option>2</option>
                               <option>3</option>
@@ -250,7 +299,6 @@ function BeAMentor() {
                               <option>9</option>
                               <option>10</option>
                               <option>11</option>
-                              <option>12</option>
                             </Form.Select>
                           </div>
                         </div>
@@ -259,30 +307,37 @@ function BeAMentor() {
                           LinkedIn URL *
                         </Form.Label>
                         <InputGroup className="mb-3">
-                          <InputGroup.Text id="basic-addon3">
+                          <InputGroup.Text
+                            id="basic-addon3"
+                            style={{ textTransform: "none" }}
+                          >
                             linkedin.com/in/
                           </InputGroup.Text>
 
                           <Form.Control
                             id="basic-url"
                             aria-describedby="basic-addon3"
-                            placeholder="Username"
+                            placeholder="username"
+                            value={inUsername}
+                            style={{ textTransform: "none" }}
+                            onChange={(e) => setInUsername(e.target.value)}
                           />
                         </InputGroup>
                         <Form.Label>Major Expertise *</Form.Label>
                         <Form.Group controlId="Major Expertise">
-                        <InputGroup hasValidation>
-                          <Form.Control
-                            type="text"
-                            placeholder="Major Expertise"
-                            style={{ textTransform: "none" }}
-                            aria-describedby="inputGroupPrepend"
-                            required
-                            // onChange={(e) => setUserName(e.target.value)}
-                          />
-                          <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
-                        </InputGroup>
-                      </Form.Group>
+                          <InputGroup hasValidation>
+                            <Form.Control
+                              type="text"
+                              placeholder="Major Expertise"
+                              style={{ textTransform: "none" }}
+                              aria-describedby="inputGroupPrepend"
+                              value={expertise}
+                              required
+                              onChange={(e) => setExpertise(e.target.value)}
+                            />
+                            <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
+                          </InputGroup>
+                        </Form.Group>
 
                         {/* <Select
                           name="select"
@@ -293,47 +348,49 @@ function BeAMentor() {
                         ></Select> */}
 
                         <Form.Label className="mt-3">
-                          Which You Are Expert *
+                          Tools which You Are Expert *
                         </Form.Label>
                         <Form.Group controlId="Expert Are">
-                        <InputGroup hasValidation>
-                          <Form.Control
-                            type="text"
-                            placeholder="Expert Are"
-                            style={{ textTransform: "none" }}
-                            aria-describedby="inputGroupPrepend"
-                            required
-                            // onChange={(e) => setUserName(e.target.value)}
-                          />
-                          <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
-                        </InputGroup>
-                      </Form.Group>
+                          <InputGroup hasValidation>
+                            <Form.Control
+                              type="text"
+                              placeholder="Tools"
+                              style={{ textTransform: "none" }}
+                              aria-describedby="inputGroupPrepend"
+                              value={tools}
+                              required
+                              onChange={(e) => setTools(e.target.value)}
+                            />
+                            <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
+                          </InputGroup>
+                        </Form.Group>
 
                         <Form.Label className="mt-3">
-                          
                           Skill Which You Have Gathered *
                         </Form.Label>
                         <Form.Group controlId="Skills">
-                        <InputGroup hasValidation>
-                          <Form.Control
-                            type="text"
-                            placeholder="Skills"
-                            style={{ textTransform: "none" }}
-                            aria-describedby="inputGroupPrepend"
-                            required
-                            // onChange={(e) => setUserName(e.target.value)}
-                          />
-                          <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
-                        </InputGroup>
-                      </Form.Group>
+                          <InputGroup hasValidation>
+                            <Form.Control
+                              type="text"
+                              placeholder="Skills"
+                              style={{ textTransform: "none" }}
+                              aria-describedby="inputGroupPrepend"
+                              value={skills}
+                              required
+                              onChange={(e) => setSkills(e.target.value)}
+                            />
+                            <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
+                          </InputGroup>
+                        </Form.Group>
 
                         <Form.Group
                           className="mt-3 mb-3"
                           controlId="exampleForm.ControlTextarea1"
                         >
-                          <Form.Label>Example textarea</Form.Label>
+                          <Form.Label>Introduction</Form.Label>
                           <Form.Control
                             as="textarea"
+                            placeholder="Describe yourself and why you wish to be a mentor"
                             rows={3}
                             value={text}
                             onChange={handleTextChange}
@@ -351,6 +408,7 @@ function BeAMentor() {
                         <button
                           className="btn custom-button-reset my-1 my-sm-3"
                           type="submit"
+                          onClick={handleMentorApplication}
                         >
                           Send a request
                         </button>
