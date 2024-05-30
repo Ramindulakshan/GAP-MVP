@@ -14,6 +14,7 @@ const MentorReview = () => {
       })
       .then((response) => {
         console.log(`Mentor ${decision}`);
+        localStorage.setItem("mentorDecision", decision);
       })
       .catch((error) => {
         console.log(error);

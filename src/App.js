@@ -122,7 +122,7 @@ const App = () => {
         <Route path="/settingDeleteAccount" element={<DeleteAccount />} />
         <Route path="/settingContactUs" element={<ContactUs />} />
         <Route path="/changePass" element={<ChangePassword />} />
-        <Route path="/applyMentorReview" element={<MentorReview />} />
+        <Route path="/applyMentorReview/:userId" element={<MentorReview />} />
         <Route path="/receviedmentor" element={<ReceviedMentroingSession />} />
         <Route path="/schduldmentor" element={<ScheduledMentoringSessions />} />
         <Route path="/conducted" element={<ConductedHistory />} />
