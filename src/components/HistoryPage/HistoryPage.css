@@ -53,7 +53,7 @@
 .list-group-item-custom {
   background-color: rgb(255, 255, 255);
   color: #00000080;
-  width: 45vh;
+  width: 100%;
   border: 0;
 }
 .list-group-item-custom:hover {
