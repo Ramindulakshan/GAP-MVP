@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Card from "react-bootstrap/Card";
 import Homepage_image from "../HomePage/Img/homepage.png";
 import "../HomePage/Home.css";
 import Level from "../SettingPage/img/level.png";
-import userPic from "../HomePage/Img/user.png";
-import img1 from "../HomePage/Img/1.png";
+import userPic from "./Img/user.png";
 import SideBar from "../SideBar/SideBar";
 import NavBar from "../NavBar/NavBar";
 import { backEndURL, imageURL } from "../../backendUrl";
 import axios from "axios";
-import { CardGroup } from "react-bootstrap";
 
 const HomePage = () => {
   // const user = userDetails.user; //google login
