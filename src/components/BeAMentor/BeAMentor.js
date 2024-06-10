@@ -3,7 +3,6 @@ import Homepage_image from "../HomePage/Img/homepage.png";
 import "../BeAMentor/BeAMentor.css";
 import SideBar from "../SideBar/SideBar";
 import NavBar from "../NavBar/NavBar";
-import Col from "react-bootstrap/Col";
 import React, { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -27,26 +26,9 @@ function BeAMentor() {
     }
   };
 
-  const options1 = [
-    { id: "Time Management", name: 1 },
-    { id: "Content Writing", name: 2 },
-    { id: "Data Science", name: 3 },
-    { id: "Design", name: 4 },
-    { id: "Marketing", name: 5 },
-  ];
-
-  const options2 = [
-    { id: "Adobe Photoshop", name: 1 },
-    { id: "Figma", name: 2 },
-  ];
-
-  const options3 = [
-    { id: "Adobe Photoshop", name: 1 },
-    { id: "Figma", name: 2 },
-  ];
-
   const [switchValue, setSwitchValue] = useState(false);
   const [isMentor, setIsMentor] = useState(null);
+  const [isReview, setIsReview] = useState(null);
 
   const handleSwitchChange = () => {
     setSwitchValue(!switchValue);
@@ -58,7 +40,40 @@ function BeAMentor() {
   const handleClose2 = () => setShow2(false);
   const handleShow2 = () => setShow2(true);
 
+
+  //function for mentor application
+  const handleMentorApplication = async () => {
+
+    try {
+      const response = await axios.post(`${backEndURL}/applyMentor`, {
+        yearsOfExp: years + months ,
+        inUsername: inUsername,
+        expertise: expertise,
+        tools: tools,
+        skills: skills,
+        introduction: text,
+      },
+      {
+        headers: {
+          authorization: `${localStorage.getItem("jwtToken")}`,
+        },
+      });
+      if (response.data.status === "ok") {
+        alert("Mentor application submitted successfully to Review" );
+        handleClose2();
+        setIsReview(true);
+      } else {
+        alert(" Application submission failed. Please try again later");
+      }
+    } catch (error) {
+      console.error("Error submitting mentor application:", error);
+      alert("Error submitting mentor application");
+    }
+  };
+
   useEffect(() => {
+    console.log('m', isMentor);
+    console.log('r', isReview);
     const navbar = document.getElementById("mySidebar");
     const screenWidth = window.innerWidth;
 
@@ -92,35 +107,10 @@ function BeAMentor() {
     };
 
     checkIfMentor();
-  }, []); // Empty dependency array ensures the effect runs only once on component mount
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); 
 
-  const handleMentorApplication = async () => {
 
-    try {
-      const response = await axios.post(`${backEndURL}/applyMentor`, {
-        yearsOfExp: years + months ,
-        inUsername: inUsername,
-        expertise: expertise,
-        tools: tools,
-        skills: skills,
-        introduction: text,
-      },
-      {
-        headers: {
-          authorization: `${localStorage.getItem("jwtToken")}`,
-        },
-      });
-      if (response.data.status === "ok") {
-        alert("Mentor application submitted successfully to Review" );
-        handleClose2();
-      } else {
-        alert(" Application submission failed. Please try again later");
-      }
-    } catch (error) {
-      console.error("Error submitting mentor application:", error);
-      alert("Error submitting mentor application");
-    }
-  };
 
   return (
     <div className="d-flex">
@@ -188,21 +178,7 @@ function BeAMentor() {
                     Will Increase Accordingly.
                   </h4>
                 </div>
-                {isMentor === true && (
-                  <div className="alert alert-info mt-3">
-                    You are already a mentor.
-                  </div>
-                )}
-                {isMentor === null && (
-                  <div className="alert alert-warning mt-3">
-                    You are not a mentor yet. Apply now to become one!
-                  </div>
-                )}
-                {isMentor === false && (
-                  <div className="alert alert-info mt-3">
-                    Unfortunately, you are not approved to be a mentor.
-                  </div>
-                )}
+
 
                 <div className="d-flex justify-content-between mt-5 m-3 custom-container">
                   <h4 className="custom-text">Be a mentor</h4>
@@ -249,6 +225,17 @@ function BeAMentor() {
                     Time Slot
                   </button>
                 </div>
+
+                {isMentor === true && (
+                  <div className="alert alert-info mt-3">
+                    You are already a mentor.
+                  </div>
+                )}
+                {isReview === true && (
+                  <div className="alert alert-warning mt-3">
+                    Admins are still reviewing your request, Please wait until they approve it
+                  </div>
+                )}
 
                 <Modal
                   size="lg"
