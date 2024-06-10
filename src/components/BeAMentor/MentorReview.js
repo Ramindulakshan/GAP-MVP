@@ -13,7 +13,10 @@ const MentorReview = () => {
         decision: decision,
       })
       .then((response) => {
-        console.log(`Mentor ${decision}`);
+        if (response.status === 201) {
+          console.log(`Mentor ${decision} successfully`);
+        }
+        alert(`Mentor ${decision}`);
         localStorage.setItem("mentorDecision", decision);
       })
       .catch((error) => {
