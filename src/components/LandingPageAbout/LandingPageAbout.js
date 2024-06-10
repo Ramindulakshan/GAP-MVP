@@ -68,8 +68,8 @@ function LandingPageAbout() {
             </Navbar>
           </div>
           <div className="text-center cenclz mt-4 ">
-            <h5 className="card-title fw-bold titlabt mb-4">About Us </h5>
-            <p className="paraabty ">
+            <h5 className="card-title fw-bold titlabt mb-4 fadeInUp">About Us </h5>
+            <p className="paraabty fadeInUp">
               Generation ALPHA is a company dedicated to providing a unique
               space for young adults to discover their passions, enhance their
               skills, and shape their futures. Our students receive a
@@ -83,7 +83,7 @@ function LandingPageAbout() {
           </div>
           <div className="dtabx " >
               
-            <h5 className="card-title fw-bold titlabt2 mb-4">Meet the team </h5>
+            <h5 className="card-title fw-bold titlabt2 mb-4 fadeInUp">Meet the team </h5>
             <div className="cardsdn">
               <div className="container">
                 <div className="row">
