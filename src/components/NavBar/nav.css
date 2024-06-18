@@ -91,4 +91,8 @@
     .serchbox_brode{
       display: none;
     }
+    ::-webkit-scrollbar {
+      width: 0;
+    }
+    
   }
